@@ -1,36 +1,34 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+Este documento visa apresentar o contexto e a descrição funcional de um software desenvolvido para centros estéticos, focando no cadastro, agendamento e acompanhamento de clientes, além de um sistema especializado para o gerenciamento de fichas de anamnese. O objetivo do software é otimizar os processos internos, melhorar a experiência do cliente e garantir um acompanhamento detalhado de cada atendimento prestado.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+A cliente percebe que a falta de organização está impactando sua eficiência e produtividade no trabalho. Uma das questões mais problemáticas é o preenchimento manual das fichas de anamnese de seus clientes, que consome muito tempo. Essas fichas são cruciais para compreender as necessidades, histórico médico e preferências dos clientes antes de qualquer procedimento.
 
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Além disso, a cliente enfrenta dificuldades na organização do histórico de atendimentos de seus clientes. Ela deseja poder acessar rapidamente o último atendimento de um cliente e também cadastrar novos atendimentos nos perfis dos clientes. Outra lacuna em seu sistema é a ausência de fichas de cadastro para cada cliente. Atualmente, as fichas de anamnese são mantidas em papel, o que torna desafiador localizar a ficha de um cliente específico quando necessário.
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+Gerenciamento de Clientes: Permitir o cadastro completo de clientes, incluindo informações pessoais, contatos e histórico de serviços prestados. 
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Acompanhamento de Clientes: Oferecer ferramentas para o acompanhamento contínuo dos clientes, incluindo a evolução nos tratamentos estéticos e feedbacks.
+
+Gestão de Fichas de Anamnese: Proporcionar um sistema flexível para a criação, cadastro, manutenção e revisão das fichas de anamnese de diferentes tipos, adaptáveis às necessidades específicas de cada tratamento ou serviço oferecido.
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+Com a aplicação a cliente terá ganhos significativos para o negócio, seus principais problemas  serão atendidos através do aplicativo. 
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
+Melhoria na Organização Geral do Negócio: A centralização de informações e processos facilitará a organização do dia a dia da cliente, permitindo uma gestão mais eficiente de seus serviços e recursos.
 
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Redução do Tempo Gasto em Tarefas Administrativas: Ao eliminar o preenchimento manual de fichas de anamnese e outros documentos, a cliente poderá dedicar mais tempo às atividades essenciais do negócio, como atendimento ao cliente e aprimoramento de serviços.
+
+Aumento da Satisfação do Cliente: A possibilidade de os clientes preencherem formulários online e o acesso fácil ao histórico de atendimentos contribuirão para uma experiência mais conveniente e personalizada, aumentando a satisfação e fidelização dos clientes.
+
+Facilidade de Acesso ao Histórico de Atendimentos: Com todas as informações dos clientes armazenadas de forma acessível, a cliente poderá oferecer recomendações mais precisas e personalizadas, melhorando a experiência do cliente e fortalecendo o relacionamento com eles.
+
+Aumento da Eficiência Operacional: Ao simplificar processos e automatizar tarefas administrativas, a aplicação web permitirá uma gestão mais eficiente do tempo e dos recursos da cliente, aumentando sua produtividade e lucratividade.
 
 ## Relação com a Extensão Universitária
 
@@ -38,4 +36,4 @@ Relacionar a situação-problema da organização com o impacto social esperado 
 
 ## Descrição do Parceiro
 
-Apresente uma descrição resumida sobre a organização onde o projeto será desenvolvido para que possa ser compreendido o cenário sistema sociotécnico.
+Fátima Cristina atua no ramo de estética e beleza, é cabeleireira há mais de 20 anos e esteticista há 5 anos. É microempreendedora e possui um espaço próprio para o atendimento de clientes localizado no bairro de Guadalupe, zona norte da capital do Rio de Janeiro. 
