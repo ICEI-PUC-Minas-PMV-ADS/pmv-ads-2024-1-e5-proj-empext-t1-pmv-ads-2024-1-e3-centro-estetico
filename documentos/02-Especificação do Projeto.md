@@ -25,15 +25,23 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| O sistema permitirá o cadastro do cliente | MÉDIA | 
+|RF-002| O sistema possuirá fichas de anamnese para preenchimento do cliente | ALTA |
+|RF-003| O sistema deverá gerar um link que possa ser compartilhado com o cliente para acessar a ficha de anamnese | MÉDIA | 
+|RF-004| O sistema possuirá um histórico do cliente alimentado pelas fichas anteriormente cadastradas | ALTA |
+|RF-005| O sistema deverá ter uma metodologia de busca, para localizar o histórico dos clientes | ALTA | 
+|RF-006| O sistema permitirá que as fichas sejam revisadas e editadas pela esteticista após o preenchimento | ALTA |
+|RF-007| O sistema deverá destacar as informações mais relevantes da anamnese em cada cliente | MÉDIA | 
+|RF-008| O sistema deverá possuir um login para a esteticista acessar a plataforma | MÉDIA |
+|RF-009| O sistema deverá exibir a agenda de disponibilidade da esteticista para realização de procedimentos | BAIXA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-001| O sistema possuirá responsividade para atender todos os dispositivos homologados | ALTA |
+|RNF-002| O sistema deverá operar em navegadores WEB | ALTA |
+|RNF-002| O sistema deverá seguir as normas da LGPD | ALTA |
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
