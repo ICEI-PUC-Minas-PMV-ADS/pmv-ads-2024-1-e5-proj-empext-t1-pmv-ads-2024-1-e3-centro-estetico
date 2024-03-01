@@ -27,8 +27,8 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-002| O sistema possuirá ficha de anamnese para preenchimento do cliente e fichas corporal e/ou facial para preenchimento da esteticista | ALTA |
 |RF-003| O sistema deverá gerar um link que possa ser compartilhado com o cliente para acessar a ficha de anamnese | MÉDIA | 
 |RF-004| O sistema permitira o cadastro de consultas feitas pela esteticista | ALTA |
-|RF-005| O sistema permitirá o acesso do histórico do cliente  alimentado pelas consultas cadastradas | ALTA |
-|RF-006| O sistema deverá ter uma metodologia de busca, para localizar as fichas dos clientes de estética | ALTA | 
+|RF-005| O sistema permitirá o acesso do histórico de consultas do cliente de estetica alimentado pelas consultas cadastradas | ALTA |
+|RF-006| O sistema deverá ter uma metodologia de busca, para localizar o cadastro dos clientes de estética | ALTA | 
 |RF-007| O sistema permitirá que as fichas de sejam revisadas e editadas pela esteticista | ALTA |
 |RF-008| O sistema deverá destacar as informações mais relevantes no historico de cada cliente | MÉDIA | 
 |RF-009| O sistema deverá possuir um login para a esteticista acessar a plataforma | MÉDIA |
