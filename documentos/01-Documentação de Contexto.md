@@ -4,17 +4,17 @@ Este documento visa apresentar o contexto e a descrição funcional de um softwa
 
 ## Problema
 
-A cliente percebe que a falta de organização está impactando sua eficiência e produtividade no trabalho. Uma das questões mais problemáticas é o preenchimento manual das fichas de anamnese de seus clientes, que consome muito tempo. Essas fichas são cruciais para compreender as necessidades, histórico médico e preferências dos clientes antes de qualquer procedimento.
+A cliente percebe que a falta de organização está impactando sua eficiência e produtividade no trabalho. Uma das questões mais problemáticas é o <b>preenchimento manual das fichas de anamnese</b> de seus clientes, que consome muito tempo. Essas fichas são <b>cruciais para compreender as necessidades</b>, <b>histórico médico</b> e preferências dos clientes antes de qualquer procedimento.
 
-Além disso, a cliente enfrenta dificuldades na organização do histórico de atendimentos de seus clientes. Ela deseja poder acessar rapidamente o último atendimento de um cliente e também cadastrar novos atendimentos nos perfis dos clientes. Outra lacuna em seu sistema é a ausência de fichas de cadastro para cada cliente. Atualmente, as fichas de anamnese são mantidas em papel, o que torna desafiador localizar a ficha de um cliente específico quando necessário.
+Além disso, a cliente enfrenta dificuldades na <b>organização do histórico de atendimentos</b> de seus clientes. Ela deseja poder acessar rapidamente o último atendimento de um cliente e também cadastrar novos atendimentos nos perfis dos clientes. Outra lacuna em seu sistema é a ausência de <b>fichas de cadastro para cada cliente</b>. Atualmente, as fichas de anamnese são mantidas em papel, o que torna desafiador localizar a ficha de um cliente específico quando necessário.
 
 ## Objetivos
 
-Gerenciamento de Clientes: Permitir o cadastro completo de clientes, incluindo informações pessoais, contatos e histórico de serviços prestados. 
+<b>Gerenciamento de Clientes</b>: Permitir o cadastro completo de clientes, incluindo informações pessoais, contatos e histórico de serviços prestados. 
 
-Acompanhamento de Clientes: Oferecer ferramentas para o acompanhamento contínuo dos clientes, incluindo a evolução nos tratamentos estéticos e feedbacks.
+<b>Acompanhamento de Clientes</b>: Oferecer ferramentas para o acompanhamento contínuo dos clientes, incluindo a evolução nos tratamentos estéticos e feedbacks.
 
-Gestão de Fichas de Anamnese: Proporcionar um sistema flexível para a criação, cadastro, manutenção e revisão das fichas de anamnese de diferentes tipos, adaptáveis às necessidades específicas de cada tratamento ou serviço oferecido.
+<b>Gestão de Fichas de Anamnese</b>: Proporcionar um sistema flexível para a criação, cadastro, manutenção e revisão das fichas de anamnese de diferentes tipos, adaptáveis às necessidades específicas de cada tratamento ou serviço oferecido.
 
 ## Justificativa
 
@@ -22,13 +22,13 @@ Com a aplicação a cliente terá ganhos significativos para o negócio, seus pr
 
 <b>Melhoria na Organização Geral do Negócio</b>: A centralização de informações e processos facilitará a organização do dia a dia da cliente, permitindo uma gestão mais eficiente de seus serviços e recursos.
 
-Redução do Tempo Gasto em Tarefas Administrativas: Ao eliminar o preenchimento manual de fichas de anamnese e outros documentos, a cliente poderá dedicar mais tempo às atividades essenciais do negócio, como atendimento ao cliente e aprimoramento de serviços.
+<b>Redução do Tempo Gasto em Tarefas Administrativas</b>: Ao eliminar o preenchimento manual de fichas de anamnese e outros documentos, a cliente poderá dedicar mais tempo às atividades essenciais do negócio, como atendimento ao cliente e aprimoramento de serviços.
 
-Aumento da Satisfação do Cliente: A possibilidade de os clientes preencherem formulários online e o acesso fácil ao histórico de atendimentos contribuirão para uma experiência mais conveniente e personalizada, aumentando a satisfação e fidelização dos clientes.
+<b>Aumento da Satisfação do Cliente</b>: A possibilidade de os clientes preencherem formulários online e o acesso fácil ao histórico de atendimentos contribuirão para uma experiência mais conveniente e personalizada, aumentando a satisfação e fidelização dos clientes.
 
-Facilidade de Acesso ao Histórico de Atendimentos: Com todas as informações dos clientes armazenadas de forma acessível, a cliente poderá oferecer recomendações mais precisas e personalizadas, melhorando a experiência do cliente e fortalecendo o relacionamento com eles.
+<b>Facilidade de Acesso ao Histórico de Atendimentos</b>: Com todas as informações dos clientes armazenadas de forma acessível, a cliente poderá oferecer recomendações mais precisas e personalizadas, melhorando a experiência do cliente e fortalecendo o relacionamento com eles.
 
-Aumento da Eficiência Operacional: Ao simplificar processos e automatizar tarefas administrativas, a aplicação web permitirá uma gestão mais eficiente do tempo e dos recursos da cliente, aumentando sua produtividade e lucratividade.
+<b>Aumento da Eficiência Operacional</b>: Ao simplificar processos e automatizar tarefas administrativas, a aplicação web permitirá uma gestão mais eficiente do tempo e dos recursos da cliente, aumentando sua produtividade e lucratividade.
 
 ## Relação com a Extensão Universitária
 
