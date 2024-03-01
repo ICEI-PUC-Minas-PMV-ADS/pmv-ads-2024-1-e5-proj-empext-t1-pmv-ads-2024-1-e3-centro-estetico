@@ -20,7 +20,7 @@ Gestão de Fichas de Anamnese: Proporcionar um sistema flexível para a criaçã
 
 Com a aplicação a cliente terá ganhos significativos para o negócio, seus principais problemas  serão atendidos através do aplicativo. 
 
-Melhoria na Organização Geral do Negócio: A centralização de informações e processos facilitará a organização do dia a dia da cliente, permitindo uma gestão mais eficiente de seus serviços e recursos.
+<b>Melhoria na Organização Geral do Negócio</b>: A centralização de informações e processos facilitará a organização do dia a dia da cliente, permitindo uma gestão mais eficiente de seus serviços e recursos.
 
 Redução do Tempo Gasto em Tarefas Administrativas: Ao eliminar o preenchimento manual de fichas de anamnese e outros documentos, a cliente poderá dedicar mais tempo às atividades essenciais do negócio, como atendimento ao cliente e aprimoramento de serviços.
 
