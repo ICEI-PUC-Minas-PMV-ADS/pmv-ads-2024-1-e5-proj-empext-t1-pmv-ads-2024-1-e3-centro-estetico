@@ -10,7 +10,8 @@ o	Descreva brevemente a arquitetura definida para o projeto e as tecnologias a s
 
 ## Project Model Canvas
 
-Colocar a imagem do modelo construído apresentando a proposta de solução.
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/68014636/bbc41b6d-e5f4-4378-af46-a965b16f515d)
+
 
 > **Links Úteis**:
 > Disponíveis em material de apoio do projeto
