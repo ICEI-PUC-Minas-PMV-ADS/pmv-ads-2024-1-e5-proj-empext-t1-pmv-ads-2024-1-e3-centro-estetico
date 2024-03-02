@@ -32,7 +32,7 @@ Com a aplicação a cliente terá ganhos significativos para o negócio, seus pr
 
 ## Relação com a Extensão Universitária
 
-Relacionar a situação-problema da organização com o impacto social esperado com a implantação do sistema sociotécnico.
+Buscamos melhorar o atendimento ao cliente e proporcionar uma melhor administração à esteticista dos tratamentos gerados por ela; otimizando o tempo de ambos.
 
 ## Descrição do Parceiro
 
