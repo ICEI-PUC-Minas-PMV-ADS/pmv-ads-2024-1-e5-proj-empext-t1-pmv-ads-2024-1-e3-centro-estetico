@@ -1,8 +1,6 @@
 # Especificações do Projeto
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+Percebe-se que há uma falta de organização que está prejudicando a eficiência no trabalho, especialmente no preenchimento manual das fichas de anamnese dos clientes, que consomem muito tempo. Essas fichas são essenciais para compreender as necessidades e histórico médico dos clientes. Além disso, ela enfrenta dificuldades na organização do histórico de atendimentos e deseja poder acessá-los rapidamente. Outra lacuna é a ausência de fichas de cadastro para cada cliente, atualmente mantidas em papel, dificultando a localização quando necessário.
 
 ## Arquitetura e Tecnologias
 
