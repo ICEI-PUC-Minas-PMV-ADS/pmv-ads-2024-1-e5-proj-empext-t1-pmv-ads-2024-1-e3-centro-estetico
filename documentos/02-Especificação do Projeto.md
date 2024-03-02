@@ -132,3 +132,11 @@ Este diagrama conceitual fornece uma visão simplificada e abstrata do modelo de
 - **`Usuario -- FichaCapilar/FichaFacial/FichaCorporal`**: Ilustra que cada usuário pode ter múltiplas fichas de anamnese associadas, uma para cada tipo de procedimento estético (capilar, facial, corporal). Isso permite um acompanhamento detalhado e personalizado para cada cliente.
 
 - **`Usuario -- HistoricoDeConsultas`**: Demonstra que cada usuário possui um histórico de consultas, permitindo um registro detalhado de todos os atendimentos e procedimentos realizados no centro estético.
+
+
+
+
+
+## Diagrama de caso de uso
+
+### ![Caso de Uso UML](img\Caso de Uso UML.jpeg)
