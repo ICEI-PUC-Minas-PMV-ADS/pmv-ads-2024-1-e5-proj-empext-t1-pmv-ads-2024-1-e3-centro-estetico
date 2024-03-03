@@ -84,12 +84,13 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 
 **Usuario "contém" HistoricoDeConsulta:** Este relacionamento mostra que toda vez que o cliente recebe um atendimento na clínica de estética, um registro é criado com informações relevantes.
 
+**Usuario "contém" QuestionarioDeSaude:** Este relacionamento mostra que os usuarios do tipo cliente precisam preencher o questionário de saúde.
+
 Este diagrama conceitual fornece uma visão simplificada e abstrata do modelo de dados, focando na estrutura e nas relações principais.
 
 ## Projeto da Base de Dados
 
 ![diagrama-entidade-relacionamento](./img/diagrama-entidade-relacionamento.png)
-
 
 ## Entidades e Campos
 
@@ -128,16 +129,23 @@ Este diagrama conceitual fornece uma visão simplificada e abstrata do modelo de
   - `criado_em`: Data de criação do registro da consulta.
   - `atualizado_em`: Data da última atualização do registro da consulta.
 
+### `QuetionarioDeSaude`
+- **Descrição**: Esta entidade armazena informações relevantes e sensíveis sobre a saúde dos clientes. Apenas o próprio cliente pode preenchê-la e os administradores possuem acesso de leitura apenas.
+- **Campos**:
+  - `id`: Identificador único para cada questionario.
+  - `usuarioId`: Chave estrangeira referenciando o usuário associado à ficha.
+  - `perguntas`: aqui teremos perguntas sobre a saúde do cliente.
+  - `criado_em`: Data de criação da ficha.
+  - `atualizado_em`: Data da última atualização da ficha.
+
 ## Relações
 
 - **`Usuario -- FichaCapilar/FichaFacial/FichaCorporal`**: Ilustra que cada usuário pode ter múltiplas fichas de anamnese associadas, uma para cada tipo de procedimento estético (capilar, facial, corporal). Isso permite um acompanhamento detalhado e personalizado para cada cliente.
 
 - **`Usuario -- HistoricoDeConsultas`**: Demonstra que cada usuário possui um histórico de consultas, permitindo um registro detalhado de todos os atendimentos e procedimentos realizados no centro estético.
 
-
-
-
+- **`Usuario -- Questionario de Saude`**: Demonstra que cada usuário (cliente) possui um Questionário de Saúde com informações sensíveis sobre a saúde do cliente.
 
 ## Diagrama de caso de uso
 
-### ![Caso de Uso UML](img\Caso de Uso UML.jpeg)
+### ![Caso de Uso UML](./img/Caso%20de%20Uso%20UML.jpeg)
