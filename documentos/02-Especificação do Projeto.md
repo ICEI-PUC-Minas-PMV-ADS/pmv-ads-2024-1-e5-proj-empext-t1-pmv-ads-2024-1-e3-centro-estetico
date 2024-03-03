@@ -19,6 +19,10 @@ https://react.dev/
 - Ant Design 5.0
 https://ant.design/
 
+Segue abaixo a lógica da arquitetura:
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/a525a88d-a2f8-4455-8501-7a909bf9c1a3)
+
 Algumas ferramentas:
 
 - Visual studio code
