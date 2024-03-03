@@ -121,7 +121,8 @@ Este diagrama conceitual fornece uma visão simplificada e abstrata do modelo de
 - **Descrição**: Mantém registros detalhados de todas as consultas realizadas pelos usuários, incluindo descrições das consultas e observações adicionais.
 - **Campos**:
   - `id`: Identificador único para cada registro de consulta.
-  - `usuarioId`: Chave estrangeira referenciando o usuário ao qual a consulta está associada.
+  - `adminId`: Chave estrangeira referenciando o usuário do tipo admin ao qual a consulta está associada.
+  - `clienteId`: Chave estrangeira referenciando o usuário do tipo cliente ao qual a consulta está associada.
   - `descricao`: Descrição detalhada da consulta.
   - `observacoes`: Observações adicionais sobre a consulta, sendo um campo não obrigatório.
   - `criado_em`: Data de criação do registro da consulta.
