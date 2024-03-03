@@ -156,7 +156,3 @@ Este diagrama conceitual fornece uma visão simplificada e abstrata do modelo de
 - **`Usuario -- HistoricoDeConsultas`**: Demonstra que cada usuário possui um histórico de consultas, permitindo um registro detalhado de todos os atendimentos e procedimentos realizados no centro estético.
 
 - **`Usuario -- Questionario de Saude`**: Demonstra que cada usuário (cliente) possui um Questionário de Saúde com informações sensíveis sobre a saúde do cliente.
-
-## Diagrama de caso de uso
-
-### ![Caso de Uso UML](./img/Caso%20de%20Uso%20UML.jpeg)
