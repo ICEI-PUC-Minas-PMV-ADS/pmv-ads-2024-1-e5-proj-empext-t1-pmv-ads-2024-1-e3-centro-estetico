@@ -4,7 +4,26 @@ Percebe-se que há uma falta de organização que está prejudicando a eficiênc
 
 ## Arquitetura e Tecnologias
 
-o	Descreva brevemente a arquitetura definida para o projeto e as tecnologias a serem utilizadas. Sugere-se a criação de um diagrama de componentes da solução.
+As tecnologias utilizadas serão:
+
+- Node.JS
+https://nodejs.org/en
+- Prisma
+https://www.prisma.io/
+- Postgres
+https://www.postgresql.org/
+- Fastify
+https://fastify.io/
+- React.JS
+https://react.dev/
+- Ant Design 5.0
+https://ant.design/
+
+Algumas ferramentas:
+
+- Visual studio code
+- Postman
+- Figma
 
 ## Project Model Canvas
 
