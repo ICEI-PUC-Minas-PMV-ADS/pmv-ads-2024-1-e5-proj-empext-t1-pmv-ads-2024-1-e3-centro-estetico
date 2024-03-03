@@ -27,7 +27,7 @@ Algumas ferramentas:
 
 ## Project Model Canvas
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/68014636/bbc41b6d-e5f4-4378-af46-a965b16f515d)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/68014636/4ad2c93b-b164-4169-9a07-8691a22f4278)
 
 
 > **Links Úteis**:
