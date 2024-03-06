@@ -1,0 +1,12 @@
+{
+  "name": "codigo-fonte",
+  "version": "1.0.0",
+  "description": "## Instalação do Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
