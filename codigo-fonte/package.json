@@ -11,13 +11,13 @@
   "keywords": [],
   "author": "João Victor Ramires Guimarães Brito",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.11.25",
-    "tsup": "^8.0.2",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.2"
-  },
   "dependencies": {
-    "fastify": "^4.26.2"
+    "fastify": "4.26.2"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.25",
+    "tsup": "8.0.2",
+    "tsx": "4.7.1",
+    "typescript": "5.4.2"
   }
 }
