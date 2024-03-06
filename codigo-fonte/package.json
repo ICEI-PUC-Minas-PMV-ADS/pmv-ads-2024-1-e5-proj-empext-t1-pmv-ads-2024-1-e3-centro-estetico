@@ -4,7 +4,9 @@
   "description": "API to manage a beauty center",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
+    "start": "node build/server.js"
   },
   "keywords": [],
   "author": "João Victor Ramires Guimarães Brito",
