@@ -1,0 +1,247 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MaritalStatus {
+  Married
+  Single
+  Divorced
+}
+
+enum Gender {
+  Male
+  Female
+}
+
+enum UserType {
+  Admin
+  Client
+}
+
+enum MenstrualCycle {
+  Regular
+  Irregular
+}
+
+model User {
+  id                     String                @id @default(uuid())
+  name                   String
+  birth_date             DateTime
+  address                String
+  marital_status         MaritalStatus
+  email                  String?               @unique
+  phone                  String
+  gender                 Gender
+  additional_information String?
+  user_type              UserType
+  password_hash          String
+  created_at             DateTime              @default(now())
+  updated_at             DateTime              @updatedAt
+  HairAnalysis           HairAnalysis[]
+  SkinAnalysis           SkinAnalysis[]
+  BodyAnalysis           BodyAnalysis[]
+  AppointmentHistory     AppointmentHistory[]
+  HealthQuestionnaire    HealthQuestionnaire[]
+
+  @@map("users")
+}
+
+model HairAnalysis {
+  id                           String         @id @default(uuid())
+  user_id                      String
+  main_complaint               String
+  previous_aesthetic_procedure String
+  scarring_issues              Boolean
+  diabetes                     Boolean
+  medication_use               String
+  isotretinoin_use             Boolean
+  medical_treatment            String
+  thrombosis                   Boolean
+  surgery                      String
+  oncological_history          Boolean
+  infectious_disease           String
+  sports_practice              String
+  balanced_diet                Boolean
+  daily_water_intake           String
+  alcoholic_beverage_use       Boolean
+  substance_use                String
+  hormonal_disorder            String
+  smoker                       Boolean
+  sleeps_well                  Boolean
+  regular_intestine            Boolean
+  hypertension                 Boolean
+  hypotension                  Boolean
+  cardiac_issues               String
+  depression                   Boolean
+  epilepsy                     Boolean
+  has_plates_pins              String
+  dental_prosthesis            String
+  renal_issue                  Boolean
+  hepatic_issues               Boolean
+  thyroid_problems             Boolean
+  autoimmune_disease           String
+  pregnancy                    Boolean
+  breastfeeding                Boolean
+  sun_exposure                 String
+  skin_care                    String
+  metacril_toxin_use           Boolean
+  allergy_history              String
+  sunscreen_use                Boolean
+  herpes_history               Boolean
+  contraceptive_use            Boolean
+  menstrual_cycle              MenstrualCycle
+  hormone_use                  String
+  acid_use_on_skin             Boolean
+  cosmetic_use                 String
+  authorize_photos             Boolean
+  created_at                   DateTime       @default(now())
+  updated_at                   DateTime       @updatedAt
+  User                         User           @relation(fields: [user_id], references: [id])
+
+  @@map("hair_analysis")
+}
+
+model SkinAnalysis {
+  id                           String         @id @default(uuid())
+  user_id                      String
+  main_complaint               String
+  previous_aesthetic_procedure String
+  scarring_issues              Boolean
+  diabetes                     Boolean
+  medication_use               String
+  isotretinoin_use             Boolean
+  medical_treatment            String
+  thrombosis                   Boolean
+  surgery                      String
+  oncological_history          Boolean
+  infectious_disease           String
+  sports_practice              String
+  balanced_diet                Boolean
+  daily_water_intake           String
+  alcoholic_beverage_use       Boolean
+  substance_use                String
+  hormonal_disorder            String
+  smoker                       Boolean
+  sleeps_well                  Boolean
+  regular_intestine            Boolean
+  hypertension                 Boolean
+  hypotension                  Boolean
+  cardiac_issues               String
+  depression                   Boolean
+  epilepsy                     Boolean
+  has_plates_pins              String
+  dental_prosthesis            String
+  renal_issue                  Boolean
+  hepatic_issues               Boolean
+  thyroid_problems             Boolean
+  autoimmune_disease           String
+  pregnancy                    Boolean
+  breastfeeding                Boolean
+  sun_exposure                 String
+  skin_care                    String
+  metacril_toxin_use           Boolean
+  allergy_history              String
+  sunscreen_use                Boolean
+  herpes_history               Boolean
+  contraceptive_use            Boolean
+  menstrual_cycle              MenstrualCycle
+  hormone_use                  String
+  acid_use_on_skin             Boolean
+  cosmetic_use                 String
+  authorize_photos             Boolean
+  created_at                   DateTime       @default(now())
+  updated_at                   DateTime       @updatedAt
+  User                         User           @relation(fields: [user_id], references: [id])
+
+  @@map("skin_analysis")
+}
+
+model BodyAnalysis {
+  id                           String         @id @default(uuid())
+  user_id                      String
+  main_complaint               String
+  previous_aesthetic_procedure String
+  scarring_issues              Boolean
+  diabetes                     Boolean
+  medication_use               String
+  isotretinoin_use             Boolean
+  medical_treatment            String
+  thrombosis                   Boolean
+  surgery                      String
+  oncological_history          Boolean
+  infectious_disease           String
+  sports_practice              String
+  balanced_diet                Boolean
+  daily_water_intake           String
+  alcoholic_beverage_use       Boolean
+  substance_use                String
+  hormonal_disorder            String
+  smoker                       Boolean
+  sleeps_well                  Boolean
+  regular_intestine            Boolean
+  hypertension                 Boolean
+  hypotension                  Boolean
+  cardiac_issues               String
+  depression                   Boolean
+  epilepsy                     Boolean
+  has_plates_pins              String
+  dental_prosthesis            String
+  renal_issue                  Boolean
+  hepatic_issues               Boolean
+  thyroid_problems             Boolean
+  autoimmune_disease           String
+  pregnancy                    Boolean
+  breastfeeding                Boolean
+  sun_exposure                 String
+  skin_care                    String
+  metacril_toxin_use           Boolean
+  allergy_history              String
+  sunscreen_use                Boolean
+  herpes_history               Boolean
+  contraceptive_use            Boolean
+  menstrual_cycle              MenstrualCycle
+  hormone_use                  String
+  acid_use_on_skin             Boolean
+  cosmetic_use                 String
+  authorize_photos             Boolean
+  created_at                   DateTime       @default(now())
+  updated_at                   DateTime       @updatedAt
+  User                         User           @relation(fields: [user_id], references: [id])
+
+  @@map("body_analysis")
+}
+
+model AppointmentHistory {
+  id           String   @id @default(uuid())
+  user_id      String
+  description  String
+  observations String?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  User         User     @relation(fields: [user_id], references: [id])
+
+  @@map("appointment_history")
+}
+
+model HealthQuestionnaire {
+  id           String   @id @default(uuid())
+  user_id      String
+  description  String
+  observations String?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  User         User     @relation(fields: [user_id], references: [id])
+
+  @@map("health_questionnaire")
+}
