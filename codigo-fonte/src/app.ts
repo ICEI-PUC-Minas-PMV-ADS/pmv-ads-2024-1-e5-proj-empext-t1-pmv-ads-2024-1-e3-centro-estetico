@@ -1,53 +1,45 @@
 import fastify from 'fastify'
-import { Prisma, PrismaClient } from '@prisma/client'
 import { z } from 'zod'
+import { hash } from 'bcryptjs'
+import { prisma } from './lib/prisma'
 
 export const app = fastify()
-
-const prisma = new PrismaClient()
 
 const MaritalStatus = z.enum(['Married', 'Single', 'Divorced'])
 const Gender = z.enum(['Male', 'Female'])
 const UserType = z.enum(['Admin', 'Client'])
 
-const userSchema = z.object({
+const registerBodySchema = z.object({
   name: z.string(),
-  birth_date: z.date(),
+  birth_date: z.preprocess((arg) => {
+    if (typeof arg === 'string') {
+      return new Date(arg)
+    }
+  }, z.date()),
   address: z.string(),
   marital_status: MaritalStatus,
-  email: z.string().email(),
+  email: z.string().email().optional(),
   phone: z.string(),
   gender: Gender,
   additional_information: z.string().optional(),
   user_type: UserType,
-  password_hash: z.string(),
+  password: z.string().min(6),
 })
 
-// Create USERS - Just for test, remember to move it to dedicated routes.
 app.post('/users', async (request, reply) => {
-  const fakeUserData: Prisma.UserCreateInput = {
-    name: 'joao',
-    birth_date: new Date('2024-01-01'),
-    address: 'Rua 123, Belo Horizonte, Brazil',
-    marital_status: 'Single',
-    email: 'joao@example.com',
-    phone: '1234567890',
-    gender: 'Male',
-    additional_information: "It's a tall guy",
-    user_type: 'Admin',
-    password_hash: 'hashed_password',
-  }
+  const { password, ...userDataWithoutPassword } = registerBodySchema.parse(
+    request.body,
+  )
+  const password_hash = await hash(password, 6)
 
-  const validationResult = userSchema.safeParse(fakeUserData)
-  if (!validationResult.success) {
-    return reply.code(400).send(validationResult.error)
-  }
+  const userData = { ...userDataWithoutPassword, password_hash }
 
   try {
-    const user = await prisma.user.create({
-      data: fakeUserData,
+    await prisma.user.create({
+      data: userData,
     })
-    return reply.code(201).send(user)
+
+    return reply.code(201).send({ message: 'User created successfully' })
   } catch (error) {
     request.log.error(error)
     return reply.code(500).send({ error: 'Unable to create user' })
