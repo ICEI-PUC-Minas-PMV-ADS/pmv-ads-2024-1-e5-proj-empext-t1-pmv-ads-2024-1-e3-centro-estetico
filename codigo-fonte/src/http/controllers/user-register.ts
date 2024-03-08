@@ -19,7 +19,7 @@ export async function userRegister(
     }, z.date()),
     address: z.string(),
     marital_status: MaritalStatus,
-    email: z.string().email().optional(),
+    email: z.string().email(),
     phone: z.string(),
     gender: Gender,
     additional_information: z.string().optional(),

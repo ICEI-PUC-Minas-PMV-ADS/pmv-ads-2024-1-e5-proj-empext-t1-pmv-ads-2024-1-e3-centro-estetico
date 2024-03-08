@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { PrismaUsersRepository } from '@/repositories/prisma-users-repository'
 import { hash } from 'bcryptjs'
 
 type MaritalStatusType = 'Married' | 'Single' | 'Divorced'
@@ -10,7 +10,7 @@ interface UserRegisterService {
   birth_date: Date
   address: string
   marital_status: MaritalStatusType
-  email?: string
+  email: string
   phone: string
   gender: GenderType
   additional_information?: string
@@ -21,23 +21,11 @@ interface UserRegisterService {
 export async function userRegisterService(params: UserRegisterService) {
   const { password, ...userInputWithoutPassword } = params
 
-  const userExists = await prisma.user.findUnique({
-    where: {
-      email: userInputWithoutPassword.email,
-    },
-  })
-
-  if (userExists) {
-    throw new Error('User already exists')
-  }
-
   const password_hash = await hash(password, 6)
-
   const userData = { ...userInputWithoutPassword, password_hash }
 
-  await prisma.user.create({
-    data: userData,
-  })
+  const prismaUsersRepository = new PrismaUsersRepository(userData)
+  await prismaUsersRepository.create()
 
   return { message: 'User created successfully' }
 }
