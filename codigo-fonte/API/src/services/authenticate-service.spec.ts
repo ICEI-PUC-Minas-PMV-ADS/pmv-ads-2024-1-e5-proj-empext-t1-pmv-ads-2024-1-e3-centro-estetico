@@ -34,11 +34,6 @@ describe('User Register Service', async () => {
     }
   })
 
-  // Tear down the usersRepository.items array after each test
-  afterEach(async () => {
-    usersRepository.items = []
-  })
-
   it('should be able to authenticate', async () => {
     const response = await subject.execute(userInput)
 

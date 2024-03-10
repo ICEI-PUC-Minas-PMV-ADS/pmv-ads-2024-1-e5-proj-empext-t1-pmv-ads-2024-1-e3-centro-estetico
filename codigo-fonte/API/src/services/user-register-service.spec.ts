@@ -29,11 +29,6 @@ describe('User Register Service', async () => {
     }
   })
 
-  // Tear down the usersRepository.items array after each test
-  afterEach(async () => {
-    usersRepository.items = []
-  })
-
   it('should hash the user password upon registration', async () => {
     const userData = await subject.buildUserData(userInput)
 
