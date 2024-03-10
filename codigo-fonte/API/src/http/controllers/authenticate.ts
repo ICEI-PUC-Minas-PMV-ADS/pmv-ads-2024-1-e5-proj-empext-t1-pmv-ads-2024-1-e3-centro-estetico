@@ -11,9 +11,20 @@ export async function authenticate(
 
   try {
     const authenticateService = makeAuthenticateService()
-    await authenticateService.execute(userInputData)
+    const { user } = await authenticateService.execute(userInputData)
 
-    return reply.code(202).send()
+    const token = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: user.id,
+        },
+      },
+    )
+
+    return reply.code(202).send({
+      token,
+    })
   } catch (error) {
     request.log.error(error)
 
