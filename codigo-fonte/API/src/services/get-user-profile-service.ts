@@ -1,5 +1,4 @@
 import { IUsersRepository } from '@/repositories/interfaces/iusers-repository'
-import { compare } from 'bcryptjs'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 export interface GetUserProfileServiceRequest {
@@ -14,7 +13,6 @@ type user = {
 
 interface GetUserProfileServiceResponse {
   user: user
-  message: string
 }
 
 export class GetUserProfileService {
@@ -32,7 +30,6 @@ export class GetUserProfileService {
         name: user.name,
         email: user.email,
       },
-      message: 'User authenticated successfully',
     }
   }
 }
