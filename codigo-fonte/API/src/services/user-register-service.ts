@@ -1,7 +1,8 @@
 import { IUsersRepository } from '@/repositories/interfaces/iusers-repository'
 import { hashPassword } from '@/utils/hash-password'
+import { registerBodySchema } from '@/validations/user-validation'
 
-type UserRegisterServiceType = {
+export type UserRegisterServiceType = {
   name: string
   birth_date: Date
   address: string
@@ -14,17 +15,31 @@ type UserRegisterServiceType = {
   password: string
 }
 
-export class UserRegisterService {
+interface IUserRegisterService {
+  execute: (
+    userInputData: UserRegisterServiceType,
+  ) => Promise<{ message: string }>
+}
+
+export class UserRegisterService implements IUserRegisterService {
   constructor(private usersRepository: IUsersRepository) {}
 
   async execute(userInputData: UserRegisterServiceType) {
+    const userData = await this.buildUserData(
+      registerBodySchema.parse(userInputData),
+    )
+
+    await this.usersRepository.create(userData)
+
+    return { message: 'User created successfully' }
+  }
+
+  async buildUserData(userInputData: UserRegisterServiceType) {
     const { password, ...userInputWithoutPassword } = userInputData
 
     const password_hash = await hashPassword(password)
     const userData = { ...userInputWithoutPassword, password_hash }
 
-    await this.usersRepository.create(userData)
-
-    return { message: 'User created successfully' }
+    return userData
   }
 }
