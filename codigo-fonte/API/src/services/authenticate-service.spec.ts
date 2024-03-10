@@ -1,5 +1,5 @@
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
-import { expect, describe, it, beforeEach, afterEach } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import {
   AuthenticateService,
   AuthenticateServiceRequest,
@@ -11,7 +11,7 @@ let userInput: AuthenticateServiceRequest
 let usersRepository: InMemoryUsersRepository
 let subject: AuthenticateService
 
-describe('User Register Service', async () => {
+describe('Authenticate Service', async () => {
   beforeEach(async () => {
     usersRepository = new InMemoryUsersRepository()
     subject = new AuthenticateService(usersRepository)
@@ -38,6 +38,7 @@ describe('User Register Service', async () => {
     const response = await subject.execute(userInput)
 
     expect(response.user.email).toEqual('john@example.com')
+    expect(response.message).toEqual('User authenticated successfully')
   })
 
   it('should not be able to authenticate with wrong email', async () => {

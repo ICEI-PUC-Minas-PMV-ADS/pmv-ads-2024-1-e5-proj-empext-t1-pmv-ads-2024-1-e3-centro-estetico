@@ -1,15 +1,21 @@
 import { IUsersRepository } from '@/repositories/interfaces/iusers-repository'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 import { compare } from 'bcryptjs'
-import { User } from '@prisma/client'
 
 export interface AuthenticateServiceRequest {
   email: string
   password: string
 }
 
+type user = {
+  id: string
+  name: string
+  email: string
+}
+
 interface AuthenticateServiceResponse {
-  user: User
+  user: user
+  message: string
 }
 
 export class AuthenticateService {
@@ -26,7 +32,12 @@ export class AuthenticateService {
     if (!doesPasswordMatches) throw new InvalidCredentialsError()
 
     return {
-      user,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+      message: 'User authenticated successfully',
     }
   }
 }
