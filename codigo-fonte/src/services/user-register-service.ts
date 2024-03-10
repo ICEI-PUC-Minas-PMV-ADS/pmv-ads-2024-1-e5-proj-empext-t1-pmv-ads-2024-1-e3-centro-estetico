@@ -1,31 +1,30 @@
-import { PrismaUsersRepository } from '@/repositories/prisma-users-repository'
-import { hash } from 'bcryptjs'
+import { IUsersRepository } from '@/repositories/interfaces/iusers-repository'
+import { hashPassword } from '@/utils/hash-password'
 
-type MaritalStatusType = 'Married' | 'Single' | 'Divorced'
-type GenderType = 'Male' | 'Female'
-type UserType = 'Admin' | 'Client'
-
-interface UserRegisterService {
+type UserRegisterServiceType = {
   name: string
   birth_date: Date
   address: string
-  marital_status: MaritalStatusType
+  marital_status: 'Married' | 'Single' | 'Divorced'
   email: string
   phone: string
-  gender: GenderType
+  gender: 'Male' | 'Female'
   additional_information?: string
-  user_type: UserType
+  user_type: 'Admin' | 'Client'
   password: string
 }
 
-export async function userRegisterService(params: UserRegisterService) {
-  const { password, ...userInputWithoutPassword } = params
+export class UserRegisterService {
+  constructor(private usersRepository: IUsersRepository) {}
 
-  const password_hash = await hash(password, 6)
-  const userData = { ...userInputWithoutPassword, password_hash }
+  async execute(userInputData: UserRegisterServiceType) {
+    const { password, ...userInputWithoutPassword } = userInputData
 
-  const prismaUsersRepository = new PrismaUsersRepository(userData)
-  await prismaUsersRepository.create()
+    const password_hash = await hashPassword(password)
+    const userData = { ...userInputWithoutPassword, password_hash }
 
-  return { message: 'User created successfully' }
+    await this.usersRepository.create(userData)
+
+    return { message: 'User created successfully' }
+  }
 }
