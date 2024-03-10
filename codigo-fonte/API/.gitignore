@@ -90,3 +90,6 @@ Thumbs.db
 *.sqlite-journal
 tmp/app.db
 db/app.db
+
+# Ignore coverage directory
+coverage/
