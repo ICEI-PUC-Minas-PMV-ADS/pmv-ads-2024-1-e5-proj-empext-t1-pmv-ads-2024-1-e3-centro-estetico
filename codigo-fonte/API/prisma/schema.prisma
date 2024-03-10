@@ -40,7 +40,7 @@ model User {
   birth_date             DateTime
   address                String
   marital_status         MaritalStatus
-  email                  String?               @unique
+  email                  String                @unique
   phone                  String
   gender                 Gender
   additional_information String?
