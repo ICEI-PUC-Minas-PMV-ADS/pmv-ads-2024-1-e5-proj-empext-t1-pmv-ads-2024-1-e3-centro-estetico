@@ -1,5 +1,5 @@
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
-import { expect, describe, it, beforeEach, afterEach } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import {
   UserRegisterService,
   UserRegisterServiceType,
@@ -10,12 +10,12 @@ import { ZodError } from 'zod'
 
 let userInput: UserRegisterServiceType
 let usersRepository: InMemoryUsersRepository
-let userRegisterService: UserRegisterService
+let subject: UserRegisterService
 
 describe('User Register Service', async () => {
   beforeEach(async () => {
     usersRepository = new InMemoryUsersRepository()
-    userRegisterService = new UserRegisterService(usersRepository)
+    subject = new UserRegisterService(usersRepository)
     userInput = {
       name: 'John Doe',
       birth_date: new Date(),
@@ -29,13 +29,8 @@ describe('User Register Service', async () => {
     }
   })
 
-  // Tear down the usersRepository.items array after each test
-  afterEach(async () => {
-    usersRepository.items = []
-  })
-
   it('should hash the user password upon registration', async () => {
-    const userData = await userRegisterService.buildUserData(userInput)
+    const userData = await subject.buildUserData(userInput)
 
     const isPasswordCorrectlyHashed = await compare(
       'password',
@@ -46,11 +41,11 @@ describe('User Register Service', async () => {
   })
 
   it('should not register users with the same email', async () => {
-    await userRegisterService.execute(userInput)
+    await subject.execute(userInput)
 
-    await expect(() =>
-      userRegisterService.execute(userInput),
-    ).rejects.toBeInstanceOf(UserAlreadyExistsError)
+    await expect(() => subject.execute(userInput)).rejects.toBeInstanceOf(
+      UserAlreadyExistsError,
+    )
   })
 
   it('should not register a new user with an invalid email', async () => {
@@ -60,7 +55,7 @@ describe('User Register Service', async () => {
     }
 
     await expect(() =>
-      userRegisterService.execute(invalidUserInput),
+      subject.execute(invalidUserInput),
     ).rejects.toBeInstanceOf(ZodError)
   })
 
@@ -71,7 +66,7 @@ describe('User Register Service', async () => {
     }
 
     await expect(() =>
-      userRegisterService.execute(invalidUserInput),
+      subject.execute(invalidUserInput),
     ).rejects.toBeInstanceOf(ZodError)
   })
 
@@ -83,12 +78,12 @@ describe('User Register Service', async () => {
 
     await expect(() =>
       // @ts-expect-error: I'm testing an invalid date
-      userRegisterService.execute(invalidUserInput),
+      subject.execute(invalidUserInput),
     ).rejects.toBeInstanceOf(ZodError)
   })
 
   it('should register a new user', async () => {
-    const serviceResponse = await userRegisterService.execute(userInput)
+    const serviceResponse = await subject.execute(userInput)
 
     expect(serviceResponse.message).toBe('User created successfully')
   })
