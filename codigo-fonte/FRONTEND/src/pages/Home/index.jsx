@@ -1,9 +1,9 @@
 import React from "react";
+import { Container } from "./styles copy";
 
-// import { Container } from './styles';
 
 function Home() {
-  return <div />;
+  return (<Container> OII CÉU!!</Container>);
 }
 
 export default Home;
