@@ -7,7 +7,7 @@ const envSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   JWT_SECRET: z.string(),
-  CORS_ORIGIN: z.string().url(),
+  CLIENT_URL: z.string().url(),
 })
 
 const _env = envSchema.safeParse(process.env)
