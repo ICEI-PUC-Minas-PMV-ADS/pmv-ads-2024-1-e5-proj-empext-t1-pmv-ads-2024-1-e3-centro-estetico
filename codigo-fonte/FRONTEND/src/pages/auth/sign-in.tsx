@@ -1,41 +1,43 @@
+import { useMutation } from '@tanstack/react-query'
 import { UserPlus } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { signIn } from '@/api/sign-in'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const signInForm = z.object({
   email: z.string().email(),
+  password: z.string().min(6),
 })
 
 type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
   } = useForm<SignInForm>()
 
-  async function handleSignIn(data: SignInForm) {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+  const { mutateAsync: authenticate } = useMutation({
+    mutationFn: signIn,
+  })
 
-      toast.success('Magic Link enviado para seu e-mail!', {
-        action: {
-          label: 'Reenviar',
-          onClick: () => {
-            handleSignIn(data)
-          },
-        },
-      })
+  async function handleSignIn({ email, password }: SignInForm) {
+    try {
+      await authenticate({ email, password })
+
+      navigate('/')
+      toast.success('Bem vinda!')
     } catch (error) {
-      toast.error('Erro ao enviar Magic Link')
+      toast.error('Credenciais inválidas!')
     }
   }
 
@@ -67,6 +69,15 @@ export function SignIn() {
                 type="email"
                 className="w-full rounded-md border border-foreground/5 p-3"
                 {...register('email')}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Sua senha</Label>
+              <Input
+                id="password"
+                type="password"
+                className="w-full rounded-md border border-foreground/5 p-3"
+                {...register('password')}
               />
             </div>
 
