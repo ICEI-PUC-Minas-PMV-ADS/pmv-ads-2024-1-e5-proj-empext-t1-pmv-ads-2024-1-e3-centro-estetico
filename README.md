@@ -13,7 +13,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 * Philipe Rocha de Jesus Souza
 * Giselle Nepomuceno Rosa
 * Gabriel de Almeida Carvalho
-* Luiz Felliipe Pereira Pires
+* Luiz Fellipe Pereira Pires
 * Rafael Pacheco Leite
 * João Victor Ramires Guimarães Brito
 
