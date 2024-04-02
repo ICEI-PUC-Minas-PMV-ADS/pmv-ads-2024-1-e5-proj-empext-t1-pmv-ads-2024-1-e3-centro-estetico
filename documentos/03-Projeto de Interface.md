@@ -2,7 +2,8 @@
 # Projeto de Interface
 
 * Mock-up Interativo:
-https://www.figma.com/proto/QiZ1m7X5IqAwWcO7t1gSZt/Estetica?page-id=24%3A949&type=design&node-id=87-1910&viewport=-1442%2C145%2C0.5&t=js6h76LWCLQZyK36-1&scaling=min-zoom&starting-point-node-id=87%3A1910&mode=design
+  
+https://www.figma.com/proto/QiZ1m7X5IqAwWcO7t1gSZt/Estetica?page-id=24%3A949&type=design&node-id=87-1910&viewport=-748%2C-175%2C0.25&t=oUA8IdVsZt4ZRwlW-1&scaling=min-zoom&starting-point-node-id=87%3A1910&mode=design
 
 ## Mock-up
 
