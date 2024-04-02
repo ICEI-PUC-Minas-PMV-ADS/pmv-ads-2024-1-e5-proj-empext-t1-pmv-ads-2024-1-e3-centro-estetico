@@ -16,6 +16,15 @@ module.exports = {
         '2xl': '1400px',
       },
     },
+    fontFamily: {
+      sans: [
+        '"Roboto", sans-serif',
+        {
+          fontFeatureSettings: '"cv11", "ss01"',
+          fontVariationSettings: '"opsz" 32'
+        },
+      ],
+    },
     extend: {
       colors: {
         border: 'hsl(var(--border))',

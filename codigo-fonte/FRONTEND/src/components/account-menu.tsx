@@ -1,6 +1,7 @@
-import { ChevronDown, LogOutIcon, UserCircle2Icon } from 'lucide-react'
+import { LogOutIcon, UserCircle2Icon } from 'lucide-react'
+import { ThemeToggle } from './theme/theme-toggle'
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
-import { Button } from './ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,20 +15,22 @@ export function AccountMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          className="flex select-none items-center gap-2"
-        >
-          Fatima Styles
-          <ChevronDown className="h-4 w-4" />
-        </Button>
+        <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>FS</AvatarFallback>
+        </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel className="flex flex-col">
-          <span>Joao Ramires</span>
-          <span className="text-xs font-normal text-muted-foreground">
-            joao@email.com
-          </span>
+      <DropdownMenuContent align="end" className="w-18">
+        <DropdownMenuLabel className="flex">
+          <div className="flex flex-col">
+            <span>João Ramires</span>
+            <span className="text-xs font-normal text-muted-foreground">
+              joao@email.com
+            </span>
+          </div>
+          <DropdownMenuItem className='pl-5'>
+            <ThemeToggle /> 
+          </DropdownMenuItem>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
