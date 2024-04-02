@@ -75,7 +75,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/68014636/2f480789-03a8-4f0c-91aa-ede200143e84)
+![image](./img/Caso de Uso UML.jpeg)
 
 
 ## Modelo ER (Projeto Conceitual)

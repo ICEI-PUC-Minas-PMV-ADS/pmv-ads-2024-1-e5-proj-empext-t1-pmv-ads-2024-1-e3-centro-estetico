@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import {
@@ -6,6 +7,7 @@ import {
   ArrowUpDown,
   Blend,
   CalendarHeart,
+  Lock,
   LogIn,
   Mail,
   MapPin,
@@ -14,10 +16,11 @@ import {
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Controller, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { signUp } from '@/api/sign-up'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Input } from '@/components/ui/input'
@@ -33,30 +36,43 @@ import { cn } from '@/lib/utils'
 const MaritalStatus = z.enum(['Married', 'Single', 'Divorced'])
 const Gender = z.enum(['Male', 'Female'])
 
-const signUpForm = z.object({
-  name: z.string().min(3, 'Nomes precisam ter pelo menos 3 letras'),
-  birth_date: z.preprocess((arg) => {
-    if (arg instanceof Date) return arg
-    if (typeof arg === 'string') return new Date(arg)
-  }, z.date()),
-  address: z.string().regex(/^(.+),\s*(\d+),\s*(.+?)(?:,\s*(.+))?$/, {
-    message:
-      'Endereço deve seguir o padrão: Rua, número, bairro, complemento (complemento é opcional).',
-  }),
-  marital_status: MaritalStatus,
-  email: z.string().email({ message: 'Endereço de e-mail inválido.' }),
-  phone: z
-    .string()
-    .regex(
-      /^(\(\d{2}\)|\d{2})-?\s?9-?\s?\d{4,5}-?\d{4}$/,
-      'Número de telefone inválido.',
-    ),
-  gender: Gender,
-})
+const signUpForm = z
+  .object({
+    name: z.string().min(3, 'Nomes precisam ter pelo menos 3 letras'),
+    birth_date: z.preprocess((arg) => {
+      if (arg instanceof Date) return arg
+      if (typeof arg === 'string') return new Date(arg)
+    }, z.date()),
+    address: z.string().regex(/^(.+),\s*(\d+),\s*(.+?)(?:,\s*(.+))?$/, {
+      message:
+        'Endereço deve seguir o padrão: Rua, número, bairro, complemento (complemento é opcional).',
+    }),
+    marital_status: MaritalStatus,
+    email: z.string().email({ message: 'Endereço de e-mail inválido.' }),
+    phone: z
+      .string()
+      .regex(
+        /^(\(\d{2}\)|\d{2})-?\s?9-?\s?\d{4,5}-?\d{4}$/,
+        'Número de telefone inválido.',
+      ),
+    gender: Gender,
+    password: z.string().min(6, 'Senha precisa ter pelo menos 6 caracteres'),
+    password_confirmation: z.string(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.password_confirmation) {
+      ctx.addIssue({
+        path: ['password_confirmation'],
+        message: 'As senhas precisam ser iguais.',
+        code: 'custom',
+      })
+    }
+  })
 
 type SignUpForm = z.infer<typeof signUpForm>
 
 export function SignUp() {
+  const navigate = useNavigate()
   const [date, setDate] = useState<Date>()
 
   const {
@@ -67,6 +83,14 @@ export function SignUp() {
     formState: { isSubmitting, errors },
   } = useForm<SignUpForm>({
     resolver: zodResolver(signUpForm),
+    defaultValues: {
+      marital_status: 'Married',
+      gender: 'Female',
+    },
+  })
+
+  const { mutateAsync: reg } = useMutation({
+    mutationFn: signUp,
   })
 
   useEffect(() => {
@@ -77,19 +101,15 @@ export function SignUp() {
 
   async function handleSignUp(data: SignUpForm) {
     try {
-      console.log(data)
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // eslint-disable-next-line
+      const { password_confirmation, ...regData } = data
 
-      toast.success('Magic Link enviado para seu e-mail!', {
-        action: {
-          label: 'Reenviar',
-          onClick: () => {
-            handleSignUp(data)
-          },
-        },
-      })
+      await reg(regData)
+
+      navigate('/sign-in')
+      toast.success('Usuário cadastrado com sucesso!')
     } catch (error) {
-      toast.error('Erro ao enviar Magic Link')
+      toast.error('Erro ao cadastrar usuário!')
     }
   }
 
@@ -293,6 +313,48 @@ export function SignUp() {
                   </RadioGroup>
                 )}
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">
+                <div className="flex items-center space-x-2">
+                  <Lock className="h-5 w-5" />
+                  <span>Sua senha</span>
+                </div>
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Senha com pelo menos 6 caracteres"
+                className="w-full rounded-md border border-foreground/5 p-3"
+                {...register('password')}
+              />
+              {errors.password && (
+                <small className="text-red-500">
+                  {errors.password.message}
+                </small>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password_confirmation">
+                <div className="flex items-center space-x-2">
+                  <Lock className="h-5 w-5" />
+                  <span>Confirme sua senha</span>
+                </div>
+              </Label>
+              <Input
+                id="password_confirmation"
+                type="password"
+                placeholder="Digite a senha novamente"
+                className="w-full rounded-md border border-foreground/5 p-3"
+                {...register('password_confirmation')}
+              />
+              {errors.password_confirmation && (
+                <small className="text-red-500">
+                  {errors.password_confirmation.message}
+                </small>
+              )}
             </div>
 
             <Button disabled={isSubmitting} type="submit" className="w-full">
