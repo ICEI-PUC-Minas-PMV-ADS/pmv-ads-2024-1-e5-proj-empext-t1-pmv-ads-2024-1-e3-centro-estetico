@@ -27,65 +27,65 @@ export function RegisterClients() {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium" htmlFor="nome">
+            <label className="block text-sm font-medium" htmlFor="nome">
               Nome
             </label>
             <input
               id="nome"
               type="text"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
             />
           </div>
-
           <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium" htmlFor="email">
+            <label className="block text-sm font-medium" htmlFor="email">
               E-mail
             </label>
             <input
               id="email"
               type="email"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none  text-[#00A27B]"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium" htmlFor="endereco">
-              Endereço
-            </label>
-            <input
-              id="endereco"
-              type="text"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-              value={endereco}
-              onChange={(e) => setEndereco(e.target.value)}
-            />
+          <div className='flex'>
+            <div className="mb-4">
+              <label className="block text-sm font-medium" htmlFor="endereco">
+                Endereço
+              </label>
+              <input
+                id="endereco"
+                type="text"
+                className="block w-40 px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B] "
+                value={endereco}
+                onChange={(e) => setEndereco(e.target.value)}
+              />
+            </div>
+            <div className="mb-4 ml-4">
+              <label className="block text-sm font-medium" htmlFor="numero">
+                Nº
+              </label>
+              <input
+                id="numero"
+                type="number"
+                className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
+                value={numero}
+                onChange={(e) => setNumero(e.target.value)}
+              />
+            </div>
           </div>
 
           <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium" htmlFor="numero">
-              Número
-            </label>
-            <input
-              id="numero"
-              type="number"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-              value={numero}
-              onChange={(e) => setNumero(e.target.value)}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block mb-2 text-sm font-medium" htmlFor="celular">
-              Celular ou Telefone
+            <label className="block text-sm font-medium" htmlFor="celular">
+              Celular
             </label>
             <input
               id="celular"
               type="tel"
-              className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
               value={celular}
               onChange={(e) => setCelular(e.target.value)}
             />
@@ -101,7 +101,7 @@ export function RegisterClients() {
                 type="radio"
                 name="sexo"
                 value="masculino"
-                className="mr-2"
+                className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-1 h-3 w-3 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                 checked={sexo === 'masculino'}
                 onChange={(e) => setSexo(e.target.value)}
               />
@@ -112,7 +112,7 @@ export function RegisterClients() {
                 type="radio"
                 name="sexo"
                 value="feminino"
-                className="ml-4 mr-2"
+                className="ml-4 mr-2 bg-transparent checked:bg-[#00A27B] checked:ring-offset-1 h-3 w-3 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                 checked={sexo === 'feminino'}
                 onChange={(e) => setSexo(e.target.value)}/>
               <label htmlFor="feminino">Feminino</label>
@@ -126,7 +126,7 @@ export function RegisterClients() {
                 <input
                   id="dataNascimento"
                   type="date"
-                  className="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
                   value={dataNascimento}
                   onChange={(e) => setDataNascimento(e.target.value)}
                 />
@@ -134,11 +134,11 @@ export function RegisterClients() {
 
               <button
                 type="submit"
-                className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#00A27B] rounded-md focus:outline-none focus:ring-1 active:bg-[#00a27cbf]"
               >
                 Cadastrar
               </button>
               </form>
           </div>
                 );
-              };
+};
