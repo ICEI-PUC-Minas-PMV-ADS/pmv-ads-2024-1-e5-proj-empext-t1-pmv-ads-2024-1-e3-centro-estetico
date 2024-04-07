@@ -12,6 +12,18 @@ export interface SignUpBody {
   password: string
 }
 
+export interface registerClientBody {
+  name: string
+  birth_date: Date
+  address: string
+  email: string
+  phone: string
+  gender: 'Male' | 'Female'
+}
+
 export async function signUp(data: SignUpBody) {
+  await api.post('/users', { ...data, user_type: 'Client' })
+}
+export async function registerCLient(data: registerClientBody) {
   await api.post('/users', { ...data, user_type: 'Client' })
 }
