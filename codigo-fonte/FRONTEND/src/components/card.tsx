@@ -1,9 +1,16 @@
+import { useNavigate } from "react-router-dom"
 
+type cardProps = {
+    name: string,
+    id: number
+}
 
-export function Card() {
+export function Card(props: cardProps) {
+
+    const navigate = useNavigate()
 
     return (
-    <div className="flex w-full h-20 border-gray-200 border-opacity-90 bg-input rounded-lg">
+    <div className="flex w-full h-20 border-gray-200 border-opacity-90 bg-input rounded-lg" onClick={() => navigate('/perfil-users')}>
         <img 
             src="https://observatoriodosfamosos.uol.com.br/portal/wp-content/uploads/2023/08/manoel-gomes-70-mil-transformacao.jpg" 
             alt="foto" 
@@ -11,7 +18,7 @@ export function Card() {
         />
         <span className="flex flex-col gap-2">
             <h2 className="font-medium ml-1 pt-4 text-base text-primary">
-                Eduarda Maria
+                {props.name}
             </h2>
             <h3 className="font-medium ml-1 text-xs">
                 Última consulta 22/12/2023

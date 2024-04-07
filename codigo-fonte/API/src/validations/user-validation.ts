@@ -19,3 +19,7 @@ export const registerBodySchema = z.object({
   user_type: UserType,
   password: z.string().min(6),
 })
+
+export const getUsersParams = z.object({
+  username: z.string()
+})

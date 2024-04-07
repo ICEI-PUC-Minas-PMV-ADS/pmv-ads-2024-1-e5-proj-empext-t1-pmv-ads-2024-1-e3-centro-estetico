@@ -34,8 +34,8 @@ export function AccountMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <UserCircle2Icon className="mr-2 h-4 w-4" />
-          <span>Perfil</span>
+            <UserCircle2Icon className="mr-2 h-4 w-4" />
+            <span>Perfil</span>
         </DropdownMenuItem>
         <DropdownMenuItem className="text-rose-500 dark:text-rose-400">
           <LogOutIcon className="mr-2 h-4 w-4" />
