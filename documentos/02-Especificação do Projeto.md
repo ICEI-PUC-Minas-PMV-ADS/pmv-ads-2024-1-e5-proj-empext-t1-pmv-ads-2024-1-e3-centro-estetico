@@ -165,4 +165,5 @@ Este diagrama conceitual fornece uma visão simplificada e abstrata do modelo de
 
 https://trello.com/b/ZWAKW9uy/projeto-est%C3%A9tica
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/b1441c81-54f9-4725-b27c-0795fabfa23f)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/92fa6785-9fe4-41fe-8881-289c29a0ae5b)
+
