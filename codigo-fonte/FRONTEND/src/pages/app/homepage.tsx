@@ -1,15 +1,24 @@
-import { Button } from '@/components/ui/button'
-import { ReactSVG } from 'react-svg';
-import { Input } from "@/components/ui/input"
-import { Helmet } from 'react-helmet-async'
-import { Search } from 'lucide-react';
 import { Card } from '@/components/card';
+import { Button } from '@/components/ui/button';
+import { Input } from "@/components/ui/input";
+import { Search } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { ReactSVG } from 'react-svg';
 
-import newTreatment from '../../assets/newTreatment.svg'
-import newClient from '../../assets/newClient.svg'
-import newForm from '../../assets/newForm.svg'
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import newClient from '../../assets/newClient.svg';
+import newForm from '../../assets/newForm.svg';
+import newTreatment from '../../assets/newTreatment.svg';
+
 
 export function Homepage() {
+
+  const navigate = useNavigate();
+
+const redirectToRegister = useCallback(()=> {
+  navigate('/register-users')}, [navigate])
+
   return (
     <div className='justify-center flex flex-col'>
       <Helmet title="Homepage" />
@@ -18,8 +27,8 @@ export function Homepage() {
         <Button asChild variant="ghost" className="size-2/5 p-0">
           <ReactSVG src={newTreatment}/>
         </Button>
-        
-        <Button asChild variant="ghost" className="size-2/5 p-0">
+
+        <Button asChild variant="ghost" className="size-2/5 p-0" onClick={redirectToRegister}>
           <ReactSVG src={newClient}/>
         </Button>
 
@@ -45,9 +54,9 @@ export function Homepage() {
         <Card />
 
       </div>
-      
+
     </div>
 
-    
+
   )
 }
