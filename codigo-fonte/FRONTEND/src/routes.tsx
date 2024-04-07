@@ -7,6 +7,7 @@ import { Homepage } from './pages/app/homepage'
 import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
+import { PerfilClients } from './pages/app/perfil-clients'
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: '/register-users',
         element: <RegisterClients />,
+      },
+      {
+        path: '/perfil-users',
+        element: <PerfilClients />,
       },
     ],
   },
