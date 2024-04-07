@@ -248,6 +248,7 @@ model Client {
   id                     String                @id @default(uuid())
   user_id                String
   name                   String
+  email                  String                @unique
   birth_date             DateTime
   address                String?
   phone                  String

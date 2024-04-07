@@ -53,6 +53,7 @@ CREATE TABLE "clients" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "birth_date" TIMESTAMP(3) NOT NULL,
     "address" TEXT,
     "phone" TEXT NOT NULL,
