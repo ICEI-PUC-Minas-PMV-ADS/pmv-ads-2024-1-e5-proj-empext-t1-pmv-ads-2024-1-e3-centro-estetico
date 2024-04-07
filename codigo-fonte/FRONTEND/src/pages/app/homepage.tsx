@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button'
 import { ReactSVG } from 'react-svg';
 import { Input } from "@/components/ui/input"
@@ -39,9 +40,9 @@ export function Homepage() {
       </div>
 
       <div className="flex flex-col gap-5 pt-5 ml-1 mr-1">
-
-        <Card />
-
+        <Link to="/perfil-users">
+          <Card />
+        </Link>
         <Card />
 
       </div>
