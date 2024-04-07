@@ -48,18 +48,14 @@ model User {
   password_hash          String
   created_at             DateTime              @default(now())
   updated_at             DateTime              @updatedAt
-  HairAnalysis           HairAnalysis[]
-  SkinAnalysis           SkinAnalysis[]
-  BodyAnalysis           BodyAnalysis[]
-  AppointmentHistory     AppointmentHistory[]
-  HealthQuestionnaire    HealthQuestionnaire[]
+  Client                 Client[]
 
   @@map("users")
 }
 
 model HairAnalysis {
   id                           String         @id @default(uuid())
-  user_id                      String
+  client_id                    String
   main_complaint               String
   previous_aesthetic_procedure String
   scarring_issues              Boolean
@@ -107,14 +103,15 @@ model HairAnalysis {
   authorize_photos             Boolean
   created_at                   DateTime       @default(now())
   updated_at                   DateTime       @updatedAt
-  User                         User           @relation(fields: [user_id], references: [id])
+  Client                       Client         @relation(fields: [client_id], references: [id])
+
 
   @@map("hair_analysis")
 }
 
 model SkinAnalysis {
   id                           String         @id @default(uuid())
-  user_id                      String
+  client_id                    String
   main_complaint               String
   previous_aesthetic_procedure String
   scarring_issues              Boolean
@@ -162,14 +159,14 @@ model SkinAnalysis {
   authorize_photos             Boolean
   created_at                   DateTime       @default(now())
   updated_at                   DateTime       @updatedAt
-  User                         User           @relation(fields: [user_id], references: [id])
+  Client                       Client         @relation(fields: [client_id], references: [id])
 
   @@map("skin_analysis")
 }
 
 model BodyAnalysis {
   id                           String         @id @default(uuid())
-  user_id                      String
+  client_id                    String
   main_complaint               String
   previous_aesthetic_procedure String
   scarring_issues              Boolean
@@ -217,31 +214,54 @@ model BodyAnalysis {
   authorize_photos             Boolean
   created_at                   DateTime       @default(now())
   updated_at                   DateTime       @updatedAt
-  User                         User           @relation(fields: [user_id], references: [id])
+  Client                       Client         @relation(fields: [client_id], references: [id])
 
   @@map("body_analysis")
 }
 
 model AppointmentHistory {
   id           String   @id @default(uuid())
-  user_id      String
+  client_id    String
   description  String
   observations String?
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
-  User         User     @relation(fields: [user_id], references: [id])
+  Client       Client     @relation(fields: [client_id], references: [id])
 
   @@map("appointment_history")
 }
 
 model HealthQuestionnaire {
   id           String   @id @default(uuid())
-  user_id      String
+  client_id      String
   description  String
   observations String?
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
-  User         User     @relation(fields: [user_id], references: [id])
+  Client       Client     @relation(fields: [client_id], references: [id])
 
   @@map("health_questionnaire")
+}
+
+
+model Client {
+  id                     String                @id @default(uuid())
+  user_id                String
+  name                   String
+  birth_date             DateTime
+  address                String?
+  phone                  String
+  gender                 Gender
+  additional_information String?
+  created_at             DateTime              @default(now())
+  updated_at             DateTime              @updatedAt
+  HairAnalysis           HairAnalysis[]
+  SkinAnalysis           SkinAnalysis[]
+  BodyAnalysis           BodyAnalysis[]
+  AppointmentHistory     AppointmentHistory[]
+  HealthQuestionnaire    HealthQuestionnaire[]
+  User                   User         @relation(fields: [user_id], references: [id])
+
+
+  @@map("clients")
 }
