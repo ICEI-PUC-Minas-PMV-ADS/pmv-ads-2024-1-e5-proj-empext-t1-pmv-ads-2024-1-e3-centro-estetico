@@ -29,4 +29,17 @@ export class PrismaUsersRepository implements IUsersRepository {
       },
     })
   }
+
+  async findByName(username: string): Promise<User[] | null> {
+    const users = await prisma.user.findMany({
+      where: {
+        name: {
+          mode: 'insensitive',
+          contains: username
+        },
+        user_type: 'Client'
+      }
+    });
+    return users;
+  }
 }
