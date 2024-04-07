@@ -6,8 +6,7 @@
 
 `5º semestre`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
-Um projeto desensolvido exclusivamente para um centro estético com o intuito de ajudar no relacionamento e desenvolvimento do cliente e um pouco da administração do negócio
+Um projeto desensolvido exclusivamente para um centro estético com o intuito de ajudar no relacionamento e desenvolvimento do cliente e um pouco da administração do negócio.
 
 ## Integrantes
 
