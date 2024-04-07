@@ -1,15 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
-import { UserPlus } from 'lucide-react'
-import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
+import Logo from '../../assets/logo.svg'
 
 import { signIn } from '@/api/sign-in'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { ReactSVG } from 'react-svg'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -42,51 +39,50 @@ export function SignIn() {
   }
 
   return (
-    <>
-      <Helmet title="Login" />
-      <div className="p-8">
-        <Button variant="secondary" className="absolute right-8 top-8" asChild>
-          <Link to="/sign-up">
-            <UserPlus className="h-5 w-5" />
-            <span className="ml-2">Cadastre-se</span>
-          </Link>
-        </Button>
-        <div className="flex w-[350px] flex-col justify-center gap-6">
-          <div className="flex flex-col gap-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Acessar Painel
-            </h1>
-
-            <p className="text-sm text-muted-foreground">
-              Acesse o painel e acompanhe seus tratamentos
-            </p>
-          </div>
-          <form onSubmit={handleSubmit(handleSignIn)} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Seu e-mail</Label>
-              <Input
-                id="email"
-                type="email"
-                className="w-full rounded-md border border-foreground/5 p-3"
-                {...register('email')}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Sua senha</Label>
-              <Input
-                id="password"
-                type="password"
-                className="w-full rounded-md border border-foreground/5 p-3"
-                {...register('password')}
-              />
-            </div>
-
-            <Button disabled={isSubmitting} type="submit" className="w-full">
-              Acessar Painel
-            </Button>
-          </form>
-        </div>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <div className="mb-20">
+      <ReactSVG src={Logo}/>
       </div>
-    </>
+
+  <form onSubmit={handleSubmit(handleSignIn)} className='w-full px-8'>
+    <div className="mb-4 ">
+      <label className="block text-sm font-medium" htmlFor="email">
+        E-mail
+      </label>
+      <input
+        id="email"
+        type="email"
+        className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none  text-[#00A27B]"
+        {...register('email')}
+        />
+    </div>
+
+    <div className="mb-4">
+      <label className="block text-sm font-medium" htmlFor="nome">
+        Senha
+      </label>
+      <input
+        id="password"
+        type="password"
+        className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
+        {...register('password')}
+        />
+    </div>
+        <button
+          type="submit"
+           disabled={isSubmitting}
+          className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#00A27B] rounded-md focus:outline-none focus:ring-1 active:bg-[#00a27cbf]"
+        >
+          Entrar
+        </button>
+        <div className=' mt-3 text-center'>
+          <a href='/sign-up'  className="inline-block align-baseline text-sm text-[#00A27B] hover:[#00a27c66]"
+  >
+            Quero me cadastrar
+          </a>
+        </div>
+        </form>
+    </div>
+
   )
 }
