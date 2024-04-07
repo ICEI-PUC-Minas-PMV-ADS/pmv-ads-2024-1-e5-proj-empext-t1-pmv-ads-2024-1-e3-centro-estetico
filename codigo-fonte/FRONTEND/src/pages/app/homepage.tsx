@@ -12,6 +12,7 @@ import newForm from '../../assets/newForm.svg'
 import { useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import { env } from '../../env'
+import { useNavigate } from 'react-router-dom';
 
 
 export function Homepage() {
@@ -25,6 +26,8 @@ export function Homepage() {
   const [hasUsers, setHasUsers] = useState<boolean>(false)
   const [message, setMessage] = useState<string>('Nenhuma busca realizada')
 
+  const navigate = useNavigate()
+
   const SearchingUsers = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
   }
@@ -33,7 +36,6 @@ export function Homepage() {
     try {
       if(name !== '') {
         const response = await axios.get(`${env.VITE_API_URL}/users?username=${name}`);
-        console.log(response)
         setUsers(response.data)
         setHasUsers(true)
       }
@@ -57,7 +59,7 @@ export function Homepage() {
           <ReactSVG src={newTreatment} />
         </Button>
 
-        <Button asChild variant="ghost" className="size-2/5 p-0">
+        <Button asChild variant="ghost" className="size-2/5 p-0" onClick={() => navigate('/register-users')}>
           <ReactSVG src={newClient} />
         </Button>
 

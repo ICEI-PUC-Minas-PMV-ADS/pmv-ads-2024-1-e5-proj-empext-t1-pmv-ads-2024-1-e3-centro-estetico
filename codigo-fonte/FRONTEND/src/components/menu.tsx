@@ -6,10 +6,14 @@ import {
     DrawerContent,
     DrawerHeader,
     DrawerTrigger,
+    DrawerClose
 } from "./ui/drawer"
+import { useNavigate } from 'react-router-dom';
 
 
 export function HeaderMenu() {
+
+    const navigate = useNavigate()
 
     return (
         <Drawer>
@@ -34,30 +38,41 @@ export function HeaderMenu() {
 
                     <div className="flex flex-col gap-3">
 
-                        <Button variant={"link"} className="justify-start" >
-                            <Home />
-                            <span className="text-black pl-3 pt-1 font-normal">Home</span>
-                        </Button>
+                        <DrawerClose asChild>
+                            <Button variant={"link"} className="justify-start" onClick={() => navigate('/')} >
+                                <Home />
+                                <span className="text-black pl-3 pt-1 font-normal">Home</span>
+                            </Button>
+                        </DrawerClose>
+                        <DrawerClose asChild>
+                            <Button variant={"link"} className="justify-start">
+                                <User />
+                                <span className="text-black pl-3 pt-1 font-normal">Perfil</span>
+                            </Button>
+                        </DrawerClose>
 
-                        <Button variant={"link"} className="justify-start">
-                            <User />
-                            <span className="text-black pl-3 pt-1 font-normal">Perfil</span>
-                        </Button>
+                        <DrawerClose asChild>
+                            <Button variant={"link"} className="justify-start">
+                                <FilePlus />
+                                <span className="text-black pl-3 pt-1 font-normal">Nova consulta</span>
+                            </Button>
+                        </DrawerClose>
 
-                        <Button variant={"link"} className="justify-start">
-                            <FilePlus />
-                            <span className="text-black pl-3 pt-1 font-normal">Nova consulta</span>
-                        </Button>
+                        <DrawerClose asChild>
+                            <Button variant={"link"} className="justify-start" onClick={() => navigate('/register-users')}>
+                                <UserRoundPlus />
+                                <span className="text-black pl-3 pt-1 font-normal">Novo cliente</span>
+                            </Button>
+                        </DrawerClose>
 
-                        <Button variant={"link"} className="justify-start">
-                            <UserRoundPlus />
-                            <span className="text-black pl-3 pt-1 font-normal">Novo cliente</span>
-                        </Button>
+                        <DrawerClose asChild>
+                            <Button variant={"link"} className="justify-start">
+                                <Bell />
+                                <span className="text-black pl-3 pt-1 font-normal">Novas fichas recebidas</span>
+                            </Button>
+                        </DrawerClose>
 
-                        <Button variant={"link"} className="justify-start">
-                            <Bell />
-                            <span className="text-black pl-3 pt-1 font-normal">Novas fichas recebidas</span>
-                        </Button>
+
 
                     </div>
                 </div>
