@@ -1,17 +1,22 @@
 import { ClientAlreadyExistsError } from '@/services/errors/client-already-exists-error'
-import { makeUserRegisterService } from '@/services/factories/make-user-register-service'
-import { registerBodySchema } from '@/validations/user-validation'
+import { makeClientRegisterService } from '@/services/factories/make-client-register-service'
+import { registerBodySchema } from '@/validations/client-validation'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function clientRegister(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  let userId
+  request.jwtVerify((_, decoded) => {
+    userId = decoded.sub
+  })
+
   const clientInputData = registerBodySchema.parse(request.body)
 
   try {
-    const clientRegisterService = makeUserRegisterService()
-    const serviceResponse = await clientRegisterService.execute(clientInputData)
+    const clientRegisterService = makeClientRegisterService()
+    const serviceResponse = await clientRegisterService.execute(clientInputData, userId)
 
     return reply.code(201).send(serviceResponse)
   } catch (error) {

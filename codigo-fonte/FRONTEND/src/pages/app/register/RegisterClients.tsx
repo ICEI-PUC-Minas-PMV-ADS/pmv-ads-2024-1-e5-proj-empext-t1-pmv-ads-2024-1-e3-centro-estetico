@@ -1,6 +1,6 @@
 
 import { registerCLient } from '@/api/sign-up';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@/components/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +42,7 @@ export function RegisterClients() {
     register,
     control,
   } = useForm<RegisterClientForm>({
-    resolver: zodResolver(registerClientForm),
+    // resolver: zodResolver(registerClientForm),
   })
 
   const { mutateAsync: reg } = useMutation({
@@ -54,8 +54,8 @@ export function RegisterClients() {
     try {
       await reg(data)
 
-      navigate('/sign-in')
-      toast.success('Usuário cadastrado com sucesso!')
+      navigate('/')
+      toast.success('Cliente cadastrado com sucesso!')
     } catch (error) {
       toast.error('Erro ao cadastrar usuário!')
     }
@@ -160,12 +160,12 @@ export function RegisterClients() {
                 />
               </div>
 
-              <button
+              <Button
                 type="submit"
                 className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#00A27B] rounded-md focus:outline-none focus:ring-1 active:bg-[#00a27cbf]"
               >
                 Cadastrar
-              </button>
+              </Button>
               </form>
           </div>
  );
