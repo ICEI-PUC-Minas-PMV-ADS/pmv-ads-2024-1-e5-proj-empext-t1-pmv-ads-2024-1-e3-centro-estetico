@@ -105,60 +105,125 @@ model HairAnalysis {
   updated_at                   DateTime       @updatedAt
   Client                       Client         @relation(fields: [client_id], references: [id])
 
-
   @@map("hair_analysis")
 }
 
 model SkinAnalysis {
-  id                           String         @id @default(uuid())
-  client_id                    String
-  main_complaint               String
-  previous_aesthetic_procedure String
-  scarring_issues              Boolean
-  diabetes                     Boolean
-  medication_use               String
-  isotretinoin_use             Boolean
-  medical_treatment            String
-  thrombosis                   Boolean
-  surgery                      String
-  oncological_history          Boolean
-  infectious_disease           String
-  sports_practice              String
-  balanced_diet                Boolean
-  daily_water_intake           String
-  alcoholic_beverage_use       Boolean
-  substance_use                String
-  hormonal_disorder            String
-  smoker                       Boolean
-  sleeps_well                  Boolean
-  regular_intestine            Boolean
-  hypertension                 Boolean
-  hypotension                  Boolean
-  cardiac_issues               String
-  depression                   Boolean
-  epilepsy                     Boolean
-  has_plates_pins              String
-  dental_prosthesis            String
-  renal_issue                  Boolean
-  hepatic_issues               Boolean
-  thyroid_problems             Boolean
-  autoimmune_disease           String
-  pregnancy                    Boolean
-  breastfeeding                Boolean
-  sun_exposure                 String
-  skin_care                    String
-  metacril_toxin_use           Boolean
-  allergy_history              String
-  sunscreen_use                Boolean
-  herpes_history               Boolean
-  contraceptive_use            Boolean
-  menstrual_cycle              MenstrualCycle
-  hormone_use                  String
-  acid_use_on_skin             Boolean
-  cosmetic_use                 String
-  authorize_photos             Boolean
-  created_at                   DateTime       @default(now())
-  updated_at                   DateTime       @updatedAt
+  id                                  String   @id @default(uuid())
+  client_id                           String
+  white_skin                          Boolean
+  light_brunette_skin                 Boolean
+  moderate_brunette_skin              Boolean
+  dark_brunette_skin                  Boolean
+  black_skin                          Boolean
+  other_skin                          Boolean
+  pale_coloring                       Boolean
+  red_coloring                        Boolean
+  cyanotic_coloring                   Boolean
+  yellow_coloring                     Boolean
+  superficial_dehydration             Boolean
+  deep_dehydration                    Boolean
+  normalhydration_dehydration         Boolean
+  normal_texture                      Boolean
+  slim_texture                        Boolean
+  rough_texture                       Boolean
+  thick_texture                       Boolean
+  imperceptive_ostia                  Boolean
+  dilated_ostia                       Boolean
+  eudemic_cutaneous                   Boolean
+  lipid_cutaneous                     Boolean
+  alipidic_cutaneous                  Boolean
+  mixed_cutaneous                     Boolean
+  seborrheic_cutaneous                Boolean
+  sensitive_cutaneous                 Boolean
+  unstressed_cutaneous                Boolean
+  edemaciated_cutaneous               Boolean
+  asphyxia_cutaneous                  Boolean
+  rosacea_cutaneous                   Boolean
+  balanced_oiliness                   Boolean
+  increased_oiliness                  Boolean
+  excessive_oiliness                  Boolean
+  cornedogenic_acne                   Boolean
+  papulopustular_acne                 Boolean
+  nodularcystic_acne                  Boolean
+  conglobat_acne                      Boolean
+  comedones_presence_of               Boolean
+  papules_presence_of                 Boolean
+  pustules_presence_of                Boolean
+  nodules_presence_of                 Boolean
+  abscess_presence_of                 Boolean
+  cysts_presence_of                   Boolean
+  line_nail_involution                Boolean
+  line_nail_involution_region         String?
+  grooves_nail_involution             Boolean
+  grooves_nail__involution_region     String?
+  nasolabial_hypotonia                Boolean
+  submental_hypotonia                 Boolean
+  neck_hypotonia                      Boolean
+  hypertrichosis_trichose             Boolean
+  folliculitis_trichose               Boolean
+  Hirsurtism_trichose                 Boolean
+  hypotrophic_scar                    Boolean
+  hypotrophic_scar_region             String?
+  hypertrophic_scar                   Boolean
+  hypertrophic_scar_region            String?
+  keloid_scar                         Boolean
+  keloid_scar_region                  String?
+  nevus_blood_vessel                  Boolean
+  nevus_blood_vessel_region           String?
+  telangiectasias_blood_vessel        Boolean
+  telangiectasias_blood_vessel_region String?
+  couperouse_blood_vessel             Boolean
+  couperouse_blood_vessel_region      String?
+  cyanosis_blood_vessel               Boolean
+  cyanosis_blood_vessel_region        String?
+  anemic_blood_vessel                 Boolean
+  anemic_blood_vessel_region          String?
+  erythema_blood_vessel               Boolean
+  erythema_blood_vessel_region        String?
+  hypotrophic_blood_vessel            Boolean
+  hypotrophic_blood_vessel_region     String?
+  hypertrophic_blood_vessel           Boolean
+  hypertrophic_blood_vessel_region    String?
+  keloid_blood_vessel                 Boolean
+  keloid_blood_vessel_region          String?
+  vibice_purpuric_spot                Boolean
+  ecchymosis_purpuric_spot            Boolean
+  petechiae_purpuric_spot             Boolean
+  bruise_purpuric_spot                Boolean
+  acromica_pigmented_spot             Boolean
+  hypochromic_pigmented_spot          Boolean
+  hyperchromic_pigmented_spot         Boolean
+  ephelides_melanodermic              Boolean
+  melasma_melanodermic                Boolean
+  chloasma_melanodermic               Boolean
+  periorbicularmelanosis_melanodermic Boolean
+  new_melanodermic_melanodermic       Boolean
+  tattoo_non_meianodermal             Boolean
+  micropigmentation_non_meianodermal  Boolean
+  petechiae_non_meianodermal          Boolean
+  bruise_non_meianodermal             Boolean
+  papule_solid_injuries               Boolean
+  nodules_solid_injuries              Boolean
+  vegetation_solid_injuries           Boolean
+  der_pap_nigra_solid_injuries        Boolean
+  keratosis_solid_injuries            Boolean
+  millium_solid_injuries              Boolean
+  papilloma_solid_injuries            Boolean
+  syringoma_solid_injuries            Boolean
+  comedo_solid_injuries               Boolean
+  abscess_liquid_injuries             Boolean
+  cyst_liquid_injuries                Boolean
+  vesicle_liquid_injuries             Boolean
+  pustule_liquid_injuries             Boolean
+  bubble_liquid_injuries              Boolean
+  scales_others                       Boolean
+  crust_others                        Boolean
+  photodermatoses_others              Boolean
+  unidentified_injury_others          Boolean
+  observations                        String?
+  created_at                          DateTime @default(now())
+  updated_at                          DateTime @updatedAt
   Client                       Client         @relation(fields: [client_id], references: [id])
 
   @@map("skin_analysis")
@@ -232,17 +297,70 @@ model AppointmentHistory {
 }
 
 model HealthQuestionnaire {
-  id           String   @id @default(uuid())
-  client_id      String
-  description  String
-  observations String?
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
+  id                              String   @id @default(uuid())
+  client_id                       String
+  aesthetic_procedure             Boolean
+  aesthetic_procedure_description String?
+  cicatrization                   Boolean
+  diabetes                        Boolean
+  diabetes_is_controlled          Boolean
+  medication_use                  Boolean
+  medication_use_description      String?
+  roaccutane                      Boolean
+  medical_treatment               Boolean
+  medical_treatment_description   String?
+  thrombosis                      Boolean
+  surgery                         Boolean
+  surgery_description             String?
+  oncological_history             Boolean
+  infectious_disease              Boolean
+  infectious_disease_description  String?
+  practice_sports                 Boolean
+  practice_sports_description     String?
+  balanced_diet                   Boolean
+  drink_water                     String
+  alcohol                         Boolean
+  drugs                           Boolean
+  hormonal_disorder               Boolean
+  smoke                           Boolean
+  sleep                           Boolean
+  bowel_function                  Boolean
+  hypertension                    Boolean
+  hypertension_is_controlled      Boolean
+  hypotension                     Boolean
+  hypotension_is_controlled       Boolean
+  cardiac_issues                  Boolean
+  cardiac_issues_description      String?
+  depression                      Boolean
+  epilepsy_                       Boolean
+  plates_pins                     Boolean
+  plates_pins_description         String?
+  dental_prosthesis               Boolean
+  kidney_problem                  Boolean
+  liver_problem                   Boolean
+  thyroid_problem                 Boolean
+  auto_immune_disease             Boolean
+  pregnant                        Boolean
+  breastfeeding                   Boolean
+  sun_exposure                    Boolean
+  skin_care                       Boolean
+  Methacryl_or_botulinum_toxin    Boolean
+  allergy_history                 Boolean
+  sunscreen                       Boolean
+  herpes                          Boolean
+  contraceptive                   Boolean
+  menstrual_cycle                 Boolean
+  hormones                        Boolean
+  acid_skin                       Boolean
+  cosmetic                        Boolean
+  cosmetic_description            String?
+  authorize_photos                Boolean
+  created_at                      DateTime @default(now())
+  updated_at                      DateTime @updatedAt
   Client       Client     @relation(fields: [client_id], references: [id])
 
   @@map("health_questionnaire")
 }
-
 
 model Client {
   id                     String                @id @default(uuid())
