@@ -34,9 +34,9 @@ Com a aplicação a cliente terá ganhos significativos para o negócio, seus pr
 
 Os principais aspectos dessa contribuição incluem: 
 
-Para a Esteticista: O sistema aprimora a gestão do gendamento e acompanhamento de clientes, permitindo um controle mais eficiente do processo de solicitação e planejamento nos horários. Isso proporciona uma melhor restação de serviços aos clientes, garantindo um atendimento de alta qualidade.
+Para a Esteticista: O sistema aprimora a gestão do agendamento e acompanhamento de clientes, permitindo um controle mais eficiente do processo de solicitação e planejamento nos horários. Isso proporciona uma melhor prestação de serviços aos clientes, garantindo um atendimento de alta qualidade.
 
-Para a Equipe de Desenvolvimento/Estudantes Envolvidos: A equipe encarregada do desenvolvimento do sistema tem uma oportunidade excepcional para colocar em prática os conhecimentos adquiridos na academia, enriquecendo sua experiência educacional e se preparando para os desafios do mundo profissional. O sucesso na implementação da aplicação para esteticistas não só representa um ponto alto em suas jornadas acadêmicas, mas também uma contribuição concreta para o campo.
+Para a Equipe de Desenvolvimento/Estudantes Envolvidos: A equipe encarregada do desenvolvimento do sistema tem uma oportunidade excepcional para colocar em prática os conhecimentos adquiridos na universidade, enriquecendo sua experiência educacional e se preparando para os desafios do mundo profissional. O sucesso na implementação da aplicação para esteticistas não só representa um ponto alto em suas jornadas acadêmicas, mas também uma contribuição concreta para a sociedade.
 
 Contribuição para a Comunidade e a Universidade: O projeto estabelece uma valiosa ligação entre o ambiente acadêmico e a sociedade, ilustrando como a extensão universitária pode causar um impacto social notável. Ao unir teoria e prática para resolver desafios do mundo real, essa parceria entre a universidade e diferentes setores da sociedade destaca o poder transformador do ensino superior, que vai além das fronteiras do campus para atender às demandas da sociedade como um todo.
 
