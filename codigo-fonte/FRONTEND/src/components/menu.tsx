@@ -9,11 +9,18 @@ import {
     DrawerClose
 } from "./ui/drawer"
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from '@/hooks/useTitle';
+import { TitleOfPages } from '@/utils/titleOfPages';
 
 
 export function HeaderMenu() {
-
+    const { setTitle } = useTitle();
     const navigate = useNavigate()
+
+    const navigateUpdatingHeader = (path: string, title: string) => {
+        setTitle(title)
+        navigate(path)
+      }
 
     return (
         <Drawer>
@@ -39,7 +46,7 @@ export function HeaderMenu() {
                     <div className="flex flex-col gap-3">
 
                         <DrawerClose asChild>
-                            <Button variant={"link"} className="justify-start" onClick={() => navigate('/')} >
+                            <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/', TitleOfPages.home)} >
                                 <Home />
                                 <span className="text-black pl-3 pt-1 font-normal">Home</span>
                             </Button>
@@ -59,14 +66,14 @@ export function HeaderMenu() {
                         </DrawerClose>
 
                         <DrawerClose asChild>
-                            <Button variant={"link"} className="justify-start" onClick={() => navigate('/register-users')}>
+                            <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/register-users', TitleOfPages.newClient)}>
                                 <UserRoundPlus />
                                 <span className="text-black pl-3 pt-1 font-normal">Novo cliente</span>
                             </Button>
                         </DrawerClose>
 
                         <DrawerClose asChild>
-                            <Button variant={"link"} className="justify-start">
+                            <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/notifications', TitleOfPages.notifications)}>
                                 <Bell />
                                 <span className="text-black pl-3 pt-1 font-normal">Novas fichas recebidas</span>
                             </Button>
