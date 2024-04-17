@@ -1,27 +1,46 @@
 import { AccountMenu } from './account-menu'
+import { ChevronLeft } from 'lucide-react';
 import { HeaderMenu } from './menu';
-//import { NavLink } from './nav-link'
+import { useTitle } from '@/hooks/useTitle';
+import { useNavigate } from 'react-router-dom';
 
-export function Header() {
-  return (
-    <div className="flex h-16 items-center gap-6 px-6 pt-5 justify-between">
-      <HeaderMenu />
-      <nav className="flex flex-col items-center font-bold text-blue-600 justify-self-center text-lg">
-        <span>Bem vinda,</span>
-        <span>Fátima</span>
-      </nav>
-      <AccountMenu />
-    </div>
-  )
+type HeaderProps = {
+  page: string
 }
 
+export function Header(props: HeaderProps) {
+  let isHomepage = false
+  if (props.page === "Home") {
+    isHomepage = true
+  }
+
+  const { setTitle } = useTitle();
+  const navigate = useNavigate()
+
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title)
+    navigate(path)
+  }
 
 
-// <NavLink to="/">
-// <Home className="h-4 w-4" />
-// Inicio
-// </NavLink>
-// <NavLink to="/users">
-// <User className="h-4 w-4" />
-// Clientes
-// </NavLink>
+  return (
+    <>
+      {
+        isHomepage ? (
+          <div className="flex h-16 items-center gap-6 pt-10 pb-6 px-5 justify-between">
+            <HeaderMenu />
+            <nav className="flex flex-col items-center font-bold text-blue-600 justify-self-center text-lg">
+              <span>Bem vinda,</span>
+              <span>Fátima</span>
+            </nav>
+            <AccountMenu />
+          </div>) : (<div className="flex h-16 items-center pt-10 pb-6 px-5 justify-between bg-input font-semibold text-xl rounded-b-lg">
+            <ChevronLeft onClick={() => navigateUpdatingHeader('/', 'Home')} />
+            <h2>{props.page}</h2>
+            <div></div>
+          </div>)
+      }
+
+    </>
+  )
+}

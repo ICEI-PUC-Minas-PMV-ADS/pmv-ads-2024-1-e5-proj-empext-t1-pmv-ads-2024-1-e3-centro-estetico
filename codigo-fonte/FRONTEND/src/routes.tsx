@@ -10,6 +10,7 @@ import { SignUp } from './pages/auth/sign-up'
 import { NotificationsForm } from './pages/app/notification'
 import { PerfilClients } from './pages/app/perfil-clients'
 
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/register-users',
-        element: <RegisterClients />,
+        element: <RegisterClients />
       },
       {
         path: '/perfil-users',

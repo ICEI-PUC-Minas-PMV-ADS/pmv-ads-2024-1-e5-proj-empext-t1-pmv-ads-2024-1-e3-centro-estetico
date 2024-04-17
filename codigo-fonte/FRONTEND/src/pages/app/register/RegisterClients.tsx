@@ -62,9 +62,8 @@ export function RegisterClients() {
   }
 
   return (
+    
       <div className="container mx-auto">
-        <h1 className="text-center text-2xl font-bold mb-12">Cadastrar Cliente</h1>
-
         <form onSubmit={handleSubmit(handleRegisterClient)}>
           <div className="mb-4">
             <label className="block text-sm font-medium" htmlFor="nome">

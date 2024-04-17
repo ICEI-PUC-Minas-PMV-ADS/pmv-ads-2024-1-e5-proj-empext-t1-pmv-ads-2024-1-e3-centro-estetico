@@ -30,15 +30,15 @@ export class PrismaClientsRepository implements IClientsRepository {
     })
   }
 
-  async findByName(name: string): Promise<Client[] | null> {
+  async findByName(username: string): Promise<Client[] | null> {
     const clients = await prisma.client.findMany({
       where: {
         name: {
           mode: 'insensitive',
-          contains: name
-        },
+          contains: username
+        }
       }
     });
     return clients;
-  }
+  } 
 }
