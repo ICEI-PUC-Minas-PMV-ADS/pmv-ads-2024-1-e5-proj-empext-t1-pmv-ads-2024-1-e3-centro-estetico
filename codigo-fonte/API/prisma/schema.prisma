@@ -245,7 +245,7 @@ model AppointmentHistory {
   updated_at       DateTime        @updatedAt
   presencial       Boolean
   appointment_type AppointmentType
-  user             User            @relation(fields: [user_id], references: [id])
+  User             User            @relation(fields: [user_id], references: [id])
   Client           Client          @relation(fields: [client_id], references: [id])
 
   @@map("appointment_history")
