@@ -69,3 +69,11 @@ export const solidLesion = [
   { id: 8, label: "Siringoma" },
   { id: 9, label: "Comedão" },
 ];
+
+export const liquidLesionns = [
+  { id: 'abscesso', value: 'Abscesso' },
+  { id: 'cisto', value: 'Cisto' },
+  { id: 'vesicula', value: 'Vesícula' },
+  { id: 'pustula', value: 'Pústula' },
+  { id: 'bolha', value: 'Bolha' },
+];
