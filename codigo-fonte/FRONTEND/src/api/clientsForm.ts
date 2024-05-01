@@ -12,19 +12,40 @@ export interface SignUpBody {
   password: string
 }
 
-export interface registerfacialForm {
-  name: string
-  birth_date: Date
-  address: string
-  email: string
-  phone: string
-  gender: 'Male' | 'Female'
+interface SkinWithDescription {
+  type: string;
+  typeDescription?: string;
+}
+
+interface SkinAnalysis {
+  skinPhototypes: string; // Fototipo
+  skinColors: string; // Coloração
+  dehydrationLevels: string; // Desidratação
+  skinTextures: string; // Textura
+  poreSizes: string; // Óstios
+  skinTypes: string; // Tipo Cutâneo
+  oilinessLevels: string; // Grau de Oleosidade
+  acneGrades: string; // Grau de Acne
+  skinInvolution: SkinWithDescription[]// Involucao cutanea
+  skinContains: string[]; // Presenca De
+  hypotonias: string; // Hipotonia
+  tyrichosis: string[]; // Tricose
+  scars: SkinWithDescription[]; // Cicatrizes
+  purpuricSpots: string[]; // Manchas Purpúricas
+  pigmentedSpots: string[]; // Manchas Pigmentares
+  melanotics: string[]; // Melanóticas
+  notMelanotics: string[]; // Não Melanóticas
+  skinLesions: string[]; // Lesões Cutâneas
+  fluidSkinLesions: string[]; // Lesões Cutâneas liquidas
+  bloodVessels: SkinWithDescription[]; // Vasos Sanguíneos
+  others: string; // Outros
+  additionalInformation: string; // Observações
 }
 
 export async function signUp(data: SignUpBody) {
   await api.post('/users', { ...data, user_type: 'Client' })
 }
 
-export async function registerCLient(data: registerClientBody) {
-  await api.post('/clients', data)
+export async function registerSkinForm(data: SkinAnalysis) {
+  await api.post('/skin-form', data)
 }

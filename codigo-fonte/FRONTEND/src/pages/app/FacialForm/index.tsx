@@ -1,4 +1,8 @@
+import { registerSkinForm } from '@/api/clientsForm';
+import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { z } from 'zod';
 import {
   acneGrades,
@@ -58,19 +62,36 @@ const FacialForm = () => {
     formState: { errors },
   } = useForm<RegisterFacialForm>({}); // Set initial values
 
-  const onSubmit = (data: RegisterFacialForm) => console.log(data);
+  const navigate = useNavigate()
+
+  const { mutateAsync: postSkinForm } = useMutation({
+    mutationFn: registerSkinForm,
+  })
+
+  async function handleRegisterClient(data: RegisterFacialForm) {
+    try {
+      console.log(data)
+
+      await postSkinForm(data)
+
+//      navigate('/')
+      toast.success('Cliente cadastrado com sucesso!')
+    } catch (error) {
+      toast.error('Erro ao cadastrar usuário!')
+    }
+  }
 
   return (
     <div className="container mx-auto">
       <h2 className="text-3xl font-bold text-center mb-8">Ficha Facial</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleRegisterClient)}>
         <div className="grid grid-cols-2 gap-6">
           <div className="mb-8">
             <h3 className="text-base font-medium mb-4">Fototipo</h3>
             <div className="space-y-2">
               {skinPhotoTypes.map((phototype) => (
-                <div key={phototype.id} className="flex items-center">
+                <div key={`${phototype.id}-${phototype.label}`} className="flex items-center">
                   <Controller
                     control={control}
                     name="skinPhototypes"
@@ -96,7 +117,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Coloração da Pele</h3>
             <div className="space-y-4">
               {skinColors.map((color) => (
-                <div key={color.id} className="flex items-center">
+                <div key={`${color.id}-${color.label}`} className="flex items-center">
                   <Controller
                     control={control}
                     name="skinColors"
@@ -123,7 +144,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-6">Desidarataçâo da Pele</h3>
             <div className="space-y-2">
               {dehydrationLevels.map((hidatation) => (
-                <div key={hidatation.id} className="flex items-center">
+                <div key={`${hidatation.id}-${hidatation.label}`} className="flex items-center">
                   <Controller
                     control={control}
                     name="dehydrationLevels"
@@ -149,7 +170,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Textura da Pele</h3>
             <div className="space-y-2">
               {skinTextures.map((texture) => (
-                <div key={texture.id} className="flex items-center">
+                <div key={`${texture.id}-${texture.label}`} className="flex items-center">
                   <Controller
                     control={control}
                     name="skinTextures"
@@ -176,7 +197,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Óstios</h3>
           <div className="grid grid-cols-2 gap-6">
             {poreSizes.map((ostium) => (
-              <div key={ostium.id} className="flex items-center">
+              <div key={`${ostium.id}-${ostium.label}`} className="flex items-center">
                 <Controller
                   control={control}
                   name="poreSizes"
@@ -202,7 +223,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Tipo Cutâneo / subclassificação</h3>
           <div className="grid grid-cols-2 gap-6">
             {skinTypes.map((type) => (
-              <div key={type.id} className="flex items-center">
+              <div key={`${type.id}-${type.label}`} className="flex items-center">
                 <Controller
                   control={control}
                   name="skinTypes"
@@ -228,7 +249,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Grau oleosidade</h3>
           <div className="space-y-2">
             {oilinessLevels.map((oilinessGrade) => (
-              <div key={oilinessGrade.id} className="flex items-center">
+              <div key={`${oilinessGrade.id}-${oilinessGrade.label}`} className="flex items-center">
                 <Controller
                   control={control}
                   name="oilinessLevels"
@@ -254,7 +275,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Pele com acne</h3>
           <div className="space-y-2">
             {acneGrades.map((acneGrade) => (
-              <div key={acneGrade.id} className="flex items-center">
+              <div key={`${acneGrade.id}-${acneGrade.label}`} className="flex items-center">
                 <Controller
                   control={control}
                   name="acneGrades"
@@ -281,7 +302,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Presenca de:</h3>
             <div className="grid grid-cols-2 gap-4">
               {skinContains.map((contain) => (
-                <div key={contain.id} className="pb-3 flex items-center">
+                <div key={`${contain.id}-${contain.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -303,7 +324,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Involução cutânea</h3>
           <div className="space-y-4">
             {skinInvolution.map((involution, i) => (
-              <div key={involution.id} className="flex items-center">
+              <div key={`${involution.id}-${involution.label}`} className="flex items-center">
                 <input
                   type="checkbox"
                   className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -337,7 +358,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Hipotonia</h3>
             <div className="space-y-2">
               {hypotonias.map((hypotonia) => (
-                <div key={hypotonia.id} className="pb-3 flex items-center">
+                <div key={`${hypotonia.id}-${hypotonia.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -357,7 +378,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Tricose</h3>
             <div className="space-y-2">
               {tyrichosis.map((tyrichose) => (
-                <div key={tyrichose.id} className="pb-3 flex items-center">
+                <div key={`${tyrichose.id}-${tyrichose.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -376,7 +397,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Cicatrizes / Sequelas</h3>
           <div className="space-y-4">
             {scars.map((scar, i) => (
-              <div key={scar.id} className="flex items-center">
+              <div key={`${scar.id}-${scar.label}`} className="flex items-center">
                 <input
                   type="checkbox"
                   className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -412,7 +433,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Vásculo sanguínea</h3>
           <div className="space-y-4">
             {bloodVessels.map((vessel, i) => (
-              <div key={vessel.id} className="flex items-center">
+              <div key={`${vessel.id}-${vessel.label}`} className="flex items-center">
                 <input
                   type="checkbox"
                   className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -446,7 +467,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Mancha purpúrica</h3>
             <div className="space-y-2">
               {purpuricSpots.map((purpuricSpot) => (
-                <div key={purpuricSpot.id} className="pb-3 flex items-center">
+                <div key={`${purpuricSpot.id}-${purpuricSpot.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -466,7 +487,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Mancha pigmentada</h3>
             <div className="space-y-2">
               {pigmentedSpots.map((typigmentedSpot) => (
-                <div key={typigmentedSpot.id} className="pb-3 flex items-center">
+                <div key={`${typigmentedSpot.id}-${typigmentedSpot.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -485,7 +506,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Melanodérmica</h3>
             <div className="space-y-2">
               {melanotics.map((melanotic) => (
-                <div key={melanotic.id} className="pb-3 flex items-center">
+                <div key={`${melanotic.id}-${melanotic.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -505,7 +526,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Não meianodérmica</h3>
             <div className="space-y-2">
               {notMelanotics.map((notMelanotic) => (
-                <div key={notMelanotic.id} className="pb-3 flex items-center">
+                <div key={`${notMelanotic.id}-${notMelanotic.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -524,7 +545,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Lesões sólidas</h3>
             <div className="grid grid-cols-2 gap-4">
               {skinLesions.map((skinLesion) => (
-                <div key={skinLesion.id} className="pb-3 flex items-center">
+                <div key={`${skinLesion.id}-${skinLesion.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -544,7 +565,7 @@ const FacialForm = () => {
             <h3 className="text-base font-medium mb-4">Lesões líquidas</h3>
             <div className="grid grid-cols-2 gap-4">
               {fluidSkinLesions.map((fluidSkinLesion) => (
-                <div key={fluidSkinLesion.id} className="pb-3 flex items-center">
+                <div key={`${fluidSkinLesion.id}-${fluidSkinLesion.label}`} className="pb-3 flex items-center">
                   <input
                     type="checkbox"
                     className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
@@ -563,7 +584,7 @@ const FacialForm = () => {
           <h3 className="text-base font-medium mb-4">Outras</h3>
           <div className="space-y-2">
             {others.map((another) => (
-              <div key={another.id} className="flex items-center">
+              <div key={`${another.id}-${another.label}`} className="flex items-center">
                 <Controller
                   control={control}
                   name="acneGrades"
