@@ -72,3 +72,12 @@ export const fluidSkinLesions = [
   { id: 'pustula', value: 'Pústula' },
   { id: 'bolha', value: 'Bolha' },
 ];
+
+export const skinContains = [
+  { id: '1', value: 'Comedões' },
+  { id: '2', value: 'Nódulos' },
+  { id: '3', value: 'Pápulas' },
+  { id: '4', value: 'Pústulas' },
+  { id: '5', value: 'Cistos' },
+
+]

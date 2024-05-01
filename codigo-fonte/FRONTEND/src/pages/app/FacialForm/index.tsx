@@ -1,6 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { acneGrades, dehydrationLevels, oilinessLevels, poreSizes, skinColors, skinPhotoTypes, skinTextures, skinTypes } from './constants';
+import { acneGrades, dehydrationLevels, oilinessLevels, poreSizes, skinColors, skinContains, skinPhotoTypes, skinTextures, skinTypes } from './constants';
 
 
 interface SkinWithDescription {
@@ -70,7 +70,6 @@ const FacialForm = () => {
 
   const onSubmit = (data: RegisterFacialForm ) => console.log(data);
 
-  const skinContains = ['Comedões', 'Nódulos', 'Pápulas', 'Abscesso', 'Pústulas', 'Cistos']
 
   // const [checkedItems, setCheckedItems] = useState([]);
 
@@ -282,7 +281,7 @@ const FacialForm = () => {
                       type="radio"
                       {...field}
                       id={acneGrade.id}
-                      value={acneGrade.id}
+                      value={acneGrade.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
@@ -295,13 +294,15 @@ const FacialForm = () => {
           </div>
         </div>
         <div>
-       {skinContains.map((label) => (<div key={label} className="flex items-center">
+       {skinContains.map((contain) => (<div key={contain.id} className="pb-3 flex items-center">
           <input
             type="checkbox"
-            className="checkbox"
-            {...register('skinContains')} // Register each checkbox with its label as the name
+            className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B]  ring-offset-1 h-4 w-4  box-border ring-2 ring-[#00A27B]  focus:outline-black rounded-sm"
+            id={contain.id}
+            value={contain.value}
+            {...register(`skinContains`)} // Register each checkbox with its label as the name
           />
-          <label className="text-sm ml-2 checked:bg-[#00A27B]">{label}</label>
+          <label className="text-sm ml-2 checked:bg-[#00A27B]">{contain.value}</label>
         </div>) )}
         </div>
         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
