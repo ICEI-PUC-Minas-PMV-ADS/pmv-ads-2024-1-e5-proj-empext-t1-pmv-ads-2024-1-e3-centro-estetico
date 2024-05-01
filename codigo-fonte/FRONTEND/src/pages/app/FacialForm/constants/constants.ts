@@ -66,100 +66,130 @@ export const skinLesions = [
 ];
 
 export const fluidSkinLesions = [
-  { id: 'abscesso', value: 'Abscesso' },
-  { id: 'cisto', value: 'Cisto' },
-  { id: 'vesicula', value: 'Vesícula' },
-  { id: 'pustula', value: 'Pústula' },
-  { id: 'bolha', value: 'Bolha' },
+  { id: 'abscesso', label: 'Abscesso' },
+  { id: 'cisto', label: 'Cisto' },
+  { id: 'vesicula', label: 'Vesícula' },
+  { id: 'pustula', label: 'Pústula' },
+  { id: 'bolha', label: 'Bolha' },
 ];
 
 export const skinContains = [
-  { id: '1', value: 'Comedões' },
-  { id: '2', value: 'Nódulos' },
-  { id: '3', value: 'Pápulas' },
-  { id: '4', value: 'Pústulas' },
-  { id: '5', value: 'Cistos' },
- { id: '6', value: 'Abscesso' },
+  { id: '1', label: 'Comedões' },
+  { id: '2', label: 'Nódulos' },
+  { id: '3', label: 'Pápulas' },
+  { id: '4', label: 'Pústulas' },
+  { id: '5', label: 'Cistos' },
+ { id: '6', label: 'Abscesso' },
 
 
 ]
 
 export const bloodVessels  = [
-  { id: 1, value: "Nevo vascular", hasDescription: true },
-  { id: 2, value: "Telangiectasias", hasDescription: false },
-  { id: 3, value: "Couperose", hasDescription: true },
-  { id: 4, value: "Cianose", hasDescription: false },
-  { id: 5, value: "Nevo anêmico", hasDescription: false},
-  { id: 6, value: "Eritema", hasDescription: false},
-  { id: 7, value: "Hipotrófica", hasDescription: true},
-  { id: 8, value: "Hipertrófica",hasDescription: false },
-  { id: 9, value: "Quelóide", hasDescription: false},
+  { id: '1', label: "Nevo vascular", hasDescription: true },
+  { id: '2', label: "Telangiectasias", hasDescription: false },
+  { id: '3', label: "Couperose", hasDescription: true },
+  { id: '4', label: "Cianose", hasDescription: false },
+  { id: '5', label: "Nevo anêmico", hasDescription: false},
+  { id: '6', label: "Eritema", hasDescription: false},
+  { id: '7', label: "Hipotrófica", hasDescription: true},
+  { id: '8', label: "Hipertrófica",hasDescription: false },
+  { id: '9', label: "Quelóide", hasDescription: false},
 ]
 
 export const melanotics = [
-  { id: 1, value: "Melanodérmica" },
-  { id: 2, value: "Efélides" },
-  { id: 3, value: "Melasma" },
-  { id: 4, value: "Cloasma" },
-  { id: 5, value: "Melanose" },
-  { id: 6, value: "periorbicular" },
-  { id: 7, value: "Nevo melanócito / melanodérmico" }
+  { id: '1', label: "Melanodérmica" },
+  { id: '2', label: "Efélides" },
+  { id: '3', label: "Melasma" },
+  { id: '4', label: "Cloasma" },
+  { id: '5', label: "Melanose" },
+  { id: '6', label: "periorbicular" },
+  { id: '7', label: "Nevo melanócito / melanodérmico" }
 ]
 
 export const notMelanotics = [
-  { id: 1, value: "Não meianodérmica" },
-  { id: 2, value: "Tatuagem" },
-  { id: 3, value: "Micropigmentação" },
-  { id: 4, value: "Petéquia" },
-  { id: 5, value: "Hematoma" }
+  { id: '1', label: "Não meianodérmica" },
+  { id: '2', label: "Tatuagem" },
+  { id: '3', label: "Micropigmentação" },
+  { id: '4', label: "Petéquia" },
+  { id: '5', label: "Hematoma" }
 ]
 
 export const scars =
 [
-  { id: 1, value: "Hipotrófica", hasDescription: true },
-  { id: 2, value: "Hipertrófica", hasDescription: false },
-  { id: 3, value: "Quelóide", hasDescription: true },
+  { id: '1', label: "Hipotrófica", hasDescription: true },
+  { id: '2', label: "Hipertrófica", hasDescription: false },
+  { id: '3', label: "Quelóide", hasDescription: true },
 ]
 
 export const tyrichosis =
 [
-  { id: 1, value: "Hipertricose" },
-  { id: 2, value: "Foliculite" },
-  { id: 3, value: "Hirsurtismohypotonias" },
+  { id: '1', label: "Hipertricose" },
+  { id: '2', label: "Foliculite" },
+  { id: '3', label: "Hirsurtismohypotonias" },
 ]
 
 export const skinInvolution =
 [
-  { id: 1, value: "Linhas", hasDescription: true },
-  { id: 2, value: "Sulcos", hasDescription: true },
+  { id: '1', label: "Linhas", hasDescription: true },
+  { id: '2', label: "Sulcos", hasDescription: true },
 ]
 
 export const hypotonias =
 [
-  { id: 1, value: "Região nasogeniana" },
-  { id: 2, value: "Submentoniana" },
-  { id: 3, value: "Pescoço" },
+  { id: '1', label: "Região nasogeniana" },
+  { id: '2', label: "Submentoniana" },
+  { id: '3', label: "Pescoço" },
 ]
 
 export const purpuricSpots =
 [
-  { id: 1, value: "Vibice" },
-  { id: 2, value: "Equimose" },
-  { id: 3, value: "Petéquia" },
-  { id: 4, value: "Hematoma" }
+  { id: '1', label: "Vibice" },
+  { id: '2', label: "Equimose" },
+  { id: '3', label: "Petéquia" },
+  { id: '4', label: "Hematoma" }
 ]
 
 export const pigmentedSpots =
 [
-  { id: 1, value: "Acromia" },
-  { id: 2, value: "Hipocromia" },
-  { id: 3, value: "Hipercromia" }
+  { id: '1', label: "Acromia" },
+  { id: '2', label: "Hipocromia" },
+  { id: '3', label: "Hipercromia" }
 ]
 
 
 export const others= [
-  { id: 1, value: "Escamas" },
-  { id: 2, value: "Crosta" },
-  { id: 3, value: "Fotodermatoses" },
-  { id: 4, value: "Lesão não identificada" }
+  { id: '1', label: "Escamas" },
+  { id: '2', label: "Crosta" },
+  { id: '3', label: "Fotodermatoses" },
+  { id: '4', label: "Lesão não identificada" }
 ]
+
+// interface SkinWithDescription {
+//   type: string;
+//   typeDescription?: string;
+// }
+// interface SkinAnalysis {
+//   skinPhototypes: string; // Fototipo
+//   skinColors: string; // Coloração
+//   dehydrationLevels: string; // Desidratação
+//   skinTextures: string; // Textura
+//   poreSizes: string; // Óstios
+//   skinTypes: string; // Tipo Cutâneo
+//   oilinessLevels: string; // Grau de Oleosidade
+//   acneGrades: string; // Grau de Acne
+//   skinInvolution: SkinWithDescription[]// Involucao cutanea
+//   skinCotains: string[]; // Presenca De
+//   hypotonias: string; // Hipotonia
+//   tyrichosis: string[]; // Tricose
+//   scars: SkinWithDescription[]; // Cicatrizes
+//   purpuricSpots: string[]; // Manchas Purpúricas
+//   pigmentedSpots: string[]; // Manchas Pigmentares
+//   melanotics: string[]; // Melanóticas
+//   notMelanotics: string[]; // Não Melanóticas
+//   skinLesions: string[]; // Lesões Cutâneas
+//   fluidSkinLesions: string[]; // Lesões Cutâneas liquidas
+//   bloodVessels: SkinWithDescription[]; // Vasos Sanguíneos
+//   others: string; // Outros
+//   additionalInformation: string; // Observações
+
+// }
