@@ -110,56 +110,44 @@ model HairAnalysis {
 }
 
 model SkinAnalysis {
-  id                           String         @id @default(uuid())
-  client_id                    String
-  main_complaint               String
-  previous_aesthetic_procedure String
-  scarring_issues              Boolean
-  diabetes                     Boolean
-  medication_use               String
-  isotretinoin_use             Boolean
-  medical_treatment            String
-  thrombosis                   Boolean
-  surgery                      String
-  oncological_history          Boolean
-  infectious_disease           String
-  sports_practice              String
-  balanced_diet                Boolean
-  daily_water_intake           String
-  alcoholic_beverage_use       Boolean
-  substance_use                String
-  hormonal_disorder            String
-  smoker                       Boolean
-  sleeps_well                  Boolean
-  regular_intestine            Boolean
-  hypertension                 Boolean
-  hypotension                  Boolean
-  cardiac_issues               String
-  depression                   Boolean
-  epilepsy                     Boolean
-  has_plates_pins              String
-  dental_prosthesis            String
-  renal_issue                  Boolean
-  hepatic_issues               Boolean
-  thyroid_problems             Boolean
-  autoimmune_disease           String
-  pregnancy                    Boolean
-  breastfeeding                Boolean
-  sun_exposure                 String
-  skin_care                    String
-  metacril_toxin_use           Boolean
-  allergy_history              String
-  sunscreen_use                Boolean
-  herpes_history               Boolean
-  contraceptive_use            Boolean
-  menstrual_cycle              MenstrualCycle
-  hormone_use                  String
-  acid_use_on_skin             Boolean
-  cosmetic_use                 String
-  authorize_photos             Boolean
-  created_at                   DateTime       @default(now())
-  updated_at                   DateTime       @updatedAt
-  Client                       Client         @relation(fields: [client_id], references: [id])
+  id                      String     @id @default(uuid())
+  client_id               String
+  skinPhototypes          String?     // Fototipo
+  skinColors              String?     // Coloração
+  dehydrationLevels       String?     // Desidratação
+  skinTextures            String?     // Textura
+  poreSizes               String?     // Óstios
+  skinTypes               String?     // Tipo Cutâneo
+  oilinessLevels          String?     // Grau de Oleosidade
+  acneGrades              String?     // Grau de Acne
+  skinInvolutionLine      String?     // Involucao cutanea
+  skinInvolutionSulcus    String?     // Involucao cutanea
+  skinContains             String[]    // Presenca De
+  hypotonias              String[]     // Hipotonia
+  tyrichosis              String[]    // Tricose
+  scarsHypotrophic        String?     // Cicatrizes
+  scarsHypertrophic       Boolean     // Cicatrizes
+  scarsKeloid             String?     // Cicatrizes
+  purpuricSpots           String[]    // Manchas Purpúricas
+  pigmentedSpots          String[]    // Manchas Pigmentares
+  melanotics              String[]    // Melanóticas
+  notMelanotics           String[]    // Não Melanóticas
+  skinLesions             String[]    // Lesões Cutâneas
+  fluidSkinLesions        String[]    // Lesões Cutâneas liquidas
+  bloodVesselsNerve       String?     // Vasos Sanguíneos
+  bloodVesselsTelangiectasias Boolean     // Vasos Sanguíneos
+  bloodVesselsCouperose   String?     // Vasos Sanguíneos
+  bloodVesselsCyanosis    Boolean     // Vasos Sanguíneos
+  bloodVesselsAnemicNevus Boolean     // Vasos Sanguíneos
+  bloodVesselsErythema    Boolean     // Vasos Sanguíneos
+  bloodVesselsHypotrophic String?     // Vasos Sanguíneos
+  bloodVesselsHypertrophic Boolean     // Vasos Sanguíneos
+  bloodVesselsKeloid      Boolean     // Vasos Sanguíneos
+  others                  String?     // Outros
+  additionalInformation   String?     // Observações
+  createdAt               DateTime   @default(now())
+  updatedAt               DateTime   @updatedAt
+  Client                  Client     @relation(fields: [client_id], references: [id])
 
   @@map("skin_analysis")
 }

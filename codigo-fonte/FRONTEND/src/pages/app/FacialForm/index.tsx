@@ -1,7 +1,8 @@
 import { registerSkinForm } from '@/api/clientsForm';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import {
@@ -28,29 +29,44 @@ import {
   tyrichosis
 } from './constants/constants';
 
+const checkboxValueHandler = (e, field) => {
+  const { checked, value } = e.target;
+  field.onChange(checked ? value : undefined);
+};
+
+const checkboxArrValueHandler = (e, field) => {
+  const { checked, value } = e.target;
+  if (checked) {
+    field.onChange([...field.value, value]);
+  } else {
+    field.onChange(field.value.filter((val) => val !== value));
+  }
+};
+
 const skinAnalysis = z.object({
-  skinPhototypes: z.string(),
-  skinColors: z.string(),
-  dehydrationLevels: z.string(),
-  skinTextures: z.string(),
-  poreSizes: z.string(),
-  skinTypes: z.string(),
-  oilinessLevels: z.string(),
-  acneGrades: z.string(),
-  skinInvolution: z.array(z.object({ type: z.string(), typeDescription: z.string() })),
-  skinContains: z.array(z.string()),
-  hypotonias: z.string(),
-  tyrichosis: z.array(z.string()),
-  scars:z.array(z.object({ type: z.string(), typeDescription: z.string() })),
-  purpuricSpots: z.array(z.string()),
-  pigmentedSpots: z.array(z.string()),
-  melanotics: z.array(z.string()),
-  notMelanotics: z.array(z.string()),
-  skinLesions: z.array(z.string()),
-  fluidSkinLesions: z.array(z.string()),
-  bloodVessels: z.array(z.object({ type: z.string(), typeDescription: z.string() })),
-  others: z.string(),
-  additionalInformation: z.string(),
+  clientId: z.string(),
+  skinPhototypes: z.string().optional(),
+  skinColors: z.string().optional(),
+  dehydrationLevels: z.string().optional(),
+  skinTextures: z.string().optional(),
+  poreSizes: z.string().optional(),
+  skinTypes: z.string().optional(),
+  oilinessLevels: z.string().optional(),
+  acneGrades: z.string().optional(),
+  skinInvolution: z.record(z.string(), z.object({ type: z.string().optional(), typeDescription: z.string().optional() })).optional(),
+  skinContains: z.array(z.string()).optional(),
+  hypotonias: z.array(z.string()).optional(),
+  tyrichosis: z.array(z.string()).optional(),
+  scars: z.record(z.string(), z.object({ type: z.string().optional(), typeDescription: z.string().optional() })).optional(),
+  purpuricSpots: z.array(z.string()).optional(),
+  pigmentedSpots: z.array(z.string()).optional(),
+  melanotics: z.array(z.string()).optional(),
+  notMelanotics: z.array(z.string()).optional(),
+  skinLesions: z.array(z.string()).optional(),
+  fluidSkinLesions: z.array(z.string()).optional(),
+  bloodVessels: z.record(z.string(), z.object({ type: z.string().optional(), typeDescription: z.string().optional() })).optional(),
+  others: z.string().optional(),
+  additionalInformation: z.string().optional(),
 });
 type RegisterFacialForm = z.infer<typeof skinAnalysis>;
 
@@ -60,19 +76,22 @@ const FacialForm = () => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<RegisterFacialForm>({}); // Set initial values
-
+  } = useForm<RegisterFacialForm>({
+    resolver: zodResolver(skinAnalysis),
+  }); // Set initial values
+console.log(`ERROR`, errors)
+  const { clientId } = useParams();
   const navigate = useNavigate()
 
   const { mutateAsync: postSkinForm } = useMutation({
     mutationFn: registerSkinForm,
   })
 
-  async function handleRegisterClient(data: RegisterFacialForm) {
+  async function handleRegisterClient(data: Partial<RegisterFacialForm>) {
     try {
-      console.log(data)
+      console.log(`SENT`, data)
 
-      await postSkinForm(data)
+      await postSkinForm({...data})
 
 //      navigate('/')
       toast.success('Cliente cadastrado com sucesso!')
@@ -86,6 +105,12 @@ const FacialForm = () => {
       <h2 className="text-3xl font-bold text-center mb-8">Ficha Facial</h2>
 
       <form onSubmit={handleSubmit(handleRegisterClient)}>
+        <input
+          type="hidden"
+          id="clientId"
+          value={clientId}
+          {...register('clientId')}
+        />
         <div className="grid grid-cols-2 gap-6">
           <div className="mb-8">
             <h3 className="text-base font-medium mb-4">Fototipo</h3>
@@ -303,13 +328,19 @@ const FacialForm = () => {
             <div className="grid grid-cols-2 gap-4">
               {skinContains.map((contain) => (
                 <div key={`${contain.id}-${contain.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={contain.id}
-                    value={contain.label}
-                    {...register(`skinContains`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="skinContains"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={contain.id}
+                        value={contain.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{contain.label}</label>
                 </div>
               ))}
@@ -323,15 +354,21 @@ const FacialForm = () => {
         <div className="mb-6">
           <h3 className="text-base font-medium mb-4">Involução cutânea</h3>
           <div className="space-y-4">
-            {skinInvolution.map((involution, i) => (
+            {skinInvolution.map((involution) => (
               <div key={`${involution.id}-${involution.label}`} className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                  id={involution.id}
-                  value={involution.label}
-                  {...register(`skinInvolution.${i}.type`)}
-                />
+                <Controller
+                    control={control}
+                    name={`skinInvolution.${involution.typeName}.type`}
+                    defaultValue={undefined}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={involution.id}
+                        value={involution.label}
+                        onChange={(e) => checkboxValueHandler(e, field)}
+                      />
+                    )}/>
                 <label htmlFor={involution.id} className=" text-sm ml-2 font-bold text-[#00A27B]">
                   {involution.label}
                 </label>
@@ -342,7 +379,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
-                        {...register(`skinInvolution.${i}.typeDescription`)}
+                        {...register(`skinInvolution.${involution.typeName}.typeDescription`)}
                         className="h-5 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-28"
                       />
                     </div>
@@ -359,13 +396,20 @@ const FacialForm = () => {
             <div className="space-y-2">
               {hypotonias.map((hypotonia) => (
                 <div key={`${hypotonia.id}-${hypotonia.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={hypotonia.id}
-                    value={hypotonia.label}
-                    {...register(`hypotonias`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="hypotonias"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={hypotonia.id}
+                        {...field}
+                        value={hypotonia.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{hypotonia.label}</label>
                 </div>
               ))}
@@ -379,13 +423,19 @@ const FacialForm = () => {
             <div className="space-y-2">
               {tyrichosis.map((tyrichose) => (
                 <div key={`${tyrichose.id}-${tyrichose.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={tyrichose.id}
-                    value={tyrichose.label}
-                    {...register(`tyrichosis`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="tyrichosis"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={tyrichose.id}
+                        value={tyrichose.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{tyrichose.label}</label>
                 </div>
               ))}
@@ -396,15 +446,21 @@ const FacialForm = () => {
         <div className="mb-6">
           <h3 className="text-base font-medium mb-4">Cicatrizes / Sequelas</h3>
           <div className="space-y-4">
-            {scars.map((scar, i) => (
+            {scars.map((scar) => (
               <div key={`${scar.id}-${scar.label}`} className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                  id={scar.id}
-                  value={scar.label}
-                  {...register(`scars.${i}.type`)}
-                />
+                <Controller
+                    control={control}
+                    name={`scars.${scar.typeName}.type`}
+                    defaultValue={undefined}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={scar.id}
+                        value={scar.label}
+                        onChange={(e) => checkboxValueHandler(e, field)}
+                      />
+                    )}/>
                 <label htmlFor={scar.id} className=" text-sm ml-2 font-bold text-[#00A27B]">
                   {scar.label}
                 </label>
@@ -415,7 +471,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
-                        {...register(`scars.${i}.typeDescription`)}
+                        {...register(`scars.${scar.typeName}.typeDescription`)}
                         className="h-5 w-20 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -432,15 +488,21 @@ const FacialForm = () => {
         <div className="mb-8">
           <h3 className="text-base font-medium mb-4">Vásculo sanguínea</h3>
           <div className="space-y-4">
-            {bloodVessels.map((vessel, i) => (
+            {bloodVessels.map((vessel) => (
               <div key={`${vessel.id}-${vessel.label}`} className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                  id={vessel.id}
-                  value={vessel.label}
-                  {...register(`bloodVessels.${i}.type`)}
-                />
+                <Controller
+                    control={control}
+                    name={`bloodVessels.${vessel.typeName}.type`}
+                    defaultValue={undefined}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={vessel.id}
+                        value={vessel.label}
+                        onChange={(e) => checkboxValueHandler(e, field)}
+                      />
+                    )}/>
                 <label htmlFor={vessel.id} className=" text-sm ml-2 font-bold text-[#00A27B]">
                   {vessel.label}
                 </label>
@@ -451,7 +513,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
-                        {...register(`bloodVessels.${i}.typeDescription`)}
+                        {...register(`bloodVessels.${vessel.typeName}.typeDescription`)}
                         className="h-5 w-20 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -468,13 +530,19 @@ const FacialForm = () => {
             <div className="space-y-2">
               {purpuricSpots.map((purpuricSpot) => (
                 <div key={`${purpuricSpot.id}-${purpuricSpot.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={purpuricSpot.id}
-                    value={purpuricSpot.label}
-                    {...register(`purpuricSpots`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="purpuricSpots"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={purpuricSpot.id}
+                        value={purpuricSpot.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{purpuricSpot.label}</label>
                 </div>
               ))}
@@ -488,13 +556,19 @@ const FacialForm = () => {
             <div className="space-y-2">
               {pigmentedSpots.map((typigmentedSpot) => (
                 <div key={`${typigmentedSpot.id}-${typigmentedSpot.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={typigmentedSpot.id}
-                    value={typigmentedSpot.label}
-                    {...register(`pigmentedSpots`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="pigmentedSpots"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={typigmentedSpot.id}
+                        value={typigmentedSpot.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{typigmentedSpot.label}</label>
                 </div>
               ))}
@@ -507,13 +581,19 @@ const FacialForm = () => {
             <div className="space-y-2">
               {melanotics.map((melanotic) => (
                 <div key={`${melanotic.id}-${melanotic.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={melanotic.id}
-                    value={melanotic.label}
-                    {...register(`melanotics`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="melanotics"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={melanotic.id}
+                        value={melanotic.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{melanotic.label}</label>
                 </div>
               ))}
@@ -527,13 +607,19 @@ const FacialForm = () => {
             <div className="space-y-2">
               {notMelanotics.map((notMelanotic) => (
                 <div key={`${notMelanotic.id}-${notMelanotic.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={notMelanotic.id}
-                    value={notMelanotic.label}
-                    {...register(`notMelanotics`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="notMelanotics"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={notMelanotic.id}
+                        value={notMelanotic.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{notMelanotic.label}</label>
                 </div>
               ))}
@@ -546,13 +632,19 @@ const FacialForm = () => {
             <div className="grid grid-cols-2 gap-4">
               {skinLesions.map((skinLesion) => (
                 <div key={`${skinLesion.id}-${skinLesion.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={skinLesion.id}
-                    value={skinLesion.label}
-                    {...register(`skinLesions`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="skinLesions"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={skinLesion.id}
+                        value={skinLesion.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{skinLesion.label}</label>
                 </div>
               ))}
@@ -566,13 +658,20 @@ const FacialForm = () => {
             <div className="grid grid-cols-2 gap-4">
               {fluidSkinLesions.map((fluidSkinLesion) => (
                 <div key={`${fluidSkinLesion.id}-${fluidSkinLesion.label}`} className="pb-3 flex items-center">
-                  <input
-                    type="checkbox"
-                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
-                    id={fluidSkinLesion.id}
-                    value={fluidSkinLesion.label}
-                    {...register(`fluidSkinLesions`)} // Register each checkbox with its label as the name
-                  />
+                  <Controller
+                    control={control}
+                    name="fluidSkinLesions"
+                    defaultValue={[]}
+                    render={({ field }) => (
+                      <input
+                        type="checkbox"
+                        className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                        id={fluidSkinLesion.id}
+                        {...field}
+                        value={fluidSkinLesion.label}
+                        onChange={(e) => checkboxArrValueHandler(e, field)}
+                      />
+                    )}/>
                   <label className="text-sm ml-2 font-bold text-[#00A27B]">{fluidSkinLesion.label}</label>
                 </div>
               ))}

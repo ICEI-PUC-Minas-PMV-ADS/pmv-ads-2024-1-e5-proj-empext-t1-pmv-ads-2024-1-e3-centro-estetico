@@ -5,11 +5,13 @@ import { userProfile } from './controllers/user-profile'
 import { userRegister } from './controllers/user-register'
 import { users } from './controllers/users'
 import { verifyJWT } from './middlewares/verify-jwt'
+import { skinForm } from './controllers/skin-form'
 
 export async function appRoutes(app: FastifyInstance) {
   app.post('/users', userRegister)
   app.post('/sessions', authenticate)
   app.post('/clients', clientRegister)
+  app.post('/skin-form', skinForm)
 
   // Authenticated Routes
   app.get('/me', { onRequest: [verifyJWT] }, userProfile)

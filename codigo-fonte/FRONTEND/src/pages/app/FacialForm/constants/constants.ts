@@ -85,15 +85,15 @@ export const skinContains = [
 ]
 
 export const bloodVessels  = [
-  { id: '1', label: "Nervo vascular", hasDescription: true,  typeDescription: "bloodVesselsDescriptionNerve" },
-  { id: '2', label: "Telangiectasias", hasDescription: false,  typeDescription: "" },
-  { id: '3', label: "Couperose", hasDescription: true,  typeDescription: "bloodVesselsDescriptionCouperose" },
-  { id: '4', label: "Cianose", hasDescription: false, typeDescription: "" },
-  { id: '5', label: "Nevo anêmico", hasDescription: false, typeDescription: ""},
-  { id: '6', label: "Eritema", hasDescription: false, typeDescription: ""},
-  { id: '7', label: "Hipotrófica", hasDescription: true, typeDescription: "bloodVesselsDescriptionHypotrophic"},
-  { id: '8', label: "Hipertrófica",hasDescription: false, typeDescription: ""},
-  { id: '9', label: "Quelóide", hasDescription: false, typeDescription: ""},
+  { id: '1', label: "Nervo vascular", hasDescription: true,  typeName: "bloodVesselsNerve" },
+  { id: '2', label: "Telangiectasias", hasDescription: false,  typeName: "bloodVesselsTelangiectasias" },
+  { id: '3', label: "Couperose", hasDescription: true,  typeName: "bloodVesselsCouperose" },
+  { id: '4', label: "Cianose", hasDescription: false, typeName: "bloodVesselsCyanosis" },
+  { id: '5', label: "Nevo anêmico", hasDescription: false, typeName: "bloodVesselsAnemicNevus"},
+  { id: '6', label: "Eritema", hasDescription: false, typeName: "bloodVesselsErythema"},
+  { id: '7', label: "Hipotrófica", hasDescription: true, typeName: "bloodVesselsHypotrophic"},
+  { id: '8', label: "Hipertrófica",hasDescription: false, typeName: "bloodVesselsHypertrophic"},
+  { id: '9', label: "Quelóide", hasDescription: false, typeName: "bloodVesselsKeloid"},
 ]
 
 export const melanotics = [
@@ -116,9 +116,9 @@ export const notMelanotics = [
 
 export const scars =
 [
-  { id: '1', label: "Hipotrófica", hasDescription: true, typeDescription: "scarsDescriptionHypotrophic" },
-  { id: '2', label: "Hipertrófica", hasDescription: false },
-  { id: '3', label: "Quelóide", hasDescription: true, typeDescription: "scarsDescriptionKeloid" },
+  { id: '1', label: "Hipotrófica", hasDescription: true, typeName: "scarsHypotrophic" },
+  { id: '2', label: "Hipertrófica", hasDescription: false, typeName: "scarsHypertrophic" },
+  { id: '3', label: "Quelóide", hasDescription: true, typeName: "scarsKeloid" },
 ]
 
 export const tyrichosis =
@@ -130,8 +130,8 @@ export const tyrichosis =
 
 export const skinInvolution =
 [
-  { id: '1', label: "Linhas", hasDescription: true, typeDescription: "skinInvolutionDescriptionLine"},
-  { id: '2', label: "Sulcos", hasDescription: true, typeDescription: "skinInvolutionDescriptionSulcus" },
+  { id: '1', label: "Linhas", hasDescription: true, typeName: "skinInvolutionLine"},
+  { id: '2', label: "Sulcos", hasDescription: true, typeName: "skinInvolutionSulcus" },
 
 ]
 
@@ -164,32 +164,3 @@ export const others= [
   { id: '3', label: "Fotodermatoses" },
   { id: '4', label: "Lesão não identificada" }
 ]
-
-// interface SkinWithDescription {
-//   type: string;
-//   typeDescription?: string;
-// }
-// interface SkinAnalysis {
-//   skinPhototypes: string; // Fototipo
-//   skinColors: string; // Coloração
-//   dehydrationLevels: string; // Desidratação
-//   skinTextures: string; // Textura
-//   poreSizes: string; // Óstios
-//   skinTypes: string; // Tipo Cutâneo
-//   oilinessLevels: string; // Grau de Oleosidade
-//   acneGrades: string; // Grau de Acne
-//   skinInvolution: SkinWithDescription[]// Involucao cutanea
-//   skinCotains: string[]; // Presenca De
-//   hypotonias: string; // Hipotonia
-//   tyrichosis: string[]; // Tricose
-//   scars: SkinWithDescription[]; // Cicatrizes
-//   purpuricSpots: string[]; // Manchas Purpúricas
-//   pigmentedSpots: string[]; // Manchas Pigmentares
-//   melanotics: string[]; // Melanóticas
-//   notMelanotics: string[]; // Não Melanóticas
-//   skinLesions: string[]; // Lesões Cutâneas
-//   fluidSkinLesions: string[]; // Lesões Cutâneas liquidas
-//   bloodVessels: SkinWithDescription[]; // Vasos Sanguíneos
-//   others: string; // Outros
-//   additionalInformation: string; // Observações
-// }

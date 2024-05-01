@@ -29,12 +29,11 @@ export const router = createBrowserRouter([
         element: <RegisterClients />,
       },
       {
-        path: '/perfil-users',
+        path: '/perfil-users/:clientId',
         element: <PerfilClients />,
       },
        {
-        // path: '/facial-form/:clientId',
-        path: '/facial-form',
+        path: '/facial-form/:clientId',
         element: <FacialForm />,
       },
     ],
