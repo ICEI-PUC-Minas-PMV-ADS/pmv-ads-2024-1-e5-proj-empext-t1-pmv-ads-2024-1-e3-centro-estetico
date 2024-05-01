@@ -1,16 +1,21 @@
+import { useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 
 type cardProps = {
     name: string,
-    id: number
+    id: string
 }
 
 export function Card(props: cardProps) {
 
     const navigate = useNavigate()
 
+    const handleCardClick = useCallback(() => {
+        navigate(`/perfil-users/${props.id}`)
+    }, [])
+
     return (
-    <div className="flex w-full h-20 border-gray-200 border-opacity-90 bg-input rounded-lg" onClick={() => navigate('/perfil-users')}>
+    <div className="flex w-full h-20 border-gray-200 border-opacity-90 bg-input rounded-lg" onClick={handleCardClick}>
         <img 
             src="https://observatoriodosfamosos.uol.com.br/portal/wp-content/uploads/2023/08/manoel-gomes-70-mil-transformacao.jpg" 
             alt="foto" 

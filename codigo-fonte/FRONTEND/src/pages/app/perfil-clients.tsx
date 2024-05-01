@@ -6,9 +6,15 @@ import { ReactSVG } from 'react-svg';
 
 import imgPerson from '../../assets/imgPerson.svg'
 import newTreatment from '../../assets/newTreatment.svg'
+import { useUser } from '@/context/UserContext';
+import { useParams } from 'react-router-dom';
 
 
 export function PerfilClients() {
+
+    const {users} = useUser();
+    const { id } = useParams();
+    // console.log(users?.find((item) => item.id === id)?.phone)
     return (
         <div className='justify-center flex flex-col'>
             <div className='flex justify-around align-space-around pt-7'>
@@ -20,7 +26,7 @@ export function PerfilClients() {
                         <Button variant={'telephone'} size={'icon'}>
                             <Phone />
                         </Button>
-                        <p className='font-medium pt-2 pl-2'>(82) 9999-9999</p>
+                        <p className='font-medium pt-2 pl-2'>{users?.find((item) => item.id === id)?.phone}</p>
                     </div>
                     <Button>
                         <p>Histórico do cliente</p>
@@ -43,9 +49,9 @@ export function PerfilClients() {
             <h1 className='text-lg font-semibold pl-3 pt-11 pb-7'>Fichas de Anamnese</h1>
 
             <div className='flex flex-col gap-5'>
-                <ButtonWithIcon title='Questionário de saúde' />
-                <ButtonWithIcon title='Ficha facial' />
-                <ButtonWithIcon title='Últimas medidas corporais' />
+                <ButtonWithIcon path='/questionary' title='Questionário de saúde' />
+                <ButtonWithIcon path='/' title='Ficha facial' />
+                <ButtonWithIcon path='/' title='Últimas medidas corporais' />
             </div>
 
             <div className='pt-20 self-center'>

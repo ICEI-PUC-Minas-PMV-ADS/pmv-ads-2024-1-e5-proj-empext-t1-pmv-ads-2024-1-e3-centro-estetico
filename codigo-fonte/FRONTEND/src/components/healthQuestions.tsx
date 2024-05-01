@@ -1,11 +1,16 @@
+import { HealthQuestionnaire } from '@/pages/app/healthQuestionary/questionary';
 import React, { useState } from 'react';
+import { ControllerRenderProps, FieldValues } from 'react-hook-form';
 
 interface QuestionWithOptionsProps {
   title: string;
-  descripition: string;
+  description?: string;
+  field: ControllerRenderProps<FieldValues, string>
+  nameDescription?: keyof HealthQuestionnaire;
+  name: keyof HealthQuestionnaire;
 }
 
-const QuestionWithOptions: React.FC<QuestionWithOptionsProps> = ({ title, descripition }) => {
+export const HealthQuestions: React.FC<QuestionWithOptionsProps> = ({ title, description, field }) => {
   const [selectedOption, setSelectedOption] = useState<boolean | null>(null);
   const [reason, setReason] = useState<string>('');
 
@@ -28,34 +33,35 @@ const QuestionWithOptions: React.FC<QuestionWithOptionsProps> = ({ title, descri
         <label>
           <input
             type="radio"
-            name="option"
+            name={`${title}-yes`}
             value="true"
-            checked={selectedOption === true}
-            onChange={() => handleOptionSelect(true)}
+            checked={field.value === true}
+            onChange={(e) => field.onChange(e.target.value)}
           />
-          
+
         </label>
         Sim
         <label>
           <input
             type="radio"
-            name="option"
+            name={`${title}-no`}
             value="false"
-            checked={selectedOption === false}
-            onChange={() => handleOptionSelect(false)}
+            checked={field.value === false}
+            onChange={(e) => field.onChange(e.target.value)}
           />
           
         </label>
         Não
       </div>
-      {selectedOption === true && (
+      {field.value === true && description && (
         <div>
           <label>
-          {descripition}
+          {description}
             <input
+              name={`${title}-${description}`}
               type="text"
-              value={reason}
-              onChange={handleReasonChange}
+              value={field.value}
+              onChange={(e) => field.onChange(e.target.value)}
               placeholder="Especifique"
             />
           </label>
@@ -64,5 +70,3 @@ const QuestionWithOptions: React.FC<QuestionWithOptionsProps> = ({ title, descri
     </div>
   );
 };
-
-export default QuestionWithOptions;
