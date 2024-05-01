@@ -1,11 +1,91 @@
 import { Controller, useForm } from 'react-hook-form';
-import { acneGrades, oilinessGrades, ostium, skinColor, skinHidratation, skinPhotoTypes, skinSubclassifications, skinTexture } from './constants';
+import { z } from 'zod';
+import { acneGrades, dehydrationLevels, oilinessLevels, poreSizes, skinColors, skinPhotoTypes, skinTextures, skinTypes } from './constants';
 
+
+interface SkinWithDescription {
+  type: string;
+  typeDescription?: string;
+}
+interface SkinAnalysis {
+  skinPhototypes: string; // Fototipo
+  skinColors: string; // Coloração
+  dehydrationLevels: string; // Desidratação
+  skinTextures: string; // Textura
+  poreSizes: string; // Óstios
+  skinTypes: string; // Tipo Cutâneo
+  oilinessLevels: string; // Grau de Oleosidade
+  acneGrades: string; // Grau de Acne
+  skinInvolution: SkinWithDescription[]// Involucao cutanea
+  skinCotains: string[]; // Presenca De
+  hypotonias: string; // Hipotonia
+  tyrichosis: string[]; // Tricose
+  scars: SkinWithDescription[]; // Cicatrizes
+  purpuricSpots: string[]; // Manchas Purpúricas
+  pigmentedSpots: string[]; // Manchas Pigmentares
+  melanotics: string[]; // Melanóticas
+  notMelanotics: string[]; // Não Melanóticas
+  skinLesions: string[]; // Lesões Cutâneas
+  fluidSkinLesions: string[]; // Lesões Cutâneas liquidas
+  bloodVessels: SkinWithDescription[]; // Vasos Sanguíneos
+  others: string; // Outros
+  additionalInformation: string; // Observações
+
+}
+// const Gender = z.enum(['Male', 'Female'])
+const SkinWithDescription = z.object({
+  type: z.string(),
+  description: z.string(),
+  // Adicione outras propriedades necessárias aqui, se houver
+});
+
+const skinAnalysis = z.object({
+  skinPhototypes: z.string(),
+  skinColors: z.string(),
+  dehydrationLevels: z.string(),
+  skinTextures: z.string(),
+  poreSizes: z.string(),
+  skinTypes: z.string(),
+  oilinessLevels: z.string(),
+  acneGrades: z.string(),
+  skinInvolution: z.array(SkinWithDescription),
+  skinContains: z.array(z.string()),
+  hypotonias: z.string(),
+  trichosis: z.array(z.string()),
+  scars: z.array(SkinWithDescription),
+  purpuricSpots: z.array(z.string()),
+  pigmentedSpots: z.array(z.string()),
+  melanotics: z.array(z.string()),
+  notMelanotics: z.array(z.string()),
+  skinLesions: z.array(z.string()),
+  fluidSkinLesions: z.array(z.string()),
+  bloodVessels: z.array(SkinWithDescription),
+  others: z.string(),
+  additionalInformation: z.string(),
+});
+type RegisterFacialForm = z.infer<typeof skinAnalysis>
 
 const FacialForm = () => {
-  const { control, handleSubmit, formState: { errors } } = useForm({ defaultValues: { fototipo: skinPhotoTypes[0].id, coloracao: skinColor[0].id } }); // Set initial values
+  const { control, handleSubmit, register, formState: { errors } } = useForm<RegisterFacialForm>({}); // Set initial values
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data: RegisterFacialForm ) => console.log(data);
+
+  const skinContains = ['Comedões', 'Nódulos', 'Pápulas', 'Abscesso', 'Pústulas', 'Cistos']
+
+  // const [checkedItems, setCheckedItems] = useState([]);
+
+
+  // const handleCheckboxChange = (label, checked) => {
+  //   const updatedCheckedItems = checkedItems.slice();
+  //   if (checked) {
+  //     updatedCheckedItems.push(label);
+  //   } else {
+  //     updatedCheckedItems = updatedCheckedItems.filter(item => item !== label);
+  //   }
+  //   setCheckedItems(updatedCheckedItems);
+  // };
+
+
 
   return (
     <div className="container mx-auto">
@@ -19,13 +99,13 @@ const FacialForm = () => {
               <div key={phototype.id} className="flex items-center">
                 <Controller
                   control={control}
-                  name="phototypes"
+                  name="skinPhototypes"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
                       id={phototype.id}
-                      value={phototype.id}
+                      value={phototype.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
@@ -42,18 +122,17 @@ const FacialForm = () => {
         <div className="mb-4">
           <h3 className="text-base font-medium mb-2">Coloração da Pele</h3>
           <div className="space-y-2">
-            {skinColor.map((color) => (
+            {skinColors.map((color) => (
               <div key={color.id} className="flex items-center">
-
                 <Controller
                   control={control}
-                  name="color"
+                  name="skinColors"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
                       id={color.id}
-                      value={color.id}
+                      value={color.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
@@ -68,17 +147,17 @@ const FacialForm = () => {
         <div className="mb-4">
           <h3 className="text-base font-medium mb-2">Desidarataçâo da Pele</h3>
           <div className="space-y-2">
-            {skinHidratation.map((hidatation) => (
+            {dehydrationLevels.map((hidatation) => (
               <div key={hidatation.id} className="flex items-center">
                 <Controller
                   control={control}
-                  name="hidratation"
+                  name="dehydrationLevels"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
                       id={hidatation.id}
-                      value={hidatation.id}
+                      value={hidatation.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
@@ -93,17 +172,17 @@ const FacialForm = () => {
         <div className="mb-4">
           <h3 className="text-base font-medium mb-2">Textura da Pele</h3>
           <div className="space-y-2">
-            {skinTexture.map((texture) => (
+            {skinTextures.map((texture) => (
               <div key={texture.id} className="flex items-center">
                 <Controller
                   control={control}
-                  name="texture"
+                  name="skinTextures"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
                       id={texture.id}
-                      value={texture.id}
+                      value={texture.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
@@ -118,17 +197,17 @@ const FacialForm = () => {
         <div className="mb-4">
           <h3 className="text-base font-medium mb-2">Óstios</h3>
           <div className="space-y-2">
-            {ostium.map((ostium) => (
+            {poreSizes.map((ostium) => (
               <div key={ostium.id} className="flex items-center">
                 <Controller
                   control={control}
-                  name="ostium"
+                  name="poreSizes"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
                       id={ostium.id}
-                      value={ostium.id}
+                      value={ostium.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
@@ -143,23 +222,23 @@ const FacialForm = () => {
         <div className="mb-4">
           <h3 className="text-base font-medium mb-2">Tipo Cutâneo / subclassificação</h3>
           <div className="space-y-2">
-            {skinSubclassifications.map((skinSubclassifications) => (
-              <div key={skinSubclassifications.id} className="flex items-center">
+            {skinTypes.map((type) => (
+              <div key={type.id} className="flex items-center">
                 <Controller
                   control={control}
-                  name="skinSubclassifications"
+                  name="skinTypes"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
-                      id={skinSubclassifications.id}
-                      value={skinSubclassifications.id}
+                      id={type.id}
+                      value={type.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
                 />
-              <label htmlFor={skinSubclassifications.id} className="text-sm mr-2 font-bold text-[#00A27B]">
-                {skinSubclassifications.label}
+              <label htmlFor={type.id} className="text-sm mr-2 font-bold text-[#00A27B]">
+                {type.label}
               </label>
               </div>
             ))}
@@ -168,17 +247,17 @@ const FacialForm = () => {
         <div className="mb-4">
           <h3 className="text-base font-medium mb-2">Grau oleosidade</h3>
           <div className="space-y-2">
-            {oilinessGrades.map((oilinessGrade) => (
+            {oilinessLevels.map((oilinessGrade) => (
               <div key={oilinessGrade.id} className="flex items-center">
                 <Controller
                   control={control}
-                  name="oilinessGrades"
+                  name="oilinessLevels"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
                       id={oilinessGrade.id}
-                      value={oilinessGrade.id}
+                      value={oilinessGrade.label}
                       className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
                       />
                   )}
@@ -197,7 +276,7 @@ const FacialForm = () => {
               <div key={acneGrade.id} className="flex items-center">
                 <Controller
                   control={control}
-                  name="acneGrade"
+                  name="acneGrades"
                   render={({ field }) => (
                     <input
                       type="radio"
@@ -214,6 +293,16 @@ const FacialForm = () => {
               </div>
             ))}
           </div>
+        </div>
+        <div>
+       {skinContains.map((label) => (<div key={label} className="flex items-center">
+          <input
+            type="checkbox"
+            className="checkbox"
+            {...register('skinContains')} // Register each checkbox with its label as the name
+          />
+          <label className="text-sm ml-2 checked:bg-[#00A27B]">{label}</label>
+        </div>) )}
         </div>
         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Salvar Exame

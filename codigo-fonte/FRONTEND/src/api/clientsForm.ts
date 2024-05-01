@@ -12,7 +12,7 @@ export interface SignUpBody {
   password: string
 }
 
-export interface registerClientBody {
+export interface registerfacialForm {
   name: string
   birth_date: Date
   address: string
