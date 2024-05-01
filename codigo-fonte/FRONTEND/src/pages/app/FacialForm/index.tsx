@@ -4,15 +4,24 @@ import {
   acneGrades,
   bloodVessels,
   dehydrationLevels,
+  fluidSkinLesions,
+  hypotonias,
+  melanotics,
+  notMelanotics,
   oilinessLevels,
+  others,
+  pigmentedSpots,
   poreSizes,
+  purpuricSpots,
   scars,
   skinColors,
   skinContains,
   skinInvolution,
+  skinLesions,
   skinPhotoTypes,
   skinTextures,
   skinTypes,
+  tyrichosis
 } from './constants/constants';
 
 const SkinWithDescription = z.object({
@@ -32,7 +41,7 @@ const skinAnalysis = z.object({
   skinInvolution: z.array(SkinWithDescription),
   skinContains: z.array(z.string()),
   hypotonias: z.string(),
-  trichosis: z.array(z.string()),
+  tyrichosis: z.array(z.string()),
   scars: z.array(SkinWithDescription),
   purpuricSpots: z.array(z.string()),
   pigmentedSpots: z.array(z.string()),
@@ -292,10 +301,10 @@ const FacialForm = () => {
           </div>
         </div>
 
-        <div className="mb-8 flex justify-center">
+        <div className="mb-6 flex justify-center">
           <h2 className="text-base font-medium mb-4">Aspectos Inestéticos</h2>
         </div>
-        <div className="mb-8">
+        <div className="mb-6">
           <h3 className="text-base font-medium mb-4">Involução cutânea</h3>
           <div className="space-y-4">
             {skinInvolution.map((involution) => (
@@ -327,7 +336,47 @@ const FacialForm = () => {
           </div>
         </div>
 
-        <div className="mb-8">
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Hipotonia</h3>
+            <div className="space-y-2">
+              {hypotonias.map((hypotonia) => (
+                <div key={hypotonia.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={hypotonia.id}
+                    value={hypotonia.label}
+                    {...register(`hypotonias`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{hypotonia.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Tricose</h3>
+            <div className="space-y-2">
+              {tyrichosis.map((tyrichose) => (
+                <div key={tyrichose.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={tyrichose.id}
+                    value={tyrichose.label}
+                    {...register(`tyrichosis`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{tyrichose.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-6">
           <h3 className="text-base font-medium mb-4">Cicatrizes / Sequelas</h3>
           <div className="space-y-4">
             {scars.map((scar) => (
@@ -393,6 +442,151 @@ const FacialForm = () => {
             ))}
           </div>
         </div>
+
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Mancha purpúrica</h3>
+            <div className="space-y-2">
+              {purpuricSpots.map((purpuricSpot) => (
+                <div key={purpuricSpot.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={purpuricSpot.id}
+                    value={purpuricSpot.label}
+                    {...register(`purpuricSpots`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{purpuricSpot.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Mancha pigmentada</h3>
+            <div className="space-y-2">
+              {pigmentedSpots.map((typigmentedSpot) => (
+                <div key={typigmentedSpot.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={typigmentedSpot.id}
+                    value={typigmentedSpot.label}
+                    {...register(`pigmentedSpots`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{typigmentedSpot.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Melanodérmica</h3>
+            <div className="space-y-2">
+              {melanotics.map((melanotic) => (
+                <div key={melanotic.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={melanotic.id}
+                    value={melanotic.label}
+                    {...register(`melanotics`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{melanotic.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Não meianodérmica</h3>
+            <div className="space-y-2">
+              {notMelanotics.map((notMelanotic) => (
+                <div key={notMelanotic.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={notMelanotic.id}
+                    value={notMelanotic.label}
+                    {...register(`notMelanotics`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{notMelanotic.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Lesões sólidas</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {skinLesions.map((skinLesion) => (
+                <div key={skinLesion.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={skinLesion.id}
+                    value={skinLesion.label}
+                    {...register(`skinLesions`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{skinLesion.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-6">
+            <h3 className="text-base font-medium mb-4">Lesões líquidas</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {fluidSkinLesions.map((fluidSkinLesion) => (
+                <div key={fluidSkinLesion.id} className="pb-3 flex items-center">
+                  <input
+                    type="checkbox"
+                    className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
+                    id={fluidSkinLesion.id}
+                    value={fluidSkinLesion.label}
+                    {...register(`fluidSkinLesions`)} // Register each checkbox with its label as the name
+                  />
+                  <label className="text-sm ml-2 font-bold text-[#00A27B]">{fluidSkinLesion.label}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Outras</h3>
+          <div className="space-y-2">
+            {others.map((another) => (
+              <div key={another.id} className="flex items-center">
+                <Controller
+                  control={control}
+                  name="acneGrades"
+                  render={({ field }) => (
+                    <input
+                      type="radio"
+                      {...field}
+                      id={another.id}
+                      value={another.label}
+                      className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-2 h-2 w-2 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
+                    />
+                  )}
+                />
+                <label htmlFor={another.id} className="text-sm mr-2 font-bold text-[#00A27B]">
+                  {another.label}
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+
 
         <div className="flex justify-center items-center ">
           <button type="submit" className="w-80 bg-[#00A27B] hover:[#00a27c69] text-white font-bold py-2 px-4 rounded">

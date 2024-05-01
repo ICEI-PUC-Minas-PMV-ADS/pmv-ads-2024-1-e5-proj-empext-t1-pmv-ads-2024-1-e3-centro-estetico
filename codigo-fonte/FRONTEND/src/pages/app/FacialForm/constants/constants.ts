@@ -103,7 +103,7 @@ export const melanotics = [
   { id: '4', label: "Cloasma" },
   { id: '5', label: "Melanose" },
   { id: '6', label: "periorbicular" },
-  { id: '7', label: "Nevo melanócito / melanodérmico" }
+  { id: '7', label: "Nevo melanócito ou melanodérmico" }
 ]
 
 export const notMelanotics = [
