@@ -85,15 +85,15 @@ export const skinContains = [
 ]
 
 export const bloodVessels  = [
-  { id: '1', label: "Nevo vascular", hasDescription: true },
-  { id: '2', label: "Telangiectasias", hasDescription: false },
-  { id: '3', label: "Couperose", hasDescription: true },
-  { id: '4', label: "Cianose", hasDescription: false },
-  { id: '5', label: "Nevo anêmico", hasDescription: false},
-  { id: '6', label: "Eritema", hasDescription: false},
-  { id: '7', label: "Hipotrófica", hasDescription: true},
-  { id: '8', label: "Hipertrófica",hasDescription: false },
-  { id: '9', label: "Quelóide", hasDescription: false},
+  { id: '1', label: "Nervo vascular", hasDescription: true,  typeDescription: "bloodVesselsDescriptionNerve" },
+  { id: '2', label: "Telangiectasias", hasDescription: false,  typeDescription: "" },
+  { id: '3', label: "Couperose", hasDescription: true,  typeDescription: "bloodVesselsDescriptionCouperose" },
+  { id: '4', label: "Cianose", hasDescription: false, typeDescription: "" },
+  { id: '5', label: "Nevo anêmico", hasDescription: false, typeDescription: ""},
+  { id: '6', label: "Eritema", hasDescription: false, typeDescription: ""},
+  { id: '7', label: "Hipotrófica", hasDescription: true, typeDescription: "bloodVesselsDescriptionHypotrophic"},
+  { id: '8', label: "Hipertrófica",hasDescription: false, typeDescription: ""},
+  { id: '9', label: "Quelóide", hasDescription: false, typeDescription: ""},
 ]
 
 export const melanotics = [
@@ -116,9 +116,9 @@ export const notMelanotics = [
 
 export const scars =
 [
-  { id: '1', label: "Hipotrófica", hasDescription: true },
+  { id: '1', label: "Hipotrófica", hasDescription: true, typeDescription: "scarsDescriptionHypotrophic" },
   { id: '2', label: "Hipertrófica", hasDescription: false },
-  { id: '3', label: "Quelóide", hasDescription: true },
+  { id: '3', label: "Quelóide", hasDescription: true, typeDescription: "scarsDescriptionKeloid" },
 ]
 
 export const tyrichosis =
@@ -130,8 +130,8 @@ export const tyrichosis =
 
 export const skinInvolution =
 [
-  { id: '1', label: "Linhas", hasDescription: true },
-  { id: '2', label: "Sulcos", hasDescription: true },
+  { id: '1', label: "Linhas", hasDescription: true, typeDescription: "skinInvolutionDescriptionLine"},
+  { id: '2', label: "Sulcos", hasDescription: true, typeDescription: "skinInvolutionDescriptionSulcus" },
 ]
 
 export const hypotonias =

@@ -24,11 +24,6 @@ import {
   tyrichosis
 } from './constants/constants';
 
-const SkinWithDescription = z.object({
-  type: z.string(),
-  description: z.string(),
-});
-
 const skinAnalysis = z.object({
   skinPhototypes: z.string(),
   skinColors: z.string(),
@@ -38,18 +33,25 @@ const skinAnalysis = z.object({
   skinTypes: z.string(),
   oilinessLevels: z.string(),
   acneGrades: z.string(),
-  skinInvolution: z.array(SkinWithDescription),
+  skinInvolution: z.string(),
+  skinInvolutionDescriptionLine: z.string(),
+  skinInvolutionDescriptionSulcus: z.string(),
   skinContains: z.array(z.string()),
   hypotonias: z.string(),
   tyrichosis: z.array(z.string()),
-  scars: z.array(SkinWithDescription),
+  scars: z.array(z.string()),
+  scarsDescriptionHypotrophic: z.string(),
+  scarsDescriptionKeloid: z.string(),
   purpuricSpots: z.array(z.string()),
   pigmentedSpots: z.array(z.string()),
   melanotics: z.array(z.string()),
   notMelanotics: z.array(z.string()),
   skinLesions: z.array(z.string()),
   fluidSkinLesions: z.array(z.string()),
-  bloodVessels: z.array(SkinWithDescription),
+  bloodVessels: z.array(z.string()),
+  bloodVesselsDescriptionNerve: z.string(),
+  bloodVesselsDescriptionCouperose: z.string(),
+  bloodVesselsDescriptionHypotrophic: z.string(),
   others: z.string(),
   additionalInformation: z.string(),
 });
@@ -326,6 +328,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
+                        {...register(involution.typeDescription)}
                         className="h-5 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-28"
                       />
                     </div>
@@ -398,6 +401,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
+                        {...register(scar.typeDescription)}
                         className="h-5 w-20 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -433,6 +437,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
+                        {...register(vessel.typeDescription)}
                         className="h-5 w-20 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -584,6 +589,16 @@ const FacialForm = () => {
                 </label>
               </div>
             ))}
+          </div>
+        </div>
+        <div className=" flex">
+          <div className="flex flex-col">
+            <label className="mb-2 flex mr-1 text-xs text-center font-bold text-gray-700">Observações Gerais:</label>
+            <input
+              type="text"
+              {...register("additionalInformation")}
+              className="mb-6 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 h-60 w-64 "
+            />
           </div>
         </div>
 
