@@ -1,6 +1,6 @@
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { acneGrades, dehydrationLevels, oilinessLevels, poreSizes, skinColors, skinContains, skinPhotoTypes, skinTextures, skinTypes } from './constants';
+import { acneGrades, dehydrationLevels, oilinessLevels, poreSizes, skinColors, skinContains, skinPhotoTypes, skinTextures, skinTypes } from './constants/constants';
 
 
 interface SkinWithDescription {
@@ -71,28 +71,16 @@ const FacialForm = () => {
   const onSubmit = (data: RegisterFacialForm ) => console.log(data);
 
 
-  // const [checkedItems, setCheckedItems] = useState([]);
-
-
-  // const handleCheckboxChange = (label, checked) => {
-  //   const updatedCheckedItems = checkedItems.slice();
-  //   if (checked) {
-  //     updatedCheckedItems.push(label);
-  //   } else {
-  //     updatedCheckedItems = updatedCheckedItems.filter(item => item !== label);
-  //   }
-  //   setCheckedItems(updatedCheckedItems);
-  // };
-
-
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-4">Ficha Facial</h2>
+      <h2 className="text-3xl font-bold text-center mb-8">Ficha Facial</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Fototipo</h3>
+      <div className="grid grid-cols-2 gap-6">
+
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Fototipo</h3>
           <div className="space-y-2">
             {skinPhotoTypes.map((phototype) => (
               <div key={phototype.id} className="flex items-center">
@@ -118,9 +106,9 @@ const FacialForm = () => {
           {/* {errors.fototipo && <span className="text-red-500 text-xs">{errors.fototipo.message || 'Fototipo é obrigatório'}</span>} */}
         </div>
 
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Coloração da Pele</h3>
-          <div className="space-y-2">
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Coloração da Pele</h3>
+          <div className="space-y-4">
             {skinColors.map((color) => (
               <div key={color.id} className="flex items-center">
                 <Controller
@@ -143,8 +131,11 @@ const FacialForm = () => {
             ))}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Desidarataçâo da Pele</h3>
+          </div>
+      <div className="grid grid-cols-2 gap-6">
+
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-6">Desidarataçâo da Pele</h3>
           <div className="space-y-2">
             {dehydrationLevels.map((hidatation) => (
               <div key={hidatation.id} className="flex items-center">
@@ -168,8 +159,9 @@ const FacialForm = () => {
             ))}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Textura da Pele</h3>
+
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Textura da Pele</h3>
           <div className="space-y-2">
             {skinTextures.map((texture) => (
               <div key={texture.id} className="flex items-center">
@@ -193,9 +185,11 @@ const FacialForm = () => {
             ))}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Óstios</h3>
-          <div className="space-y-2">
+         </div>
+
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Óstios</h3>
+          <div className="grid grid-cols-2 gap-6">
             {poreSizes.map((ostium) => (
               <div key={ostium.id} className="flex items-center">
                 <Controller
@@ -218,9 +212,9 @@ const FacialForm = () => {
             ))}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Tipo Cutâneo / subclassificação</h3>
-          <div className="space-y-2">
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Tipo Cutâneo / subclassificação</h3>
+          <div className="grid grid-cols-2 gap-6">
             {skinTypes.map((type) => (
               <div key={type.id} className="flex items-center">
                 <Controller
@@ -243,8 +237,8 @@ const FacialForm = () => {
             ))}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Grau oleosidade</h3>
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Grau oleosidade</h3>
           <div className="space-y-2">
             {oilinessLevels.map((oilinessGrade) => (
               <div key={oilinessGrade.id} className="flex items-center">
@@ -268,8 +262,8 @@ const FacialForm = () => {
             ))}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-base font-medium mb-2">Pele com acne</h3>
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Pele com acne</h3>
           <div className="space-y-2">
             {acneGrades.map((acneGrade) => (
               <div key={acneGrade.id} className="flex items-center">
@@ -294,6 +288,9 @@ const FacialForm = () => {
           </div>
         </div>
         <div>
+        <div className="mb-8">
+          <h3 className="text-base font-medium mb-4">Presenca de:</h3>
+          <div className="grid grid-cols-2 gap-4">
        {skinContains.map((contain) => (<div key={contain.id} className="pb-3 flex items-center">
           <input
             type="checkbox"
@@ -302,15 +299,32 @@ const FacialForm = () => {
             value={contain.value}
             {...register(`skinContains`)} // Register each checkbox with its label as the name
           />
-          <label className="text-sm ml-2 checked:bg-[#00A27B]">{contain.value}</label>
+          <label className="text-sm ml-2 font-bold text-[#00A27B]">{contain.value}</label>
         </div>) )}
+        </div>       </div>
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Salvar Exame
-        </button>
+        <div className="flex justify-center items-center min-h-screen">
+          <button type="submit" className="w-80 bg-[#00A27B] hover:[#00a27c69] text-white font-bold py-2 px-4 rounded">
+            Salvar
+          </button>
+        </div>
+
       </form>
     </div>
   );
 };
 
 export default FacialForm;
+// {contain.hasDescription &&
+
+//   <div  className="ml-5 flex items-center">
+//     <div className="flex flex-col w-full">
+//       <label className="mb-4 text-sm font-medium text-gray-700">
+//         Nome
+//       </label>
+//       <input
+//         type="text"
+//         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+//       />
+//     </div>
+//   </div>}

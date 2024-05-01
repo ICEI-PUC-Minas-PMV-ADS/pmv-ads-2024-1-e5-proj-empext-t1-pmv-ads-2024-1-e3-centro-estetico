@@ -79,5 +79,87 @@ export const skinContains = [
   { id: '3', value: 'Pápulas' },
   { id: '4', value: 'Pústulas' },
   { id: '5', value: 'Cistos' },
+ { id: '6', value: 'Abscesso' },
 
+
+]
+
+export const bloodVessels  = [
+  { id: 1, value: "Nevo vascular", hasDescription: true },
+  { id: 2, value: "Telangiectasias", hasDescription: false },
+  { id: 3, value: "Couperose", hasDescription: true },
+  { id: 4, value: "Cianose", hasDescription: false },
+  { id: 5, value: "Nevo anêmico", hasDescription: false},
+  { id: 6, value: "Eritema", hasDescription: false},
+  { id: 7, value: "Hipotrófica", hasDescription: true},
+  { id: 8, value: "Hipertrófica",hasDescription: false },
+  { id: 9, value: "Quelóide", hasDescription: false},
+]
+
+export const melanotics = [
+  { id: 1, value: "Melanodérmica" },
+  { id: 2, value: "Efélides" },
+  { id: 3, value: "Melasma" },
+  { id: 4, value: "Cloasma" },
+  { id: 5, value: "Melanose" },
+  { id: 6, value: "periorbicular" },
+  { id: 7, value: "Nevo melanócito / melanodérmico" }
+]
+
+export const notMelanotics = [
+  { id: 1, value: "Não meianodérmica" },
+  { id: 2, value: "Tatuagem" },
+  { id: 3, value: "Micropigmentação" },
+  { id: 4, value: "Petéquia" },
+  { id: 5, value: "Hematoma" }
+]
+
+export const scars =
+[
+  { id: 1, value: "Hipotrófica", hasDescription: true },
+  { id: 2, value: "Hipertrófica", hasDescription: false },
+  { id: 3, value: "Quelóide", hasDescription: true },
+]
+
+export const tyrichosis =
+[
+  { id: 1, value: "Hipertricose" },
+  { id: 2, value: "Foliculite" },
+  { id: 3, value: "Hirsurtismohypotonias" },
+]
+
+export const skinInvolution =
+[
+  { id: 1, value: "Linhas", hasDescription: true },
+  { id: 2, value: "Sulcos", hasDescription: true },
+]
+
+export const hypotonias =
+[
+  { id: 1, value: "Região nasogeniana" },
+  { id: 2, value: "Submentoniana" },
+  { id: 3, value: "Pescoço" },
+]
+
+export const purpuricSpots =
+[
+  { id: 1, value: "Vibice" },
+  { id: 2, value: "Equimose" },
+  { id: 3, value: "Petéquia" },
+  { id: 4, value: "Hematoma" }
+]
+
+export const pigmentedSpots =
+[
+  { id: 1, value: "Acromia" },
+  { id: 2, value: "Hipocromia" },
+  { id: 3, value: "Hipercromia" }
+]
+
+
+export const others= [
+  { id: 1, value: "Escamas" },
+  { id: 2, value: "Crosta" },
+  { id: 3, value: "Fotodermatoses" },
+  { id: 4, value: "Lesão não identificada" }
 ]
