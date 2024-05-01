@@ -33,25 +33,18 @@ const skinAnalysis = z.object({
   skinTypes: z.string(),
   oilinessLevels: z.string(),
   acneGrades: z.string(),
-  skinInvolution: z.string(),
-  skinInvolutionDescriptionLine: z.string(),
-  skinInvolutionDescriptionSulcus: z.string(),
+  skinInvolution: z.array(z.object({ type: z.string(), typeDescription: z.string() })),
   skinContains: z.array(z.string()),
   hypotonias: z.string(),
   tyrichosis: z.array(z.string()),
-  scars: z.array(z.string()),
-  scarsDescriptionHypotrophic: z.string(),
-  scarsDescriptionKeloid: z.string(),
+  scars:z.array(z.object({ type: z.string(), typeDescription: z.string() })),
   purpuricSpots: z.array(z.string()),
   pigmentedSpots: z.array(z.string()),
   melanotics: z.array(z.string()),
   notMelanotics: z.array(z.string()),
   skinLesions: z.array(z.string()),
   fluidSkinLesions: z.array(z.string()),
-  bloodVessels: z.array(z.string()),
-  bloodVesselsDescriptionNerve: z.string(),
-  bloodVesselsDescriptionCouperose: z.string(),
-  bloodVesselsDescriptionHypotrophic: z.string(),
+  bloodVessels: z.array(z.object({ type: z.string(), typeDescription: z.string() })),
   others: z.string(),
   additionalInformation: z.string(),
 });
@@ -309,26 +302,26 @@ const FacialForm = () => {
         <div className="mb-6">
           <h3 className="text-base font-medium mb-4">Involução cutânea</h3>
           <div className="space-y-4">
-            {skinInvolution.map((involution) => (
+            {skinInvolution.map((involution, i) => (
               <div key={involution.id} className="flex items-center">
                 <input
                   type="checkbox"
                   className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
                   id={involution.id}
                   value={involution.label}
-                  {...register(`skinInvolution`)}
+                  {...register(`skinInvolution.${i}.type`)}
                 />
                 <label htmlFor={involution.id} className=" text-sm ml-2 font-bold text-[#00A27B]">
                   {involution.label}
                 </label>
-                {involution.hasDescription && (
+                {involution.hasDescription  && (
                   <div className="ml-5 flex justify-center items-center">
                     <div className="flex items-center">
                       <label className="flex mr-1 text-xs text-center font-bold text-gray-700">Região:</label>
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
-                        {...register(involution.typeDescription)}
+                        {...register(`skinInvolution.${i}.typeDescription`)}
                         className="h-5 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-28"
                       />
                     </div>
@@ -382,14 +375,14 @@ const FacialForm = () => {
         <div className="mb-6">
           <h3 className="text-base font-medium mb-4">Cicatrizes / Sequelas</h3>
           <div className="space-y-4">
-            {scars.map((scar) => (
+            {scars.map((scar, i) => (
               <div key={scar.id} className="flex items-center">
                 <input
                   type="checkbox"
                   className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
                   id={scar.id}
                   value={scar.label}
-                  {...register(`scars`)}
+                  {...register(`scars.${i}.type`)}
                 />
                 <label htmlFor={scar.id} className=" text-sm ml-2 font-bold text-[#00A27B]">
                   {scar.label}
@@ -401,7 +394,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
-                        {...register(scar.typeDescription)}
+                        {...register(`scars.${i}.typeDescription`)}
                         className="h-5 w-20 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
@@ -418,14 +411,14 @@ const FacialForm = () => {
         <div className="mb-8">
           <h3 className="text-base font-medium mb-4">Vásculo sanguínea</h3>
           <div className="space-y-4">
-            {bloodVessels.map((vessel) => (
+            {bloodVessels.map((vessel, i) => (
               <div key={vessel.id} className="flex items-center">
                 <input
                   type="checkbox"
                   className="appearance-none border-solid border-[#ffffff] border-2 checked:bg-[#00A27B] ring-offset-1 h-4 w-4 box-border ring-2 ring-[#00A27B] focus:outline-black rounded-sm"
                   id={vessel.id}
                   value={vessel.label}
-                  {...register(`bloodVessels`)}
+                  {...register(`bloodVessels.${i}.type`)}
                 />
                 <label htmlFor={vessel.id} className=" text-sm ml-2 font-bold text-[#00A27B]">
                   {vessel.label}
@@ -437,7 +430,7 @@ const FacialForm = () => {
                       <input
                         placeholder="Ex.: peeling"
                         type="text"
-                        {...register(vessel.typeDescription)}
+                        {...register(`bloodVessels.${i}.typeDescription`)}
                         className="h-5 w-20 border text-xs border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>

@@ -132,6 +132,7 @@ export const skinInvolution =
 [
   { id: '1', label: "Linhas", hasDescription: true, typeDescription: "skinInvolutionDescriptionLine"},
   { id: '2', label: "Sulcos", hasDescription: true, typeDescription: "skinInvolutionDescriptionSulcus" },
+
 ]
 
 export const hypotonias =
@@ -191,5 +192,4 @@ export const others= [
 //   bloodVessels: SkinWithDescription[]; // Vasos Sanguíneos
 //   others: string; // Outros
 //   additionalInformation: string; // Observações
-
 // }
