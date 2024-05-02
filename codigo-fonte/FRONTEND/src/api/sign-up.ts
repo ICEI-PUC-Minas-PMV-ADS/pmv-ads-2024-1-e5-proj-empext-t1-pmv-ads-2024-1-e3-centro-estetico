@@ -24,6 +24,7 @@ export interface registerClientBody {
 export async function signUp(data: SignUpBody) {
   await api.post('/users', { ...data, user_type: 'Client' })
 }
+
 export async function registerCLient(data: registerClientBody) {
   await api.post('/clients', data)
 }
