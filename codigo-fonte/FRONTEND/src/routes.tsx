@@ -2,13 +2,14 @@ import { createBrowserRouter } from 'react-router-dom'
 
 import { AppLayout } from './pages/_layouts/app'
 import { AuthLayout } from './pages/_layouts/auth'
+import FacialForm from './pages/app/FacialForm'
 import { Clients } from './pages/app/clients/clients'
 import { Homepage } from './pages/app/homepage'
+import { NotificationsForm } from './pages/app/notification'
+import { PerfilClients } from './pages/app/perfil-clients'
 import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
-import { NotificationsForm } from './pages/app/notification'
-import { PerfilClients } from './pages/app/perfil-clients'
 
 
 export const router = createBrowserRouter([
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <Homepage /> },
       { path: '/notifications', element: <NotificationsForm /> },
-    
+
       {
         path: '/users',
         element: <Clients />,
@@ -29,8 +30,12 @@ export const router = createBrowserRouter([
         element: <RegisterClients />
       },
       {
-        path: '/perfil-users',
+        path: '/perfil-users/:clientId',
         element: <PerfilClients />,
+      },
+       {
+        path: '/facial-form/:clientId',
+        element: <FacialForm />,
       },
     ],
   },

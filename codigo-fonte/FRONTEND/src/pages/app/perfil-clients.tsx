@@ -1,14 +1,18 @@
-import { Button } from '@/components/ui/button'
-import { ButtonWithIcon } from '@/components/button-with-icon'
+import { ButtonWithIcon } from '@/components/button-with-icon';
+import { Button } from '@/components/ui/button';
 
 import { Phone } from 'lucide-react';
 import { ReactSVG } from 'react-svg';
 
-import imgPerson from '../../assets/imgPerson.svg'
-import newTreatment from '../../assets/newTreatment.svg'
+import { useNavigate, useParams } from 'react-router-dom';
+import imgPerson from '../../assets/imgPerson.svg';
+import newTreatment from '../../assets/newTreatment.svg';
 
 
 export function PerfilClients() {
+    const { clientId } = useParams();
+    const navigate = useNavigate()
+
     return (
         <div className='justify-center flex flex-col'>
             <div className='flex justify-around align-space-around pt-7'>
@@ -44,7 +48,7 @@ export function PerfilClients() {
 
             <div className='flex flex-col gap-5'>
                 <ButtonWithIcon title='Questionário de saúde' />
-                <ButtonWithIcon title='Ficha facial' />
+                <ButtonWithIcon title='Ficha facial' onClick={() => navigate(`/facial-form/${clientId}`)} />
                 <ButtonWithIcon title='Últimas medidas corporais' />
             </div>
 
