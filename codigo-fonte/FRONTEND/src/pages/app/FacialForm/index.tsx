@@ -93,7 +93,7 @@ console.log(`ERROR`, errors)
 
       await postSkinForm({...data})
 
-//      navigate('/')
+     navigate('/')
       toast.success('Cliente cadastrado com sucesso!')
     } catch (error) {
       toast.error('Erro ao cadastrar usuário!')
