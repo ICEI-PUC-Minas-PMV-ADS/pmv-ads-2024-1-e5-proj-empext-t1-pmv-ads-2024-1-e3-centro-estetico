@@ -13,6 +13,8 @@ import { useState, ChangeEvent } from 'react';
 import axios from 'axios';
 import { env } from '../../env'
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from '@/hooks/useTitle';
+import { TitleOfPages } from '@/utils/titleOfPages';
 
 
 export function Homepage() {
@@ -25,6 +27,7 @@ export function Homepage() {
   const [users, setUsers] = useState<user[]>([])
   const [hasUsers, setHasUsers] = useState<boolean>(false)
   const [message, setMessage] = useState<string>('Nenhuma busca realizada')
+  const { setTitle } = useTitle();
 
   const navigate = useNavigate()
 
@@ -35,7 +38,7 @@ export function Homepage() {
   const handleSearchUsers = async () => {
     try {
       if(name !== '') {
-        const response = await axios.get(`${env.VITE_API_URL}/users?username=${name}`);
+        const response = await axios.get(`${env.VITE_API_URL}/clients?name=${name}`);
         setUsers(response.data)
         setHasUsers(true)
       }
@@ -49,6 +52,11 @@ export function Homepage() {
     }
   };
 
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title)
+    navigate(path)
+  }
+
 
   return (
     <div className='justify-center flex flex-col'>
@@ -59,13 +67,13 @@ export function Homepage() {
           <ReactSVG src={newTreatment} />
         </Button>
 
-        <Button asChild variant="ghost" className="size-2/5 p-0" onClick={() => navigate('/register-users')}>
+        <Button asChild variant="ghost" className="size-2/5 p-0" onClick={() => navigateUpdatingHeader('/register-users', TitleOfPages.newClient)}>
           <ReactSVG src={newClient} />
         </Button>
 
       </div>
 
-      <Button asChild variant="ghost" className="size-5/5 p-0 pt-4 self-center">
+      <Button asChild variant="ghost" className="size-5/5 p-0 pt-4 self-center" onClick={() => navigateUpdatingHeader('/notifications', TitleOfPages.notifications)}>
         <ReactSVG src={newForm} />
       </Button>
 
