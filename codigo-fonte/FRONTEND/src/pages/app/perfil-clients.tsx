@@ -48,7 +48,7 @@ export function PerfilClients() {
             <h1 className='text-lg font-semibold pl-3 pt-11 pb-7'>Fichas de Anamnese</h1>
 
             <div className='flex flex-col gap-5'>
-                <ButtonWithIcon title='Questionário de saúde' />
+                <ButtonWithIcon title='Questionário de saúde'   onClick={() => navigate(`/questionary`)}/>
                 <ButtonWithIcon title='Ficha facial' onClick={() => navigate(`/facial-form/${id}`)}  />
                 <ButtonWithIcon title='Últimas medidas corporais' />
             </div>

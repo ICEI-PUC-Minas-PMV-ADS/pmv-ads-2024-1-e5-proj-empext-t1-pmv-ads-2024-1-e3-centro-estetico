@@ -1,13 +1,11 @@
+import { postHealthQuestionary } from "@/api/questionary";
 import { Button } from "@/components/ui/button";
-import { HealthQuestions } from "../../../components/healthQuestions";
-import { questions } from "./questions";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Navigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { postHealthQuestionary } from "@/api/questionary";
 import { z } from 'zod';
-import { useState } from "react";
+import { questions } from "./questions";
 
 
 const healthQuestionnaire = z
@@ -15,7 +13,7 @@ const healthQuestionnaire = z
     aestheticProcedure: z.boolean(),
     cicatrization: z.boolean(),
   })
-      
+
 export type HealthQuestionnaire = z.infer<typeof healthQuestionnaire>
 
 // export interface HealthQuestionnaire {
@@ -43,55 +41,49 @@ export function Questionary() {
     }
   }
 
-  const { control, handleSubmit, formState: { errors } } = useForm<HealthQuestionnaire>({}); 
+  const { control, handleSubmit, formState: { errors } } = useForm<HealthQuestionnaire>({});
   const handleChange = (id, value) => {
     setRespostas({ ...respostas, [id]: value });
   };
-  
+
 
   return (
     <>
-    <form onSubmit={handleSubmit(handleRegisterClient)}>
-      {questions.map((question, index) => (
-        <Controller
-          key={index}
-          control={control}
-          name={`${question.name}_${question.title}`}
-          render={({ field }) => (
-            <div>
+  <form onSubmit={handleSubmit(handleRegisterClient)}>
+    {questions.map((question, index) => (
+      <Controller
+        key={index}
+        control={control}
+        name={`question${index}`} // Definindo um nome dinâmico para cada campo
+        render={({ field }) => (
+          <div>
             <h2>{question.title}</h2>
             <div>
               <label>
                 <input
                   type="radio"
-                  // name={`${title}-yes`}
                   value="true"
                   checked={field.value === true}
-                  onChange={(e) => field.onChange(e.target.value)}
+                  onChange={() => field.onChange(true)} // Alterando para true quando selecionado
                 />
-      
+                Sim
               </label>
-              Sim
               <label>
                 <input
                   type="radio"
-                  // name={`${title}-no`}
-                  value={field.value}
+                  value="false"
                   checked={field.value === false}
-                  onChange={(e) => field.onChange(e.target.value)}
+                  onChange={() => field.onChange(false)} // Alterando para false quando selecionado
                 />
-                
+                Não
               </label>
-              Não
             </div>
             {field.value === true && question.description && (
               <div>
                 <label>
-                {question.description}
+                  {question.description}
                   <input
-                    // name={`${title}-${description}`}
                     type="text"
-                    // value={field.value}
                     onChange={(e) => field.onChange(e.target.value)}
                     placeholder="Especifique"
                   />
@@ -99,13 +91,14 @@ export function Questionary() {
               </div>
             )}
           </div>
-            )}
-        /> 
-      ))}
-    </form>
+        )}
+      />
+    ))}
     <Button type="submit">Enviar</Button>
-    </>
-    
+  </form>
+</>
+
+
   );
 }
 
