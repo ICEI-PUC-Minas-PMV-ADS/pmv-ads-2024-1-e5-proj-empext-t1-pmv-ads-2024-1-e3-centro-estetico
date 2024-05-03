@@ -23,6 +23,8 @@ export const TitleProvider: React.FC<TitleProviderProps> = ({ children }) => {
         return TitleOfPages.newClient;
       case '/perfil-users':
         return TitleOfPages.perfilClient;
+      case '/consultation':
+        return TitleOfPages.consultation;
       default:
         return TitleOfPages.home
     } 

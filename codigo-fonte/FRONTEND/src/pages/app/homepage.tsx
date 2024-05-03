@@ -63,7 +63,7 @@ export function Homepage() {
       <Helmet title="Homepage" />
       <div className="flex justify-around w-full">
 
-        <Button asChild variant="ghost" className="size-2/5 p-0">
+        <Button asChild variant="ghost" className="size-2/5 p-0" onClick={() => navigateUpdatingHeader('/consultation', TitleOfPages.consultation)}>
           <ReactSVG src={newTreatment} />
         </Button>
 

@@ -3,5 +3,6 @@ export const TitleOfPages = {
     users: 'Usuários',
     newClient: 'Cadastrar Cliente',
     perfilClient: 'Perfil do cliente',
-    home: 'Home'
+    home: 'Home',
+    consultation: 'Novo tratamento'
 }

@@ -9,6 +9,7 @@ import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
 import { NotificationsForm } from './pages/app/notification'
 import { PerfilClients } from './pages/app/perfil-clients'
+import { Consultation } from './pages/app/consultation/consultation'
 
 
 export const router = createBrowserRouter([
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
         path: '/perfil-users',
         element: <PerfilClients />,
       },
+      {
+        path: '/consultation',
+        element: <Consultation />
+      }
     ],
   },
   {
