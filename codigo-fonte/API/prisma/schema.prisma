@@ -34,197 +34,71 @@ enum MenstrualCycle {
   Irregular
 }
 
+enum AppointmentType {
+  Hair
+  Skin
+  Body
+}
+
 model User {
-  id                     String                @id @default(uuid())
+  id                     String               @id @default(uuid())
   name                   String
   birth_date             DateTime
   address                String
   marital_status         MaritalStatus
-  email                  String                @unique
+  email                  String               @unique
   phone                  String
   gender                 Gender
   additional_information String?
   user_type              UserType
   password_hash          String
-  created_at             DateTime              @default(now())
-  updated_at             DateTime              @updatedAt
+  created_at             DateTime             @default(now())
+  updated_at             DateTime             @updatedAt
   Client                 Client[]
+  AppointmentHistory     AppointmentHistory[]
 
   @@map("users")
 }
 
-model HairAnalysis {
-  id                           String         @id @default(uuid())
-  client_id                    String
-  main_complaint               String
-  previous_aesthetic_procedure String
-  scarring_issues              Boolean
-  diabetes                     Boolean
-  medication_use               String
-  isotretinoin_use             Boolean
-  medical_treatment            String
-  thrombosis                   Boolean
-  surgery                      String
-  oncological_history          Boolean
-  infectious_disease           String
-  sports_practice              String
-  balanced_diet                Boolean
-  daily_water_intake           String
-  alcoholic_beverage_use       Boolean
-  substance_use                String
-  hormonal_disorder            String
-  smoker                       Boolean
-  sleeps_well                  Boolean
-  regular_intestine            Boolean
-  hypertension                 Boolean
-  hypotension                  Boolean
-  cardiac_issues               String
-  depression                   Boolean
-  epilepsy                     Boolean
-  has_plates_pins              String
-  dental_prosthesis            String
-  renal_issue                  Boolean
-  hepatic_issues               Boolean
-  thyroid_problems             Boolean
-  autoimmune_disease           String
-  pregnancy                    Boolean
-  breastfeeding                Boolean
-  sun_exposure                 String
-  skin_care                    String
-  metacril_toxin_use           Boolean
-  allergy_history              String
-  sunscreen_use                Boolean
-  herpes_history               Boolean
-  contraceptive_use            Boolean
-  menstrual_cycle              MenstrualCycle
-  hormone_use                  String
-  acid_use_on_skin             Boolean
-  cosmetic_use                 String
-  authorize_photos             Boolean
-  created_at                   DateTime       @default(now())
-  updated_at                   DateTime       @updatedAt
-  Client                       Client         @relation(fields: [client_id], references: [id])
-
-  @@map("hair_analysis")
-}
-
 model SkinAnalysis {
-  id                                  String   @id @default(uuid())
-  client_id                           String
-  white_skin                          Boolean
-  light_brunette_skin                 Boolean
-  moderate_brunette_skin              Boolean
-  dark_brunette_skin                  Boolean
-  black_skin                          Boolean
-  other_skin                          Boolean
-  pale_coloring                       Boolean
-  red_coloring                        Boolean
-  cyanotic_coloring                   Boolean
-  yellow_coloring                     Boolean
-  superficial_dehydration             Boolean
-  deep_dehydration                    Boolean
-  normalhydration_dehydration         Boolean
-  normal_texture                      Boolean
-  slim_texture                        Boolean
-  rough_texture                       Boolean
-  thick_texture                       Boolean
-  imperceptive_ostia                  Boolean
-  dilated_ostia                       Boolean
-  eudemic_cutaneous                   Boolean
-  lipid_cutaneous                     Boolean
-  alipidic_cutaneous                  Boolean
-  mixed_cutaneous                     Boolean
-  seborrheic_cutaneous                Boolean
-  sensitive_cutaneous                 Boolean
-  unstressed_cutaneous                Boolean
-  edemaciated_cutaneous               Boolean
-  asphyxia_cutaneous                  Boolean
-  rosacea_cutaneous                   Boolean
-  balanced_oiliness                   Boolean
-  increased_oiliness                  Boolean
-  excessive_oiliness                  Boolean
-  cornedogenic_acne                   Boolean
-  papulopustular_acne                 Boolean
-  nodularcystic_acne                  Boolean
-  conglobat_acne                      Boolean
-  comedones_presence_of               Boolean
-  papules_presence_of                 Boolean
-  pustules_presence_of                Boolean
-  nodules_presence_of                 Boolean
-  abscess_presence_of                 Boolean
-  cysts_presence_of                   Boolean
-  line_nail_involution                Boolean
-  line_nail_involution_region         String?
-  grooves_nail_involution             Boolean
-  grooves_nail__involution_region     String?
-  nasolabial_hypotonia                Boolean
-  submental_hypotonia                 Boolean
-  neck_hypotonia                      Boolean
-  hypertrichosis_trichose             Boolean
-  folliculitis_trichose               Boolean
-  Hirsurtism_trichose                 Boolean
-  hypotrophic_scar                    Boolean
-  hypotrophic_scar_region             String?
-  hypertrophic_scar                   Boolean
-  hypertrophic_scar_region            String?
-  keloid_scar                         Boolean
-  keloid_scar_region                  String?
-  nevus_blood_vessel                  Boolean
-  nevus_blood_vessel_region           String?
-  telangiectasias_blood_vessel        Boolean
-  telangiectasias_blood_vessel_region String?
-  couperouse_blood_vessel             Boolean
-  couperouse_blood_vessel_region      String?
-  cyanosis_blood_vessel               Boolean
-  cyanosis_blood_vessel_region        String?
-  anemic_blood_vessel                 Boolean
-  anemic_blood_vessel_region          String?
-  erythema_blood_vessel               Boolean
-  erythema_blood_vessel_region        String?
-  hypotrophic_blood_vessel            Boolean
-  hypotrophic_blood_vessel_region     String?
-  hypertrophic_blood_vessel           Boolean
-  hypertrophic_blood_vessel_region    String?
-  keloid_blood_vessel                 Boolean
-  keloid_blood_vessel_region          String?
-  vibice_purpuric_spot                Boolean
-  ecchymosis_purpuric_spot            Boolean
-  petechiae_purpuric_spot             Boolean
-  bruise_purpuric_spot                Boolean
-  acromica_pigmented_spot             Boolean
-  hypochromic_pigmented_spot          Boolean
-  hyperchromic_pigmented_spot         Boolean
-  ephelides_melanodermic              Boolean
-  melasma_melanodermic                Boolean
-  chloasma_melanodermic               Boolean
-  periorbicularmelanosis_melanodermic Boolean
-  new_melanodermic_melanodermic       Boolean
-  tattoo_non_meianodermal             Boolean
-  micropigmentation_non_meianodermal  Boolean
-  petechiae_non_meianodermal          Boolean
-  bruise_non_meianodermal             Boolean
-  papule_solid_injuries               Boolean
-  nodules_solid_injuries              Boolean
-  vegetation_solid_injuries           Boolean
-  der_pap_nigra_solid_injuries        Boolean
-  keratosis_solid_injuries            Boolean
-  millium_solid_injuries              Boolean
-  papilloma_solid_injuries            Boolean
-  syringoma_solid_injuries            Boolean
-  comedo_solid_injuries               Boolean
-  abscess_liquid_injuries             Boolean
-  cyst_liquid_injuries                Boolean
-  vesicle_liquid_injuries             Boolean
-  pustule_liquid_injuries             Boolean
-  bubble_liquid_injuries              Boolean
-  scales_others                       Boolean
-  crust_others                        Boolean
-  photodermatoses_others              Boolean
-  unidentified_injury_others          Boolean
-  observations                        String?
-  created_at                          DateTime @default(now())
-  updated_at                          DateTime @updatedAt
-  Client                       Client         @relation(fields: [client_id], references: [id])
+  id                      String     @id @default(uuid())
+  client_id               String
+  skinPhototypes          String?     // Fototipo
+  skinColors              String?     // Coloração
+  dehydrationLevels       String?     // Desidratação
+  skinTextures            String?     // Textura
+  poreSizes               String?     // Óstios
+  skinTypes               String?     // Tipo Cutâneo
+  oilinessLevels          String?     // Grau de Oleosidade
+  acneGrades              String?     // Grau de Acne
+  skinInvolutionLine      String?     // Involucao cutanea
+  skinInvolutionSulcus    String?     // Involucao cutanea
+  skinContains             String[]    // Presenca De
+  hypotonias              String[]     // Hipotonia
+  tyrichosis              String[]    // Tricose
+  scarsHypotrophic        String?     // Cicatrizes
+  scarsHypertrophic       Boolean     // Cicatrizes
+  scarsKeloid             String?     // Cicatrizes
+  purpuricSpots           String[]    // Manchas Purpúricas
+  pigmentedSpots          String[]    // Manchas Pigmentares
+  melanotics              String[]    // Melanóticas
+  notMelanotics           String[]    // Não Melanóticas
+  skinLesions             String[]    // Lesões Cutâneas
+  fluidSkinLesions        String[]    // Lesões Cutâneas liquidas
+  bloodVesselsNerve       String?     // Vasos Sanguíneos
+  bloodVesselsTelangiectasias Boolean     // Vasos Sanguíneos
+  bloodVesselsCouperose   String?     // Vasos Sanguíneos
+  bloodVesselsCyanosis    Boolean     // Vasos Sanguíneos
+  bloodVesselsAnemicNevus Boolean     // Vasos Sanguíneos
+  bloodVesselsErythema    Boolean     // Vasos Sanguíneos
+  bloodVesselsHypotrophic String?     // Vasos Sanguíneos
+  bloodVesselsHypertrophic Boolean     // Vasos Sanguíneos
+  bloodVesselsKeloid      Boolean     // Vasos Sanguíneos
+  others                  String?     // Outros
+  additionalInformation   String?     // Observações
+  createdAt               DateTime   @default(now())
+  updatedAt               DateTime   @updatedAt
+  Client                  Client     @relation(fields: [client_id], references: [id])
 
   @@map("skin_analysis")
 }
@@ -285,13 +159,16 @@ model BodyAnalysis {
 }
 
 model AppointmentHistory {
-  id           String   @id @default(uuid())
-  client_id    String
-  description  String
-  observations String?
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
-  Client       Client     @relation(fields: [client_id], references: [id])
+  id               String          @id @default(uuid())
+  client_id        String
+  user_id          String
+  observations     String?
+  created_at       DateTime        @default(now())
+  updated_at       DateTime        @updatedAt
+  presencial       Boolean
+  appointment_type AppointmentType
+  User             User            @relation(fields: [user_id], references: [id])
+  Client           Client          @relation(fields: [client_id], references: [id])
 
   @@map("appointment_history")
 }
@@ -357,7 +234,7 @@ model HealthQuestionnaire {
   authorize_photos                Boolean
   created_at                      DateTime @default(now())
   updated_at                      DateTime @updatedAt
-  Client       Client     @relation(fields: [client_id], references: [id])
+  Client                          Client   @relation(fields: [client_id], references: [id])
 
   @@map("health_questionnaire")
 }
@@ -374,13 +251,11 @@ model Client {
   additional_information String?
   created_at             DateTime              @default(now())
   updated_at             DateTime              @updatedAt
-  HairAnalysis           HairAnalysis[]
   SkinAnalysis           SkinAnalysis[]
   BodyAnalysis           BodyAnalysis[]
   AppointmentHistory     AppointmentHistory[]
   HealthQuestionnaire    HealthQuestionnaire[]
-  User                   User         @relation(fields: [user_id], references: [id])
-
+  User                   User                  @relation(fields: [user_id], references: [id])
 
   @@map("clients")
 }
