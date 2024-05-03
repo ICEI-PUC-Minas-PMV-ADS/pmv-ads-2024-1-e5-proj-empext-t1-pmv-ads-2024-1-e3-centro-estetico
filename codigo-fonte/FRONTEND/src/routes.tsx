@@ -10,6 +10,7 @@ import { PerfilClients } from './pages/app/perfil-clients'
 import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
+import { Consultation } from './pages/app/consultation/consultation'
 
 
 export const router = createBrowserRouter([
@@ -33,7 +34,11 @@ export const router = createBrowserRouter([
         path: '/perfil-users/:clientId',
         element: <PerfilClients />,
       },
-       {
+      {
+        path: '/consultation',
+        element: <Consultation />
+      },
+      {
         path: '/facial-form/:clientId',
         element: <FacialForm />,
       },

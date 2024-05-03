@@ -22,6 +22,7 @@ const buttonVariants = cva(
         telephone: 'bg-input text-primary border border-primary border-2 font-semibold hover:bg-primary/90 hover:bg-gray-200',
         alertgreen: 'bg-green-700 text-white hover:bg-green-800',
         alertred: 'bg-red-700 text-white hover:bg-red-800',
+        primary: 'text-white bg-primary rounded-md focus:outline-none focus:ring-1 active:bg-primary'
       },
       size: {
         default: 'h-10 px-4 py-2',

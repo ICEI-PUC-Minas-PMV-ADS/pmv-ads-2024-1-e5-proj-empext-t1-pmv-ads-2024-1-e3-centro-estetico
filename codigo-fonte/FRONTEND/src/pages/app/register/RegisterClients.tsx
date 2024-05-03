@@ -72,7 +72,7 @@ export function RegisterClients() {
             <input
               id="name"
               type="text"
-              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
+              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-primary"
               {...register('name')}
               />
           </div>
@@ -83,7 +83,7 @@ export function RegisterClients() {
             <input
               id="email"
               type="email"
-              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none  text-[#00A27B]"
+              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none  text-primary"
               {...register('email')}
             />
           </div>
@@ -96,7 +96,7 @@ export function RegisterClients() {
               <input
                 id="address"
                 type="text"
-                className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B] "
+                className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-primary "
                 {...register('address')}
               />
             </div>
@@ -109,7 +109,7 @@ export function RegisterClients() {
             <input
               id="phone"
               type="tel"
-              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
+              className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-primary"
               {...register('phone')}
             />
           </div>
@@ -126,7 +126,7 @@ export function RegisterClients() {
                 <input
                   id="male"
                   type="radio"
-                  className="mr-2 bg-transparent checked:bg-[#00A27B] ring-offset-1 h-3 w-3 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
+                  className="mr-2 bg-transparent checked:bg-primary ring-offset-1 h-3 w-3 rounded-full appearance-none box-border ring-2 ring-primary"
                   value="Male"
                   onChange={(e) => field.onChange(e.target.value)}
                   checked={field.value === "Male"}
@@ -136,7 +136,7 @@ export function RegisterClients() {
                 <input
                   id="female"
                   type="radio"
-                  className="ml-4 mr-2 bg-transparent checked:bg-[#00A27B] checked:ring-offset-1 h-3 w-3 rounded-full appearance-none box-border ring-2 ring-[#00A27B]"
+                  className="ml-4 mr-2 bg-transparent checked:bg-primary checked:ring-offset-1 h-3 w-3 rounded-full appearance-none box-border ring-2 ring-primary"
                   value="Female"
                   onChange={(e) => field.onChange(e.target.value)}
                   checked={field.value === "Female"}                  />
@@ -154,14 +154,15 @@ export function RegisterClients() {
                 <input
                   id="dataNascimento"
                   type="date"
-                  className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
+                  className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-primary"
                   {...register('birth_date')}
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#00A27B] rounded-md focus:outline-none focus:ring-1 active:bg-[#00a27cbf]"
+                variant={"primary"}
+                className="w-full mt-2 px-4 py-2 text-sm font-medium"
               >
                 Cadastrar
               </Button>

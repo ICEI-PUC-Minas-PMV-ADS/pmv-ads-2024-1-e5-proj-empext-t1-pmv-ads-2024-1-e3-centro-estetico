@@ -34,7 +34,7 @@ export function Header(props: HeaderProps) {
               <span>Fátima</span>
             </nav>
             <AccountMenu />
-          </div>) : (<div className="flex h-16 items-center pt-10 pb-6 px-5 justify-between bg-input font-semibold text-xl rounded-b-lg">
+          </div>) : (<div className="flex h-16 items-center px-5 justify-between bg-input font-semibold text-xl rounded-b-lg">
             <ChevronLeft onClick={() => navigateUpdatingHeader('/', 'Home')} />
             <h2>{props.page}</h2>
             <div></div>
