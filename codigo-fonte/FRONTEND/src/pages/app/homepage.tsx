@@ -57,7 +57,6 @@ export function Homepage() {
     navigate(path)
   }
 
-
   return (
     <div className='justify-center flex flex-col'>
       <Helmet title="Homepage" />

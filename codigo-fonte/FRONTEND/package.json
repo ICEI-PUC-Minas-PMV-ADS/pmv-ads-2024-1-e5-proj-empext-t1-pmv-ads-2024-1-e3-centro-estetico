@@ -30,6 +30,7 @@
     "cmdk": "^0.2.0",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
+    "embla-carousel-react": "^8.0.3",
     "input": "^1.0.1",
     "localforage": "^1.10.0",
     "lucide-react": "^0.358.0",
