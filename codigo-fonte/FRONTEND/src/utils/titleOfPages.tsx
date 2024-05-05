@@ -4,5 +4,6 @@ export const TitleOfPages = {
     newClient: 'Cadastrar Cliente',
     perfilClient: 'Perfil do cliente',
     home: 'Home',
-    consultation: 'Novo tratamento'
+    consultation: 'Novo tratamento',
+    perfil: 'Perfil',
 }
