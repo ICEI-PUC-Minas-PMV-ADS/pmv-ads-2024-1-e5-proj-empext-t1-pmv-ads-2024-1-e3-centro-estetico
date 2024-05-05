@@ -12,6 +12,7 @@ import { env } from '../../../env'
 import axios from 'axios';
 import { postConsultation } from '@/api/consultation';
 import { useMutation } from '@tanstack/react-query';
+import { FacialForm } from './facialForm';
 
 const Local = z.enum(['OnSight', 'InHome'])
 
@@ -39,6 +40,7 @@ export function Consultation() {
   const [clients, setClients] = useState<client[]>([])
   const [client, setClient] = useState<string>()
   const [consultationType, setConsultationType] = useState<string>()
+  const [isFacial, setIsFacial] = useState<boolean>(false)
 
 
   const {
@@ -72,6 +74,11 @@ export function Consultation() {
   useEffect(() => {
     if (consultationType) {
       setValue('consultationType', consultationType, { shouldValidate: true })
+      if(consultationType === 'Skin') {
+        setIsFacial(true)
+      } else {
+        setIsFacial(false)
+      }
     }
   }, [consultationType, setConsultationType])
 
@@ -224,6 +231,10 @@ export function Consultation() {
           <small className="text-red-500">{errors.hour.message}</small>
         )}
       </div>
+
+      {
+        isFacial && <FacialForm />
+      }
 
       <div className="mt-3 mb-6">
         <label className="block text-xl font-semibold pb-1" htmlFor="anotations">

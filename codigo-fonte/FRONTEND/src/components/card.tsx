@@ -17,7 +17,7 @@ export function Card(props: cardProps) {
       }
 
     return (
-    <div className="flex w-full h-20 border-gray-200 border-opacity-90 bg-input rounded-lg" onClick={() => navigateUpdatingHeader('/perfil-users', props.name)}>
+    <div className="flex w-full h-20 border-gray-200 border-opacity-90 bg-input rounded-lg" onClick={() => navigateUpdatingHeader(`/perfil-users/${props.id}`, props.name)}>
         <img 
             src="https://observatoriodosfamosos.uol.com.br/portal/wp-content/uploads/2023/08/manoel-gomes-70-mil-transformacao.jpg" 
             alt="foto" 
