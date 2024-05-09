@@ -5,12 +5,13 @@ import { AuthLayout } from './pages/_layouts/auth'
 import FacialForm from './pages/app/FacialForm'
 import { Clients } from './pages/app/clients/clients'
 import { Homepage } from './pages/app/homepage'
-import { NotificationsForm } from './pages/app/notification'
-import { PerfilClients } from './pages/app/perfil-clients'
 import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
 import { Consultation } from './pages/app/consultation/consultation'
+import { NotificationsForm } from './pages/app/notification'
+import { PerfilClients } from './pages/app/perfil-clients'
+import { Perfil } from './pages/app/perfil/perfil'
 
 
 export const router = createBrowserRouter([
@@ -33,6 +34,12 @@ export const router = createBrowserRouter([
       {
         path: '/perfil-users/:clientId',
         element: <PerfilClients />,
+
+      },
+      {
+        path: '/perfil',
+        element: <Perfil/>,
+        
       },
       {
         path: '/consultation',
