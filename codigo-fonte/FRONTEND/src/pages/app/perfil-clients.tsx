@@ -1,17 +1,16 @@
-import { Button } from '@/components/ui/button'
-import { ButtonWithIcon } from '@/components/button-with-icon'
-
-import { Phone } from 'lucide-react';
-import { ReactSVG } from 'react-svg';
-
-import imgPerson from '../../assets/imgPerson.svg'
-import newTreatment from '../../assets/newTreatment.svg'
+import { ButtonWithIcon } from '@/components/button-with-icon';
+import { Button } from '@/components/ui/button';
 import { useUser } from '@/context/UserContext';
-import { useParams } from 'react-router-dom';
 // import { ChangeEvent, useState } from 'react';
+import { Phone } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
+import imgPerson from '../../assets/imgPerson.svg';
+import newTreatment from '../../assets/newTreatment.svg';
 
 
 export function PerfilClients() {
+    const  navigate  = useNavigate();
 
     // const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
@@ -68,8 +67,8 @@ export function PerfilClients() {
 
             <div className='flex flex-col gap-5'>
                 <ButtonWithIcon path={`/perfil-users/${id}/questionary`} title='Questionário de saúde' />
-                <ButtonWithIcon path='/' title='Ficha facial' />
-                <ButtonWithIcon path='/' title='Últimas medidas corporais' />
+                <ButtonWithIcon title='Ficha facial' onClick={() => navigate(`/facial-form/${id}`)}  />
+                <ButtonWithIcon title='Últimas medidas corporais' />
             </div>
 
             <div className='pt-20 self-center'>
