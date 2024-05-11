@@ -17,6 +17,7 @@ export async function appRoutes(app: FastifyInstance) {
 
   app.post('/clients', clientRegister)
   app.post('/skin-form', skinForm)
+  app.get('/user', userProfile)
 
 
   // Authenticated Routes

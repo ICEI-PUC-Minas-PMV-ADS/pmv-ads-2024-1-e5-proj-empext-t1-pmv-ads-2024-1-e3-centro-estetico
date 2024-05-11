@@ -104,11 +104,6 @@ export function FacialForm() {
         setIsHidden('')
     }, []);
 
-    useEffect(() => {
-        console.log(selectedRightFace3)
-        console.log(selectedLeftFace3)
-    }, [selectedRightFace3]);
-
 
     return (
 

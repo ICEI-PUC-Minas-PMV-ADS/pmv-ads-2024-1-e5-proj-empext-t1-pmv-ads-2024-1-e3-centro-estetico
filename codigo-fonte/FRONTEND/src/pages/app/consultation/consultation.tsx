@@ -91,7 +91,6 @@ export function Consultation() {
   async function handlePostConsultation(data: RegisterConsultationForm) {
     try {
       const { ...regData } = data
-      console.log(regData)
   
       await reg(regData)
 
