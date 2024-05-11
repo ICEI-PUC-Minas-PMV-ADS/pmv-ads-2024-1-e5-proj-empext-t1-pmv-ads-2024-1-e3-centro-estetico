@@ -21,5 +21,6 @@ export const registerBodySchema = z.object({
 })
 
 export const getUsersParams = z.object({
-  username: z.string()
+  username: z.string().optional(),
+  id: z.string()
 })

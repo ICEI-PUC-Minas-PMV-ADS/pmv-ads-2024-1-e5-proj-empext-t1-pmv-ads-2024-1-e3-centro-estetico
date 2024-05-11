@@ -1,5 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { makeGetUserProfileService } from '@/services/factories/make-get-user-profile-service'
+import { getUsersParams } from '@/validations/user-validation'
 
 export async function userProfile(
   request: FastifyRequest,
@@ -7,7 +8,19 @@ export async function userProfile(
 ) {
   const userProfile = makeGetUserProfileService()
 
-  const { user } = await userProfile.execute({ userId: request.user.sub })
+  try {
+    const userId = getUsersParams.parse(request.query)
 
-  return reply.code(200).send(user)
+    const { user } = await userProfile.execute({ userId: userId.id })
+  
+    if(user) {
+      return reply.code(200).send(user)
+    } else {
+      return reply.code(404).send({message: 'Não encontrado'})
+    }
+
+  } catch (error) {
+    console.log(error)
+    return reply.code(500).send({ error: 'Internal Server Error' })
+  }
 }
