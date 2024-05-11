@@ -1,6 +1,6 @@
-import { api } from '@/lib/axios'
+import { IHealthQuestionnairiesRepository } from "@/repositories/interfaces/ihealth-questionnairies-repository";
 
-interface HealthQuestionnaire {
+export type CreateHealthQuestionnaireServiceType = {
   clientId: string;
   problem_description?: string;
   aesthetic_procedure: boolean;
@@ -61,10 +61,43 @@ interface HealthQuestionnaire {
   drink_water: string;
   authorize_photos?: boolean;
   authorize_data: boolean;
-  
+};
+
+interface ICreateHealthQuestionnaireService {
+  execute: (
+    healthQuestionnaireInputData: CreateHealthQuestionnaireServiceType
+  ) => Promise<{ message: string }>;
 }
 
+export class CreateHealthQuestionnaireService implements ICreateHealthQuestionnaireService {
+  constructor(private healthQuestionnairiesRepository: IHealthQuestionnairiesRepository) {}
 
-export async function createHealthQuestionary(data: HealthQuestionnaire) {
-  await api.post('/health-questionnairies', { ...data, user_type: 'Client' })
+  async execute(healthQuestionnaireInputData: CreateHealthQuestionnaireServiceType) {
+    try {
+      const healthQuestionnaireData =
+      await this.buildhealthQuestionnaireData(healthQuestionnaireInputData);
+
+      await this.healthQuestionnairiesRepository.create(healthQuestionnaireData);
+      return { message: "healthQuestionnaire created successfully" };
+    } catch (error) {
+      console.log(error)
+      return { message: "Erro ao executar inclusão" };
+    }
+  }
+
+  async buildhealthQuestionnaireData(
+    healthQuestionnaireInputData: CreateHealthQuestionnaireServiceType
+  ) {
+    const {  clientId, ...healthQuestionnaireDataWithoutIds } =
+      healthQuestionnaireInputData;
+
+    const healthQuestionnaireData = {
+      ...healthQuestionnaireDataWithoutIds,
+      Client: {
+        connect: { id: clientId },
+      },
+    }
+
+    return healthQuestionnaireData;
+  }
 }

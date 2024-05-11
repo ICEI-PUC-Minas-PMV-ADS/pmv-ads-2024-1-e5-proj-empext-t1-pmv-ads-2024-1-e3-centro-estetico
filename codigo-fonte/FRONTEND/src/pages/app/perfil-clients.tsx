@@ -8,19 +8,37 @@ import imgPerson from '../../assets/imgPerson.svg'
 import newTreatment from '../../assets/newTreatment.svg'
 import { useUser } from '@/context/UserContext';
 import { useParams } from 'react-router-dom';
+// import { ChangeEvent, useState } from 'react';
 
 
 export function PerfilClients() {
 
+    // const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+    // const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    //     const file = event.target.files?.[0]; 
+    
+    //     if (file) {
+    //         setSelectedImage(file); 
+    //     } else {
+    //         setSelectedImage(null); 
+    //     }
+    // };
+
     const {users} = useUser();
     const { id } = useParams();
     // console.log(users?.find((item) => item.id === id)?.phone)
+
     return (
         <div className='justify-center flex flex-col'>
             <div className='flex justify-around align-space-around pt-7'>
                 <div>
                     <ReactSVG src={imgPerson} />
                 </div>
+            {/* {selectedImage ? (
+                <img src={URL.createObjectURL(selectedImage)} alt="Uploaded" />
+            ) : null}
+            <input type="file" accept="image/*" onChange={handleImageChange} /> */}
                 <div className='flex flex-col justify-around'>
                     <div className='flex justify-between'>
                         <Button variant={'telephone'} size={'icon'}>
@@ -49,7 +67,7 @@ export function PerfilClients() {
             <h1 className='text-lg font-semibold pl-3 pt-11 pb-7'>Fichas de Anamnese</h1>
 
             <div className='flex flex-col gap-5'>
-                <ButtonWithIcon path='/questionary' title='Questionário de saúde' />
+                <ButtonWithIcon path={`/perfil-users/${id}/questionary`} title='Questionário de saúde' />
                 <ButtonWithIcon path='/' title='Ficha facial' />
                 <ButtonWithIcon path='/' title='Últimas medidas corporais' />
             </div>
@@ -65,3 +83,6 @@ export function PerfilClients() {
 
     )
 }
+
+
+// criar um navigate

@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         element: <PerfilClients />,
       },
       {
-        path: '/questionary',
+        path: '/perfil-users/:id/questionary',
         element: <Questionary />
       }
     ],
