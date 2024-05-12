@@ -42,7 +42,7 @@ enum AppointmentType {
 
 model User {
   id                     String               @id @default(uuid())
-  name                   String
+  name                   String               @unique
   birth_date             DateTime
   address                String
   marital_status         MaritalStatus
@@ -61,44 +61,44 @@ model User {
 }
 
 model SkinAnalysis {
-  id                      String     @id @default(uuid())
-  client_id               String
-  skinPhototypes          String?     // Fototipo
-  skinColors              String?     // Coloração
-  dehydrationLevels       String?     // Desidratação
-  skinTextures            String?     // Textura
-  poreSizes               String?     // Óstios
-  skinTypes               String?     // Tipo Cutâneo
-  oilinessLevels          String?     // Grau de Oleosidade
-  acneGrades              String?     // Grau de Acne
-  skinInvolutionLine      String?     // Involucao cutanea
-  skinInvolutionSulcus    String?     // Involucao cutanea
-  skinContains             String[]    // Presenca De
-  hypotonias              String[]     // Hipotonia
-  tyrichosis              String[]    // Tricose
-  scarsHypotrophic        String?     // Cicatrizes
-  scarsHypertrophic       Boolean     // Cicatrizes
-  scarsKeloid             String?     // Cicatrizes
-  purpuricSpots           String[]    // Manchas Purpúricas
-  pigmentedSpots          String[]    // Manchas Pigmentares
-  melanotics              String[]    // Melanóticas
-  notMelanotics           String[]    // Não Melanóticas
-  skinLesions             String[]    // Lesões Cutâneas
-  fluidSkinLesions        String[]    // Lesões Cutâneas liquidas
-  bloodVesselsNerve       String?     // Vasos Sanguíneos
-  bloodVesselsTelangiectasias Boolean     // Vasos Sanguíneos
-  bloodVesselsCouperose   String?     // Vasos Sanguíneos
-  bloodVesselsCyanosis    Boolean     // Vasos Sanguíneos
-  bloodVesselsAnemicNevus Boolean     // Vasos Sanguíneos
-  bloodVesselsErythema    Boolean     // Vasos Sanguíneos
-  bloodVesselsHypotrophic String?     // Vasos Sanguíneos
-  bloodVesselsHypertrophic Boolean     // Vasos Sanguíneos
-  bloodVesselsKeloid      Boolean     // Vasos Sanguíneos
-  others                  String?     // Outros
-  additionalInformation   String?     // Observações
-  createdAt               DateTime   @default(now())
-  updatedAt               DateTime   @updatedAt
-  Client                  Client     @relation(fields: [client_id], references: [id])
+  id                          String   @id @default(uuid())
+  client_id                   String
+  skinPhototypes              String? // Fototipo
+  skinColors                  String? // Coloração
+  dehydrationLevels           String? // Desidratação
+  skinTextures                String? // Textura
+  poreSizes                   String? // Óstios
+  skinTypes                   String? // Tipo Cutâneo
+  oilinessLevels              String? // Grau de Oleosidade
+  acneGrades                  String? // Grau de Acne
+  skinInvolutionLine          String? // Involucao cutanea
+  skinInvolutionSulcus        String? // Involucao cutanea
+  skinContains                String[] // Presenca De
+  hypotonias                  String[] // Hipotonia
+  tyrichosis                  String[] // Tricose
+  scarsHypotrophic            String? // Cicatrizes
+  scarsHypertrophic           Boolean // Cicatrizes
+  scarsKeloid                 String? // Cicatrizes
+  purpuricSpots               String[] // Manchas Purpúricas
+  pigmentedSpots              String[] // Manchas Pigmentares
+  melanotics                  String[] // Melanóticas
+  notMelanotics               String[] // Não Melanóticas
+  skinLesions                 String[] // Lesões Cutâneas
+  fluidSkinLesions            String[] // Lesões Cutâneas liquidas
+  bloodVesselsNerve           String? // Vasos Sanguíneos
+  bloodVesselsTelangiectasias Boolean // Vasos Sanguíneos
+  bloodVesselsCouperose       String? // Vasos Sanguíneos
+  bloodVesselsCyanosis        Boolean // Vasos Sanguíneos
+  bloodVesselsAnemicNevus     Boolean // Vasos Sanguíneos
+  bloodVesselsErythema        Boolean // Vasos Sanguíneos
+  bloodVesselsHypotrophic     String? // Vasos Sanguíneos
+  bloodVesselsHypertrophic    Boolean // Vasos Sanguíneos
+  bloodVesselsKeloid          Boolean // Vasos Sanguíneos
+  others                      String? // Outros
+  additionalInformation       String? // Observações
+  createdAt                   DateTime @default(now())
+  updatedAt                   DateTime @updatedAt
+  Client                      Client   @relation(fields: [client_id], references: [id])
 
   @@map("skin_analysis")
 }
@@ -162,10 +162,46 @@ model AppointmentHistory {
   id               String          @id @default(uuid())
   client_id        String
   user_id          String
+  specialty        String
   observations     String?
+  appointment_date DateTime        @default(now())
   created_at       DateTime        @default(now())
   updated_at       DateTime        @updatedAt
   presencial       Boolean
+  leftFace0        Boolean         @default(false)
+  leftFace1        Boolean         @default(false)
+  leftFace2        Boolean         @default(false)
+  leftFace3        Boolean         @default(false)
+  leftFace4        Boolean         @default(false)
+  leftFace5        Boolean         @default(false)
+  leftFace6        Boolean         @default(false)
+  leftFace7        Boolean         @default(false)
+  leftFace8        Boolean         @default(false)
+  leftFace9        Boolean         @default(false)
+  leftFace10       Boolean         @default(false)
+  rightFace0       Boolean         @default(false)
+  rightFace1       Boolean         @default(false)
+  rightFace2       Boolean         @default(false)
+  rightFace3       Boolean         @default(false)
+  rightFace4       Boolean         @default(false)
+  rightFace5       Boolean         @default(false)
+  rightFace6       Boolean         @default(false)
+  rightFace7       Boolean         @default(false)
+  rightFace8       Boolean         @default(false)
+  rightFace9       Boolean         @default(false)
+  rightFace10      Boolean         @default(false)
+  frontFace0       Boolean         @default(false)
+  frontFace1       Boolean         @default(false)
+  frontFace2       Boolean         @default(false)
+  frontFace3       Boolean         @default(false)
+  frontFace4       Boolean         @default(false)
+  frontFace5       Boolean         @default(false)
+  frontFace6       Boolean         @default(false)
+  frontFace7       Boolean         @default(false)
+  frontFace8       Boolean         @default(false)
+  frontFace9       Boolean         @default(false)
+  frontFace10      Boolean         @default(false)
+  frontFace11      Boolean         @default(false)
   appointment_type AppointmentType
   User             User            @relation(fields: [user_id], references: [id])
   Client           Client          @relation(fields: [client_id], references: [id])

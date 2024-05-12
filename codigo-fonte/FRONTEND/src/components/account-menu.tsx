@@ -10,8 +10,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
+import { useTitle } from '@/hooks/useTitle';
+import { useNavigate } from 'react-router-dom';
+import { string } from 'zod';
+import { TitleOfPages } from '@/utils/titleOfPages';
 
 export function AccountMenu() {
+  const { setTitle } = useTitle();
+  const navigate = useNavigate()
+
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title)
+    navigate(path)
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -33,7 +45,7 @@ export function AccountMenu() {
           </DropdownMenuItem>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={()=>{navigateUpdatingHeader("/perfil", TitleOfPages.perfil )}}>
             <UserCircle2Icon className="mr-2 h-4 w-4" />
             <span>Perfil</span>
         </DropdownMenuItem>

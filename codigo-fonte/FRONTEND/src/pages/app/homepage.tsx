@@ -58,13 +58,12 @@ export function Homepage() {
     navigate(path)
   }
 
-
   return (
     <div className='justify-center flex flex-col'>
       <Helmet title="Homepage" />
       <div className="flex justify-around w-full">
 
-        <Button asChild variant="ghost" className="size-2/5 p-0">
+        <Button asChild variant="ghost" className="size-2/5 p-0" onClick={() => navigateUpdatingHeader('/appointment', TitleOfPages.appointment)}>
           <ReactSVG src={newTreatment} />
         </Button>
 

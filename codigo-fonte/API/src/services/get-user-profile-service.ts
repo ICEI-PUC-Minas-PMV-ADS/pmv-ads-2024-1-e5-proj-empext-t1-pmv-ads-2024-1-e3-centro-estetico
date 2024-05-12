@@ -9,6 +9,8 @@ type user = {
   id: string
   name: string
   email: string
+  address: string 
+  phone: string
 }
 
 interface GetUserProfileServiceResponse {
@@ -29,6 +31,8 @@ export class GetUserProfileService {
         id: user.id,
         name: user.name,
         email: user.email,
+        address: user.address,
+        phone: user.phone
       },
     }
   }

@@ -46,7 +46,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
 |RF-001| O sistema permitirá o cadastro do cliente pela esteticista | MÉDIA |
-|RF-002| O sistema possuirá questionário de saúde para preenchimento do cliente e fichas corporal e/ou facial para preenchimento da esteticista | ALTA |
+|RF-002| O sistema possuirá questionário de saúde para preenchimento do cliente | ALTA |
 |RF-003| O sistema deverá gerar um link que possa ser compartilhado com o cliente para acessar o questionário de saúde | MÉDIA |
 |RF-004| O sistema permitirá o cadastro de consultas feitas pela esteticista | ALTA |
 |RF-005| O sistema permitirá o acesso do histórico de consultas do cliente de estética alimentado pelas consultas cadastradas | ALTA |
@@ -55,6 +55,11 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-008| O sistema deverá destacar as informações mais relevantes no histórico de cada cliente | MÉDIA |
 |RF-009| O sistema deverá possuir um login para a esteticista acessar a plataforma | MÉDIA |
 |RF-010| O sistema deverá exibir a agenda de disponibilidade da esteticista para realização de procedimentos | BAIXA |
+|RF-011| O sistema possuirá ficha facial para preenchimento da esteticista | ALTA |
+|RF-012| O sistema possuirá ficha corporal para preenchimento da esteticista | ALTA |
+
+
+
 
 ### Requisitos não Funcionais
 

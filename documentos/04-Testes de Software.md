@@ -17,11 +17,21 @@ Neste teste, avaliaremos o sistema de procura de clientes pela Esteticista.
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/b4470d84-6efc-499f-bb21-f674de7b8552)
 
-* Caso de Teste 02:
+* Caso de Teste 03:
 
 Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da esteticista.
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/354e7c98-f46f-4335-9088-a8e3845f13a2)
+
+
+* Caso de Teste 04:
+
+| Caso de Teste | CT-04 - Cadastrar ficha facial de um cliente especifico |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-011` - O sistema possuirá ficha facial para preenchimento da esteticista		|
+| Objetivos do teste | Cadastrar corretamente a ficha facial de um cliente |
+| Passos | 1) Acessar o navegador <br> 2) Fazer login caso deslogado <br>  3) Digitar nome do cliente desejado no input da homePage <br>  4) Selecionar o cliente <br>  5) Preencher a ficha facial do cliente <br> 6) Salvar ficha do cliente <br> |
+| Critérios com êxito | O cadastro da ficha seja efetuado, o usuario seja redirecionado a homepage e veja feedback da tela seja de sucesso |
 
  
 # Evidências de Testes de Software
@@ -44,5 +54,12 @@ Pesquisas faltando letra e mesmo assim acha um usuário onde encontra aquela str
 
 Algumas validações como cliente cadastrado ou inexistência de e-mail estão em falta, porém a função adicionar cliente está funcionando corretamente.
 
+* Evidência do Caso de Teste 04:
 
-
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/129e9eb3-9411-42c1-aead-3cbe292c2daf" width="500" height="800">
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/24124f23-2d7d-4876-ae2c-448eb4f5df84" width="500" height="800">
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/4c24e2c3-ccd3-4556-ab10-f99935db26c4" width="500" height="800">
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/a56f9420-4bd1-4f1f-be31-b7242c7056e0" width="500" height="800">
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/ebe118eb-dff9-4567-8ea1-ba3ff0dd30c9" width="500" height="700">
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/2e9bd160-9bfd-4871-bf6c-b47d387ed66c" width="500" height="800">
+<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/fa031a88-0f38-41b1-a69f-8e3733527d18" width="500" height="700">
