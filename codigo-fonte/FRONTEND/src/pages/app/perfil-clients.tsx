@@ -12,13 +12,7 @@ import { Phone } from "lucide-react";
 import { ReactSVG } from "react-svg";
 
 
-import { useNavigate, useParams } from "react-router-dom";
-import imgPerson from "../../assets/imgPerson.svg";
-import newTreatment from "../../assets/newTreatment.svg";
-
 export function PerfilClients() {
-
-    const  navigate  = useNavigate();
 
     // const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
@@ -36,7 +30,7 @@ export function PerfilClients() {
     const { id } = useParams();
     // console.log(users?.find((item) => item.id === id)?.phone)
 
-    const { clientId } = useParams();
+    // const { clientId } = useParams();
     const navigate = useNavigate();
   
 
@@ -56,13 +50,9 @@ export function PerfilClients() {
                             <Phone />
                         </Button>
                         <p className='font-medium pt-2 pl-2'>{users?.find((item) => item.id === id)?.phone}</p>
-                <div className="flex flex-col justify-around">
-                    <div className="flex justify-between">
-                        <Button variant={"telephone"} size={"icon"}>
-                            <Phone />
-                        </Button>
-                        <p className="pl-2 pt-2 font-medium">(82) 9999-9999</p>
                     </div>
+                </div>
+                <div className="flex flex-col justify-around">
                     <Button>
                         <p>Histórico do cliente</p>
                     </Button>
@@ -84,7 +74,6 @@ export function PerfilClients() {
                 Fichas de Anamnese
             </h1>
 
-
             <div className='flex flex-col gap-5'>
                 <ButtonWithIcon path={`/perfil-users/${id}/questionary`} title='Questionário de saúde' />
                 <ButtonWithIcon title='Ficha facial' onClick={() => navigate(`/facial-form/${id}`)}  />
@@ -98,8 +87,5 @@ export function PerfilClients() {
                 </Button>
             </div>
         </div>
-    );
+    )
 }
-
-
-// criar um navigate
