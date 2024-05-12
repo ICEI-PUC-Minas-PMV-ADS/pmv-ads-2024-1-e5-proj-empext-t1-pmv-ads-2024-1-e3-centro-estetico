@@ -30,7 +30,7 @@ Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da e
 |---------------|-------------------------------------------------------------------------------|
 | Requisitos Associados |  `RF-011` - O sistema possuirá ficha facial para preenchimento da esteticista		|
 | Objetivos do teste | Cadastrar corretamente a ficha facial de um cliente |
-| Passos | 1) Acessar o navegador <br> 2) Fazer login <br>  3) Digitar nome do cliente desejado no input da homePage <br>  4) Selecionar o cliente <br>  5) Preencher a ficha facial do cliente <br> 6) Salvar ficha do cliente <br> |
+| Passos | 1) Acessar o navegador <br> 2) Fazer login caso deslogado <br>  3) Digitar nome do cliente desejado no input da homePage <br>  4) Selecionar o cliente <br>  5) Preencher a ficha facial do cliente <br> 6) Salvar ficha do cliente <br> |
 | Critérios com êxito | O cadastro da ficha seja efetuado e o feedback da tela seja de sucesso |
 
  
