@@ -8,7 +8,7 @@ import { Homepage } from './pages/app/homepage'
 import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
-import { Consultation } from './pages/app/consultation/consultation'
+import { Appointment } from './pages/app/appointment/appointment'
 import { NotificationsForm } from './pages/app/notification'
 import { PerfilClients } from './pages/app/perfil-clients'
 import { Perfil } from './pages/app/perfil/perfil'
@@ -18,11 +18,9 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-
     children: [
       { path: '/', element: <Homepage /> },
       { path: '/notifications', element: <NotificationsForm /> },
-
       {
         path: '/users',
         element: <Clients />,
@@ -34,16 +32,14 @@ export const router = createBrowserRouter([
       {
         path: '/perfil-users/:clientId',
         element: <PerfilClients />,
-
       },
       {
         path: '/perfil',
         element: <Perfil/>,
-        
       },
       {
-        path: '/consultation',
-        element: <Consultation />
+        path: '/appointment',
+        element: <Appointment />
       },
       {
         path: '/facial-form/:clientId',
