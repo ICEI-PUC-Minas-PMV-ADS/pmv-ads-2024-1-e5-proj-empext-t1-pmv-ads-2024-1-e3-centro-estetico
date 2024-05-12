@@ -23,6 +23,16 @@ Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da e
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/354e7c98-f46f-4335-9088-a8e3845f13a2)
 
+
+* Caso de Teste 4:
+
+| Caso de Teste | CT-04 - Cadastrar ficha facial de um cliente especifico |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-011` - O sistema possuirá ficha facial para preenchimento da esteticista		|
+| Objetivos do teste | Cadastrar corretamente a ficha facial de um cliente |
+| Passos | 1) Acessar o navegador <br> 2) Fazer login <br>  3) Digitar nome do cliente desejado no input da homePage <br>  4) Selecionar o cliente <br>  5) Preencher a ficha facial do cliente <br> 6) Salvar ficha do cliente <br> |
+| Critérios com êxito | O cadastro da ficha seja efetuado e o feedback da tela seja de sucesso |
+
  
 # Evidências de Testes de Software
 
