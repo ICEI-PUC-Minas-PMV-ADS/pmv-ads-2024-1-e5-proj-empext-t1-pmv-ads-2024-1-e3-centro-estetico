@@ -59,7 +59,7 @@ export function HeaderMenu() {
                         </DrawerClose>
 
                         <DrawerClose asChild>
-                            <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/consultation', TitleOfPages.consultation)}>
+                            <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/appointment', TitleOfPages.appointment)}>
                                 <FilePlus />
                                 <span className="text-black pl-3 pt-1 font-normal">Novo tratamento</span>
                             </Button>

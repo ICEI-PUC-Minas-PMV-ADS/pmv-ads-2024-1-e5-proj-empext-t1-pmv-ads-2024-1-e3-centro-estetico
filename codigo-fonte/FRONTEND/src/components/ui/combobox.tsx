@@ -28,6 +28,7 @@ interface ComboboxProps {
   title: string,
   needSearch: boolean,
   selectFunction: React.Dispatch<React.SetStateAction<string | undefined>>
+  searchBoxPlaceholder?: string
 }
 
 
@@ -36,7 +37,7 @@ export function ComboboxDemo(props: ComboboxProps) {
   const [value, setValue] = React.useState("")
 
   return (
-    <Popover open={open} onOpenChange={setOpen} >
+    <Popover open={open} onOpenChange={setOpen}>
       <Label>{props.title}</Label>
       <PopoverTrigger asChild>
         <Button
@@ -55,7 +56,7 @@ export function ComboboxDemo(props: ComboboxProps) {
         <Command>
           {
             props.needSearch ? <>
-              <CommandInput placeholder="Pesquise pelo cliente" />
+              <CommandInput placeholder={props.searchBoxPlaceholder} />
               <CommandEmpty>Cliente não encontrado</CommandEmpty>
             </> : <></>
           }

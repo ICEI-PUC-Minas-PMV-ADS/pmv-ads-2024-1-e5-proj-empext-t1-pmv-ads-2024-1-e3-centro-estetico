@@ -1,17 +1,17 @@
-import { prisma } from '@/lib/prisma'
-import { Prisma, User } from '@prisma/client'
-import { IUsersRepository } from '../interfaces/iusers-repository'
-import { UserAlreadyExistsError } from '@/services/errors/user-already-exists-error'
+import { prisma } from "@/lib/prisma";
+import { Prisma, User } from "@prisma/client";
+import { IUsersRepository } from "../interfaces/iusers-repository";
+import { UserAlreadyExistsError } from "@/services/errors/user-already-exists-error";
 
 export class PrismaUsersRepository implements IUsersRepository {
   async create(data: Prisma.UserCreateInput): Promise<User> {
-    const userExists = await this.findByEmail(data.email)
+    const userExists = await this.findByEmail(data.email);
 
-    if (userExists) throw new UserAlreadyExistsError()
+    if (userExists) throw new UserAlreadyExistsError();
 
-    const user = await prisma.user.create({ data })
+    const user = await prisma.user.create({ data });
 
-    return user
+    return user;
   }
 
   async findByEmail(email: string): Promise<User | null> {
@@ -19,7 +19,7 @@ export class PrismaUsersRepository implements IUsersRepository {
       where: {
         email,
       },
-    })
+    });
   }
 
   async findById(id: string): Promise<User | null> {
@@ -27,6 +27,17 @@ export class PrismaUsersRepository implements IUsersRepository {
       where: {
         id,
       },
-    })
+    });
+  }
+
+  async findByName(name: string): Promise<User[] | null> {
+    return await prisma.user.findMany({
+      where: {
+        name: {
+          mode: "insensitive",
+          contains: name,
+        },
+      },
+    });
   }
 }
