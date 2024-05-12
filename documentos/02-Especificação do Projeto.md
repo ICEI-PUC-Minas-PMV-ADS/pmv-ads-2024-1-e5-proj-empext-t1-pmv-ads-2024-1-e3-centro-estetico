@@ -51,7 +51,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-004| O sistema permitirá o cadastro de consultas feitas pela esteticista | ALTA |
 |RF-005| O sistema permitirá o acesso do histórico de consultas do cliente de estética alimentado pelas consultas cadastradas | ALTA |
 |RF-006| O sistema deverá ter uma metodologia de busca, para localizar o cadastro dos clientes de estética | ALTA |
-|RF-007| O sistema permitirá que as fichas de sejam revisadas e editadas pela esteticista | ALTA |
+|RF-007| O sistema permitirá que as fichas facial e corporal de sejam editadas pela esteticista | ALTA |
 |RF-008| O sistema deverá destacar as informações mais relevantes no histórico de cada cliente | MÉDIA |
 |RF-009| O sistema deverá possuir um login para a esteticista acessar a plataforma | MÉDIA |
 |RF-010| O sistema deverá exibir a agenda de disponibilidade da esteticista para realização de procedimentos | BAIXA |
