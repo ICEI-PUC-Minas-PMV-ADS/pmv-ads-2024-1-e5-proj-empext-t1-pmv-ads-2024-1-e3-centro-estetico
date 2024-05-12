@@ -17,14 +17,14 @@ Neste teste, avaliaremos o sistema de procura de clientes pela Esteticista.
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/b4470d84-6efc-499f-bb21-f674de7b8552)
 
-* Caso de Teste 02:
+* Caso de Teste 03:
 
 Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da esteticista.
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/354e7c98-f46f-4335-9088-a8e3845f13a2)
 
 
-* Caso de Teste 4:
+* Caso de Teste 04:
 
 | Caso de Teste | CT-04 - Cadastrar ficha facial de um cliente especifico |
 |---------------|-------------------------------------------------------------------------------|
@@ -54,5 +54,6 @@ Pesquisas faltando letra e mesmo assim acha um usuário onde encontra aquela str
 
 Algumas validações como cliente cadastrado ou inexistência de e-mail estão em falta, porém a função adicionar cliente está funcionando corretamente.
 
+* Evidência do Caso de Teste 04:
 
 
