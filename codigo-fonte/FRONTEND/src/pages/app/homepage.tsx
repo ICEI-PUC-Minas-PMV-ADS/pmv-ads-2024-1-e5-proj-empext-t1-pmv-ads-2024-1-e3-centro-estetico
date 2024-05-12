@@ -15,16 +15,16 @@ import { env } from '../../env'
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from '@/hooks/useTitle';
 import { TitleOfPages } from '@/utils/titleOfPages';
+import { useUser } from '@/context/UserContext';
 
 
 export function Homepage() {
-  type user = {
-    id: number,
-    name: string
-  }
-
+  // type user = {
+  //   id: number,
+  //   name: string
+  // }
+  const {users, setUsers} = useUser();
   const [name, setName] = useState<string>('')
-  const [users, setUsers] = useState<user[]>([])
   const [hasUsers, setHasUsers] = useState<boolean>(false)
   const [message, setMessage] = useState<string>('Nenhuma busca realizada')
   const { setTitle } = useTitle();
@@ -40,6 +40,7 @@ export function Homepage() {
       if(name !== '') {
         const response = await axios.get(`${env.VITE_API_URL}/clients?name=${name}`);
         setUsers(response.data)
+        
         setHasUsers(true)
       }
     } catch (error: any) {
@@ -51,7 +52,7 @@ export function Homepage() {
       }
     }
   };
-
+  console.log(users)
   const navigateUpdatingHeader = (path: string, title: string) => {
     setTitle(title)
     navigate(path)
@@ -93,11 +94,11 @@ export function Homepage() {
       <div className="flex flex-col gap-5 pt-5 ml-1 mr-1">
 
         {
-          hasUsers ? users.map((e: user) => (
+          hasUsers ? users && users.map((user) => (
             <Card
-              key={e.id}
-              name={e.name}
-              id={e.id}
+              key={user.id}
+              name={user.name}
+              id={user.id}
             />
           )) : <Alert variant='default'>
             <AlertDescription>

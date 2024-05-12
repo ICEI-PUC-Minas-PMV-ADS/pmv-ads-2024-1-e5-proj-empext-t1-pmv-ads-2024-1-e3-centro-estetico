@@ -212,11 +212,12 @@ model AppointmentHistory {
 model HealthQuestionnaire {
   id                              String   @id @default(uuid())
   client_id                       String
+  problem_description             String?
   aesthetic_procedure             Boolean
   aesthetic_procedure_description String?
   cicatrization                   Boolean
   diabetes                        Boolean
-  diabetes_is_controlled          Boolean
+  diabetes_is_controlled          String?
   medication_use                  Boolean
   medication_use_description      String?
   roaccutane                      Boolean
@@ -231,7 +232,6 @@ model HealthQuestionnaire {
   practice_sports                 Boolean
   practice_sports_description     String?
   balanced_diet                   Boolean
-  drink_water                     String
   alcohol                         Boolean
   drugs                           Boolean
   hormonal_disorder               Boolean
@@ -239,27 +239,28 @@ model HealthQuestionnaire {
   sleep                           Boolean
   bowel_function                  Boolean
   hypertension                    Boolean
-  hypertension_is_controlled      Boolean
+  hypertension_is_controlled      String?
   hypotension                     Boolean
-  hypotension_is_controlled       Boolean
+  hypotension_is_controlled       String?
   cardiac_issues                  Boolean
   cardiac_issues_description      String?
   depression                      Boolean
-  epilepsy_                       Boolean
+  epilepsy                        Boolean
   plates_pins                     Boolean
   plates_pins_description         String?
   dental_prosthesis               Boolean
   kidney_problem                  Boolean
+  kidney_problem_description      String?
   liver_problem                   Boolean
   thyroid_problem                 Boolean
   auto_immune_disease             Boolean
   pregnant                        Boolean
   breastfeeding                   Boolean
   sun_exposure                    Boolean
+  sun_care                        Boolean
   skin_care                       Boolean
-  Methacryl_or_botulinum_toxin    Boolean
+  methacryl_or_botulinum_toxin    Boolean
   allergy_history                 Boolean
-  sunscreen                       Boolean
   herpes                          Boolean
   contraceptive                   Boolean
   menstrual_cycle                 Boolean
@@ -267,7 +268,9 @@ model HealthQuestionnaire {
   acid_skin                       Boolean
   cosmetic                        Boolean
   cosmetic_description            String?
-  authorize_photos                Boolean
+  drink_water                     String
+  authorize_photos                Boolean @default(false)
+  authorize_data                  Boolean
   created_at                      DateTime @default(now())
   updated_at                      DateTime @updatedAt
   Client                          Client   @relation(fields: [client_id], references: [id])

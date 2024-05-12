@@ -4,6 +4,7 @@ import { AppLayout } from './pages/_layouts/app'
 import { AuthLayout } from './pages/_layouts/auth'
 import FacialForm from './pages/app/FacialForm'
 import { Clients } from './pages/app/clients/clients'
+import { Questionary } from './pages/app/healthQuestionary/questionary'
 import { Homepage } from './pages/app/homepage'
 import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
@@ -30,10 +31,16 @@ export const router = createBrowserRouter([
         element: <RegisterClients />
       },
       {
-        path: '/perfil-users/:clientId',
+        path: '/perfil-users/:id',
         element: <PerfilClients />,
       },
       {
+
+        path: '/perfil-users/:id/questionary',
+        element: <Questionary />
+      },
+     {
+
         path: '/perfil',
         element: <Perfil/>,
       },
@@ -42,6 +49,7 @@ export const router = createBrowserRouter([
         element: <Appointment />
       },
       {
+
         path: '/facial-form/:clientId',
         element: <FacialForm />,
       },
