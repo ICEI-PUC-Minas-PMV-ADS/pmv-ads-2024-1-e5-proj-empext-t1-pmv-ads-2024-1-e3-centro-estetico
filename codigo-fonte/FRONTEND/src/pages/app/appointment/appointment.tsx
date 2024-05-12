@@ -329,7 +329,6 @@ export function Appointment() {
 
       {
         isFacial && <FacialForm
-          faceSelections={faceSelections}
           onSelectionChange={handleFaceSelectionChange}
         />
       }

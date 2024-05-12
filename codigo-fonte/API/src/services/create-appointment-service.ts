@@ -54,11 +54,16 @@ export class CreateAppointmentService implements ICreateAppointmentService {
   constructor(private appointmentsRepository: IAppointmentsRepository) {}
 
   async execute(appointmentInputData: CreateAppointmentServiceType) {
-    const appointmentData =
+    try {
+      const appointmentData =
       await this.buildAppointmentData(appointmentInputData);
 
     await this.appointmentsRepository.create(appointmentData);
+    } catch(error) {
+      console.log(error)
+    }
     return { message: "Appointment created successfully" };
+
   }
 
   async buildAppointmentData(
