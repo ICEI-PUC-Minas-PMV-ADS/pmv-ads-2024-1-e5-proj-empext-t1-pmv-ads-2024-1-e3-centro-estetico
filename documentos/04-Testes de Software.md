@@ -33,6 +33,15 @@ Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da e
 | Passos | 1) Acessar o navegador <br> 2) Fazer login caso deslogado <br>  3) Digitar nome do cliente desejado no input da homePage <br>  4) Selecionar o cliente <br>  5) Preencher a ficha facial do cliente <br> 6) Salvar ficha do cliente <br> |
 | Critérios com êxito | O cadastro da ficha seja efetuado, o usuario seja redirecionado a homepage e veja feedback da tela seja de sucesso |
 
+* Caso de Teste 05:
+
+| Caso de Teste | CT-05 - Cadastrar consulta de ficha facial de um cliente |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-004` - O sistema permitirá o cadastro de consultas feitas pela esteticista		|
+| Objetivos do teste | Cadastrar corretamente a consulta de ficha facial de um cliente |
+| Passos | 1) Fazer login caso deslogado <br> 2) Clicar em "cadastrar consulta" <br> 3) Selecionar o tipo de consulta que está cadastrando <br> 4) Preencher corretamente os dados necessários <br> 5) Salvar a ficha de consulta cliente <br> |
+| Critérios com êxito | O cadastro de consulta seja realizado |
+
  
 # Evidências de Testes de Software
 
@@ -63,3 +72,67 @@ Algumas validações como cliente cadastrado ou inexistência de e-mail estão e
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/ebe118eb-dff9-4567-8ea1-ba3ff0dd30c9" width="500" height="700">
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/2e9bd160-9bfd-4871-bf6c-b47d387ed66c" width="500" height="800">
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/fa031a88-0f38-41b1-a69f-8e3733527d18" width="500" height="700">
+
+* Evidência do Caso de Teste 05:
+
+VÍDEO - Appointment Test
+
+Planejamento de testes - Appointment
+
+Cenário 1: Exibição e obrigatoriedade dos campos
+
+1) Verificar se todos os campos são exibidos corretamente conforme o figma
+	- OK
+
+2) Verificar se os campos obrigatórios possuem tratamento de obrigatoriedade no frontend
+	- OK
+
+3) Validar se é possível preencher todos os valores
+	- OK
+
+
+Cenário 2: Gravação de consulta
+
+1) Validar gravação de consulta do tipo CAPILAR no banco de dados
+	- OK
+
+2) Validar gravação de consulta do tipo FACIAL no banco de dados
+	- OK
+
+3) Verificar integridade dos valores
+	- OK
+
+
+Cenário 3: Posição e gravação das imagens
+
+1) Verificar se as imagens são salvas no banco conforme seleção em tela
+	- OK
+
+2) Verificar se não existe marcação de uma imagem que interfira em outra do mesmo carrosel
+	- OK
+
+3) Validar duplicidade de marcadores
+	- OK
+
+
+Cenário 4: Usabilidade geral
+
+1) Verificar se a tela é usável e confortável ao usuário
+	- OK
+
+
+Pontos de melhoria:
+
+	- Avaliar a necessidade de um redirecionamento após gravar a consulta com o cliente
+
+	- Limpar os dados de imagem ao modificar o tipo de consulta
+
+	- Fechar o calendário ao escolher a data
+
+	- Alertar de consultas agendadas no mesmo horário
+
+
+
+
+
+
