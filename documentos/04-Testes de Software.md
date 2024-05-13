@@ -73,9 +73,9 @@ Algumas validações como cliente cadastrado ou inexistência de e-mail estão e
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/2e9bd160-9bfd-4871-bf6c-b47d387ed66c" width="500" height="800">
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/fa031a88-0f38-41b1-a69f-8e3733527d18" width="500" height="700">
 
-* Evidência do Caso de Teste 05:
+<br>* Evidência do Caso de Teste 05:
 
-VÍDEO - Appointment Test
+VÍDEO - Appointment Test - https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/blob/main/documentos/img/Appointment%20Test.mp4
 
 Planejamento de testes - Appointment
 
@@ -123,13 +123,13 @@ Cenário 4: Usabilidade geral
 
 Pontos de melhoria:
 
-	- Avaliar a necessidade de um redirecionamento após gravar a consulta com o cliente
+ - Avaliar a necessidade de um redirecionamento após gravar a consulta com o cliente
 
-	- Limpar os dados de imagem ao modificar o tipo de consulta
+ - Limpar os dados de imagem ao modificar o tipo de consulta
 
-	- Fechar o calendário ao escolher a data
+ - Fechar o calendário ao escolher a data
 
-	- Alertar de consultas agendadas no mesmo horário
+ - Alertar de consultas agendadas no mesmo horário
 
 
 
