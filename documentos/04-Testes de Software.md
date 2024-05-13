@@ -42,6 +42,15 @@ Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da e
 | Passos | 1) Fazer login caso deslogado <br> 2) Clicar em "cadastrar consulta" <br> 3) Selecionar o tipo de consulta que está cadastrando <br> 4) Preencher corretamente os dados necessários <br> 5) Salvar a ficha de consulta cliente <br> |
 | Critérios com êxito | O cadastro de consulta seja realizado |
 
+* Caso de Teste 06:
+
+| Caso de Teste | CT-06 - Cadastrar consulta de ficha facial de um cliente |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-009` - O sistema deverá possuir um login para a esteticista acessar a plataforma		|
+| Objetivos do teste | Vizualização e edição do perfil da esteticista |
+| Passos | 1) Fazer login caso deslogado <br> 2) Clicar em foto do perfil <br> 3) Clicar em perfil <br> 4) Vizualizar os dados e editar caso precise <br> |
+| Critérios com êxito | Vizualização correta dos dados e edição funcionando |
+
  
 # Evidências de Testes de Software
 
@@ -134,5 +143,12 @@ Pontos de melhoria:
 
 
 
+* Evidência do Caso de Teste 06:
+
+
+  
+![1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/98265702/1c610e4c-f1e5-4cae-8fd9-97765daabea5)
+![2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/98265702/24fbd257-aaf6-4fe0-befd-85f69ad02271)
+![3](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/98265702/3f8a8e11-c7fc-4a1e-9a0b-3eda29513633)
 
 
