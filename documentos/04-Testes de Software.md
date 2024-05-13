@@ -51,6 +51,23 @@ Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da e
 | Passos | 1) Fazer login caso deslogado <br> 2) Clicar em foto do perfil <br> 3) Clicar em perfil <br> 4) Vizualizar os dados e editar caso precise <br> |
 | Critérios com êxito | Vizualização correta dos dados e edição funcionando |
 
+* Caso de Teste 07:
+
+| Caso de Teste | CT-07 - Cadastrar questionário de saúde |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-002` - O sistema possuirá questionário de saúde para preenchimento do cliente		|
+| Objetivos do teste | Cadastrar corretamente questionário de saúde |
+| Passos | 1) Fazer login caso deslogado <br> 2) Digitar nome do cliente desejado no input da homePage <br> 3) Selecionar o cliente <br> 4) Clicar na opção "questionário de saúde" <br>  5) Preencher alguns campos obrigatórios e não obrigatórios <br> 6) Clicar no botão "Enviar" <br> |
+| Critérios com êxito | Verificar se as validações estão corretas, se há algum aviso de que algum campo não foi devidamente marcado. <br> Verificar se ao clicar no botão "enviar", de fato manda os dados pro banco de dados. |
+
+Resultado do Teste:
+
+- Validação dos dados: OK, mas a Queixa Principal apresenta problemas em armazenar o texto inserido.
+
+- Os campos obrigatórios possuem tratamento de obrigatoriedade funcionando corretamente.
+
+- O visual está completo e agradável, letras com tamanho bom e texto de fácil compreensão.
+
  
 # Evidências de Testes de Software
 
