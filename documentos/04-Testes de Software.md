@@ -169,3 +169,9 @@ Pontos de melhoria:
 ![3](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/98265702/3f8a8e11-c7fc-4a1e-9a0b-3eda29513633)
 
 
+* Evidência do caso de teste 7:
+
+  https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/blob/main/documentos/img/2024-05-12%2020-31-34.rar
+  (o vídeo da gravação)
+
+
