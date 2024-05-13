@@ -54,4 +54,18 @@ export function NotificationsForm() {
   //     </div>
   //   </div>
   // );
+  return (
+    <div style={{ border: '1px solid black', display: 'flex', alignItems: 'center', padding: '10px' }}>
+      <div style={{ marginRight: '10px' }}>
+        <img  alt="Random" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
+      </div>
+      <div>
+        <p style={{ color: 'blue', margin: 0 }}>{}</p>
+        <p style={{ color: 'green', margin: 0 }}>Nova ficha preenchida</p>
+      </div>
+      <div style={{ marginLeft: '10px' }}>
+        <span style={{ color: 'blue', fontSize: '20px' }}>➜</span>
+      </div>
+    </div>
+  );
 }

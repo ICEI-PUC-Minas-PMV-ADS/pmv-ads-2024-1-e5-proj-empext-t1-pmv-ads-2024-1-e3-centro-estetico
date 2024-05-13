@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações do Paciente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .botao {
+            border: 2px solid blue;
+            padding: 10px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            background-color: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            width: auto;
+        }
+
+        .botao:hover {
+            background-color: blue;
+            color: white;
+        }
+
+        .quadrado-vermelho {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 16px;
+        }
+        .quadrado-verde {
+            background-color: green;
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .perfil-paciente {
+            display: flex;
+            align-items: center;
+        }
+
+        .borda-azul {
+            border: 2px solid blue;
+        }
+
+        .botao i,
+        .nome-paciente i {
+            margin-right: 10px;
+            color: blue;
+        }
+
+        .fa-arrow-right {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="perfil-paciente">
+        
+        <div>
+            <h2 class="nome-paciente"><i class="fas fa-info-circle"></i> Vitor Araújo</h2>
+            <img src="vitor-araujo.png" alt="Foto do Paciente">
+            <button id="telefoneBtn" class="botao"><i class="fas fa-phone"></i> (31) 9 9999-9999</button>
+            <button id="historicoBtn" class="botao"><i class="fas fa-history"></i> Histórico do Cliente</button>
+            <div style="display: flex;" class="quadrados">
+                <div class="quadrado-verde">É oncológico</div>
+                <div class="quadrado-vermelho ">É diabético</div>
+                <div class="quadrado-vermelho ">É cardíaco</div>
+            </div><br>
+            <div>
+                <button id="fichaFacialBtn" class="botao"><i class="fas fa-id-card"></i> Questionário de saúde <i class="fas fa-arrow-right"></i> </button><br>
+                <button id="fichaMedicaBtn" class="botao"><i class="fas fa-id-card"></i> Ficha Facial <i class="fas fa-arrow-right"></i> </button><br>
+                <button id="examesBtn" class="botao"><i class="fas fa-id-card"></i> Últimas medidas corporais <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
