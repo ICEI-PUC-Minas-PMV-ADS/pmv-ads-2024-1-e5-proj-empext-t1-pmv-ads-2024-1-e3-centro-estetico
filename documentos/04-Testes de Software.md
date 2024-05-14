@@ -101,6 +101,9 @@ Algumas validações como cliente cadastrado ou inexistência de e-mail estão e
 
 <br>* Evidência do Caso de Teste 05:
 
+Desenvolvido por: Philipe Rocha, João Vitor
+Testado por: Gabriel de Almeida
+
 VÍDEO - Appointment Test - https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/blob/main/documentos/img/Appointment%20Test.mp4
 
 Planejamento de testes - Appointment
