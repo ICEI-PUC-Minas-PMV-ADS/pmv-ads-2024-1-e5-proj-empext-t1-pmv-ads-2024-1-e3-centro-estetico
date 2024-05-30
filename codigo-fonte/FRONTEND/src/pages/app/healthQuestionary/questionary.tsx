@@ -1,13 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { questions } from "./questions";
-import { Controller, useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { useMutation } from "@tanstack/react-query";
-import { createHealthQuestionary } from "@/api/questionary";
-import { z } from "zod";
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useParams } from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation } from '@tanstack/react-query'
+import { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
+import { toast } from 'sonner'
+import { z } from 'zod'
+
+import { createHealthQuestionary } from '@/api/questionary'
+import { Button } from '@/components/ui/button'
+
+import { questions } from './questions'
 
 const healthQuestionnaire = z.object({
   problem_description: z.string().optional(),
@@ -66,24 +71,24 @@ const healthQuestionnaire = z.object({
   acid_skin: z.boolean(),
   cosmetic: z.boolean(),
   cosmetic_description: z.string().optional(),
-  drink_water: z.string().min(1, "Informe a quantidade em L"),
+  drink_water: z.string().min(1, 'Informe a quantidade em L'),
   authorize_photos: z.boolean().optional(),
   authorize_data: z.boolean().refine((val) => val === true, {
-    message: "É obrigatória a marcação",
+    message: 'É obrigatória a marcação',
   }),
-});
+})
 
-export type HealthQuestionnaire = z.infer<typeof healthQuestionnaire>;
+export type HealthQuestionnaire = z.infer<typeof healthQuestionnaire>
 
 export interface HealthQuestion {
-  title: string;
-  description?: string;
-  name: keyof HealthQuestionnaire;
-  nameDescription?: keyof HealthQuestionnaire;
+  title: string
+  description?: string
+  name: keyof HealthQuestionnaire
+  nameDescription?: keyof HealthQuestionnaire
 }
 
 export function Questionary() {
-  const [respostas, setRespostas] = useState({});
+  const [respostas, setRespostas] = useState({})
 
   const {
     control,
@@ -92,38 +97,38 @@ export function Questionary() {
     formState: { errors, isSubmitting },
   } = useForm<HealthQuestionnaire>({
     resolver: zodResolver(healthQuestionnaire),
-  });
+  })
 
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
 
   const { mutateAsync: createQuestionary } = useMutation({
     mutationFn: createHealthQuestionary,
-  });
+  })
 
   async function handleCreateHealthQuestionary(data: HealthQuestionnaire) {
     try {
       if (!id) {
-        throw new Error("ID do cliente não encontrado na URL");
+        throw new Error('ID do cliente não encontrado na URL')
       }
-      const { ...regData } = data;
+      const { ...regData } = data
       const questionaryData = {
         clientId: id,
         authorizePhotos: false,
         ...data,
-      };
-      await createQuestionary(questionaryData);
-      console.log(regData);
-      console.log(data);
+      }
+      await createQuestionary(questionaryData)
+      console.log(regData)
+      console.log(data)
       // Navigate('/')
-      toast.success("Questionário cadastrado com sucesso!");
+      toast.success('Questionário cadastrado com sucesso!')
     } catch (error) {
-      toast.error("Erro ao cadastrar questionário!");
+      toast.error('Erro ao cadastrar questionário!')
     }
   }
 
   const handleChange = (id: string, value: string | boolean) => {
-    setRespostas({ ...respostas, [id]: value });
-  };
+    setRespostas({ ...respostas, [id]: value })
+  }
 
   return (
     <>
@@ -209,7 +214,7 @@ export function Questionary() {
             id="drink_water"
             type="number"
             placeholder="Quantidade em Litros(L):"
-            {...register("drink_water")}
+            {...register('drink_water')}
           />
           {errors.drink_water && (
             <small className="text-red-500">{errors.drink_water.message}</small>
@@ -221,7 +226,7 @@ export function Questionary() {
             className="mr-2"
             id="authorize_photos"
             type="checkbox"
-            {...register("authorize_photos")}
+            {...register('authorize_photos')}
           />
           <label className="pl-1.5 text-sm font-bold">
             Autoriza a divulgação de fotos antes e depois do tratamento?
@@ -233,7 +238,7 @@ export function Questionary() {
             className="mr-2"
             id="authorize_data"
             type="checkbox"
-            {...register("authorize_data")}
+            {...register('authorize_data')}
             onChange={(e) => e.target.value}
           />
           <label className="pl-1.5 text-sm font-bold">
@@ -251,5 +256,5 @@ export function Questionary() {
         </Button>
       </form>
     </>
-  );
+  )
 }

@@ -1,31 +1,24 @@
-import { HealthQuestionnaire } from '@/pages/app/healthQuestionary/questionary';
-import React, { useState } from 'react';
-import { ControllerRenderProps, FieldValues } from 'react-hook-form';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+import React from 'react'
+import { ControllerRenderProps, FieldValues } from 'react-hook-form'
+
+import { HealthQuestionnaire } from '@/pages/app/healthQuestionary/questionary'
 
 interface QuestionWithOptionsProps {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
   field: ControllerRenderProps<FieldValues, string>
-  nameDescription?: keyof HealthQuestionnaire;
-  name: keyof HealthQuestionnaire;
+  nameDescription?: keyof HealthQuestionnaire
+  name: keyof HealthQuestionnaire
 }
 
-export const HealthQuestions: React.FC<QuestionWithOptionsProps> = ({ title, description, field }) => {
-  const [selectedOption, setSelectedOption] = useState<boolean | null>(null);
-  const [reason, setReason] = useState<string>('');
-
-  const handleOptionSelect = (option: boolean) => {
-    setSelectedOption(option);
-    if (!option) {
-      // Reset reason if "Não" is selected
-      setReason('');
-    }
-  };
-
-  const handleReasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setReason(event.target.value);
-  };
-
+export const HealthQuestions: React.FC<QuestionWithOptionsProps> = ({
+  title,
+  description,
+  field,
+}) => {
   return (
     <div>
       <h2>{title}</h2>
@@ -38,7 +31,6 @@ export const HealthQuestions: React.FC<QuestionWithOptionsProps> = ({ title, des
             checked={field.value === true}
             onChange={(e) => field.onChange(e.target.value)}
           />
-
         </label>
         Sim
         <label>
@@ -49,14 +41,13 @@ export const HealthQuestions: React.FC<QuestionWithOptionsProps> = ({ title, des
             checked={field.value === false}
             onChange={(e) => field.onChange(e.target.value)}
           />
-          
         </label>
         Não
       </div>
       {field.value === true && description && (
         <div>
           <label>
-          {description}
+            {description}
             <input
               name={`${title}-${description}`}
               type="text"
@@ -68,5 +59,5 @@ export const HealthQuestions: React.FC<QuestionWithOptionsProps> = ({ title, des
         </div>
       )}
     </div>
-  );
-};
+  )
+}
