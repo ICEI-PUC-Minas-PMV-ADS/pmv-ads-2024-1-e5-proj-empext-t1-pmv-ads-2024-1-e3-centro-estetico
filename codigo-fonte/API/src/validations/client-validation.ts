@@ -18,3 +18,7 @@ export const registerBodySchema = z.object({
 export const getClientsParams = z.object({
   name: z.string()
 })
+
+export const getClientsParamsById = z.object({
+  id: z.string()
+})

@@ -12,7 +12,6 @@ import {
 } from './ui/dropdown-menu'
 import { useTitle } from '@/hooks/useTitle';
 import { useNavigate } from 'react-router-dom';
-import { string } from 'zod';
 import { TitleOfPages } from '@/utils/titleOfPages';
 
 export function AccountMenu() {
@@ -49,7 +48,7 @@ export function AccountMenu() {
             <UserCircle2Icon className="mr-2 h-4 w-4" />
             <span>Perfil</span>
         </DropdownMenuItem>
-        <DropdownMenuItem className="text-rose-500 dark:text-rose-400">
+        <DropdownMenuItem className="text-rose-500 dark:text-rose-400" onClick={() => {navigateUpdatingHeader("/sign-in", TitleOfPages.home )}}>
           <LogOutIcon className="mr-2 h-4 w-4" />
           <span>Sair</span>
         </DropdownMenuItem>
