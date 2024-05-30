@@ -37,4 +37,20 @@ export class PrismaSkinAnalysisRepository implements ISkinAnalysisRepository {
       },
     })
   }
+
+ async update(params: { where: { id: string }, data: Prisma.SkinAnalysisUpdateInput }): Promise<SkinAnalysis> {
+    const { where, data } = params;
+
+    const existingSkinAnalysis = await this.findById(where.id);
+    if (!existingSkinAnalysis) {
+      throw new ResourceNotFoundError();
+    }
+
+    const updatedSkinAnalysis = await prisma.skinAnalysis.update({
+      where,
+      data,
+    });
+
+    return updatedSkinAnalysis;
+  }
 }
