@@ -1,5 +1,10 @@
 import { z } from 'zod';
 
+export const getAppointmentParams = z.object({
+  id: z.string()
+})
+
+
 export const AppointmentType = z.enum(['Hair', 'Skin', 'Body']);
 
 export const registerBodySchema = z.object({
@@ -11,6 +16,7 @@ export const registerBodySchema = z.object({
     if (arg instanceof Date) return arg
     if (typeof arg === 'string') return new Date(arg)
   }, z.date()),
+  appointment_hour: z.string(),
   presencial: z.boolean(),
   appointment_type: AppointmentType,
   leftFace0: z.boolean(),

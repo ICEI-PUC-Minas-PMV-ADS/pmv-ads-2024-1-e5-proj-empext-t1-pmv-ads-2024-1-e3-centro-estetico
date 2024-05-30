@@ -13,6 +13,7 @@ import { Appointment } from './pages/app/appointment/appointment'
 import { NotificationsForm } from './pages/app/notification'
 import { PerfilClients } from './pages/app/perfil-clients'
 import { Perfil } from './pages/app/perfil/perfil'
+import { HistoryAppointment } from './pages/app/history/historyAppointment'
 
 
 export const router = createBrowserRouter([
@@ -52,6 +53,12 @@ export const router = createBrowserRouter([
 
         path: '/facial-form/:clientId',
         element: <FacialForm />,
+      },
+
+      {
+
+        path: '/history-appointment',
+        element: <HistoryAppointment />,
       },
     ],
   },

@@ -5,10 +5,18 @@ export interface GetClientsServiceRequest {
   username: string
 }
 
+export interface GetClientByIdServiceRequest {
+  id: string
+}
+
 type client = {
   id: string
   name: string
   email: string
+}
+
+interface GetClientByIdServiceResponse {
+  client: client
 }
 
 interface GetClientsServiceResponse {
@@ -26,6 +34,21 @@ export class GetClientsService {
 
     return {
       clients: clients
+    }
+  }
+}
+
+export class GetClientById {
+  constructor(private clientsRepository: IClientsRepository) {}
+
+  async execute({
+    id,
+  }: GetClientByIdServiceRequest): Promise<GetClientByIdServiceResponse> {
+    const clientResponse = await this.clientsRepository.findById(id)
+    if (!clientResponse) throw new ResourceNotFoundError()
+
+    return {
+      client: clientResponse
     }
   }
 }

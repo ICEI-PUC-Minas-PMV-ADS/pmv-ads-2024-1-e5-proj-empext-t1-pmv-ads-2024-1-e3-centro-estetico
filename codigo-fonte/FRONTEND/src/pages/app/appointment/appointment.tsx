@@ -14,7 +14,6 @@ import { createAppointment } from '@/api/appointment';
 import { getUsers } from '@/api/users';
 import { useMutation } from '@tanstack/react-query';
 import { FacialForm } from './facialForm';
-import combineDateAndTimeToUTC from '@/utils/combineDateAndTimeToUTC';
 
 const Local = z.enum(['OnSight', 'InHome'])
 
@@ -35,9 +34,9 @@ const registerAppointmentForm = z
     specialty: z.string().min(1, 'Preencha o nome do procedimento'),
     client: z.string({ required_error: 'Selecione um cliente' }),
     user: z.string({ required_error: 'Selecione o profissional' }),
-    hour: z.string().min(1, 'Selecione o horário da consulta'),
-    annotations: z.string().optional(),
-    appointment_type: z.string({ required_error: 'Selecione o tipo de consulta' }),
+    appointment_hour: z.string().min(1, 'Selecione o horário da consulta'),
+    observations: z.string().optional(),
+    appointment_type: z.string({ required_error: 'Selecione o tipo de consulta' }), 
     date: z.date({ required_error: 'Selecione uma data' })
   })
 
@@ -166,15 +165,14 @@ export function Appointment() {
 
   async function handleCreateAppointment(data: RegisterAppointmentForm) {
     try {
-      const { client, user, local, hour, date, ...appointmentDataWithoutIds } = data;
-
-      const appointmentDateUTC = combineDateAndTimeToUTC(date, hour, '-03:00');
+      const { client, user, local, appointment_hour, date, ...appointmentDataWithoutIds } = data;
 
       const appointmentData = {
         clientId: client,
         userId: user,
         presencial: local === 'OnSight' ? true : false,
-        appointment_date: appointmentDateUTC,
+        appointment_date: date,
+        appointment_hour: appointment_hour,
         ...faceSelections,
         ...appointmentDataWithoutIds
       }
@@ -320,10 +318,10 @@ export function Appointment() {
           id="hour"
           type="time"
           className="text-primary block w-full px-4 py-2 bg-transparent border-b border-gray-200 outline-none"
-          {...register('hour')}
+          {...register('appointment_hour')}
         />
-        {errors.hour && (
-          <small className="text-red-500">{errors.hour.message}</small>
+        {errors.appointment_hour && (
+          <small className="text-red-500">{errors.appointment_hour.message}</small>
         )}
       </div>
 
@@ -341,7 +339,7 @@ export function Appointment() {
           placeholder='Anote aqui o necessário...'
           id="anotations"
           className="text-primary block w-full h-44 px-4 py-2 bg-input shadow-xl rounded-xl border border-gray-200"
-          {...register('annotations')}
+          {...register('observations')}
         />
       </div>
 

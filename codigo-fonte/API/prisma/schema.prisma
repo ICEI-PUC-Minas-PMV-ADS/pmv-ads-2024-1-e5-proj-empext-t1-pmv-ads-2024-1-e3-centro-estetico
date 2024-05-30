@@ -165,6 +165,7 @@ model AppointmentHistory {
   specialty        String
   observations     String?
   appointment_date DateTime        @default(now())
+  appointment_hour String?
   created_at       DateTime        @default(now())
   updated_at       DateTime        @updatedAt
   presencial       Boolean

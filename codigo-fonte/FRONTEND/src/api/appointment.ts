@@ -6,6 +6,7 @@ export interface Appointment {
   specialty: string;
   observations?: string | null;
   appointment_date: Date;
+  appointment_hour: string;
   presencial: boolean;
   appointment_type: string;
   leftFace0: boolean;
