@@ -21,7 +21,7 @@ export const dehydrationLevels = [
 ];
 
 export const skinTextures = [
-  { id: "1", label: 'Noraml' },
+  { id: "1", label: 'Normal' },
   { id: "2", label: 'Fina ou Lisa' },
   { id: "3", label: 'Áspera' },
   { id: "4", label: 'Espessa' },

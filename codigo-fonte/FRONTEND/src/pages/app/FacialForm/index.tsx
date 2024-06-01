@@ -124,26 +124,15 @@ const FacialForm = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${env.VITE_API_URL}/get-skin-form?clientId=${clientId}`);
-        console.log('Dados carregados:', response.data)
+console.log('Dados carregados:', response.data)
         if(response.data){
-          const newData = FacialFormFactory(response.data)
-          reset({...response.data, "skinInvolution": {
-            "skinInvolutionLine": {
-                "type": response.data.skinInvolutionLine !== null,
-                "typeDescription": response.data.skinInvolutionLine ?? undefined
-            },
-            "skinInvolutionSulcus": {
-                "type": response.data.skinInvolutionSulcus !== null,
-                "typeDescription": response.data.skinInvolutionSulcus ?? undefined
-            }
-          },
-          others: response.data.others ?? undefined,
-          skinColors:  response.data.skinColors ?? undefined
-        });
+          const newData = FacialFormFactory(response)
+          reset(newData);
           console.log('Dados carregados:', response.data)
         }
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
+
       }
     };
 
@@ -192,6 +181,7 @@ const FacialForm = () => {
                         {...field}
                         id={phototype.id}
                         value={phototype.label}
+                        checked={getValues('skinPhototypes') === phototype.label}
                         className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                       />
                     )}
@@ -224,6 +214,7 @@ const FacialForm = () => {
                         {...field}
                         id={color.id}
                         value={color.label}
+                        checked={getValues('skinColors') === color.label}
                         className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                       />
                     )}
@@ -259,6 +250,7 @@ const FacialForm = () => {
                         {...field}
                         id={hidatation.id}
                         value={hidatation.label}
+                        checked={getValues('dehydrationLevels') === hidatation.label}
                         className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                       />
                     )}
@@ -291,6 +283,7 @@ const FacialForm = () => {
                         {...field}
                         id={texture.id}
                         value={texture.label}
+                        checked={getValues('skinTextures') === texture.label}
                         className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                       />
                     )}
@@ -324,6 +317,7 @@ const FacialForm = () => {
                       {...field}
                       id={ostium.id}
                       value={ostium.label}
+                      checked={getValues('poreSizes') === ostium.label}
                       className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                     />
                   )}
@@ -358,6 +352,7 @@ const FacialForm = () => {
                       {...field}
                       id={type.id}
                       value={type.label}
+                      checked={getValues('skinTypes') === type.label}
                       className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                     />
                   )}
@@ -390,6 +385,7 @@ const FacialForm = () => {
                       {...field}
                       id={oilinessGrade.id}
                       value={oilinessGrade.label}
+                      checked={getValues('oilinessLevels') === oilinessGrade.label}
                       className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                     />
                   )}
@@ -422,6 +418,7 @@ const FacialForm = () => {
                       {...field}
                       id={acneGrade.id}
                       value={acneGrade.label}
+                      checked={getValues('acneGrades') === acneGrade.label}
                       className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                     />
                   )}
@@ -456,6 +453,7 @@ const FacialForm = () => {
                         className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                         id={contain.id}
                         value={contain.label}
+                        checked={getValues('skinContains')?.find((item) => item  === contain.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -543,6 +541,7 @@ const FacialForm = () => {
                         id={hypotonia.id}
                         {...field}
                         value={hypotonia.label}
+                        checked= {getValues('hypotonias')?.find((item) => item  === hypotonia.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -575,6 +574,7 @@ const FacialForm = () => {
                         className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                         id={tyrichose.id}
                         value={tyrichose.label}
+                        checked={getValues('tyrichosis')?.find((item) => item  === tyrichose.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -606,6 +606,7 @@ const FacialForm = () => {
                       className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                       id={scar.id}
                       value={scar.label}
+                      checked={getValues(`scars.${scar.typeName}.type`)}
                       onChange={(e) => checkboxValueHandler(e, field)}
                     />
                   )}
@@ -659,6 +660,7 @@ const FacialForm = () => {
                       className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                       id={vessel.id}
                       value={vessel.label}
+                      checked={getValues(`bloodVessels.${vessel.typeName}.type`)}
                       onChange={(e) => checkboxValueHandler(e, field)}
                     />
                   )}
@@ -710,6 +712,7 @@ const FacialForm = () => {
                         className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                         id={purpuricSpot.id}
                         value={purpuricSpot.label}
+                        checked={getValues('purpuricSpots')?.find((item) => item  === purpuricSpot.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -742,6 +745,7 @@ const FacialForm = () => {
                         className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                         id={typigmentedSpot.id}
                         value={typigmentedSpot.label}
+                        checked={getValues('pigmentedSpots')?.find((item) => item  === typigmentedSpot.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -773,6 +777,7 @@ const FacialForm = () => {
                         className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                         id={melanotic.id}
                         value={melanotic.label}
+                        checked={getValues('melanotics')?.find((item) => item  === melanotic.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -805,6 +810,7 @@ const FacialForm = () => {
                         className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                         id={notMelanotic.id}
                         value={notMelanotic.label}
+                        checked={getValues('notMelanotics')?.find((item) => item  === notMelanotic.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -836,6 +842,7 @@ const FacialForm = () => {
                         className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                         id={skinLesion.id}
                         value={skinLesion.label}
+                        checked={getValues('skinLesions')?.find((item) => item  === skinLesion.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -869,6 +876,7 @@ const FacialForm = () => {
                         id={fluidSkinLesion.id}
                         {...field}
                         value={fluidSkinLesion.label}
+                        checked={getValues('fluidSkinLesions')?.find((item) => item  === fluidSkinLesion.label)}
                         onChange={(e) => checkboxArrValueHandler(e, field)}
                       />
                     )}
@@ -892,13 +900,14 @@ const FacialForm = () => {
               >
                 <Controller
                   control={control}
-                  name="acneGrades"
+                  name="others"
                   render={({ field }) => (
                     <input
                       type="radio"
                       {...field}
                       id={another.id}
                       value={another.label}
+                      checked={getValues('others') === another.label}
                       className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
                     />
                   )}
