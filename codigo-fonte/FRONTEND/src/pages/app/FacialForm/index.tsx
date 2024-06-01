@@ -1,15 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
+import { registerSkinForm } from '@/api/clientsForm'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
-
-import { registerSkinForm } from '@/api/clientsForm'
-
+import { env } from '../../../env'
 import {
   acneGrades,
   bloodVessels,
@@ -33,6 +34,7 @@ import {
   skinTypes,
   tyrichosis,
 } from './constants/constants'
+import { FacialFormFactory } from './factory/factory'
 
 const checkboxValueHandler = (e, field) => {
   const { checked, value } = e.target
@@ -105,16 +107,48 @@ const FacialForm = () => {
     handleSubmit,
     register,
     formState: { errors },
+    getValues,
+    reset,
   } = useForm<RegisterFacialForm>({
     resolver: zodResolver(skinAnalysis),
   }) // Set initial values
-  console.log(`ERROR`, errors)
   const { clientId } = useParams()
   const navigate = useNavigate()
 
   const { mutateAsync: postSkinForm } = useMutation({
     mutationFn: registerSkinForm,
   })
+  console.log('Errors', errors)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${env.VITE_API_URL}/get-skin-form?clientId=${clientId}`);
+        console.log('Dados carregados:', response.data)
+        if(response.data){
+          const newData = FacialFormFactory(response.data)
+          reset({...response.data, "skinInvolution": {
+            "skinInvolutionLine": {
+                "type": response.data.skinInvolutionLine !== null,
+                "typeDescription": response.data.skinInvolutionLine ?? undefined
+            },
+            "skinInvolutionSulcus": {
+                "type": response.data.skinInvolutionSulcus !== null,
+                "typeDescription": response.data.skinInvolutionSulcus ?? undefined
+            }
+          },
+          others: response.data.others ?? undefined,
+          skinColors:  response.data.skinColors ?? undefined
+        });
+          console.log('Dados carregados:', response.data)
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+      }
+    };
+
+    fetchData();
+  }, [reset]);
 
   async function handleRegisterClient(data: Partial<RegisterFacialForm>) {
     try {
@@ -456,6 +490,7 @@ const FacialForm = () => {
                       className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
                       id={involution.id}
                       value={involution.label}
+                      checked={getValues(`skinInvolution.${involution.typeName}.type`)}
                       onChange={(e) => checkboxValueHandler(e, field)}
                     />
                   )}
