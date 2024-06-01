@@ -1,16 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { registerSkinForm } from '@/api/clientsForm'
+import { registerSkinForm, updateSkinForm } from '@/api/clientsForm'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { env } from '../../../env'
 import {
   acneGrades,
   bloodVessels,
@@ -35,6 +33,7 @@ import {
   tyrichosis,
 } from './constants/constants'
 import { FacialFormFactory } from './factory/factory'
+import { useGetSkinForm } from './useCases/useGetSkinForm'
 
 const checkboxValueHandler = (e, field) => {
   const { checked, value } = e.target
@@ -111,39 +110,39 @@ const FacialForm = () => {
     reset,
   } = useForm<RegisterFacialForm>({
     resolver: zodResolver(skinAnalysis),
-  }) // Set initial values
+  })
   const { clientId } = useParams()
   const navigate = useNavigate()
+  const [ responseData, setResponseData ] = useState()
 
   const { mutateAsync: postSkinForm } = useMutation({
     mutationFn: registerSkinForm,
   })
+
+  const { mutateAsync: putSkinForm } = useMutation({
+    mutationFn: updateSkinForm,
+  })
+
   console.log('Errors', errors)
+  const query = useGetSkinForm(clientId);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${env.VITE_API_URL}/get-skin-form?clientId=${clientId}`);
-console.log('Dados carregados:', response.data)
-        if(response.data){
-          const newData = FacialFormFactory(response)
-          reset(newData);
-          console.log('Dados carregados:', response.data)
-        }
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-
-      }
-    };
-
-    fetchData();
-  }, [reset]);
+    if (query.data) {
+      setResponseData(query.data);
+      const newData = FacialFormFactory(query.data);
+      reset(newData);
+    }
+  }, [reset, query.data]);
 
   async function handleRegisterClient(data: Partial<RegisterFacialForm>) {
     try {
       console.log(`SENT`, data)
-
-      await postSkinForm({ ...data })
+      if(responseData){
+        console.log('beforeMUTATION', data)
+        await putSkinForm(responseData.id,  data)
+      } else {
+        await postSkinForm({ ...data })
+      }
 
       navigate('/')
       toast.success('Cliente cadastrado com sucesso!')
@@ -940,7 +939,7 @@ console.log('Dados carregados:', response.data)
             type="submit"
             className="hover:[#00a27c69] w-80 rounded bg-[#00A27B] px-4 py-2 font-bold text-white"
           >
-            Salvar
+            { responseData ? 'Atualizar' : 'Cadastrar '}
           </button>
         </div>
       </form>

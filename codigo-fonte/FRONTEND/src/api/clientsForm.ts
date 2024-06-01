@@ -50,3 +50,14 @@ export async function signUp(data: SignUpBody) {
 export async function registerSkinForm(data: SkinAnalysis) {
   await api.post(`/skin-form?clientId=${data.clientId}`, data)
 }
+
+
+export async function getSkinForm(clientId: string) {
+  const response = await api.get(`/get-skin-form?clientId=${clientId}`)
+  return response.data
+}
+
+export async function updateSkinForm(skinAnalysisId: string, data: SkinAnalysis) {
+  console.log('enviandoDATA', data)
+  await api.put(`/update-skin-form?skinAnalysisId=${skinAnalysisId}`, data)
+}
