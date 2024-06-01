@@ -136,10 +136,8 @@ const FacialForm = () => {
 
   async function handleRegisterClient(data: Partial<RegisterFacialForm>) {
     try {
-      console.log(`SENT`, data)
-      if(responseData){
-        console.log('beforeMUTATION', data)
-        await putSkinForm(responseData.id,  data)
+      if(query.data){
+        await putSkinForm({ skinAnalysisId: query.data.id, data: data})
       } else {
         await postSkinForm({ ...data })
       }
@@ -939,7 +937,7 @@ const FacialForm = () => {
             type="submit"
             className="hover:[#00a27c69] w-80 rounded bg-[#00A27B] px-4 py-2 font-bold text-white"
           >
-            { responseData ? 'Atualizar' : 'Cadastrar '}
+            { query.data ? 'Atualizar' : 'Cadastrar '}
           </button>
         </div>
       </form>
