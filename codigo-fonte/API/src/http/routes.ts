@@ -8,6 +8,7 @@ import { createHealthQuestionnaire } from "./controllers/create-health-questionn
 import { getAppointment } from "./controllers/get-appointment";
 import { getSkinForm } from "./controllers/get-skin-form";
 import { getUsers } from "./controllers/get-users";
+import { healthQuestionnaireByClientId } from "./controllers/get-health-questionnaire-by-client-id";
 import { skinForm } from "./controllers/skin-form";
 import { updateSkinForm } from "./controllers/update-skin-form";
 import { userProfile } from "./controllers/user-profile";
@@ -39,5 +40,8 @@ export async function appRoutes(app: FastifyInstance) {
   // app.get('/users', { onRequest: [verifyJWT] }, users)
   app.get("/appointment", getAppointment);
   app.post("/appointments", { onRequest: [verifyJWT] }, createAppointment);
-  app.post('/health-questionnairies', createHealthQuestionnaire)
+
+  app.post('/healthQuestionnairies', createHealthQuestionnaire)
+  app.get("/healthQuestionnaireByClientId", healthQuestionnaireByClientId);
+
 }

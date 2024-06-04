@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const questionaryBodySchema = z.object({
+export const getHealthQuestionnaireBodySchema = z.object({
   client_id: z.string(),
   problem_description: z.string().optional(),
   aesthetic_procedure: z.boolean(),
@@ -61,4 +61,10 @@ export const questionaryBodySchema = z.object({
   drink_water: z.string(),
   authorize_photos: z.boolean().optional(),
   authorize_data: z.boolean(),
-});
+})
+
+
+
+export const getHealthQuestionnaireByClientId = z.object({
+  client_id: z.string()
+})
