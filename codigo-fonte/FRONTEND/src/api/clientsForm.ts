@@ -64,3 +64,8 @@ export async function updateSkinForm(updateSkinForm: updateSkinFormProps) {
   console.log('enviandoDATA', updateSkinForm)
   await api.put(`/update-skin-form?skinAnalysisId=${updateSkinForm.skinAnalysisId}`, updateSkinForm.data)
 }
+
+export async function getAppointmentList(clientId: string) {
+  const response = await api.get(`/appointment-list?clientId=${clientId}`)
+  return response.data
+}

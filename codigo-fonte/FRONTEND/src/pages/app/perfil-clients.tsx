@@ -17,12 +17,12 @@ export function PerfilClients() {
     // const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
     // const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    //     const file = event.target.files?.[0]; 
-    
+    //     const file = event.target.files?.[0];
+
     //     if (file) {
-    //         setSelectedImage(file); 
+    //         setSelectedImage(file);
     //     } else {
-    //         setSelectedImage(null); 
+    //         setSelectedImage(null);
     //     }
     // };
 
@@ -32,7 +32,7 @@ export function PerfilClients() {
 
     // const { clientId } = useParams();
     const navigate = useNavigate();
-  
+
 
     return (
         <div className="flex flex-col justify-center">
@@ -53,7 +53,7 @@ export function PerfilClients() {
                     </div>
                 </div>
                 <div className="flex flex-col justify-around">
-                    <Button>
+                    <Button onClick={() => navigate('/apportionments-list/${id}')}>
                         <p>Histórico do cliente</p>
                     </Button>
                 </div>
