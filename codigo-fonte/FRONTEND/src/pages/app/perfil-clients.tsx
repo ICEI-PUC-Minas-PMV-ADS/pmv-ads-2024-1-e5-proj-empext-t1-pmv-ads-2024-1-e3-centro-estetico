@@ -65,10 +65,6 @@ export function PerfilClients() {
         return <p>Loading...</p>;
     }
 
-    if (error) {
-        return <p>Error: {error}</p>;
-    }
-
     return (
         <div className="flex flex-col justify-center">
             <div className='flex justify-end'>
