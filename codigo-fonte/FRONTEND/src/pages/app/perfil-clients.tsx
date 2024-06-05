@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
+import { ButtonWithIcon } from '@/components/button-with-icon';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { useUser } from '@/context/UserContext';
-import { useNavigate, useParams } from 'react-router-dom';
-import imgPerson from '../../assets/imgPerson.svg';
-import newTreatment from '../../assets/newTreatment.svg';
-import { ButtonWithIcon } from "@/components/button-with-icon";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Phone, Info } from "lucide-react";
-import { ReactSVG } from "react-svg";
 import { useTitle } from '@/hooks/useTitle';
 import { TitleOfPages } from '@/utils/titleOfPages';
+import axios from 'axios';
+import { Info, Phone } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
+import imgPerson from '../../assets/imgPerson.svg';
+import newTreatment from '../../assets/newTreatment.svg';
+import { env } from '../../env';
 
 export function PerfilClients() {
     const { users } = useUser();
@@ -21,7 +23,6 @@ export function PerfilClients() {
 
     const [healthQuestionnaire, setHealthQuestionnaire] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
 
     const navigateUpdatingHeader = (path: string, title: string) => {
@@ -32,29 +33,20 @@ export function PerfilClients() {
     useEffect(() => {
         async function fetchHealthQuestionnaire() {
             try {
-                const response = await fetch(`http://localhost:3333/healthQuestionnaireByClientId?client_id=${id}`);
-                
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch health questionnaire: ${response.status} ${response.statusText}`);
-                }
+                const response = await axios.get(`${env.VITE_API_URL}/healthQuestionnaireByClientId?client_id=${id}`);
 
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Received non-JSON response');
-                }
 
-                const data = await response.json();
+                const data = await response.data;
                 setHealthQuestionnaire(data);
             } catch (error) {
-                setError(error.message);
+                throw new Error(`Failed to fetch health questionnaire: ${error}`);
             } finally {
                 setLoading(false);
             }
         }
 
-        if (id) {
-            fetchHealthQuestionnaire();
-        }
+         fetchHealthQuestionnaire();
+
     }, [id]);
 
     const handleHealthQuestionnaireClick = () => {

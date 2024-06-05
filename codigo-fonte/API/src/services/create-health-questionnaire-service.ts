@@ -1,7 +1,7 @@
 import { IHealthQuestionnairiesRepository } from "@/repositories/interfaces/ihealth-questionnairies-repository";
 
 export type CreateHealthQuestionnaireServiceType = {
-  clientId: string;
+  client_id: string;
   problem_description?: string;
   aesthetic_procedure: boolean;
   aesthetic_procedure_description?: string;
@@ -88,13 +88,13 @@ export class CreateHealthQuestionnaireService implements ICreateHealthQuestionna
   async buildhealthQuestionnaireData(
     healthQuestionnaireInputData: CreateHealthQuestionnaireServiceType
   ) {
-    const {  clientId, ...healthQuestionnaireDataWithoutIds } =
+    const {  client_id, ...healthQuestionnaireDataWithoutIds } =
       healthQuestionnaireInputData;
 
     const healthQuestionnaireData = {
       ...healthQuestionnaireDataWithoutIds,
       Client: {
-        connect: { id: clientId },
+        connect: { id: client_id },
       },
     }
 

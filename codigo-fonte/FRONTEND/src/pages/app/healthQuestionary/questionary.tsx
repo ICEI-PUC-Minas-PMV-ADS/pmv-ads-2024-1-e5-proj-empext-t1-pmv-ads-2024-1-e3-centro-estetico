@@ -112,7 +112,7 @@ export function Questionary() {
       }
       const { ...regData } = data
       const questionaryData = {
-        clientId: id,
+        client_id: id,
         authorizePhotos: false,
         ...data,
       }
