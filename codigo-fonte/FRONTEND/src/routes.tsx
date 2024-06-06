@@ -14,6 +14,8 @@ import { NotificationsForm } from './pages/app/notification'
 import { PerfilClients } from './pages/app/perfil-clients'
 import { Perfil } from './pages/app/perfil/perfil'
 import { HistoryAppointment } from './pages/app/history/historyAppointment'
+import PatientInfo from './pages/app/info-clients'
+import { ViewQuestionnaire } from './pages/app/healthQuestionary/view-questionnaire';
 
 
 export const router = createBrowserRouter([
@@ -36,12 +38,10 @@ export const router = createBrowserRouter([
         element: <PerfilClients />,
       },
       {
-
         path: '/perfil-users/:id/questionary',
         element: <Questionary />
       },
      {
-
         path: '/perfil',
         element: <Perfil/>,
       },
@@ -50,16 +50,21 @@ export const router = createBrowserRouter([
         element: <Appointment />
       },
       {
-
         path: '/facial-form/:clientId',
         element: <FacialForm />,
       },
-
       {
-
         path: '/history-appointment',
         element: <HistoryAppointment />,
       },
+      {
+        path: '/perfil-users/:id/info-client',
+        element: <PatientInfo />,
+      },
+      {
+        path: '/perfil-users/:id/view-questionnaire',
+        element: <ViewQuestionnaire />,
+      }
     ],
   },
   {

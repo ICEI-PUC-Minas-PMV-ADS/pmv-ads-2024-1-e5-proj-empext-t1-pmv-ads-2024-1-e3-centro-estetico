@@ -61,7 +61,6 @@ interface HealthQuestionnaire {
   drink_water: string;
   authorize_photos?: boolean;
   authorize_data: boolean;
-  
 }
 
 
