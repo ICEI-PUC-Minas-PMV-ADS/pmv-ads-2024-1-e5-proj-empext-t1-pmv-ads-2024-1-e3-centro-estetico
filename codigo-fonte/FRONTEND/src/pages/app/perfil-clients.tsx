@@ -84,7 +84,7 @@ export function PerfilClients() {
                         <p className='font-semibold pt-2 pl-2'>{user?.phone}</p>
                     </div>
                     <div className="flex flex-col justify-around">
-                        <Button>
+                        <Button onClick={() => navigate(`/apportionments-list/${id}`)}>
                             <p>Histórico do cliente</p>
                         </Button>
                     </div>

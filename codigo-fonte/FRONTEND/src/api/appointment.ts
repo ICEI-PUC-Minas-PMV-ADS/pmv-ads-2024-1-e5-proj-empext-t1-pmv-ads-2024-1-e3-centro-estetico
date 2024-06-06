@@ -48,3 +48,8 @@ export interface Appointment {
 export async function createAppointment(data: Appointment) {
   await api.post("/appointments", { ...data, user_type: "Client" });
 }
+
+export async function getAppointmentList(clientId: string) {
+  const response = await api.get(`/appointment-list?clientId=${clientId}`)
+  return response.data
+}
