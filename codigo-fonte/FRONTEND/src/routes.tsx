@@ -55,7 +55,7 @@ export const router = createBrowserRouter([
         element: <FacialForm />,
       },
       {
-        path: '/history-appointment',
+        path: '/history-appointment/:appointmentId',
         element: <HistoryAppointment />,
       },
       {
@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
       {
         path: '/perfil-users/:id/view-questionnaire',
         element: <ViewQuestionnaire />,
-      }
+      },
       {
         path: '/appointments-list/:clientId',
         element: <AppointmentsList />,

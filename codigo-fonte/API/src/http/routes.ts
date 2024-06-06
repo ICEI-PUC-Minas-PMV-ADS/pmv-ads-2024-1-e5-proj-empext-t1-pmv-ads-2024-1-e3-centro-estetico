@@ -39,6 +39,8 @@ export async function appRoutes(app: FastifyInstance) {
 
   // app.get('/users', { onRequest: [verifyJWT] }, users)
   app.get("/appointment", getAppointment);
+  // app.get("/appointments-list", getAllAppointments); // frontendEsperando este cara
+
   app.post("/appointments", { onRequest: [verifyJWT] }, createAppointment);
 
   app.post('/health-questionnairies', createHealthQuestionnaire)

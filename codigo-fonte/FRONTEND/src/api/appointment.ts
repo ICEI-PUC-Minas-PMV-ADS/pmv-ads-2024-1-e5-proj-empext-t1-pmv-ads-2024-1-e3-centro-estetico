@@ -49,7 +49,7 @@ export async function createAppointment(data: Appointment) {
   await api.post("/appointments", { ...data, user_type: "Client" });
 }
 
-export async function getAppointmentList(clientId: string) {
-  const response = await api.get(`/appointment-list?clientId=${clientId}`)
+export async function getAppointmentsList(clientId: string) {
+  const response = await api.get(`/appointments-list?clientId=${clientId}`)
   return response.data
 }

@@ -1,10 +1,11 @@
-import { Helmet } from 'react-helmet-async'
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
-import { env } from '../../../env'
-import axios from 'axios';
-import { ViewFacialForm } from '../appointment/viewFacialForm';
 import formatDate from '@/utils/dateConversion';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { env } from '../../../env';
+import { ViewFacialForm } from '../appointment/viewFacialForm';
 
 
 type Appointment = {
@@ -64,10 +65,7 @@ type Client = {
 export function HistoryAppointment() {
   const [appointment, setAppointment] = useState<Appointment>()
   const [client, setClient] = useState<Client>()
-
-  //Quando existir a tela de histórico, ajustar para passar o ID da consulta de forma dinâmica
-
-  const [appointmentId, setAppointmentId] = useState<string>('bf1da5f3-832a-44c2-a802-3b5bd977f76b')
+  const { appointmentId } = useParams()
 
   useMemo(async () => {
     try {
