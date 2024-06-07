@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { env } from '../../../env';
 import { ViewFacialForm } from '../appointment/viewFacialForm';
+import { ViewBodyForm } from '../appointment/viewBodyForm';
 
 
 type Appointment = {
@@ -19,43 +20,109 @@ type Appointment = {
   appointment_type: 'Hair' | 'Skin' | 'Body'
   client_id: string
   user_id: string,
-  image_data: {
-    leftFace0?: boolean
-    leftFace1?: boolean
-    leftFace2?: boolean
-    leftFace3?: boolean
-    leftFace4?: boolean
-    leftFace5?: boolean
-    leftFace6?: boolean
-    leftFace7?: boolean
-    leftFace8?: boolean
-    leftFace9?: boolean
-    leftFace10?: boolean
-    rightFace0?: boolean
-    rightFace1?: boolean
-    rightFace2?: boolean
-    rightFace3?: boolean
-    rightFace4?: boolean
-    rightFace5?: boolean
-    rightFace6?: boolean
-    rightFace7?: boolean
-    rightFace8?: boolean
-    rightFace9?: boolean
-    rightFace10?: boolean
-    frontFace0?: boolean
-    frontFace1?: boolean
-    frontFace2?: boolean
-    frontFace3?: boolean
-    frontFace4?: boolean
-    frontFace5?: boolean
-    frontFace6?: boolean
-    frontFace7?: boolean
-    frontFace8?: boolean
-    frontFace9?: boolean
-    frontFace10?: boolean
-    frontFace11?: boolean
-  }
 }
+
+export type AppointmentSkinData = {
+  appointmentId: string;
+  leftFace0: boolean;
+  leftFace1: boolean;
+  leftFace2: boolean;
+  leftFace3: boolean;
+  leftFace4: boolean;
+  leftFace5: boolean;
+  leftFace6: boolean;
+  leftFace7: boolean;
+  leftFace8: boolean;
+  leftFace9: boolean;
+  leftFace10: boolean;
+  rightFace0: boolean;
+  rightFace1: boolean;
+  rightFace2: boolean;
+  rightFace3: boolean;
+  rightFace4: boolean;
+  rightFace5: boolean;
+  rightFace6: boolean;
+  rightFace7: boolean;
+  rightFace8: boolean;
+  rightFace9: boolean;
+  rightFace10: boolean;
+  frontFace0: boolean;
+  frontFace1: boolean;
+  frontFace2: boolean;
+  frontFace3: boolean;
+  frontFace4: boolean;
+  frontFace5: boolean;
+  frontFace6: boolean;
+  frontFace7: boolean;
+  frontFace8: boolean;
+  frontFace9: boolean;
+  frontFace10: boolean;
+  frontFace11: boolean;
+};
+
+export type AppointmentBodyData = {
+  appointmentId: string;
+  backBody0: boolean;
+  backBody1: boolean;
+  backBody2: boolean;
+  backBody3: boolean;
+  backBody4: boolean;
+  backBody5: boolean;
+  backBody6: boolean;
+  backBody7: boolean;
+  backBody8: boolean;
+  backBody9: boolean;
+  backBody10: boolean;
+  backBody11: boolean;
+  backBody12: boolean;
+  backBody13: boolean;
+  backBody14: boolean;
+  backBody15: boolean;
+  backBody16: boolean;
+  backBody17: boolean;
+  backBody18: boolean;
+  backBody19: boolean;
+  backBody20: boolean;
+  backBody21: boolean;
+  frontBody0: boolean;
+  frontBody1: boolean;
+  frontBody2: boolean;
+  frontBody3: boolean;
+  frontBody4: boolean;
+  frontBody5: boolean;
+  frontBody6: boolean;
+  frontBody7: boolean;
+  frontBody8: boolean;
+  frontBody9: boolean;
+  frontBody10: boolean;
+  frontBody11: boolean;
+  frontBody12: boolean;
+  frontBody13: boolean;
+  frontBody14: boolean;
+  frontBody15: boolean;
+  frontBody16: boolean;
+  frontBody17: boolean;
+  frontBody18: boolean;
+  frontBody19: boolean;
+  frontBody20: boolean;
+  frontBody21: boolean;
+  abdomenTop?: number;       
+  abdomenBottom?: number;
+  waist?: number;             
+  hip?: number;               
+  upperLegProxRight?: number; 
+  upperLegProxLeft?: number;  
+  mediumLegRight?: number;    
+  mediumLegLeft?: number;     
+  distalLegRight?: number;    
+  distalLegLeft?: number;     
+  legRight?: number;          
+  legLeft?: number;           
+  armRight?: number;          
+  armLeft?: number;           
+  chestRight?: number;        
+  chestLeft?: number;         
+};
 
 type Client = {
   name: string
@@ -64,6 +131,8 @@ type Client = {
 
 export function HistoryAppointment() {
   const [appointment, setAppointment] = useState<Appointment>()
+  const [appointmentSkinData, setAppointmentSkinData] = useState<AppointmentSkinData>()
+  const [appointmentBodyData, setAppointmentBodyData] = useState<AppointmentBodyData>()
   const [client, setClient] = useState<Client>()
   const { appointmentId } = useParams()
 
@@ -72,6 +141,15 @@ export function HistoryAppointment() {
       if(appointmentId !== '') {
         const response = await axios.get(`${env.VITE_API_URL}/appointment?id=${appointmentId}`);
         setAppointment(response.data)
+
+        if(response.data.appointment_type === 'Skin') {
+          const responseSkin = await axios.get(`${env.VITE_API_URL}/appointment-skin-data?id=${response.data.id}`);
+          setAppointmentSkinData(responseSkin.data)
+        } else if(response.data.appointment_type === 'Body') {
+          const responseBody = await axios.get(`${env.VITE_API_URL}/appointment-body-data?id=${response.data.id}`);
+          setAppointmentBodyData(responseBody.data)
+        }
+
       }
     } catch (error: any) {
       console.error('Erro ao buscar a consulta', error);
@@ -187,7 +265,13 @@ export function HistoryAppointment() {
 
       {
         (appointment?.appointment_type === 'Skin') && <ViewFacialForm
-          faceSelections={appointment.image_data}
+          faceSelections={{...appointmentSkinData}}
+        />
+      }
+
+      {
+        (appointment?.appointment_type === 'Body') && <ViewBodyForm
+          bodySelections={{...appointmentBodyData}}
         />
       }
 

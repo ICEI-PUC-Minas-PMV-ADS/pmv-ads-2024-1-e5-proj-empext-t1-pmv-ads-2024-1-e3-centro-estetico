@@ -4,6 +4,8 @@ import ArrowRight from './assets/arrow.svg';
 import Calendar from './assets/calendar.svg';
 
 import Time from './assets/Time.svg';
+import { useTitle } from '@/hooks/useTitle';
+import { TitleOfPages } from '@/utils/titleOfPages';
 // import { Container } from './styles';
 
 const AppointmentsList = () => {
@@ -12,6 +14,12 @@ const AppointmentsList = () => {
   //Quando houver backend Substituir query mockada por
   // const query = useGetAppointmentList(id);
   const navigate = useNavigate();
+  const { setTitle } = useTitle();
+
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title)
+    navigate(path)
+  }
 
  const query = [
     {
@@ -50,7 +58,7 @@ const AppointmentsList = () => {
       </h1>
       {query.map((item) => (
         <div key={item.id}>
-            <div className="inline-block h-20 bg-white border border-blue-600 rounded-md shadow-sm mr-4 mb-4 w-72 text-sm" onClick={() => navigate(`/history-appointment/${item.id}`)}>
+            <div className="inline-block h-20 bg-white border border-blue-600 rounded-md shadow-sm mr-4 mb-4 w-72 text-sm" onClick={() => navigateUpdatingHeader(`/history-appointment/${item.id}`, item.specialty)}>
               <div className='mr-2 ml-2'>
                 <div className='mb-2 flex justify-between font-bold'>
                   <div className='mb-4 mt-2 flex'> <ReactSVG src={Calendar}/> {formatDate(item.appointment_date)} </div>

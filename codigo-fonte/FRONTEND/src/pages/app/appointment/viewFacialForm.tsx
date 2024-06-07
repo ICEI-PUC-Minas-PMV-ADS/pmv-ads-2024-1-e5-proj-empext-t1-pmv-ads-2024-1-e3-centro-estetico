@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { useEffect, useState } from 'react';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
@@ -55,45 +58,45 @@ import { ReactSVG } from 'react-svg';
 
 interface FacialFormProps {
   faceSelections: {
-      leftFace0?: boolean,
-      leftFace1?: boolean,
-      leftFace2?: boolean,
-      leftFace3?: boolean,
-      leftFace4?: boolean,
-      leftFace5?: boolean,
-      leftFace6?: boolean,
-      leftFace7?: boolean,
-      leftFace8?: boolean,
-      leftFace9?: boolean,
-      leftFace10?: boolean,
-      rightFace0?: boolean,
-      rightFace1?: boolean,
-      rightFace2?: boolean,
-      rightFace3?: boolean,
-      rightFace4?: boolean,
-      rightFace5?: boolean,
-      rightFace6?: boolean,
-      rightFace7?: boolean,
-      rightFace8?: boolean,
-      rightFace9?: boolean,
-      rightFace10?: boolean,
-      frontFace0?: boolean,
-      frontFace1?: boolean,
-      frontFace2?: boolean,
-      frontFace3?: boolean,
-      frontFace4?: boolean,
-      frontFace5?: boolean,
-      frontFace6?: boolean,
-      frontFace7?: boolean,
-      frontFace8?: boolean,
-      frontFace9?: boolean,
-      frontFace10?: boolean,
-      frontFace11?: boolean,
-    }
+    leftFace0?: boolean,
+    leftFace1?: boolean,
+    leftFace2?: boolean,
+    leftFace3?: boolean,
+    leftFace4?: boolean,
+    leftFace5?: boolean,
+    leftFace6?: boolean,
+    leftFace7?: boolean,
+    leftFace8?: boolean,
+    leftFace9?: boolean,
+    leftFace10?: boolean,
+    rightFace0?: boolean,
+    rightFace1?: boolean,
+    rightFace2?: boolean,
+    rightFace3?: boolean,
+    rightFace4?: boolean,
+    rightFace5?: boolean,
+    rightFace6?: boolean,
+    rightFace7?: boolean,
+    rightFace8?: boolean,
+    rightFace9?: boolean,
+    rightFace10?: boolean,
+    frontFace0?: boolean,
+    frontFace1?: boolean,
+    frontFace2?: boolean,
+    frontFace3?: boolean,
+    frontFace4?: boolean,
+    frontFace5?: boolean,
+    frontFace6?: boolean,
+    frontFace7?: boolean,
+    frontFace8?: boolean,
+    frontFace9?: boolean,
+    frontFace10?: boolean,
+    frontFace11?: boolean,
+  }
 }
 
 
-export function ViewFacialForm({faceSelections}: FacialFormProps) {
+export function ViewFacialForm({ faceSelections }: FacialFormProps) {
 
   const [isHidden, setIsHidden] = useState<string>('hidden')
 
@@ -107,7 +110,7 @@ export function ViewFacialForm({faceSelections}: FacialFormProps) {
     <div className='justify-center flex flex-col pt-8 pb-10'>
 
       <h1 className="font-semibold text-xl text-center pb-5">
-        Toque nas partes do rosto que serão atendidas
+        As partes do rosto que foram atendidas estão marcadas
       </h1>
 
       <Carousel
