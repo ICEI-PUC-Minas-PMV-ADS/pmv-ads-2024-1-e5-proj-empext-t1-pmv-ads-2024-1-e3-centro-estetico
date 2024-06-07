@@ -1,4 +1,4 @@
-import { api } from '@/lib/axios'
+import { api } from '@/lib/axios';
 
 export interface SignUpBody {
   name: string
@@ -42,11 +42,24 @@ interface SkinAnalysis {
   others?: string; // Outros
   additionalInformation?: string; // Observações
 }
-
+interface updateSkinFormProps {
+  data: SkinAnalysis;
+  skinAnalysisId: string;
+}
 export async function signUp(data: SignUpBody) {
   await api.post('/users', { ...data, user_type: 'Client' })
 }
 
 export async function registerSkinForm(data: SkinAnalysis) {
   await api.post(`/skin-form?clientId=${data.clientId}`, data)
+}
+
+
+export async function getSkinForm(clientId: string) {
+  const response = await api.get(`/get-skin-form?clientId=${clientId}`)
+  return response.data
+}
+
+export async function updateSkinForm(updateSkinForm: updateSkinFormProps) {
+  await api.put(`/update-skin-form?skinAnalysisId=${updateSkinForm.skinAnalysisId}`, updateSkinForm.data)
 }

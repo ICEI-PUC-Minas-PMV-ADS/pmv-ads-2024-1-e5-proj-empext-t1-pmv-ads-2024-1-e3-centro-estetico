@@ -13,12 +13,20 @@ type User = {
     phone: string;
     updated_at: string;
     user_id: string;
-}
+};
+
+// Definindo o tipo para o questionário de saúde
+type HealthQuestionnaire = {
+    oncological_history: boolean;
+    diabetes: boolean;
+    cardiac_issues: boolean;
+};
 
 // Definindo o tipo para o contexto do usuário
 type UserContextType = {
   users?: User[];
   setUsers: (users: User[]) => void;
+  getHealthQuestionnaire: (client_id: string) => Promise<HealthQuestionnaire | null>;
 };
 
 // Criando o contexto do usuário
@@ -37,9 +45,24 @@ export const useUser = () => {
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [users, setUsers] = useState<User[]>([]);
 
+  const getHealthQuestionnaire = async (userId: string): Promise<HealthQuestionnaire | null> => {
+    try {
+      const response = await fetch(`/api/healthQuestionnaire/${userId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch health questionnaire');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching health questionnaire:', error);
+      return null;
+    }
+  };
+
   const userContextValue: UserContextType = {
     users,
     setUsers,
+    getHealthQuestionnaire,
   };
 
   return (

@@ -3,17 +3,20 @@ import { createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from './pages/_layouts/app'
 import { AuthLayout } from './pages/_layouts/auth'
 import FacialForm from './pages/app/FacialForm'
+import { Appointment } from './pages/app/appointment/appointment'
+import AppointmentsList from './pages/app/appointmentList/AppointmentList'
 import { Clients } from './pages/app/clients/clients'
 import { Questionary } from './pages/app/healthQuestionary/questionary'
+import { ViewQuestionnaire } from './pages/app/healthQuestionary/view-questionnaire'
+import { HistoryAppointment } from './pages/app/history/historyAppointment'
 import { Homepage } from './pages/app/homepage'
-import { RegisterClients } from './pages/app/register/RegisterClients'
-import { SignIn } from './pages/auth/sign-in'
-import { SignUp } from './pages/auth/sign-up'
-import { Appointment } from './pages/app/appointment/appointment'
+import PatientInfo from './pages/app/info-clients'
 import { NotificationsForm } from './pages/app/notification'
 import { PerfilClients } from './pages/app/perfil-clients'
 import { Perfil } from './pages/app/perfil/perfil'
-import { HistoryAppointment } from './pages/app/history/historyAppointment'
+import { RegisterClients } from './pages/app/register/RegisterClients'
+import { SignIn } from './pages/auth/sign-in'
+import { SignUp } from './pages/auth/sign-up'
 
 
 export const router = createBrowserRouter([
@@ -36,12 +39,10 @@ export const router = createBrowserRouter([
         element: <PerfilClients />,
       },
       {
-
         path: '/perfil-users/:id/questionary',
         element: <Questionary />
       },
      {
-
         path: '/perfil',
         element: <Perfil/>,
       },
@@ -50,15 +51,24 @@ export const router = createBrowserRouter([
         element: <Appointment />
       },
       {
-
         path: '/facial-form/:clientId',
         element: <FacialForm />,
       },
-
       {
-
-        path: '/history-appointment',
+        path: '/history-appointment/:appointmentId',
         element: <HistoryAppointment />,
+      },
+      {
+        path: '/perfil-users/:id/info-client',
+        element: <PatientInfo />,
+      },
+      {
+        path: '/perfil-users/:id/view-questionnaire',
+        element: <ViewQuestionnaire />,
+      },
+      {
+        path: '/appointments-list/:clientId',
+        element: <AppointmentsList />,
       },
     ],
   },

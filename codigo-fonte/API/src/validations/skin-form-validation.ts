@@ -28,3 +28,6 @@ export const registerBodySchema = z.object({
 export const getSkinFormParams = z.object({
   clientId: z.string()
 })
+export const getSkinFormIdParams = z.object({
+  skinAnalysisId: z.string()
+})

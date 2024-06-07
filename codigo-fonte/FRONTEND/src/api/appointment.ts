@@ -125,3 +125,8 @@ export async function createAppointmentSkinData(data: AppointmentSkinData) {
 export async function createAppointmentBodyData(data: AppointmentBodyData) {
   await api.post("/appointment-body-data", { ...data });
 }
+
+export async function getAppointmentsList(clientId: string) {
+  const response = await api.get(`/appointments-list?clientId=${clientId}`)
+  return response.data
+}
