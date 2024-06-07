@@ -159,55 +159,133 @@ model BodyAnalysis {
 }
 
 model AppointmentHistory {
-  id               String          @id @default(uuid())
-  client_id        String
-  user_id          String
-  specialty        String
-  observations     String?
-  appointment_date DateTime        @default(now())
-  appointment_hour String?
-  created_at       DateTime        @default(now())
-  updated_at       DateTime        @updatedAt
-  presencial       Boolean
-  leftFace0        Boolean         @default(false)
-  leftFace1        Boolean         @default(false)
-  leftFace2        Boolean         @default(false)
-  leftFace3        Boolean         @default(false)
-  leftFace4        Boolean         @default(false)
-  leftFace5        Boolean         @default(false)
-  leftFace6        Boolean         @default(false)
-  leftFace7        Boolean         @default(false)
-  leftFace8        Boolean         @default(false)
-  leftFace9        Boolean         @default(false)
-  leftFace10       Boolean         @default(false)
-  rightFace0       Boolean         @default(false)
-  rightFace1       Boolean         @default(false)
-  rightFace2       Boolean         @default(false)
-  rightFace3       Boolean         @default(false)
-  rightFace4       Boolean         @default(false)
-  rightFace5       Boolean         @default(false)
-  rightFace6       Boolean         @default(false)
-  rightFace7       Boolean         @default(false)
-  rightFace8       Boolean         @default(false)
-  rightFace9       Boolean         @default(false)
-  rightFace10      Boolean         @default(false)
-  frontFace0       Boolean         @default(false)
-  frontFace1       Boolean         @default(false)
-  frontFace2       Boolean         @default(false)
-  frontFace3       Boolean         @default(false)
-  frontFace4       Boolean         @default(false)
-  frontFace5       Boolean         @default(false)
-  frontFace6       Boolean         @default(false)
-  frontFace7       Boolean         @default(false)
-  frontFace8       Boolean         @default(false)
-  frontFace9       Boolean         @default(false)
-  frontFace10      Boolean         @default(false)
-  frontFace11      Boolean         @default(false)
-  appointment_type AppointmentType
-  User             User            @relation(fields: [user_id], references: [id])
-  Client           Client          @relation(fields: [client_id], references: [id])
+  id                  String                @id @default(uuid())
+  client_id           String
+  user_id             String
+  specialty           String
+  observations        String?
+  appointment_date    DateTime              @default(now())
+  appointment_hour    String?
+  created_at          DateTime              @default(now())
+  updated_at          DateTime              @updatedAt
+  presencial          Boolean
+  appointment_type    AppointmentType
+  User                User                  @relation(fields: [user_id], references: [id])
+  Client              Client                @relation(fields: [client_id], references: [id])
+  AppointmentSkinData AppointmentSkinData[]
+  AppointmentBodyData AppointmentBodyData[]
 
   @@map("appointment_history")
+}
+
+model AppointmentSkinData {
+  id             String             @id @default(uuid())
+  appointment_id String
+  leftFace0      Boolean            @default(false)
+  leftFace1      Boolean            @default(false)
+  leftFace2      Boolean            @default(false)
+  leftFace3      Boolean            @default(false)
+  leftFace4      Boolean            @default(false)
+  leftFace5      Boolean            @default(false)
+  leftFace6      Boolean            @default(false)
+  leftFace7      Boolean            @default(false)
+  leftFace8      Boolean            @default(false)
+  leftFace9      Boolean            @default(false)
+  leftFace10     Boolean            @default(false)
+  rightFace0     Boolean            @default(false)
+  rightFace1     Boolean            @default(false)
+  rightFace2     Boolean            @default(false)
+  rightFace3     Boolean            @default(false)
+  rightFace4     Boolean            @default(false)
+  rightFace5     Boolean            @default(false)
+  rightFace6     Boolean            @default(false)
+  rightFace7     Boolean            @default(false)
+  rightFace8     Boolean            @default(false)
+  rightFace9     Boolean            @default(false)
+  rightFace10    Boolean            @default(false)
+  frontFace0     Boolean            @default(false)
+  frontFace1     Boolean            @default(false)
+  frontFace2     Boolean            @default(false)
+  frontFace3     Boolean            @default(false)
+  frontFace4     Boolean            @default(false)
+  frontFace5     Boolean            @default(false)
+  frontFace6     Boolean            @default(false)
+  frontFace7     Boolean            @default(false)
+  frontFace8     Boolean            @default(false)
+  frontFace9     Boolean            @default(false)
+  frontFace10    Boolean            @default(false)
+  frontFace11    Boolean            @default(false)
+  Appointment    AppointmentHistory @relation(fields: [appointment_id], references: [id])
+
+  @@map("appointment_skin_data")
+}
+
+model AppointmentBodyData {
+  id                String             @id @default(uuid())
+  appointment_id    String
+  backBody0         Boolean            @default(false)
+  backBody1         Boolean            @default(false)
+  backBody2         Boolean            @default(false)
+  backBody3         Boolean            @default(false)
+  backBody4         Boolean            @default(false)
+  backBody5         Boolean            @default(false)
+  backBody6         Boolean            @default(false)
+  backBody7         Boolean            @default(false)
+  backBody8         Boolean            @default(false)
+  backBody9         Boolean            @default(false)
+  backBody10        Boolean            @default(false)
+  backBody11        Boolean            @default(false)
+  backBody12        Boolean            @default(false)
+  backBody13        Boolean            @default(false)
+  backBody14        Boolean            @default(false)
+  backBody15        Boolean            @default(false)
+  backBody16        Boolean            @default(false)
+  backBody17        Boolean            @default(false)
+  backBody18        Boolean            @default(false)
+  backBody19        Boolean            @default(false)
+  backBody20        Boolean            @default(false)
+  backBody21        Boolean            @default(false)
+  frontBody0        Boolean            @default(false)
+  frontBody1        Boolean            @default(false)
+  frontBody2        Boolean            @default(false)
+  frontBody3        Boolean            @default(false)
+  frontBody4        Boolean            @default(false)
+  frontBody5        Boolean            @default(false)
+  frontBody6        Boolean            @default(false)
+  frontBody7        Boolean            @default(false)
+  frontBody8        Boolean            @default(false)
+  frontBody9        Boolean            @default(false)
+  frontBody10       Boolean            @default(false)
+  frontBody11       Boolean            @default(false)
+  frontBody12       Boolean            @default(false)
+  frontBody13       Boolean            @default(false)
+  frontBody14       Boolean            @default(false)
+  frontBody15       Boolean            @default(false)
+  frontBody16       Boolean            @default(false)
+  frontBody17       Boolean            @default(false)
+  frontBody18       Boolean            @default(false)
+  frontBody19       Boolean            @default(false)
+  frontBody20       Boolean            @default(false)
+  frontBody21       Boolean            @default(false)
+  abdomenTop        Float?
+  abdomenBottom     Float?
+  waist             Float?
+  hip               Float?
+  upperLegProxRight Float?
+  upperLegProxLeft  Float?
+  mediumLegRight    Float?
+  mediumLegLeft     Float?
+  distalLegRight    Float?
+  distalLegLeft     Float?
+  legRight          Float?
+  legLeft           Float?
+  armRight          Float?
+  armLeft           Float?
+  chestRight        Float?
+  chestLeft         Float?
+  Appointment       AppointmentHistory @relation(fields: [appointment_id], references: [id])
+
+  @@map("appointment_body_data")
 }
 
 model HealthQuestionnaire {
@@ -270,7 +348,7 @@ model HealthQuestionnaire {
   cosmetic                        Boolean
   cosmetic_description            String?
   drink_water                     String
-  authorize_photos                Boolean @default(false)
+  authorize_photos                Boolean  @default(false)
   authorize_data                  Boolean
   created_at                      DateTime @default(now())
   updated_at                      DateTime @updatedAt
