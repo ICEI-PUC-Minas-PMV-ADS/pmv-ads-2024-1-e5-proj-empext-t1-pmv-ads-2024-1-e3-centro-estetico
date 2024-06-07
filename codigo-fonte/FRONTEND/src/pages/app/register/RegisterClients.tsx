@@ -1,6 +1,8 @@
 
 import { registerCLient } from '@/api/sign-up';
 import { Button } from '@/components/ui/button';
+import { useTitle } from '@/hooks/useTitle';
+import { TitleOfPages } from '@/utils/titleOfPages';
 import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -34,8 +36,14 @@ const registerClientForm = z
 type RegisterClientForm = z.infer<typeof registerClientForm>
 
 export function RegisterClients() {
+  const { setTitle } = useTitle();
 
   const navigate = useNavigate()
+
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title)
+    navigate(path)
+  }
 
   const {
     handleSubmit,
@@ -54,7 +62,7 @@ export function RegisterClients() {
     try {
       await reg(data)
 
-      navigate('/')
+      navigateUpdatingHeader('/', TitleOfPages.home)
       toast.success('Cliente cadastrado com sucesso!')
     } catch (error) {
       toast.error('Erro ao cadastrar usuário!')

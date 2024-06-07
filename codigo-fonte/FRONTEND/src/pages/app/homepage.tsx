@@ -52,7 +52,6 @@ export function Homepage() {
       }
     }
   };
-  console.log(users)
   const navigateUpdatingHeader = (path: string, title: string) => {
     setTitle(title)
     navigate(path)

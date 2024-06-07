@@ -4,6 +4,8 @@ import { clientById } from "./controllers/client-by-id";
 import { clientRegister } from "./controllers/client-register";
 import { clients } from "./controllers/clients";
 import { createAppointment } from "./controllers/create-appointment";
+import { createAppointmentSkinData } from "./controllers/create-appointment-skin-data";
+import { createAppointmentBodyData } from "./controllers/create-appointment-body-data";
 import { createHealthQuestionnaire } from "./controllers/create-health-questionnaire";
 import { getAppointment } from "./controllers/get-appointment";
 import { healthQuestionnaireByClientId } from "./controllers/get-health-questionnaire-by-client-id";
@@ -39,11 +41,15 @@ export async function appRoutes(app: FastifyInstance) {
 
   // app.get('/users', { onRequest: [verifyJWT] }, users)
   app.get("/appointment", getAppointment);
-  // app.get("/appointments-list", getAllAppointments); // frontendEsperando este cara
 
   app.post("/appointments", { onRequest: [verifyJWT] }, createAppointment);
+  app.post("/appointment-skin-data", createAppointmentSkinData);
+  app.post("/appointment-body-data", createAppointmentBodyData);
+  // app.get("/appointments-list", getAllAppointments); // frontendEsperando este cara
 
   app.post('/health-questionnairies', createHealthQuestionnaire)
   app.get("/healthQuestionnaireByClientId", healthQuestionnaireByClientId);
+  
+
 
 }

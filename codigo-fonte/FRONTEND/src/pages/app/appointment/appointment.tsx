@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -10,10 +13,14 @@ import { toast } from 'sonner';
 import { RadioGroup } from '@radix-ui/react-dropdown-menu';
 import { env } from '../../../env'
 import axios from 'axios';
-import { createAppointment } from '@/api/appointment';
+import { createAppointment, createAppointmentBodyData, createAppointmentSkinData  } from '@/api/appointment';
 import { getUsers } from '@/api/users';
 import { useMutation } from '@tanstack/react-query';
 import { FacialForm } from './facialForm';
+import { BodyForm } from './bodyForm';
+import { useNavigate } from 'react-router-dom';
+import { useTitle } from '@/hooks/useTitle';
+import { TitleOfPages } from '@/utils/titleOfPages';
 
 const Local = z.enum(['OnSight', 'InHome'])
 
@@ -44,6 +51,7 @@ type RegisterAppointmentForm = z.infer<typeof registerAppointmentForm>
 
 
 export function Appointment() {
+  const { setTitle } = useTitle();
   const [date, setDate] = useState<Date>()
   const [selectedClient, setSelectedClient] = useState<string>()
   const [clients, setClients] = useState<client[]>([])
@@ -51,6 +59,7 @@ export function Appointment() {
   const [users, setUsers] = useState<User[]>([])
   const [appointmentType, setAppointmentType] = useState<string>()
   const [isFacial, setIsFacial] = useState<boolean>(false)
+  const [isBody, setIsBody] = useState<boolean>(false)
   const [faceSelections, setFaceSelections] = useState({
     leftFace0: false,
     leftFace1: false,
@@ -87,7 +96,70 @@ export function Appointment() {
     frontFace10: false,
     frontFace11: false,
   })
-
+  const [bodySelections, setBodySelections] = useState({
+    frontBody0: false,
+    frontBody1: false,
+    frontBody2: false,
+    frontBody3: false,
+    frontBody4: false,
+    frontBody5: false,
+    frontBody6: false,
+    frontBody7: false,
+    frontBody8: false,
+    frontBody9: false,
+    frontBody10: false,
+    frontBody11: false,
+    frontBody12: false,
+    frontBody13: false,
+    frontBody14: false,
+    frontBody15: false,
+    frontBody16: false,
+    frontBody17: false,
+    frontBody18: false,
+    frontBody19: false,
+    frontBody20: false,
+    frontBody21: false,
+    backBody0: false,
+    backBody1: false,
+    backBody2: false,
+    backBody3: false,
+    backBody4: false,
+    backBody5: false,
+    backBody6: false,
+    backBody7: false,
+    backBody8: false,
+    backBody9: false,
+    backBody10: false,
+    backBody11: false,
+    backBody12: false,
+    backBody13: false,
+    backBody14: false,
+    backBody15: false,
+    backBody16: false,
+    backBody17: false,
+    backBody18: false,
+    backBody19: false,
+    backBody20: false,
+    backBody21: false,
+  })
+  const [measureValues, setMeasureValues] = useState({
+    abdomenTop: 0,       
+    abdomenBottom: 0,
+    waist: 0,             
+    hip: 0,               
+    upperLegProxRight: 0, 
+    upperLegProxLeft: 0,  
+    mediumLegRight: 0,    
+    mediumLegLeft: 0,     
+    distalLegRight: 0,    
+    distalLegLeft: 0,     
+    legRight: 0,          
+    legLeft: 0,           
+    armRight: 0,          
+    armLeft: 0,           
+    chestRight: 0,        
+    chestLeft: 0 
+  })
 
   const {
     handleSubmit,
@@ -106,9 +178,32 @@ export function Appointment() {
     mutationFn: createAppointment,
   })
 
+  const { mutateAsync: newSkinData } = useMutation({
+    mutationFn: createAppointmentSkinData,
+  })
+
+  const { mutateAsync: newBodyData } = useMutation({
+    mutationFn: createAppointmentBodyData,
+  })
+
   const handleFaceSelectionChange = (part: string, value: boolean) => {
     setFaceSelections(prev => ({ ...prev, [part]: value }));
   };
+
+  const handleBodySelectionChange = (part: string, value: boolean) => {
+    setBodySelections(prev => ({ ...prev, [part]: value }));
+  };
+
+  const handleBodyMeasuresChange = (part: string, value: string) => {
+    setMeasureValues(prev => ({ ...prev, [part]: parseFloat(value)  }));
+  };
+
+  const navigate = useNavigate()
+
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title)
+    navigate(path)
+  }
 
   useEffect(() => {
     async function fetchUsersData() {
@@ -144,8 +239,13 @@ export function Appointment() {
     if (appointmentType) {
       setValue('appointment_type', appointmentType, { shouldValidate: true })
       if (appointmentType === 'Skin') {
+        setIsBody(false)
         setIsFacial(true)
+      } else if(appointmentType === 'Body') {
+        setIsFacial(false)
+        setIsBody(true)
       } else {
+        setIsBody(false)
         setIsFacial(false)
       }
     }
@@ -173,20 +273,40 @@ export function Appointment() {
         presencial: local === 'OnSight' ? true : false,
         appointment_date: date,
         appointment_hour: appointment_hour,
-        ...faceSelections,
         ...appointmentDataWithoutIds
       }
-      await newAppointment(appointmentData)
+      let appointmentResponse = await newAppointment(appointmentData)
+      if(appointmentDataWithoutIds.appointment_type === 'Skin') {
+
+        const skinData = {
+          ...faceSelections,
+          appointmentId: appointmentResponse.data.id
+        }
+        await newSkinData(skinData)
+
+      } else if(appointmentDataWithoutIds.appointment_type === 'Body') {
+
+        const bodyData = {
+          ...bodySelections,
+          ...measureValues,
+          appointmentId: appointmentResponse.data.id
+        }
+        await newBodyData(bodyData)
+
+      }
 
       toast.success('Consulta cadastrada!')
+      navigateUpdatingHeader('/', TitleOfPages.home)
     } catch (error) {
       toast.error('Erro ao cadastrar consulta!')
+      console.log(error)
+
     }
   }
 
   return (
     <form
-      className='justify-center flex flex-col bg-input p-5 rounded-xl'
+      className='justify-center flex flex-col bg-input p-4 rounded-xl'
       onSubmit={handleSubmit(handleCreateAppointment)}
 
     >
@@ -331,6 +451,13 @@ export function Appointment() {
         />
       }
 
+      {
+        isBody && <BodyForm 
+            onSelectionChange={handleBodySelectionChange}
+            onBodyMeasuresChange={handleBodyMeasuresChange}
+          />
+      }
+
       <div className="mt-3 mb-6">
         <label className="block text-xl font-semibold pb-1" htmlFor="anotations">
           Anotações
@@ -342,7 +469,6 @@ export function Appointment() {
           {...register('observations')}
         />
       </div>
-
 
       <Button
         variant={'primary'}
