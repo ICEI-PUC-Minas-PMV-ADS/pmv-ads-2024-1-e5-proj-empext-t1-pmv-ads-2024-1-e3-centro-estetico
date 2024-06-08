@@ -56,13 +56,13 @@ Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da e
 | Caso de Teste | CT-07 - Cadastrar questionário de saúde |
 |---------------|-------------------------------------------------------------------------------|
 | Requisitos Associados |  `RF-002` - O sistema possuirá questionário de saúde para preenchimento do cliente		|
-| Objetivos do teste | Cadastrar corretamente questionário de saúde |
-| Passos | 1) Fazer login caso deslogado <br> 2) Digitar nome do cliente desejado no input da homePage <br> 3) Selecionar o cliente <br> 4) Clicar na opção "questionário de saúde" <br>  5) Preencher alguns campos obrigatórios e não obrigatórios <br> 6) Clicar no botão "Enviar" <br> |
-| Critérios com êxito | Verificar se as validações estão corretas, se há algum aviso de que algum campo não foi devidamente marcado. <br> Verificar se ao clicar no botão "enviar", de fato manda os dados pro banco de dados. |
+| Objetivos do teste | Verificar a existência ou não de um Questionáio e caso não, cadastrar corretamente questionário de saúde  |
+| Passos | 1) Fazer login caso deslogado <br> 2) Digitar nome do cliente desejado no input da homePage <br> 3) Selecionar o cliente <br> 4) Clicar na opção "Questionário de saúde" <br>  5) Preencher alguns campos obrigatórios e não obrigatórios <br> 6) Clicar no botão "Enviar" <br> 7) Acessar o perfil do cliente <br> 8) Clicar na opção "Questionário de saúde" <br> |
+| Critérios com êxito | Verificar se há um questionário já cadastrado ao clicar no botão, se aparecer um pop-up é porque não há nenhum cadastrado ainda <br> Verificar se as validações estão corretas, se há algum aviso de que algum campo não foi devidamente marcado <br> Verificar se ao clicar no botão "enviar", de fato manda os dados pro banco de dados <br> Verificar se após o cadastro de questionário, ao clicar no botão "Questionário de saúde, aparece o pop-up, caso não, verificar se as informações puxadas do banco, coincidem com os dados apresentados |
 
 Resultado do Teste:
 
-- Validação dos dados: OK, mas a Queixa Principal apresenta problemas em armazenar o texto inserido.
+- Validação dos dados: OK.
 
 - Os campos obrigatórios possuem tratamento de obrigatoriedade funcionando corretamente.
 
@@ -86,6 +86,15 @@ Resultado do Teste:
 | Objetivos do teste | Mostrar as últimas medidas corporais na sessão "Últimas medidas corporais" na tela de perfil do cliente |
 | Passos | 1) Fazer login caso deslogado <br> 2) Cadastrar o cliente se necessário <br> 3) Digitar o nome do cliente para acessar o perfil dele <br> 4) Acessar as "Últimas medidas corporais" <br> |
 | Critérios com êxito | Verificar se os dados exibidos são referentes a consulta referenciada anteriormente no histórico <br> Verificar posição das imagens <br> Validar se a tela e visualização seguem os paradigmas da usabilidade <br> |
+
+* Caso de Teste 10:
+
+| Caso de Teste | CT-10 - Novas fichas recebidas |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-002` - O sistema possuirá questionário de saúde para preenchimento do cliente		|
+| Objetivos do teste | Ao cadastrar uma ficha de Questionário de saúde, notificar a esteticista na página "Novas fichas recebidas" |
+| Passos | 1) Fazer login caso deslogado <br> 2) Cadastrar o cliente se necessário <br> 3) Cadastrar um questionário de saúde <br> 4) Acessar "Novas fichas recebida" <br> |
+| Critérios com êxito | Verificar se os dados exibidos são referentes ao último questionário de saúde cadastrado <br> Verificar se as informações puxadas do banco, coincidem com os dados apresentados <br> |
 
  
 # Evidências de Testes de Software
