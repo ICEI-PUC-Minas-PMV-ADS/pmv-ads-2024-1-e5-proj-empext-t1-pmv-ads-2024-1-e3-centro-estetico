@@ -55,7 +55,6 @@ export async function appRoutes(app: FastifyInstance) {
   app.get("/appointment-skin-data", getAppointmentSkinData);
   app.get("/appointment-body-data", getAppointmentBodyData);
   app.get("/last-body-appointment", getLastBodyAppointment);
-  // app.get("/appointments-list", getAllAppointments); // frontendEsperando este cara
 
   app.post('/health-questionnairies', createHealthQuestionnaire)
   app.get("/healthQuestionnaireByClientId", healthQuestionnaireByClientId);
