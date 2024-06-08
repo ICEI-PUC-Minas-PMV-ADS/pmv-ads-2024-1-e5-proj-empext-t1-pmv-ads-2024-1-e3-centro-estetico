@@ -4,7 +4,6 @@ export const getAppointmentParams = z.object({
   id: z.string()
 })
 
-
 export const AppointmentType = z.enum(['Hair', 'Skin', 'Body']);
 
 export const registerBodySchema = z.object({
@@ -105,20 +104,20 @@ export const registerBodyBodyDataSchema = z.object({
   frontBody19: z.boolean(),
   frontBody20: z.boolean(),
   frontBody21: z.boolean(),
-  abdomenTop: z.number().optional(),      
-  abdomenBottom: z.number().optional(), 
-  waist: z.number().optional(),            
-  hip: z.number().optional(),              
+  abdomenTop: z.number().optional(),
+  abdomenBottom: z.number().optional(),
+  waist: z.number().optional(),
+  hip: z.number().optional(),
   upperLegProxRight: z.number().optional(),
-  upperLegProxLeft: z.number().optional(), 
-  mediumLegRight: z.number().optional(),   
-  mediumLegLeft: z.number().optional(),    
-  distalLegRight: z.number().optional(),   
-  distalLegLeft: z.number().optional(),    
-  legRight: z.number().optional(),         
-  legLeft: z.number().optional(),          
-  armRight: z.number().optional(),         
-  armLeft: z.number().optional(),          
-  chestRight: z.number().optional(),       
-  chestLeft: z.number().optional(),  
+  upperLegProxLeft: z.number().optional(),
+  mediumLegRight: z.number().optional(),
+  mediumLegLeft: z.number().optional(),
+  distalLegRight: z.number().optional(),
+  distalLegLeft: z.number().optional(),
+  legRight: z.number().optional(),
+  legLeft: z.number().optional(),
+  armRight: z.number().optional(),
+  armLeft: z.number().optional(),
+  chestRight: z.number().optional(),
+  chestLeft: z.number().optional(),
 })

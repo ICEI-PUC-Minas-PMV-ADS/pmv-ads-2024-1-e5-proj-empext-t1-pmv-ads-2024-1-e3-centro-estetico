@@ -3,8 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetAppointmentList = (clientId: string) => {
   const query = useQuery({
-    queryKey: ['appointmentList', clientId],
-    queryFn:  () => getAppointmentsList(clientId),}
-  );
-  return query
-}
+    queryKey: ["appointments", clientId],
+    queryFn: async () => {
+      const response = await getAppointmentsList(clientId);
+      return response.data;
+    },
+  });
+  return query;
+};

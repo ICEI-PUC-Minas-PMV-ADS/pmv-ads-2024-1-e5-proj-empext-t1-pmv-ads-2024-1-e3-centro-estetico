@@ -95,22 +95,22 @@ export type AppointmentBodyData = {
   frontBody19: boolean;
   frontBody20: boolean;
   frontBody21: boolean;
-  abdomenTop?: number | null;       
+  abdomenTop?: number | null;
   abdomenBottom?: number | null;
-  waist?: number | null;             
-  hip?: number | null;               
-  upperLegProxRight?: number | null; 
-  upperLegProxLeft?: number | null;  
-  mediumLegRight?: number | null;    
-  mediumLegLeft?: number | null;     
-  distalLegRight?: number | null;    
-  distalLegLeft?: number | null;     
-  legRight?: number | null;          
-  legLeft?: number | null;           
-  armRight?: number | null;          
-  armLeft?: number | null;           
-  chestRight?: number | null;        
-  chestLeft?: number | null;         
+  waist?: number | null;
+  hip?: number | null;
+  upperLegProxRight?: number | null;
+  upperLegProxLeft?: number | null;
+  mediumLegRight?: number | null;
+  mediumLegLeft?: number | null;
+  distalLegRight?: number | null;
+  distalLegLeft?: number | null;
+  legRight?: number | null;
+  legLeft?: number | null;
+  armRight?: number | null;
+  armLeft?: number | null;
+  chestRight?: number | null;
+  chestLeft?: number | null;
 };
 
 
@@ -127,6 +127,5 @@ export async function createAppointmentBodyData(data: AppointmentBodyData) {
 }
 
 export async function getAppointmentsList(clientId: string) {
-  const response = await api.get(`/appointments-list?clientId=${clientId}`)
-  return response.data
+  return await api.get(`/client-appointments/${clientId}`)
 }
