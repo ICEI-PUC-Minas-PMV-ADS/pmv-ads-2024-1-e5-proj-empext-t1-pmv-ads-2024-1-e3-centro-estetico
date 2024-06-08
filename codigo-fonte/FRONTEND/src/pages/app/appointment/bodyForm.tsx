@@ -1095,18 +1095,16 @@ export function BodyForm({ onSelectionChange, onBodyMeasuresChange }: BodyFormPr
                 Coxa Proximal - ponto médio entre o trocânter maior e a base da patela
               </label>
               <div className='flex justify-evenly'>
-                <div>
-                  <div className='flex pt-3'>
-                    <h2 className='self-center font-semibold text-primary'>D:</h2>
-                    <input
-                      className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      placeholder="Medida (cm)"
-                      onChange={(e) => onBodyMeasuresChange('upperLegProxRight', e.target.value)}
-                    />
-                  </div>
+                <div className='flex pt-3'>
+                  <h2 className='self-center font-semibold text-primary'>D:</h2>
+                  <input
+                    className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="Medida (cm)"
+                    onChange={(e) => onBodyMeasuresChange('upperLegProxRight', e.target.value)}
+                  />
                 </div>
                 <div className='flex pt-3'>
                   <h2 className='self-center font-semibold text-primary pl-3'>E:</h2>
@@ -1127,18 +1125,16 @@ export function BodyForm({ onSelectionChange, onBodyMeasuresChange }: BodyFormPr
                 Coxa Média - ponto médio entre a região inguinal e a base da patela
               </label>
               <div className='flex justify-evenly'>
-                <div>
-                  <div className='flex pt-3'>
-                    <h2 className='self-center font-semibold text-primary'>D:</h2>
-                    <input
-                      className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      placeholder="Medida (cm)"
-                      onChange={(e) => onBodyMeasuresChange('mediumLegRight', e.target.value)}
-                    />
-                  </div>
+                <div className='flex pt-3'>
+                  <h2 className='self-center font-semibold text-primary'>D:</h2>
+                  <input
+                    className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="Medida (cm)"
+                    onChange={(e) => onBodyMeasuresChange('mediumLegRight', e.target.value)}
+                  />
                 </div>
                 <div className='flex pt-3'>
                   <h2 className='self-center font-semibold text-primary pl-3'>E:</h2>
@@ -1159,18 +1155,16 @@ export function BodyForm({ onSelectionChange, onBodyMeasuresChange }: BodyFormPr
                 Coxa Distal - imediatamente acima da base da patela
               </label>
               <div className='flex justify-evenly'>
-                <div>
-                  <div className='flex pt-3'>
-                    <h2 className='self-center font-semibold text-primary'>D:</h2>
-                    <input
-                      className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      placeholder="Medida (cm)"
-                      onChange={(e) => onBodyMeasuresChange('distalLegRight', e.target.value)}
-                    />
-                  </div>
+                <div className='flex pt-3'>
+                  <h2 className='self-center font-semibold text-primary'>D:</h2>
+                  <input
+                    className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="Medida (cm)"
+                    onChange={(e) => onBodyMeasuresChange('distalLegRight', e.target.value)}
+                  />
                 </div>
                 <div className='flex pt-3'>
                   <h2 className='self-center font-semibold text-primary pl-3'>E:</h2>
@@ -1191,18 +1185,16 @@ export function BodyForm({ onSelectionChange, onBodyMeasuresChange }: BodyFormPr
                 Perna - ponto médio entre a fossa poplítea e calcâneo
               </label>
               <div className='flex justify-evenly'>
-                <div>
-                  <div className='flex pt-3'>
-                    <h2 className='self-center font-semibold text-primary'>D:</h2>
-                    <input
-                      className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      placeholder="Medida (cm)"
-                      onChange={(e) => onBodyMeasuresChange('legRight', e.target.value)}
-                    />
-                  </div>
+                <div className='flex pt-3'>
+                  <h2 className='self-center font-semibold text-primary'>D:</h2>
+                  <input
+                    className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="Medida (cm)"
+                    onChange={(e) => onBodyMeasuresChange('legRight', e.target.value)}
+                  />
                 </div>
                 <div className='flex pt-3'>
                   <h2 className='self-center font-semibold text-primary pl-3'>E:</h2>
@@ -1223,18 +1215,16 @@ export function BodyForm({ onSelectionChange, onBodyMeasuresChange }: BodyFormPr
                 Braço - ponto médio entre acrômio de tróclea
               </label>
               <div className='flex justify-evenly'>
-                <div>
-                  <div className='flex pt-3'>
-                    <h2 className='self-center font-semibold text-primary'>D:</h2>
-                    <input
-                      className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      placeholder="Medida (cm)"
-                      onChange={(e) => onBodyMeasuresChange('armRight', e.target.value)}
-                    />
-                  </div>
+                <div className='flex pt-3'>
+                  <h2 className='self-center font-semibold text-primary'>D:</h2>
+                  <input
+                    className="ml-2 text-sm rounded-lg px-2 py-1 font-normal w-full bg-background"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="Medida (cm)"
+                    onChange={(e) => onBodyMeasuresChange('armRight', e.target.value)}
+                  />
                 </div>
                 <div className='flex pt-3'>
                   <h2 className='self-center font-semibold text-primary pl-3'>E:</h2>
@@ -1255,18 +1245,16 @@ export function BodyForm({ onSelectionChange, onBodyMeasuresChange }: BodyFormPr
                 Peitoral - prega axilar (5 cm abaixo)
               </label>
               <div className='flex justify-evenly'>
-                <div>
-                  <div className='flex pt-3'>
-                    <h2 className='self-center font-semibold text-primary'>D:</h2>
-                    <input
-                      className="ml-2 text-sm rounded-lg px-2 py-1 font-normal bg-background w-full"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      placeholder="Medida (cm)"
-                      onChange={(e) => onBodyMeasuresChange('chestRight', e.target.value)}
-                    />
-                  </div>
+                <div className='flex pt-3'>
+                  <h2 className='self-center font-semibold text-primary'>D:</h2>
+                  <input
+                    className="ml-2 text-sm rounded-lg px-2 py-1 font-normal bg-background w-full"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="Medida (cm)"
+                    onChange={(e) => onBodyMeasuresChange('chestRight', e.target.value)}
+                  />
                 </div>
                 <div className='flex pt-3'>
                   <h2 className='self-center font-semibold text-primary pl-3'>E:</h2>
@@ -1289,4 +1277,3 @@ export function BodyForm({ onSelectionChange, onBodyMeasuresChange }: BodyFormPr
     </div>
   )
 }
-//onSelectionChange('frontBody13', false)

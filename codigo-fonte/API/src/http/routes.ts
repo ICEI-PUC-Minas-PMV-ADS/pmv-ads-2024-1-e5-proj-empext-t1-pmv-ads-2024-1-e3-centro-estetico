@@ -10,6 +10,7 @@ import { getAppointmentBodyData } from "./controllers/get-appointment-body-data"
 import { createAppointmentBodyData } from "./controllers/create-appointment-body-data";
 import { createHealthQuestionnaire } from "./controllers/create-health-questionnaire";
 import { getAppointment } from "./controllers/get-appointment";
+import { getLastBodyAppointment } from "./controllers/get-last-body-appointment";
 import { healthQuestionnaireByClientId } from "./controllers/get-health-questionnaire-by-client-id";
 import { getSkinForm } from "./controllers/get-skin-form";
 import { getUsers } from "./controllers/get-users";
@@ -51,6 +52,7 @@ export async function appRoutes(app: FastifyInstance) {
 
   app.get("/appointment-skin-data", getAppointmentSkinData);
   app.get("/appointment-body-data", getAppointmentBodyData);
+  app.get("/last-body-appointment", getLastBodyAppointment);
   // app.get("/appointments-list", getAllAppointments); // frontendEsperando este cara
 
   app.post('/health-questionnairies', createHealthQuestionnaire)

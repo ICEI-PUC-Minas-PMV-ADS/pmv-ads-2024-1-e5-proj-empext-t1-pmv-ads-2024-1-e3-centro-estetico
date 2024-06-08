@@ -117,7 +117,7 @@ export function PerfilClients() {
             <div className='flex flex-col gap-5'>
                 <ButtonWithIcon title='Questionário de saúde' onClick={handleHealthQuestionnaireClick} />
                 <ButtonWithIcon title='Ficha facial' onClick={() => navigate(`/facial-form/${id}`)} />
-                <ButtonWithIcon title='Últimas medidas corporais' />
+                <ButtonWithIcon title='Últimas medidas corporais' onClick={() => navigate(`/body-measure/${id}`)} />
             </div>
             <div className="self-center pt-20">
                 <Button asChild variant="ghost" className="p-0" onClick={() => navigateUpdatingHeader('/appointment', TitleOfPages.appointment)}>

@@ -17,6 +17,7 @@ import { Perfil } from './pages/app/perfil/perfil'
 import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
+import { BodyMeasuresView } from './pages/app/appointment/bodyMeasuresView'
 
 
 export const router = createBrowserRouter([
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: '/appointments-list/:clientId',
         element: <AppointmentsList />,
+      },
+      {
+        path: '/body-measure/:clientId',
+        element: <BodyMeasuresView />,
       },
     ],
   },
