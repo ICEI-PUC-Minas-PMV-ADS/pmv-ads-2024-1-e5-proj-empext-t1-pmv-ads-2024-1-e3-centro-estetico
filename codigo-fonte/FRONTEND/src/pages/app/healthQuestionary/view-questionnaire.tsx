@@ -1,54 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { questions } from './questions';
+import axios from 'axios';
+import { env } from '@/env';
 
 export function ViewQuestionnaire() {
     const { id } = useParams();
     const [healthQuestionnaire, setHealthQuestionnaire] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         async function fetchHealthQuestionnaire() {
             try {
-                const response = await fetch(`http://localhost:3333/healthQuestionnaireByClientId?client_id=${id}`);
-                
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch health questionnaire: ${response.status} ${response.statusText}`);
-                }
-
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Received non-JSON response');
-                }
-
-                const data = await response.json();
+                const response = await axios.get(`${env.VITE_API_URL}/healthQuestionnaireByClientId?client_id=${id}`);
+                const data = await response.data;
                 setHealthQuestionnaire(data);
             } catch (error) {
-                setError(error.message);
+                throw new Error(`Failed to fetch health questionnaire: ${error}`);
             } finally {
                 setLoading(false);
             }
         }
-
-        if (id) {
-            fetchHealthQuestionnaire();
-        }
+         fetchHealthQuestionnaire();
     }, [id]);
+
 
     if (loading) {
         return <p>Loading...</p>;
-    }
-
-    if (error) {
-        return <p>Error: {error}</p>;
     }
 
     if (!healthQuestionnaire) {
         return <p>Nenhum questionário de saúde encontrado.</p>;
     }
 
-    const renderYesNo = (value) => (
+    const renderYesNo = (value: boolean) => (
         <span className={`${value ? 'text-green-500' : 'text-red-500'} font-semibold`}>
             {value ? 'Sim' : 'Não'}
         </span>
