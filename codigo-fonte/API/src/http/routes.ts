@@ -20,6 +20,7 @@ import { userProfile } from "./controllers/user-profile";
 import { userRegister } from "./controllers/user-register";
 import { verifyJWT } from "./middlewares/verify-jwt";
 import { getAppointmentsByClient } from "./controllers/get-appointments-by-client";
+import { getHealthQuestionnaireLink } from "./controllers/get-health-questionnaire-link";
 
 export async function appRoutes(app: FastifyInstance) {
   // Clients Routes
@@ -56,6 +57,8 @@ export async function appRoutes(app: FastifyInstance) {
   app.get("/appointment-body-data", getAppointmentBodyData);
   app.get("/last-body-appointment", getLastBodyAppointment);
 
+  // Health Questionnaire Routes
+  app.get('/health-questionnaire-link/:id', getHealthQuestionnaireLink)
   app.post('/health-questionnairies', createHealthQuestionnaire)
   app.get("/healthQuestionnaireByClientId", healthQuestionnaireByClientId);
 
