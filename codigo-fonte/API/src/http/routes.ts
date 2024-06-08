@@ -19,6 +19,7 @@ import { updateSkinForm } from "./controllers/update-skin-form";
 import { userProfile } from "./controllers/user-profile";
 import { userRegister } from "./controllers/user-register";
 import { verifyJWT } from "./middlewares/verify-jwt";
+import { getAppointmentsByClient } from "./controllers/get-appointments-by-client";
 
 export async function appRoutes(app: FastifyInstance) {
   // Clients Routes
@@ -49,6 +50,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.post("/appointments", { onRequest: [verifyJWT] }, createAppointment);
   app.post("/appointment-skin-data", createAppointmentSkinData);
   app.post("/appointment-body-data", createAppointmentBodyData);
+  app.get("/client-appointments/:id", getAppointmentsByClient);
 
   app.get("/appointment-skin-data", getAppointmentSkinData);
   app.get("/appointment-body-data", getAppointmentBodyData);
@@ -57,7 +59,7 @@ export async function appRoutes(app: FastifyInstance) {
 
   app.post('/health-questionnairies', createHealthQuestionnaire)
   app.get("/healthQuestionnaireByClientId", healthQuestionnaireByClientId);
-  
+
 
 
 }
