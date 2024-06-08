@@ -16,4 +16,21 @@ export class PrismaAppointmentsRepository implements IAppointmentsRepository {
     })
   }
 
+  async findLatestBodyAppointmentByClientId(clientId: string): Promise<AppointmentHistory | null> {
+    return await prisma.appointmentHistory.findFirst({
+      where: {
+        client_id: clientId,
+        appointment_type: 'Body'
+      },
+      orderBy: [
+        {
+          appointment_date: 'desc'
+        },
+        {
+          created_at: 'desc'
+        }
+      ]
+    })
+  }
+
 }
