@@ -13,7 +13,9 @@ import imgPerson from '../../assets/imgPerson.svg';
 import newTreatment from '../../assets/newTreatment.svg';
 import { env } from '../../env';
 
+
 export function PerfilClients() {
+
     const { users } = useUser();
     const { id } = useParams();
     const navigate = useNavigate();
@@ -34,8 +36,6 @@ export function PerfilClients() {
         async function fetchHealthQuestionnaire() {
             try {
                 const response = await axios.get(`${env.VITE_API_URL}/healthQuestionnaireByClientId?client_id=${id}`);
-
-
                 const data = await response.data;
                 setHealthQuestionnaire(data);
             } catch (error) {
@@ -44,9 +44,7 @@ export function PerfilClients() {
                 setLoading(false);
             }
         }
-
          fetchHealthQuestionnaire();
-
     }, [id]);
 
     const handleHealthQuestionnaireClick = () => {
@@ -65,6 +63,7 @@ export function PerfilClients() {
         return <p>Loading...</p>;
     }
 
+    
     return (
         <div className="flex flex-col justify-center">
             <div className='flex justify-end'>

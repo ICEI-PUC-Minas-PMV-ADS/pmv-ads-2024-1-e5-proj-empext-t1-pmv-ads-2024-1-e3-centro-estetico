@@ -52,13 +52,13 @@ const AppointmentsList = () => {
 
 
   return (
-    <div className="container mx-auto gap-10">
-      <h1 className="pl-3 pt-6 text-lg font-semibold mb-6">
+    <div className="justify-center flex flex-col bg-input rounded-xl p-5 container mx-auto gap-10">
+      <h1 className="pl-3 text-lg font-semibold ">
         Histórico de Consultas
       </h1>
       {query.map((item) => (
         <div key={item.id}>
-            <div className="inline-block h-20 bg-white border border-blue-600 rounded-md shadow-sm mr-4 mb-4 w-72 text-sm" onClick={() => navigateUpdatingHeader(`/history-appointment/${item.id}`, item.specialty)}>
+            <div className="inline-block h-20 bg-white border border-blue-600 rounded-md shadow-sm mr-4 w-72 text-sm" onClick={() => navigateUpdatingHeader(`/history-appointment/${item.id}`, item.specialty)}>
               <div className='mr-2 ml-2'>
                 <div className='mb-2 flex justify-between font-bold'>
                   <div className='mb-4 mt-2 flex'> <ReactSVG src={Calendar}/> {formatDate(item.appointment_date)} </div>

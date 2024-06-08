@@ -10,7 +10,7 @@ import { Questionary } from './pages/app/healthQuestionary/questionary'
 import { ViewQuestionnaire } from './pages/app/healthQuestionary/view-questionnaire'
 import { HistoryAppointment } from './pages/app/history/historyAppointment'
 import { Homepage } from './pages/app/homepage'
-import PatientInfo from './pages/app/info-clients'
+import { PatientInfo } from './pages/app/info-clients'
 import { NotificationsForm } from './pages/app/notification'
 import { PerfilClients } from './pages/app/perfil-clients'
 import { Perfil } from './pages/app/perfil/perfil'
@@ -44,8 +44,8 @@ export const router = createBrowserRouter([
         element: <Questionary />
       },
      {
-        path: '/perfil',
-        element: <Perfil/>,
+        path: '/perfil/:id',
+        element: <Perfil />,
       },
       {
         path: '/appointment',

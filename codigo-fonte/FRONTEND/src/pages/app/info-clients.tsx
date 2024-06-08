@@ -1,60 +1,59 @@
-
 import { ReactSVG } from 'react-svg';
-import imgPerson from '../../assets/imgPerson.svg'
+import imgPerson from '../../assets/imgPerson.svg';
 import { useUser } from '@/context/UserContext';
 import { useParams } from 'react-router-dom';
+import telephone from "../../assets/telephone.svg";
+import email from "../../assets/email.svg";
+import address from "../../assets/address.svg";
+import gender from "../../assets/gender.svg";
+import birthday from "../../assets/birthday.svg";
+import { Button } from '../../components/ui/button';
 
-function PatientInfo() {
+export function PatientInfo() {
 
     const { users } = useUser();
     const { id } = useParams();
-
-    console.log('User ID from URL:', id);
-
     const user = users?.find((item) => item.id === id);
 
-    console.log('Found User:', user);
-    console.log('User Phone:', user?.phone);
-
+    
     return (
-        <div className="container">
-            <i className="fas fa-arrow-left back-arrow"></i>
-            <div className="patient-name">Vitor Araújo
-                <button className="info-button"><i className="fas fa-info"></i></button>
-            </div>
-            <div>
+        <div className='container'>
+            <h1 className="pt-1 pb-6 text-black-800 text-3xl flex justify-center font-Roboto Font Family">
+                {user?.name || 'Nome não disponível'}
+            </h1>
+            <div className="justify-center flex ">
                 <ReactSVG src={imgPerson} />
             </div>
-            <div className="info">
-                <label htmlFor="email"><i className="fas fa-envelope"></i> E-mail:</label>
-                <span id="email">paciente123@gmail.com</span>
-                <button className="info-button"><i className="fas fa-edit"></i> Editar</button>
+            <div className="grid justify-center m-8">
+                <div className="flex pb-2">
+                    <ReactSVG src={telephone} />
+                    <p className="font-medium ml-2 mt-3">{user?.phone || 'Telefone não disponível'}</p>
+                </div>
+                <div className="flex">
+                    <ReactSVG src={gender} />
+                    <p className="font-medium mt-4">{user?.gender || 'Gênero não disponível'}</p>
+                </div>
+                <div className="flex">
+                    <ReactSVG src={birthday} />
+                    <p className="font-medium mt-4">
+                        {user?.birth_date ? user.birth_date.slice(0, 10) : 'Data de nascimento não disponível'}
+                    </p>
+                </div>
+                <div className="flex pb-2">
+                    <ReactSVG src={email} />
+                    <p className="font-medium ml-2 mt-3">{user?.email || 'Email não disponível'}</p>
+                </div>
+                <div className="flex pb-2">
+                    <ReactSVG src={address} />
+                    <p className="font-medium ml-3 mt-3">{user?.address || 'Endereço não disponível'}</p>
+                </div>
             </div>
-            <div className="info">
-                <label htmlFor="genero"><i className="fas fa-venus-mars"></i> Gênero:</label>
-                <span id="genero">Masculino</span>
-                <button className="info-button"><i className="fas fa-edit"></i> Editar</button>
-            </div>
-            <div className="info">
-                <label htmlFor="data_nascimento"><i className="fas fa-calendar-alt"></i> Data de Nascimento:</label>
-                <span id="data_nascimento">11/05/2000</span>
-                <button className="info-button"><i className="fas fa-edit"></i> Editar</button>
-            </div>
-            <div className="info">
-                <label htmlFor="endereco"><i className="fas fa-map-marker-alt"></i> Endereço:</label>
-                <span id="endereco">Av. Afonso Pena, 1000 - Centro, Belo Horizonte - MG, 30130-902</span>
-                <button className="info-button"><i className="fas fa-edit"></i> Editar</button>
-            </div>
-            <div className="info">
-                <label htmlFor="telefone"><i className="fas fa-phone"></i> Telefone:</label>
-                <span id="telefone">{user?.phone}</span>
-                <button className="info-button"><i className="fas fa-edit"></i> Editar</button>
+            <div className='flex justify-center'>
+                <Button>Editar</Button>
             </div>
         </div>
     );
 }
-
-export default PatientInfo;
 
 
 
