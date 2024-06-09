@@ -13,6 +13,7 @@ import { updateSkinForm } from "./controllers/update-skin-form";
 import { userProfile } from "./controllers/user-profile";
 import { userRegister } from "./controllers/user-register";
 import { verifyJWT } from "./middlewares/verify-jwt";
+import { getEstheticians} from "./controllers/get-estheticians";
 
 export async function appRoutes(app: FastifyInstance) {
   // Clients Routes
@@ -32,6 +33,7 @@ export async function appRoutes(app: FastifyInstance) {
   // Users Routes
   app.get("/user", userProfile);
   app.get("/get-users", getUsers);
+  app.get("/get-estheticians", getEstheticians);
 
   // Authenticated Routes
   app.get("/me", { onRequest: [verifyJWT] }, userProfile);
