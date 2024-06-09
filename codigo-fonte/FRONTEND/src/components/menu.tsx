@@ -52,7 +52,7 @@ export function HeaderMenu() {
                             </Button>
                         </DrawerClose>
                         <DrawerClose asChild>
-                            <Button variant={"link"} className="justify-start">
+                            <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/perfil/styles', TitleOfPages.perfil)}>
                                 <User />
                                 <span className="text-black pl-3 pt-1 font-normal">Perfil</span>
                             </Button>
