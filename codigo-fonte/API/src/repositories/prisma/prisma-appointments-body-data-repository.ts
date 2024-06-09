@@ -15,6 +15,20 @@ export class PrismaAppointmentsBodyDataRepository implements IAppointmentsBodyRe
       },
     })
   }
+
+  async deleteByAppointmentId(appointment_id: string) {
+    const deleted = await prisma.appointmentBodyData.deleteMany({
+      where: {
+        appointment_id,
+      },
+    })
+
+    if(deleted) {
+      return 'Deleted'
+    } else {
+      return 'No Deleted'
+    }
+  }
   
   async findById(id: string): Promise<AppointmentBodyData | null> {
     return await prisma.appointmentBodyData.findUnique({

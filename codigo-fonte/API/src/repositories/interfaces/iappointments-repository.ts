@@ -5,4 +5,5 @@ export interface IAppointmentsRepository {
   findById(id: string): Promise<AppointmentHistory | null>
   findLatestBodyAppointmentByClientId(id: string): Promise<AppointmentHistory | null>
   findAppointmentsByClientId(clientId: string): Promise<AppointmentHistory[]>
+  delete(id: string): Promise<AppointmentHistory | null>
 }

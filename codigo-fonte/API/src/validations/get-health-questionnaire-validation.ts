@@ -63,7 +63,9 @@ export const getHealthQuestionnaireBodySchema = z.object({
   authorize_data: z.boolean(),
 })
 
-
+export const getRecentHealthQuestionnairies = z.object({
+  days: z.string()
+})
 
 export const getHealthQuestionnaireByClientId = z.object({
   client_id: z.string()

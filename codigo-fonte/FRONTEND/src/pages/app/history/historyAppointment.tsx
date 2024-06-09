@@ -7,6 +7,11 @@ import { useParams } from 'react-router-dom';
 import { env } from '../../../env';
 import { ViewFacialForm } from '../appointment/viewFacialForm';
 import { ViewBodyForm } from '../appointment/viewBodyForm';
+import { useNavigate } from 'react-router-dom';
+import { useTitle } from '@/hooks/useTitle';
+import { TitleOfPages } from '@/utils/titleOfPages';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 
 type Appointment = {
@@ -106,22 +111,22 @@ export type AppointmentBodyData = {
   frontBody19: boolean;
   frontBody20: boolean;
   frontBody21: boolean;
-  abdomenTop?: number;       
+  abdomenTop?: number;
   abdomenBottom?: number;
-  waist?: number;             
-  hip?: number;               
-  upperLegProxRight?: number; 
-  upperLegProxLeft?: number;  
-  mediumLegRight?: number;    
-  mediumLegLeft?: number;     
-  distalLegRight?: number;    
-  distalLegLeft?: number;     
-  legRight?: number;          
-  legLeft?: number;           
-  armRight?: number;          
-  armLeft?: number;           
-  chestRight?: number;        
-  chestLeft?: number;         
+  waist?: number;
+  hip?: number;
+  upperLegProxRight?: number;
+  upperLegProxLeft?: number;
+  mediumLegRight?: number;
+  mediumLegLeft?: number;
+  distalLegRight?: number;
+  distalLegLeft?: number;
+  legRight?: number;
+  legLeft?: number;
+  armRight?: number;
+  armLeft?: number;
+  chestRight?: number;
+  chestLeft?: number;
 };
 
 type Client = {
@@ -135,17 +140,21 @@ export function HistoryAppointment() {
   const [appointmentBodyData, setAppointmentBodyData] = useState<AppointmentBodyData>()
   const [client, setClient] = useState<Client>()
   const { appointmentId } = useParams()
+  const [showPopup, setShowPopup] = useState(false);
+
+  const navigate = useNavigate();
+  const { setTitle } = useTitle();
 
   useMemo(async () => {
     try {
-      if(appointmentId !== '') {
+      if (appointmentId !== '') {
         const response = await axios.get(`${env.VITE_API_URL}/appointment?id=${appointmentId}`);
         setAppointment(response.data)
 
-        if(response.data.appointment_type === 'Skin') {
+        if (response.data.appointment_type === 'Skin') {
           const responseSkin = await axios.get(`${env.VITE_API_URL}/appointment-skin-data?id=${response.data.id}`);
           setAppointmentSkinData(responseSkin.data)
-        } else if(response.data.appointment_type === 'Body') {
+        } else if (response.data.appointment_type === 'Body') {
           const responseBody = await axios.get(`${env.VITE_API_URL}/appointment-body-data?id=${response.data.id}`);
           setAppointmentBodyData(responseBody.data)
         }
@@ -166,8 +175,12 @@ export function HistoryAppointment() {
 
   }, [appointment]);
 
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   function AppointmentTypeDisplayer(appointmentType: string | undefined) {
-    switch(appointmentType) {
+    switch (appointmentType) {
       case 'Hair':
         return 'Capilar'
       case 'Body':
@@ -178,11 +191,39 @@ export function HistoryAppointment() {
   }
 
   function AppointmentPlaceDisplayer(appointmentPlace: boolean | undefined) {
-    if(appointmentPlace === true) {
+    if (appointmentPlace === true) {
       return 'Presencial'
     } else {
       return 'Em casa'
     }
+  }
+
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title);
+    navigate(path);
+  };
+
+  async function deleteAppointment(appointment_id: string | undefined, appointment_type: string | undefined) {
+    try{
+
+      if (!appointment_id) {
+        toast.error('Problema ao receber código da consulta')
+      }
+
+      if (appointment_type === 'Skin') {
+        await axios.delete(`${env.VITE_API_URL}/appointment-skin-data?id=${appointment_id}`);
+      } else if (appointment_type === 'Body') {
+        await axios.delete(`${env.VITE_API_URL}/appointment-body-data?id=${appointment_id}`);
+      }
+      await axios.delete(`${env.VITE_API_URL}/appointment?id=${appointment_id}`);
+
+      toast.success('Consulta excluída!')
+      navigateUpdatingHeader('/', TitleOfPages.home)
+    } catch (error) {
+      toast.error('Erro ao excluir consulta!')
+      console.log(error)
+    }
+
   }
 
   return (
@@ -265,13 +306,13 @@ export function HistoryAppointment() {
 
       {
         (appointment?.appointment_type === 'Skin') && <ViewFacialForm
-          faceSelections={{...appointmentSkinData}}
+          faceSelections={{ ...appointmentSkinData }}
         />
       }
 
       {
         (appointment?.appointment_type === 'Body') && <ViewBodyForm
-          bodySelections={{...appointmentBodyData}}
+          bodySelections={{ ...appointmentBodyData }}
         />
       }
 
@@ -285,6 +326,38 @@ export function HistoryAppointment() {
           value={appointment?.observations}
         />
       </div>
+
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black font-medium bg-opacity-50">
+          <div className="bg-white rounded-lg p-7 w-80 flex flex-col items-center">
+            <p className="mb-4 text-destructive font-semibold">Tem certeza que deseja excluir essa consulta?</p>
+            <div className="flex w-full justify-around">
+              <Button variant={'secondary'} onClick={closePopup}>
+                Cancelar
+              </Button>
+              <Button
+                variant={'alertred'}
+                onClick={async (event) => {
+                  event.preventDefault();
+                  await deleteAppointment(appointment?.id, appointment?.appointment_type);
+                }}
+              >
+                Confirmar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
+      <Button
+        variant={'alertred'}
+        type='button'
+        onClick={() => setShowPopup(true)}
+        className='mt-6 mb-3'
+      >
+        Excluir consulta
+      </Button>
 
 
 
