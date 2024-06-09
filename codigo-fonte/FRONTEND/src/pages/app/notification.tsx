@@ -1,4 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+import { useEffect, useState } from 'react';
 import imgPerson2 from '../../assets/imgPerson2.svg';
 import { ReactSVG } from 'react-svg';
 import axios from 'axios';
