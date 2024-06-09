@@ -35,9 +35,9 @@ export function AccountMenu() {
       <DropdownMenuContent align="end" className="w-18">
         <DropdownMenuLabel className="flex">
           <div className="flex flex-col">
-            <span>João Ramires</span>
+            <span>Fátima Styles ©</span>
             <span className="text-xs font-normal text-muted-foreground">
-              joao@email.com
+              Gestão de centro estético
             </span>
           </div>
           <DropdownMenuItem className='pl-5'>
