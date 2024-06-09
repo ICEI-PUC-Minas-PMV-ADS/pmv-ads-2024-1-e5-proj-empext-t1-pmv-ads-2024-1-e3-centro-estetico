@@ -30,13 +30,24 @@ const AppointmentsList = () => {
     return <div>Error loading appointments</div>;
   }
 
+  function AppointmentTypeDisplayer(appointmentType: string | undefined) {
+    switch (appointmentType) {
+      case 'Hair':
+        return 'Capilar'
+      case 'Body':
+        return 'Corporal'
+      case 'Skin':
+        return 'Facial'
+    }
+  }
+
   return (
-    <div className="container mx-auto flex flex-col justify-center gap-10 rounded-xl bg-input p-5">
+    <div className="container mx-auto flex flex-col items-center justify-center gap-10 rounded-xl bg-input p-5">
       <h1 className="pl-3 text-lg font-semibold ">Histórico de Consultas</h1>
       {data?.appointments.map((item: any) => (
         <div key={item.id}>
           <div
-            className="mr-4 inline-block h-20 w-72 rounded-md border border-blue-600 bg-white text-sm shadow-sm"
+            className="mr-4 inline-block h-20 w-72 rounded-md border-primary border-2 bg-white text-sm shadow-sm"
             onClick={() =>
               navigateUpdatingHeader(
                 `/history-appointment/${item.id}`,
@@ -59,7 +70,7 @@ const AppointmentsList = () => {
                   <ReactSVG src={Time} />
                   {item.appointment_hour}{" "}
                 </div>
-                <div> {item.appointment_type} </div>
+                <div> {AppointmentTypeDisplayer(item.appointment_type)} </div>
               </div>
             </div>
           </div>
