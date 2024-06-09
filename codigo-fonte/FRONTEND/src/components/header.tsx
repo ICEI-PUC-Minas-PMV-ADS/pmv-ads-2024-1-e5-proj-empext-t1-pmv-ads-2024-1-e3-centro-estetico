@@ -1,5 +1,5 @@
 import { AccountMenu } from './account-menu'
-import { ChevronLeft } from 'lucide-react';
+import { XIcon } from 'lucide-react';
 import { HeaderMenu } from './menu';
 import { useTitle } from '@/hooks/useTitle';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +35,7 @@ export function Header(props: HeaderProps) {
             </nav>
             <AccountMenu />
           </div>) : (<div className="flex h-16 items-center px-5 justify-between bg-input font-semibold text-xl rounded-b-lg">
-            <ChevronLeft onClick={() => navigateUpdatingHeader('/', 'Home')} />
+            <XIcon onClick={() => navigateUpdatingHeader('/', 'Home')} />
             <h2>{props.page}</h2>
             <div></div>
           </div>)

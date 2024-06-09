@@ -44,29 +44,57 @@ Neste teste, realizaremos o cadastro do cliente pela conta admin, que será da e
 
 * Caso de Teste 06:
 
-| Caso de Teste | CT-06 - Cadastrar consulta de ficha facial de um cliente |
+| Caso de Teste | CT-06 - Cadastrar consulta de ficha corporal de um cliente |
 |---------------|-------------------------------------------------------------------------------|
-| Requisitos Associados |  `RF-009` - O sistema deverá possuir um login para a esteticista acessar a plataforma		|
-| Objetivos do teste | Vizualização e edição do perfil da esteticista |
-| Passos | 1) Fazer login caso deslogado <br> 2) Clicar em foto do perfil <br> 3) Clicar em perfil <br> 4) Vizualizar os dados e editar caso precise <br> |
-| Critérios com êxito | Vizualização correta dos dados e edição funcionando |
+| Requisitos Associados |  `RF-004` - O sistema permitirá o cadastro de consultas feitas pela esteticista		|
+| Objetivos do teste | Cadastrar corretamente a consulta de ficha corporal de um cliente |
+| Passos |  1) Fazer login caso deslogado <br> 2) Clicar em "cadastrar consulta" <br> 3) Selecionar o tipo de consulta que está cadastrando <br> 4) Preencher corretamente os dados necessários <br> 5) Salvar a ficha de consulta cliente <br> |
+| Critérios com êxito | Verificar se é possível armazenar a consulta corporal com os dados exatos aos informados <br> Verificar se a posição das imagens será devidamente armazenada <br> Verificar a obrigatoriedade dos campos tal qual para consulta facial e capilar <br> Validar gravação dos dados de medidas corporais <br> Verificar se os dados de consulta corporal não são obrigatórios <br> Verificar se as tabelas são vinculadas corretamente <br> Validar se a tela de cadastro e visualização seguem os paradigmas da usabilidade <br> |
 
 * Caso de Teste 07:
 
 | Caso de Teste | CT-07 - Cadastrar questionário de saúde |
 |---------------|-------------------------------------------------------------------------------|
 | Requisitos Associados |  `RF-002` - O sistema possuirá questionário de saúde para preenchimento do cliente		|
-| Objetivos do teste | Cadastrar corretamente questionário de saúde |
-| Passos | 1) Fazer login caso deslogado <br> 2) Digitar nome do cliente desejado no input da homePage <br> 3) Selecionar o cliente <br> 4) Clicar na opção "questionário de saúde" <br>  5) Preencher alguns campos obrigatórios e não obrigatórios <br> 6) Clicar no botão "Enviar" <br> |
-| Critérios com êxito | Verificar se as validações estão corretas, se há algum aviso de que algum campo não foi devidamente marcado. <br> Verificar se ao clicar no botão "enviar", de fato manda os dados pro banco de dados. |
+| Objetivos do teste | Verificar a existência ou não de um Questionáio e caso não, cadastrar corretamente questionário de saúde  |
+| Passos | 1) Fazer login caso deslogado <br> 2) Digitar nome do cliente desejado no input da homePage <br> 3) Selecionar o cliente <br> 4) Clicar na opção "Questionário de saúde" <br>  5) Preencher alguns campos obrigatórios e não obrigatórios <br> 6) Clicar no botão "Enviar" <br> 7) Acessar o perfil do cliente <br> 8) Clicar na opção "Questionário de saúde" <br> |
+| Critérios com êxito | Verificar se há um questionário já cadastrado ao clicar no botão, se aparecer um pop-up é porque não há nenhum cadastrado ainda <br> Verificar se as validações estão corretas, se há algum aviso de que algum campo não foi devidamente marcado <br> Verificar se ao clicar no botão "enviar", de fato manda os dados pro banco de dados <br> Verificar se após o cadastro de questionário, ao clicar no botão "Questionário de saúde, aparece o pop-up, caso não, verificar se as informações puxadas do banco, coincidem com os dados apresentados |
 
 Resultado do Teste:
 
-- Validação dos dados: OK, mas a Queixa Principal apresenta problemas em armazenar o texto inserido.
+- Validação dos dados: OK.
 
 - Os campos obrigatórios possuem tratamento de obrigatoriedade funcionando corretamente.
 
 - O visual está completo e agradável, letras com tamanho bom e texto de fácil compreensão.
+<br>
+
+* Caso de Teste 08:
+
+| Caso de Teste | CT-08 - Histórico do cliente |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-005` - O sistema permitirá o acesso do histórico de consultas do cliente de estética alimentado pelas consultas cadastradas		|
+| Objetivos do teste | Mostrar as consultas cadastradas na parte do perfil do cliente em "Histórico" |
+| Passos | 1) Fazer login caso deslogado <br> 2) Cadastrar o cliente se necessário <br> 3) Cadastrar consulta <br> 4) Digitar o nome do cliente para acessar o perfil dele <br>  5) Acessar o histórico <br> |
+| Critérios com êxito | Verificar se os dados condizem de fato com a última consulta criada <br> Validar se a tela e visualização seguem os paradigmas da usabilidade <br> |
+
+* Caso de Teste 09:
+
+| Caso de Teste | CT-09 - Últimas medidas corporais |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados | `RF-004` - O sistema permitirá o cadastro de consultas feitas pela esteticista <br> `RF-005` - O sistema permitirá o acesso do histórico de consultas do cliente de estética alimentado pelas consultas cadastradas		|
+| Objetivos do teste | Mostrar as últimas medidas corporais na sessão "Últimas medidas corporais" na tela de perfil do cliente |
+| Passos | 1) Fazer login caso deslogado <br> 2) Cadastrar o cliente se necessário <br> 3) Digitar o nome do cliente para acessar o perfil dele <br> 4) Acessar as "Últimas medidas corporais" <br> |
+| Critérios com êxito | Verificar se os dados exibidos são referentes a consulta referenciada anteriormente no histórico <br> Verificar posição das imagens <br> Validar se a tela e visualização seguem os paradigmas da usabilidade <br> |
+
+* Caso de Teste 10:
+
+| Caso de Teste | CT-10 - Novas fichas recebidas |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados |  `RF-002` - O sistema possuirá questionário de saúde para preenchimento do cliente		|
+| Objetivos do teste | Ao cadastrar uma ficha de Questionário de saúde, notificar a esteticista na página "Novas fichas recebidas" |
+| Passos | 1) Fazer login caso deslogado <br> 2) Cadastrar o cliente se necessário <br> 3) Cadastrar um questionário de saúde <br> 4) Acessar "Novas fichas recebida" <br> |
+| Critérios com êxito | Verificar se os dados exibidos são referentes ao último questionário de saúde cadastrado <br> Verificar se as informações puxadas do banco, coincidem com os dados apresentados <br> |
 
  
 # Evidências de Testes de Software
@@ -161,15 +189,18 @@ Pontos de melhoria:
  - Alertar de consultas agendadas no mesmo horário
 
 
+<br>
 
+* Evidência do caso de teste 6:
 
-* Evidência do Caso de Teste 06:
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/95033872-eb4e-41d4-8edc-f2b3d40d1f8a)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/6bccd7b4-b806-4266-8adf-596e37e1f5f4)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/53106a11-91ba-4a70-a86e-d7f6c5ce4b9d)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/2479df62-68a5-4980-874f-8bd992e799fd)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/f6c7a3e2-bf6c-42b9-af47-1728117f514f)
 
+<br>
 
-  
-![1](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/98265702/1c610e4c-f1e5-4cae-8fd9-97765daabea5)
-![2](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/98265702/24fbd257-aaf6-4fe0-befd-85f69ad02271)
-![3](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/98265702/3f8a8e11-c7fc-4a1e-9a0b-3eda29513633)
 
 
 * Evidência do caso de teste 7:
@@ -178,3 +209,14 @@ Pontos de melhoria:
   (o vídeo da gravação)
 
 
+* Evidência do caso de teste 8:
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/1283f2d8-e08b-413c-80e1-0d11443be023)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/347174b5-cd2d-401e-8b52-e5f974f9b615)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/63ec79f8-a419-4ee1-8b0f-1a76a37368ce)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/c25a9dc7-6df8-4e33-bff0-97282692f9cc)
+
+* Evidência do caso de teste 9:
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/dd13aeab-6748-4d6f-9cfd-ba29b7484e76)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/dd13aeab-6748-4d6f-9cfd-ba29b7484e76)

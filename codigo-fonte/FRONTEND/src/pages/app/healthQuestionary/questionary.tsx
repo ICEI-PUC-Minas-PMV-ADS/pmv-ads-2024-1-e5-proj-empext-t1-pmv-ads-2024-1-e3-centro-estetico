@@ -112,7 +112,7 @@ export function Questionary() {
       }
       const { ...regData } = data
       const questionaryData = {
-        clientId: id,
+        client_id: id,
         authorizePhotos: false,
         ...data,
       }
@@ -139,8 +139,9 @@ export function Questionary() {
           </label>
           <textarea
             className="block h-24 w-full rounded-xl border border-gray-200 bg-input px-4 py-2 text-sm text-wwhite shadow-xl"
+            id="problem_description"
             placeholder="Adicionar aqui as principais queixas para o tratamento"
-            // {...control('mainComplaint')}
+            {...register("problem_description")}
           />
         </div>
         {questions.map((question: HealthQuestion, index) => (

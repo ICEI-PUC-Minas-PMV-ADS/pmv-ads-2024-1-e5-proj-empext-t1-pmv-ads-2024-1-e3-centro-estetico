@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const questionaryBodySchema = z.object({
-  clientId: z.string(),
+  client_id: z.string(),
   problem_description: z.string().optional(),
   aesthetic_procedure: z.boolean(),
   aesthetic_procedure_description: z.string().optional(),

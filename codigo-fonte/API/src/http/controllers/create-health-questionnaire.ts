@@ -1,7 +1,7 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
 import { UserAlreadyExistsError } from '@/services/errors/user-already-exists-error'
-import { questionaryBodySchema } from '@/validations/health-questionnaire-validation'
 import { makeCreateHealthQuestionnaireService } from '@/services/factories/make-create-health-questionnaire-service'
+import { questionaryBodySchema } from '@/validations/health-questionnaire-validation'
+import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function createHealthQuestionnaire(
   request: FastifyRequest,

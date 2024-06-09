@@ -4,7 +4,6 @@ export const getAppointmentParams = z.object({
   id: z.string()
 })
 
-
 export const AppointmentType = z.enum(['Hair', 'Skin', 'Body']);
 
 export const registerBodySchema = z.object({
@@ -18,7 +17,11 @@ export const registerBodySchema = z.object({
   }, z.date()),
   appointment_hour: z.string(),
   presencial: z.boolean(),
-  appointment_type: AppointmentType,
+  appointment_type: AppointmentType
+});
+
+export const registerBodySkinDataSchema = z.object({
+  appointmentId: z.string().uuid(),
   leftFace0: z.boolean(),
   leftFace1: z.boolean(),
   leftFace2: z.boolean(),
@@ -54,3 +57,67 @@ export const registerBodySchema = z.object({
   frontFace10: z.boolean(),
   frontFace11: z.boolean(),
 });
+
+export const registerBodyBodyDataSchema = z.object({
+  appointmentId: z.string().uuid(),
+  backBody0: z.boolean(),
+  backBody1: z.boolean(),
+  backBody2: z.boolean(),
+  backBody3: z.boolean(),
+  backBody4: z.boolean(),
+  backBody5: z.boolean(),
+  backBody6: z.boolean(),
+  backBody7: z.boolean(),
+  backBody8: z.boolean(),
+  backBody9: z.boolean(),
+  backBody10: z.boolean(),
+  backBody11: z.boolean(),
+  backBody12: z.boolean(),
+  backBody13: z.boolean(),
+  backBody14: z.boolean(),
+  backBody15: z.boolean(),
+  backBody16: z.boolean(),
+  backBody17: z.boolean(),
+  backBody18: z.boolean(),
+  backBody19: z.boolean(),
+  backBody20: z.boolean(),
+  backBody21: z.boolean(),
+  frontBody0: z.boolean(),
+  frontBody1: z.boolean(),
+  frontBody2: z.boolean(),
+  frontBody3: z.boolean(),
+  frontBody4: z.boolean(),
+  frontBody5: z.boolean(),
+  frontBody6: z.boolean(),
+  frontBody7: z.boolean(),
+  frontBody8: z.boolean(),
+  frontBody9: z.boolean(),
+  frontBody10: z.boolean(),
+  frontBody11: z.boolean(),
+  frontBody12: z.boolean(),
+  frontBody13: z.boolean(),
+  frontBody14: z.boolean(),
+  frontBody15: z.boolean(),
+  frontBody16: z.boolean(),
+  frontBody17: z.boolean(),
+  frontBody18: z.boolean(),
+  frontBody19: z.boolean(),
+  frontBody20: z.boolean(),
+  frontBody21: z.boolean(),
+  abdomenTop: z.number().optional(),
+  abdomenBottom: z.number().optional(),
+  waist: z.number().optional(),
+  hip: z.number().optional(),
+  upperLegProxRight: z.number().optional(),
+  upperLegProxLeft: z.number().optional(),
+  mediumLegRight: z.number().optional(),
+  mediumLegLeft: z.number().optional(),
+  distalLegRight: z.number().optional(),
+  distalLegLeft: z.number().optional(),
+  legRight: z.number().optional(),
+  legLeft: z.number().optional(),
+  armRight: z.number().optional(),
+  armLeft: z.number().optional(),
+  chestRight: z.number().optional(),
+  chestLeft: z.number().optional(),
+})

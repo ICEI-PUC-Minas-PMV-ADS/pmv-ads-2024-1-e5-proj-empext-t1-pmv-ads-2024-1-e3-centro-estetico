@@ -11,12 +11,13 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 import { useTitle } from '@/hooks/useTitle';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { TitleOfPages } from '@/utils/titleOfPages';
 
 export function AccountMenu() {
   const { setTitle } = useTitle();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const navigateUpdatingHeader = (path: string, title: string) => {
     setTitle(title)
@@ -34,9 +35,9 @@ export function AccountMenu() {
       <DropdownMenuContent align="end" className="w-18">
         <DropdownMenuLabel className="flex">
           <div className="flex flex-col">
-            <span>João Ramires</span>
+            <span>Fátima Styles ©</span>
             <span className="text-xs font-normal text-muted-foreground">
-              joao@email.com
+              Gestão de centro estético
             </span>
           </div>
           <DropdownMenuItem className='pl-5'>
@@ -44,7 +45,7 @@ export function AccountMenu() {
           </DropdownMenuItem>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={()=>{navigateUpdatingHeader("/perfil", TitleOfPages.perfil )}}>
+        <DropdownMenuItem onClick={()=>{navigateUpdatingHeader(`/perfil/${id}`, TitleOfPages.perfil )}}>
             <UserCircle2Icon className="mr-2 h-4 w-4" />
             <span>Perfil</span>
         </DropdownMenuItem>
