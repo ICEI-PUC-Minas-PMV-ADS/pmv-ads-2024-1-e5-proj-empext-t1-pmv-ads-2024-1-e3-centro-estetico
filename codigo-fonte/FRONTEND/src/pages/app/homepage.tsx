@@ -19,10 +19,6 @@ import { useUser } from '@/context/UserContext';
 
 
 export function Homepage() {
-  // type user = {
-  //   id: number,
-  //   name: string
-  // }
   const {users, setUsers} = useUser();
   const [name, setName] = useState<string>('')
   const [hasUsers, setHasUsers] = useState<boolean>(false)

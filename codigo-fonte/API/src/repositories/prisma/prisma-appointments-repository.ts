@@ -16,6 +16,14 @@ export class PrismaAppointmentsRepository implements IAppointmentsRepository {
     })
   }
 
+  async delete(id: string): Promise<AppointmentHistory | null> {
+    return await prisma.appointmentHistory.delete({
+      where: {
+        id,
+      },
+    })
+  }
+
   async findLatestBodyAppointmentByClientId(clientId: string): Promise<AppointmentHistory | null> {
     return await prisma.appointmentHistory.findFirst({
       where: {

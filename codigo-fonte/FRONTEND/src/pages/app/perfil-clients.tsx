@@ -44,7 +44,7 @@ export function PerfilClients() {
                 setLoading(false);
             }
         }
-         fetchHealthQuestionnaire();
+        fetchHealthQuestionnaire();
     }, [id]);
 
     const handleHealthQuestionnaireClick = () => {
@@ -63,7 +63,7 @@ export function PerfilClients() {
         return <p>Loading...</p>;
     }
 
-    
+
     return (
         <div className="flex flex-col justify-center">
             <div className='flex justify-end'>
@@ -125,29 +125,25 @@ export function PerfilClients() {
             </div>
 
             {showPopup && (
-    <div className="fixed inset-0 flex items-center justify-center bg-black font-medium bg-opacity-50">
-        <div className="bg-white rounded-lg p-7 w-80 flex flex-col items-center">
-            <p className="mb-4">Este cliente não possui uma Ficha saúde preenchida...</p>
-            <div className="mb-4">
-                <Button variant={"link"} onClick={() => navigate(`/perfil-users/${id}/questionary`)}>
-                    https://meet.google.com/fjr-vsbm-fwi
-                </Button>
-            </div>
-            <div className="flex w-full justify-around">
-                <Button onClick={() => navigate(`/perfil-users/${id}/questionary`)}>
-                    Enviar
-                </Button>
-                <Button variant={'forms'} onClick={closePopup}>
-                    Fechar
-                </Button>
-            </div>
-        </div>
-    </div>
-)}
-
-
-
-
+                <div className="fixed inset-0 flex items-center justify-center bg-black font-medium bg-opacity-50">
+                    <div className="bg-white rounded-lg p-7 w-80 flex flex-col items-center">
+                        <p className="mb-4">Este cliente não possui uma Ficha saúde preenchida...</p>
+                        <div className="mb-4">
+                            <Button variant={"link"} onClick={() => navigate(`/perfil-users/${id}/questionary`)}>
+                                https://meet.google.com/fjr-vsbm-fwi
+                            </Button>
+                        </div>
+                        <div className="flex w-full justify-around">
+                            <Button variant={'forms'} onClick={closePopup}>
+                                Fechar
+                            </Button>
+                            <Button onClick={() => navigate(`/perfil-users/${id}/questionary`)}>
+                                Enviar
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
