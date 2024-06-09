@@ -1,10 +1,11 @@
 import { ReactSVG } from "react-svg";
 import telephone from "../../../assets/telephone.svg";
-import email from "../../../assets/email.svg";
+import emailIcon from "../../../assets/email.svg";
 import address from "../../../assets/address.svg";
 import { ChangeEvent, useState, useEffect } from 'react';
 import axios from "axios";
 import { env } from '../../../env';
+import { useEmail } from "@/hooks/useEmail";
 
 type User = {
     id: string;
@@ -14,19 +15,16 @@ type User = {
     phone: string;
 };
 
-interface PerfilProps {
-    user_email: string;
-}
-
-export function Perfil({ user_email }: PerfilProps) {
+export function Perfil() {
     const [userData, setUserData] = useState<User | null>(null);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const { email } = useEmail();
 
     useEffect(() => {
         async function fetchEstheticianUser() {
             try {
-                const response = await axios.get(`${env.VITE_API_URL}/get-estheticians?user_email=${"rafael@hotmail.com"}`);
+                const response = await axios.get(`${env.VITE_API_URL}/get-estheticians?user_email=${email}`);
                 const data = response.data;
                 setUserData(data);
             } catch (error) {
@@ -36,7 +34,7 @@ export function Perfil({ user_email }: PerfilProps) {
             }
         }
         fetchEstheticianUser();
-    }, [user_email]);
+    }, []);
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -69,7 +67,7 @@ export function Perfil({ user_email }: PerfilProps) {
                     <p className="font-medium ml-3 mt-3">{userData ? userData.phone : 'Telefone não disponível'}</p>
                 </div>
                 <div className="flex p-3">
-                    <ReactSVG src={email} />
+                    <ReactSVG src={emailIcon} />
                     <p className="font-medium ml-3 mt-3">{userData ? userData.email : 'Email não disponível'}</p>
                 </div>
                 <div className="flex p-3">

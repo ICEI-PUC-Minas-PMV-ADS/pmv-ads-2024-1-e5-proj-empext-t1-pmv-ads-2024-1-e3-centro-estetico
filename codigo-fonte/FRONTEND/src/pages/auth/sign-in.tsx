@@ -7,6 +7,7 @@ import Logo from '../../assets/logo.svg'
 
 import { signIn } from '@/api/sign-in'
 import { ReactSVG } from 'react-svg'
+import { useEmail } from '@/hooks/useEmail'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -27,10 +28,12 @@ export function SignIn() {
     mutationFn: signIn,
   })
 
+  const { setEmail } = useEmail();
+
   async function handleSignIn({ email, password }: SignInForm) {
     try {
       await authenticate({ email, password })
-
+      setEmail(email)
       navigate('/')
       toast.success('Bem vinda!')
     } catch (error) {
