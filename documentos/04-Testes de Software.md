@@ -251,15 +251,18 @@ Desenvolvido por: Philipe Rocha
 
 * Evidência do caso de teste 10:
 
-Desenvolvido por: Gabriel de Almeida, João Vitor
-<br>Testado por: Giselle, Philipe Rocha
+Desenvolvido por: Gabriel de Almeida, Phillipe
+<br>Testado por: Gabriel de Almeida
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/eadacf6e-d607-4546-bc71-452080001921)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/b0ae697b-9881-4a9c-8f84-1b990964dcf8)
+
+OBS: Precisa realizar mais testes
 
 * Evidência do caso de teste 11:
 
-Desenvolvido por: Gabriel de Almeida, Philipe Rocha
-<br>Testado por: Gabriel de Almeida
+Desenvolvido por: Gabriel de Almeida
+<br>Testado por: Philipe Rocha, Giselle
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/4f1aa406-e424-4382-9510-ff0bfb68fbb2)
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/20ee089e-240c-437c-9efe-dc9ecbfeb1d6)
