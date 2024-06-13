@@ -43,10 +43,7 @@ const signUpForm = z
       if (arg instanceof Date) return arg
       if (typeof arg === 'string') return new Date(arg)
     }, z.date()),
-    address: z.string().regex(/^(.+),\s*(\d+),\s*(.+?)(?:,\s*(.+))?$/, {
-      message:
-        'Endereço deve seguir o padrão: Rua, número, bairro, complemento (complemento é opcional).',
-    }),
+    address: z.string().min(3, 'Endereço precisa ter ao menos 3 caracteres'),
     marital_status: MaritalStatus,
     email: z.string().email({ message: 'Endereço de e-mail inválido.' }),
     phone: z

@@ -8,6 +8,8 @@ import Logo from '../../assets/logo.svg'
 import { signIn } from '@/api/sign-in'
 import { ReactSVG } from 'react-svg'
 import { useEmail } from '@/hooks/useEmail'
+import { useTitle } from '@/hooks/useTitle'
+import { TitleOfPages } from '@/utils/titleOfPages'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -24,18 +26,25 @@ export function SignIn() {
     formState: { isSubmitting },
   } = useForm<SignInForm>()
 
+
   const { mutateAsync: authenticate } = useMutation({
     mutationFn: signIn,
   })
 
+  const { setTitle } = useTitle();
   const { setEmail } = useEmail();
+
+  const navigateUpdatingHeader = (path: string, title: string) => {
+    setTitle(title)
+    navigate(path)
+  }
 
   async function handleSignIn({ email, password }: SignInForm) {
     try {
       await authenticate({ email, password })
       setEmail(email)
-      navigate('/')
-      toast.success('Bem vinda!')
+      navigateUpdatingHeader('/', TitleOfPages.home)
+      toast.success('Bem vindo(a)!')
     } catch (error) {
       toast.error('Credenciais inválidas!')
     }

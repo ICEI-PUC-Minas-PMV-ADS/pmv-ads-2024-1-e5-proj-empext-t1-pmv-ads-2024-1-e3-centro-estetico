@@ -12,7 +12,7 @@ interface EmailProviderProps {
 const EmailContext = createContext<EmailContextType | undefined>(undefined);
 
 export const EmailProvider: React.FC<EmailProviderProps> = ({ children }) => {
-  const [email, setEmail] = useState<string>('rafael@hotmail.com');
+  const [email, setEmail] = useState<string>('');
 
   return (
     <EmailContext.Provider value={{ email, setEmail }}>
