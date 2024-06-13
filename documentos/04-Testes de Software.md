@@ -89,17 +89,28 @@ Resultado do Teste:
 
 * Caso de Teste 10:
 
-| Caso de Teste | CT-10 - Novas fichas recebidas |
+| Caso de Teste | CT-10 - Novos questionários de saúde recebidos |
 |---------------|-------------------------------------------------------------------------------|
-| Requisitos Associados |  `RF-002` - O sistema possuirá questionário de saúde para preenchimento do cliente		|
+| Requisitos Associados | `RF-002` - O sistema possuirá questionário de saúde para preenchimento do cliente <br> `RF-003` - O sistema deverá gerar um link que possa ser compartilhado com o cliente para acessar o questionário de saúde	|
 | Objetivos do teste | Ao cadastrar uma ficha de Questionário de saúde, notificar a esteticista na página "Novas fichas recebidas" |
 | Passos | 1) Fazer login caso deslogado <br> 2) Cadastrar o cliente se necessário <br> 3) Cadastrar um questionário de saúde <br> 4) Acessar "Novas fichas recebida" <br> |
 | Critérios com êxito | Verificar se os dados exibidos são referentes ao último questionário de saúde cadastrado <br> Verificar se as informações puxadas do banco, coincidem com os dados apresentados <br> |
 
- 
+* Caso de Teste 11:
+
+| Caso de Teste | CT-11 - Informações relevantes |
+|---------------|-------------------------------------------------------------------------------|
+| Requisitos Associados | `RF-003` - O sistema deverá gerar um link que possa ser compartilhado com o cliente para acessar o questionário de saúde	|
+| Objetivos do teste | Ressaltar as possíveis doenças que o cliente pode ter, selecionadas pela esteticista, são elas: problemas cardíacos, diabetes e se possui histórico ancológico  |
+| Passos | 1) Fazer login caso deslogado <br> 2) Cadastrar o cliente se necessário <br> 2) Clicar no link gerado para o preenchimento do questionário <br> 3) Cadastrar um questionário de saúde <br> 4) Acessar o perfil do cliente <br> |
+| Critérios com êxito | Observar se caso uma ou mais opções referentes ao objetivo do teste foram marcadas como "SIM" e verificar se no perfil do cliente está alertando corretamente <br> |
+
 # Evidências de Testes de Software
 
 * Evidência do Caso de Teste 01:
+
+Desenvolvido por: João Vitor
+<br>Testado por: Gabriel de Almeida
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/1d4a83a5-6bce-4ebd-9b89-967787c2d48d) ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/5a5d84ca-2f71-4d67-8c52-6c7d290bb652)  ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/3af9057e-4e0c-4b52-a24d-b8c625c5480f) ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/a57ed51f-d7d8-464c-9a83-0ee027bc49e3) ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/73aa5285-33b5-443b-b435-3fa6f3fa04db) ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/16799bcc-f259-4f27-8662-342ccf4383fa)
 
@@ -107,17 +118,26 @@ Realizamos diversos inputs nos quais alguns apresentavam erros previstos e foram
 
 * Evidência do Caso de Teste 02:
 
+Desenvolvido por: Philipe Rocha
+<br>Testado por: Gabriel de Almeida
+
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/d412f32f-dd58-4299-b5ee-74633f52366a) ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/4c8ed530-b6fa-4935-b907-166added2ab6) ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/683e357c-ebe9-4b38-98da-22c9973f0d42)
 
 Pesquisas faltando letra e mesmo assim acha um usuário onde encontra aquela string, e quando o input tem mais letras que o necessário, acusa "Nenhum cliente encontrado", corretamente. Testes aprovados.
 
 * Evidência do Caso de Teste 03:
 
+Desenvolvido por: Giselle
+<br>Testado por: Gabriel de Almeida
+
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/ff1f8a3c-58f4-470d-98a3-8e48d281d703)![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/bd28afbc-c598-4ba5-86b7-928f9f4c6805)
 
 Algumas validações como cliente cadastrado ou inexistência de e-mail estão em falta, porém a função adicionar cliente está funcionando corretamente.
 
 * Evidência do Caso de Teste 04:
+
+Desenvolvido por: Giselle
+<br>Testado por: Giselle
 
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/129e9eb3-9411-42c1-aead-3cbe292c2daf" width="500" height="800">
 <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/55036173/24124f23-2d7d-4876-ae2c-448eb4f5df84" width="500" height="800">
@@ -130,7 +150,7 @@ Algumas validações como cliente cadastrado ou inexistência de e-mail estão e
 <br>* Evidência do Caso de Teste 05:
 
 Desenvolvido por: Philipe Rocha, João Vitor
-Testado por: Gabriel de Almeida
+<br>Testado por: Gabriel de Almeida
 
 VÍDEO - Appointment Test - https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/blob/main/documentos/img/Appointment%20Test.mp4
 
@@ -188,10 +208,12 @@ Pontos de melhoria:
 
  - Alertar de consultas agendadas no mesmo horário
 
-
 <br>
 
 * Evidência do caso de teste 6:
+
+Desenvolvido por: Philipe Rocha, João Vitor
+<br>Testado por: Gabriel de Almeida
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/95033872-eb4e-41d4-8edc-f2b3d40d1f8a)
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/6bccd7b4-b806-4266-8adf-596e37e1f5f4)
@@ -201,15 +223,19 @@ Pontos de melhoria:
 
 <br>
 
-
-
 * Evidência do caso de teste 7:
+
+Desenvolvido por: Gabriel de Almeida
+<br>Testado por: Philipe Rocha
 
   https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/blob/main/documentos/img/2024-05-12%2020-31-34.rar
   (o vídeo da gravação)
 
 
 * Evidência do caso de teste 8:
+
+Desenvolvido por: Philipe Rocha
+<br>Testado por: Gabriel de Almeida
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/1283f2d8-e08b-413c-80e1-0d11443be023)
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/347174b5-cd2d-401e-8b52-e5f974f9b615)
@@ -218,5 +244,25 @@ Pontos de melhoria:
 
 * Evidência do caso de teste 9:
 
+Desenvolvido por: Philipe Rocha
+<br>Testado por: Gabriel de Almeida
+
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/dd13aeab-6748-4d6f-9cfd-ba29b7484e76)
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/dd13aeab-6748-4d6f-9cfd-ba29b7484e76)
+
+* Evidência do caso de teste 10:
+
+Desenvolvido por: Gabriel de Almeida, João Vitor
+<br>Testado por: Giselle, Philipe Rocha
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/eadacf6e-d607-4546-bc71-452080001921)
+
+* Evidência do caso de teste 11:
+
+Desenvolvido por: Gabriel de Almeida, Philipe Rocha
+<br>Testado por: Gabriel de Almeida
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/4f1aa406-e424-4382-9510-ff0bfb68fbb2)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/20ee089e-240c-437c-9efe-dc9ecbfeb1d6)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/7d17c81f-bffa-4f54-9e41-3a5fd6276cde)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/assets/105240089/4ed4fbda-97ed-4562-ab61-2e52bd9e7fa2)
+
