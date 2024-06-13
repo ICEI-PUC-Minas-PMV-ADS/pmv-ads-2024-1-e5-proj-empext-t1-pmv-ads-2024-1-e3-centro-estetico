@@ -54,7 +54,7 @@ export async function appRoutes(app: FastifyInstance) {
 
   // Appointment Routes
   app.get("/appointment", getAppointment);
-  app.post("/appointments", { onRequest: [verifyJWT] }, createAppointment);
+  app.post("/appointments", createAppointment);
   app.post("/appointment-skin-data", createAppointmentSkinData);
   app.post("/appointment-body-data", createAppointmentBodyData);
   app.get("/client-appointments/:id", getAppointmentsByClient);
@@ -66,7 +66,6 @@ export async function appRoutes(app: FastifyInstance) {
   app.delete("/appointment", deleteAppointment);
   app.delete("/appointment-skin-data", deleteAppointmentSkinData);
   app.delete("/appointment-body-data", deleteAppointmentBodyData)
-  // app.get("/appointments-list", getAllAppointments); // frontendEsperando este cara
 
   // Health Questionnaire Routes
   app.get('/health-questionnaire-link/:id', getHealthQuestionnaireLink)
