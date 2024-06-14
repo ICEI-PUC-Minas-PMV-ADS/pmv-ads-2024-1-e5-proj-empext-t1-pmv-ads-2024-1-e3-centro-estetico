@@ -37,7 +37,9 @@ export function Header(props: HeaderProps) {
   useEffect(() => {
 
     if(email === '') {
-      navigate('/sign-in')
+      if(!window.location.pathname.includes('/perfil-users')) {
+        navigate('/sign-in')
+      }
     }
 
     async function fetchEstheticianUser() {
