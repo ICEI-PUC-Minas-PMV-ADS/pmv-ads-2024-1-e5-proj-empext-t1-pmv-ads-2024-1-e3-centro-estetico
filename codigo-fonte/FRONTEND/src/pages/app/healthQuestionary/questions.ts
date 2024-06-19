@@ -61,7 +61,7 @@ export interface HealthQuestion {
         nameDescription: 'infectious_disease_description',
     },
     {
-        title: "Prática de algum esporte?",
+        title: "Pratica algum esporte?",
         description: "Quais?",
         name: 'practice_sports',
         nameDescription: 'practice_sports_description',

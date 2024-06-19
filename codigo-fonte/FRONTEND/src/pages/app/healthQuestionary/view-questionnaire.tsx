@@ -47,6 +47,10 @@ export function ViewQuestionnaire() {
             <h1 className="pt-1 pb-3 flex justify-center text-2xl font-semibold">
                 Questionário de Saúde
             </h1>
+            <div className="mb-4">
+                    <h2 className="font-bold">Queixa Principal:</h2>
+                    <p>{healthQuestionnaire.problem_description}</p>
+                </div>
             <div className="p-4">
                 {questions.map((question, index) => (
                     <div key={index} className="mb-2 ">
