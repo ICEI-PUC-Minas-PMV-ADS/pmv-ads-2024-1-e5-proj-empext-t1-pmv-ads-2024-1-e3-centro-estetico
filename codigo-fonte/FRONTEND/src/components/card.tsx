@@ -1,9 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { useNavigate } from 'react-router-dom'
+import { useTitle } from '@/hooks/useTitle';
 import { Phone } from 'lucide-react';
-import { useTitle } from '@/hooks/useTitle'
+import { useNavigate } from 'react-router-dom';
 
 type cardProps = {
   name: string
@@ -28,9 +28,9 @@ export function Card(props: cardProps) {
       }
     >
       <img
-        src="https://observatoriodosfamosos.uol.com.br/portal/wp-content/uploads/2023/08/manoel-gomes-70-mil-transformacao.jpg"
+        src="https://cdn-icons-png.flaticon.com/512/6326/6326055.png"
         alt="foto"
-        className="m-3 h-14 w-1/4 rounded-lg "
+        className="m-3 h-14 w-1/8 rounded-lg "
       />
       <span className="flex flex-col gap-2">
         <h2 className="ml-1 pt-4 text-base font-medium text-primary">
