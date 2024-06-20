@@ -26,6 +26,7 @@ import { verifyJWT } from "./middlewares/verify-jwt";
 import { getEstheticians} from "./controllers/get-estheticians";
 import { getAppointmentsByClient } from "./controllers/get-appointments-by-client";
 import { getHealthQuestionnaireLink } from "./controllers/get-health-questionnaire-link";
+import { deleteHealthQuestionnaire } from "./controllers/delete-health-questionnaire";
 
 export async function appRoutes(app: FastifyInstance) {
   // Clients Routes
@@ -68,11 +69,11 @@ export async function appRoutes(app: FastifyInstance) {
   app.delete("/appointment-body-data", deleteAppointmentBodyData)
 
   // Health Questionnaire Routes
-  app.get('/health-questionnaire-link/:id', getHealthQuestionnaireLink)
-  app.post('/health-questionnairies', createHealthQuestionnaire)
-  app.get("/healthQuestionnaireByClientId", healthQuestionnaireByClientId);
+  app.get("/health-questionnaire-link/:id", getHealthQuestionnaireLink)
+  app.post("/health-questionnairies", createHealthQuestionnaire)
+  app.get("/health-questionnaire-by-client-id", healthQuestionnaireByClientId);
   app.get("/recent-health-questionnaries", recentHealthQuestionnairies);
-  
+  app.delete("/health-questionnaire", deleteHealthQuestionnaire);
 
 
 }

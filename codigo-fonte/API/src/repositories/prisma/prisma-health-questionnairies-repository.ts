@@ -3,6 +3,7 @@ import { HealthQuestionnaire, Prisma } from '@prisma/client';
 import { IHealthQuestionnairiesRepository } from '../interfaces/ihealth-questionnairies-repository';
 import { subDays } from 'date-fns';
 
+
 export class PrismaHealthQuestionnairiesRepository implements IHealthQuestionnairiesRepository {
   async create(data: Prisma.HealthQuestionnaireCreateInput): Promise<HealthQuestionnaire> {
     return await prisma.healthQuestionnaire.create({ data });
@@ -24,4 +25,22 @@ export class PrismaHealthQuestionnairiesRepository implements IHealthQuestionnai
       },
     });
   }
-}
+
+
+    async delete(client_id: string): Promise<HealthQuestionnaire | null> {
+      console.log('Repository delete called with client_id:', client_id);  // Log added
+      const healthQuestionnaire = await prisma.healthQuestionnaire.findFirst({
+        where: { client_id },
+      });
+  
+      console.log('Repository found healthQuestionnaire:', healthQuestionnaire);  // Log added
+  
+      if (!healthQuestionnaire) {
+        throw new Error(`No health questionnaire found for client_id: ${client_id}`);
+      }
+  
+      return await prisma.healthQuestionnaire.delete({
+        where: { id: healthQuestionnaire.id },
+      });
+    }
+  }
