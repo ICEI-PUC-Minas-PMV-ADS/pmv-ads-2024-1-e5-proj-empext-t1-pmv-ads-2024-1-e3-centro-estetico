@@ -54,7 +54,6 @@ model User {
   password_hash          String
   created_at             DateTime             @default(now())
   updated_at             DateTime             @updatedAt
-  Client                 Client[]
   AppointmentHistory     AppointmentHistory[]
 
   @@map("users")
@@ -359,7 +358,6 @@ model HealthQuestionnaire {
 
 model Client {
   id                     String                @id @default(uuid())
-  user_id                String
   name                   String
   email                  String                @unique
   birth_date             DateTime
@@ -373,7 +371,6 @@ model Client {
   BodyAnalysis           BodyAnalysis[]
   AppointmentHistory     AppointmentHistory[]
   HealthQuestionnaire    HealthQuestionnaire[]
-  User                   User                  @relation(fields: [user_id], references: [id])
 
   @@map("clients")
 }
