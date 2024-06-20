@@ -12,7 +12,7 @@ export async function clientRegister(
 
   try {
     const clientRegisterService = makeClientRegisterService()
-    const serviceResponse = await clientRegisterService.execute(clientInputData, '6df311fd-1fd0-4ba6-9249-24b66555243d')
+    const serviceResponse = await clientRegisterService.execute(clientInputData)
 
     return reply.code(201).send(serviceResponse)
   } catch (error) {
