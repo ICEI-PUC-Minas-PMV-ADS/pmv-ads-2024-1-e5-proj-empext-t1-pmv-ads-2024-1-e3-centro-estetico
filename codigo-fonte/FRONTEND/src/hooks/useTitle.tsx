@@ -4,6 +4,10 @@ import React, { createContext, useState, useContext, ReactNode } from 'react';
 interface TitleContextType {
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
+  previousTitle: string;
+  setPreviousTitle: React.Dispatch<React.SetStateAction<string>>;
+  previousPath: string;
+  setPreviousPath: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface TitleProviderProps {
@@ -30,8 +34,11 @@ export const TitleProvider: React.FC<TitleProviderProps> = ({ children }) => {
     } 
   });
 
+  const [previousTitle, setPreviousTitle] = useState<string>(TitleOfPages.home)
+  const [previousPath, setPreviousPath] = useState<string>('/')
+
   return (
-    <TitleContext.Provider value={{ title, setTitle }}>
+    <TitleContext.Provider value={{ title, setTitle, previousTitle, setPreviousTitle, setPreviousPath, previousPath }}>
       {children}
     </TitleContext.Provider>
   );

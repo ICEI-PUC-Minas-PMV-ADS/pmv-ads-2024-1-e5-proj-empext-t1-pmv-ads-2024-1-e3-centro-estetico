@@ -24,7 +24,7 @@ export function PerfilClients() {
   const { users } = useUser()
   const { id } = useParams()
   const navigate = useNavigate()
-  const { setTitle } = useTitle()
+  const { setTitle, setPreviousPath, setPreviousTitle, title } = useTitle()
 
   const user = users?.find((item) => item.id === id)
 
@@ -39,9 +39,13 @@ export function PerfilClients() {
   }
 
   useEffect(() => {
+    setPreviousPath(window.location.pathname)
+    setPreviousTitle(title)
+  },[])
+
+  useEffect(() => {
     const fetchQuestionnaire = async () => {
       try {
-        console.log(questionnaireLink)
         const response = await getClientHealthQuestionaryLink(id!)
         const data = response.data
         setQuestionnaireLink(data.link)

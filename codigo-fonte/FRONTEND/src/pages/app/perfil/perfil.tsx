@@ -6,6 +6,7 @@ import { ChangeEvent, useState, useEffect } from 'react';
 import axios from "axios";
 import { env } from '../../../env';
 import { useEmail } from "@/hooks/useEmail";
+import { useTitle } from "@/hooks/useTitle";
 
 type User = {
     id: string;
@@ -20,6 +21,12 @@ export function Perfil() {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const { email } = useEmail();
+    const { setPreviousPath, setPreviousTitle, title } = useTitle();
+
+    useEffect(() => {
+        setPreviousPath(window.location.pathname)
+        setPreviousTitle(title)
+      },[])
 
     useEffect(() => {
         async function fetchEstheticianUser() {

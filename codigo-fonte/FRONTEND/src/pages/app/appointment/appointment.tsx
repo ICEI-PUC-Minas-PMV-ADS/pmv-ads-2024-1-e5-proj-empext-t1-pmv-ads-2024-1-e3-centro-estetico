@@ -51,7 +51,7 @@ type RegisterAppointmentForm = z.infer<typeof registerAppointmentForm>
 
 
 export function Appointment() {
-  const { setTitle } = useTitle();
+  const { setTitle, setPreviousPath, setPreviousTitle, title } = useTitle();
   const [date, setDate] = useState<Date>()
   const [selectedClient, setSelectedClient] = useState<string>()
   const [clients, setClients] = useState<client[]>([])
@@ -173,6 +173,11 @@ export function Appointment() {
       local: 'OnSight'
     },
   })
+
+  useEffect(() => {
+    setPreviousPath(window.location.pathname)
+    setPreviousTitle(title)
+  },[])
 
   const { mutateAsync: newAppointment } = useMutation({
     mutationFn: createAppointment,
