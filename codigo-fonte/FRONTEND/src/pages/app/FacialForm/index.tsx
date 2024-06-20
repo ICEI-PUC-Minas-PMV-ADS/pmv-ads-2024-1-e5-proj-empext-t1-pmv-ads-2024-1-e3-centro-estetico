@@ -10,27 +10,27 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 import {
-  acneGrades,
-  bloodVessels,
-  dehydrationLevels,
-  fluidSkinLesions,
-  hypotonias,
-  melanotics,
-  notMelanotics,
-  oilinessLevels,
-  others,
-  pigmentedSpots,
-  poreSizes,
-  purpuricSpots,
-  scars,
-  skinColors,
-  skinContains,
-  skinInvolution,
-  skinLesions,
-  skinPhotoTypes,
-  skinTextures,
-  skinTypes,
-  tyrichosis,
+    acneGrades,
+    bloodVessels,
+    dehydrationLevels,
+    fluidSkinLesions,
+    hypotonias,
+    melanotics,
+    notMelanotics,
+    oilinessLevels,
+    others,
+    pigmentedSpots,
+    poreSizes,
+    purpuricSpots,
+    scars,
+    skinColors,
+    skinContains,
+    skinInvolution,
+    skinLesions,
+    skinPhotoTypes,
+    skinTextures,
+    skinTypes,
+    tyrichosis,
 } from './constants/constants'
 import { FacialFormFactory } from './factory/factory'
 import { useGetSkinForm } from './useCases/useGetSkinForm'
@@ -179,13 +179,13 @@ const FacialForm = () => {
                         id={phototype.id}
                         value={phototype.label}
                         checked={getValues('skinPhototypes') === phototype.label}
-                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                       />
                     )}
                   />
                   <label
                     htmlFor={phototype.id}
-                    className="mr-2 text-sm font-bold text-[#00A27B]"
+                    className="mr-2 text-sm font-bold text-[#0063C7]"
                   >
                     {phototype.label}
                   </label>
@@ -212,13 +212,13 @@ const FacialForm = () => {
                         id={color.id}
                         value={color.label}
                         checked={getValues('skinColors') === color.label}
-                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                       />
                     )}
                   />
                   <label
                     htmlFor={color.id}
-                    className="mr-2 text-sm font-bold text-[#00A27B]"
+                    className="mr-2 text-sm font-bold text-[#0063C7]"
                   >
                     {color.label}
                   </label>
@@ -248,13 +248,13 @@ const FacialForm = () => {
                         id={hidatation.id}
                         value={hidatation.label}
                         checked={getValues('dehydrationLevels') === hidatation.label}
-                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                       />
                     )}
                   />
                   <label
                     htmlFor={hidatation.id}
-                    className="mr-2 text-sm font-bold text-[#00A27B]"
+                    className="mr-2 text-sm font-bold text-[#0063C7]"
                   >
                     {hidatation.label}
                   </label>
@@ -281,13 +281,13 @@ const FacialForm = () => {
                         id={texture.id}
                         value={texture.label}
                         checked={getValues('skinTextures') === texture.label}
-                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                        className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                       />
                     )}
                   />
                   <label
                     htmlFor={texture.id}
-                    className="mr-2 text-sm font-bold text-[#00A27B]"
+                    className="mr-2 text-sm font-bold text-[#0063C7]"
                   >
                     {texture.label}
                   </label>
@@ -315,13 +315,13 @@ const FacialForm = () => {
                       id={ostium.id}
                       value={ostium.label}
                       checked={getValues('poreSizes') === ostium.label}
-                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                     />
                   )}
                 />
                 <label
                   htmlFor={ostium.id}
-                  className="mr-2 text-sm font-bold text-[#00A27B]"
+                  className="mr-2 text-sm font-bold text-[#0063C7]"
                 >
                   {ostium.label}
                 </label>
@@ -350,13 +350,13 @@ const FacialForm = () => {
                       id={type.id}
                       value={type.label}
                       checked={getValues('skinTypes') === type.label}
-                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                     />
                   )}
                 />
                 <label
                   htmlFor={type.id}
-                  className="mr-2 text-sm font-bold text-[#00A27B]"
+                  className="mr-2 text-sm font-bold text-[#0063C7]"
                 >
                   {type.label}
                 </label>
@@ -383,13 +383,13 @@ const FacialForm = () => {
                       id={oilinessGrade.id}
                       value={oilinessGrade.label}
                       checked={getValues('oilinessLevels') === oilinessGrade.label}
-                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                     />
                   )}
                 />
                 <label
                   htmlFor={oilinessGrade.id}
-                  className="mr-2 text-sm font-bold text-[#00A27B]"
+                  className="mr-2 text-sm font-bold text-[#0063C7]"
                 >
                   {oilinessGrade.label}
                 </label>
@@ -416,13 +416,13 @@ const FacialForm = () => {
                       id={acneGrade.id}
                       value={acneGrade.label}
                       checked={getValues('acneGrades') === acneGrade.label}
-                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                     />
                   )}
                 />
                 <label
                   htmlFor={acneGrade.id}
-                  className="mr-2 text-sm font-bold text-[#00A27B]"
+                  className="mr-2 text-sm font-bold text-[#0063C7]"
                 >
                   {acneGrade.label}
                 </label>
@@ -447,7 +447,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={contain.id}
                         value={contain.label}
                         checked={getValues('skinContains')?.find((item) => item  === contain.label)}
@@ -455,7 +455,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {contain.label}
                   </label>
                 </div>
@@ -482,7 +482,7 @@ const FacialForm = () => {
                   render={({ field }) => (
                     <input
                       type="checkbox"
-                      className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                      className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                       id={involution.id}
                       value={involution.label}
                       checked={getValues(`skinInvolution.${involution.typeName}.type`)}
@@ -492,7 +492,7 @@ const FacialForm = () => {
                 />
                 <label
                   htmlFor={involution.id}
-                  className=" ml-2 text-sm font-bold text-[#00A27B]"
+                  className=" ml-2 text-sm font-bold text-[#0063C7]"
                 >
                   {involution.label}
                 </label>
@@ -534,7 +534,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={hypotonia.id}
                         {...field}
                         value={hypotonia.label}
@@ -543,7 +543,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {hypotonia.label}
                   </label>
                 </div>
@@ -568,7 +568,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={tyrichose.id}
                         value={tyrichose.label}
                         checked={getValues('tyrichosis')?.find((item) => item  === tyrichose.label)}
@@ -576,7 +576,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {tyrichose.label}
                   </label>
                 </div>
@@ -600,7 +600,7 @@ const FacialForm = () => {
                   render={({ field }) => (
                     <input
                       type="checkbox"
-                      className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                      className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                       id={scar.id}
                       value={scar.label}
                       checked={getValues(`scars.${scar.typeName}.type`)}
@@ -610,7 +610,7 @@ const FacialForm = () => {
                 />
                 <label
                   htmlFor={scar.id}
-                  className=" ml-2 text-sm font-bold text-[#00A27B]"
+                  className=" ml-2 text-sm font-bold text-[#0063C7]"
                 >
                   {scar.label}
                 </label>
@@ -654,7 +654,7 @@ const FacialForm = () => {
                   render={({ field }) => (
                     <input
                       type="checkbox"
-                      className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                      className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                       id={vessel.id}
                       value={vessel.label}
                       checked={getValues(`bloodVessels.${vessel.typeName}.type`)}
@@ -664,7 +664,7 @@ const FacialForm = () => {
                 />
                 <label
                   htmlFor={vessel.id}
-                  className=" ml-2 text-sm font-bold text-[#00A27B]"
+                  className=" ml-2 text-sm font-bold text-[#0063C7]"
                 >
                   {vessel.label}
                 </label>
@@ -706,7 +706,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={purpuricSpot.id}
                         value={purpuricSpot.label}
                         checked={getValues('purpuricSpots')?.find((item) => item  === purpuricSpot.label)}
@@ -714,7 +714,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {purpuricSpot.label}
                   </label>
                 </div>
@@ -739,7 +739,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={typigmentedSpot.id}
                         value={typigmentedSpot.label}
                         checked={getValues('pigmentedSpots')?.find((item) => item  === typigmentedSpot.label)}
@@ -747,7 +747,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {typigmentedSpot.label}
                   </label>
                 </div>
@@ -771,7 +771,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={melanotic.id}
                         value={melanotic.label}
                         checked={getValues('melanotics')?.find((item) => item  === melanotic.label)}
@@ -779,7 +779,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {melanotic.label}
                   </label>
                 </div>
@@ -804,7 +804,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={notMelanotic.id}
                         value={notMelanotic.label}
                         checked={getValues('notMelanotics')?.find((item) => item  === notMelanotic.label)}
@@ -812,7 +812,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {notMelanotic.label}
                   </label>
                 </div>
@@ -836,7 +836,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={skinLesion.id}
                         value={skinLesion.label}
                         checked={getValues('skinLesions')?.find((item) => item  === skinLesion.label)}
@@ -844,7 +844,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {skinLesion.label}
                   </label>
                 </div>
@@ -869,7 +869,7 @@ const FacialForm = () => {
                     render={({ field }) => (
                       <input
                         type="checkbox"
-                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#00A27B] ring-offset-1 checked:bg-[#00A27B] focus:outline-black"
+                        className="box-border h-4 w-4 appearance-none rounded-sm border-2 border-solid border-[#ffffff] ring-2 ring-[#0063C7] ring-offset-1 checked:bg-[#0063C7] focus:outline-black"
                         id={fluidSkinLesion.id}
                         {...field}
                         value={fluidSkinLesion.label}
@@ -878,7 +878,7 @@ const FacialForm = () => {
                       />
                     )}
                   />
-                  <label className="ml-2 text-sm font-bold text-[#00A27B]">
+                  <label className="ml-2 text-sm font-bold text-[#0063C7]">
                     {fluidSkinLesion.label}
                   </label>
                 </div>
@@ -905,13 +905,13 @@ const FacialForm = () => {
                       id={another.id}
                       value={another.label}
                       checked={getValues('others') === another.label}
-                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#00A27B] ring-offset-2 checked:bg-[#00A27B]"
+                      className="mr-2 box-border h-2 w-2 appearance-none rounded-full bg-transparent ring-2 ring-[#0063C7] ring-offset-2 checked:bg-[#0063C7]"
                     />
                   )}
                 />
                 <label
                   htmlFor={another.id}
-                  className="mr-2 text-sm font-bold text-[#00A27B]"
+                  className="mr-2 text-sm font-bold text-[#0063C7]"
                 >
                   {another.label}
                 </label>
@@ -935,7 +935,7 @@ const FacialForm = () => {
         <div className="flex items-center justify-center ">
           <button
             type="submit"
-            className="hover:[#00a27c69] w-80 rounded bg-[#00A27B] px-4 py-2 font-bold text-white"
+            className="hover:[#00a27c69] w-80 rounded bg-[#0063C7] px-4 py-2 font-bold text-white"
           >
             { query.data ? 'Atualizar' : 'Cadastrar '}
           </button>
