@@ -8,11 +8,11 @@ import { Controller, useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
-
+import { useNavigate } from 'react-router-dom'
 import { createHealthQuestionary } from '@/api/questionary'
 import { Button } from '@/components/ui/button'
-
 import { questions } from './questions'
+
 
 const healthQuestionnaire = z.object({
   problem_description: z.string().optional(),
@@ -78,6 +78,7 @@ const healthQuestionnaire = z.object({
   }),
 })
 
+
 export type HealthQuestionnaire = z.infer<typeof healthQuestionnaire>
 
 export interface HealthQuestion {
@@ -100,7 +101,7 @@ export function Questionary() {
   })
 
   const { id } = useParams<{ id: string }>()
-
+  const navigate = useNavigate()
   const { mutateAsync: createQuestionary } = useMutation({
     mutationFn: createHealthQuestionary,
   })
@@ -252,7 +253,12 @@ export function Questionary() {
             {errors.authorize_data.message}
           </small>
         )}
-        <Button type="submit" className="mt-4 w-full" disabled={isSubmitting}>
+        <Button 
+        type="submit" 
+        className="mt-4 w-full" 
+        disabled={isSubmitting}
+        onClick={() => navigate('/questionnaire-created')}
+        >
           Enviar
         </Button>
       </form>
