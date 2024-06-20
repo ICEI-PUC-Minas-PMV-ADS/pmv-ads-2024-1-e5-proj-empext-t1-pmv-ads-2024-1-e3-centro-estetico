@@ -48,34 +48,34 @@ export function HeaderMenu() {
                         <DrawerClose asChild>
                             <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/', TitleOfPages.home)} >
                                 <Home />
-                                <span className="text-black pl-3 pt-1 font-normal">Home</span>
+                                <span className="text-wwhite pl-3 pt-1 font-normal">Home</span>
                             </Button>
                         </DrawerClose>
                         <DrawerClose asChild>
                             <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/perfil/styles', TitleOfPages.perfil)}>
                                 <User />
-                                <span className="text-black pl-3 pt-1 font-normal">Perfil</span>
+                                <span className="text-wwhite pl-3 pt-1 font-normal">Perfil</span>
                             </Button>
                         </DrawerClose>
 
                         <DrawerClose asChild>
                             <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/appointment', TitleOfPages.appointment)}>
                                 <FilePlus />
-                                <span className="text-black pl-3 pt-1 font-normal">Novo tratamento</span>
+                                <span className="text-wwhite pl-3 pt-1 font-normal">Novo tratamento</span>
                             </Button>
                         </DrawerClose>
 
                         <DrawerClose asChild>
                             <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/register-users', TitleOfPages.newClient)}>
                                 <UserRoundPlus />
-                                <span className="text-black pl-3 pt-1 font-normal">Novo cliente</span>
+                                <span className="text-wwhite pl-3 pt-1 font-normal">Novo cliente</span>
                             </Button>
                         </DrawerClose>
 
                         <DrawerClose asChild>
                             <Button variant={"link"} className="justify-start" onClick={() => navigateUpdatingHeader('/notifications', TitleOfPages.notifications)}>
                                 <Bell />
-                                <span className="text-black pl-3 pt-1 font-normal">Novas fichas recebidas</span>
+                                <span className="text-wwhite pl-3 pt-1 font-normal">Novas fichas recebidas</span>
                             </Button>
                         </DrawerClose>
 

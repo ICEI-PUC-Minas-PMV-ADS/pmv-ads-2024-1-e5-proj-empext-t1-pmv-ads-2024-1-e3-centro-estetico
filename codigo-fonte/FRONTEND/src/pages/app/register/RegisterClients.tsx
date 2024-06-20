@@ -11,7 +11,19 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { DatePickerDemo } from '@/components/ui/data-picker';
+import { Label } from '@/components/ui/label'
+import { Calendar } from '@/components/ui/calendar'
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale/pt-BR'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { cn } from '@/lib/utils'
 
 
 const Gender = z.enum(['Male', 'Female'])
@@ -38,6 +50,7 @@ type RegisterClientForm = z.infer<typeof registerClientForm>
 
 export function RegisterClients() {
   const { setTitle, setPreviousPath, setPreviousTitle, title } = useTitle();
+  const [date, setDate] = useState<Date>()
 
   const navigate = useNavigate()
 
@@ -54,6 +67,7 @@ export function RegisterClients() {
   const {
     handleSubmit,
     register,
+    setValue,
     control,
     formState: { isSubmitting, errors }
   } = useForm<RegisterClientForm>({
@@ -78,6 +92,12 @@ export function RegisterClients() {
       toast.error('Erro ao cadastrar usuário!')
     }
   }
+
+  useEffect(() => {
+    if (date) {
+      setValue('birth_date', date, { shouldValidate: true })
+    }
+  }, [date, setDate])
 
   return (
 
@@ -179,17 +199,44 @@ export function RegisterClients() {
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium" htmlFor="dataNascimento">
-            Data de Nascimento
-          </label>
-          <input
-            id="birth_date"
-            type="date"
-            className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-primary"
-            {...register('birth_date')}
-          />
+          <div>
+              <Label htmlFor="birth_date">
+              <label className="block text-sm font-medium pb-2" htmlFor="birth_date">
+                Data de nascimento
+              </label>
+              </Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={'outline'}
+                    className={cn(
+                      'w-[350px] justify-start text-left font-normal',
+                      !date && 'text-muted-foreground',
+                    )}
+                  >
+                    {date ? (
+                      format(date, 'PPP', { locale: ptBR })
+                    ) : (
+                      <span>Escolha uma data</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    captionLayout="dropdown-buttons"
+                    required
+                    selected={date}
+                    onSelect={setDate}
+                    fromYear={1900}
+                    toYear={new Date().getFullYear()}
+                    locale={ptBR}
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
           {errors.birth_date && (
-            <small className="text-red-500">Data inválida</small>
+            <small className="text-red-500">{errors.birth_date.message}</small>
           )}
         </div>
 

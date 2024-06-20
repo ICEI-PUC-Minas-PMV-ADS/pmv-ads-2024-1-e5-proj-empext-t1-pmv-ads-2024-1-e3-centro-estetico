@@ -36,7 +36,6 @@ export function Homepage() {
       if(name !== '') {
         const response = await axios.get(`${env.VITE_API_URL}/clients?name=${name}`);
         setUsers(response.data)
-        
         setHasUsers(true)
       }
     } catch (error: any) {
@@ -94,6 +93,7 @@ export function Homepage() {
               key={user.id}
               name={user.name}
               id={user.id}
+              phone={user.phone}
             />
           )) : <Alert variant='default'>
             <AlertDescription>
