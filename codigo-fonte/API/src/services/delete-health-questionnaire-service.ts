@@ -16,7 +16,6 @@ export class DeleteHealthQuestionnaireService {
   async execute({
     client_id,
   }: DeleteHealthQuestionnaireServiceRequest): Promise<DeleteHealthQuestionnaireServiceResponse> {
-    console.log('Delete service called with client_id:', client_id);  // Log added
     const healthQuestionnaire = await this.healthQuestionnairiesRepository.delete(client_id);
     if (!healthQuestionnaire) throw new ResourceNotFoundError();
 

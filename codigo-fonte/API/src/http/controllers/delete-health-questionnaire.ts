@@ -11,7 +11,6 @@ export async function deleteHealthQuestionnaire(
 
   try {
     const healthQuestionnaireQuery = getHealthQuestionnaireByClientId.parse(request.query);
-    console.log('Parsed query:', healthQuestionnaireQuery);  // Adicione este log
     const { healthQuestionnaire } = await healthQuestionnaireItem.execute({
         client_id: healthQuestionnaireQuery.client_id,
     });
@@ -22,7 +21,6 @@ export async function deleteHealthQuestionnaire(
       return reply.code(404).send({message: 'Não encontrado'});
     }
   } catch (error) {
-    console.error('Error:', error);  // Adicione este log
     if (error instanceof ResourceNotFoundError) {
       return reply.code(404).send({ message: error.message });
     }
