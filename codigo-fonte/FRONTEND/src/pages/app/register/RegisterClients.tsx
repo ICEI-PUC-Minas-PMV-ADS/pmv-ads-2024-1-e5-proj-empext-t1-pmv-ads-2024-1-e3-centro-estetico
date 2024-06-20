@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useEffect } from 'react';
 
 
 const Gender = z.enum(['Male', 'Female'])
@@ -36,7 +37,7 @@ const registerClientForm = z
 type RegisterClientForm = z.infer<typeof registerClientForm>
 
 export function RegisterClients() {
-  const { setTitle } = useTitle();
+  const { setTitle, setPreviousPath, setPreviousTitle, title } = useTitle();
 
   const navigate = useNavigate()
 
@@ -44,6 +45,11 @@ export function RegisterClients() {
     setTitle(title)
     navigate(path)
   }
+
+  useEffect(() => {
+    setPreviousPath(window.location.pathname)
+    setPreviousTitle(title)
+  },[])
 
   const {
     handleSubmit,

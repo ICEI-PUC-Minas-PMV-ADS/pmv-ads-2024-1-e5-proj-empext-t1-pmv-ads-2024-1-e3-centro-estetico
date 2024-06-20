@@ -18,13 +18,18 @@ export function NotificationsForm() {
   const [healthQuestionnaries, setHealthQuestionnaries] = useState<QuestionnaryType[]>([]);
   const [anyHealthQuestionnary, setAnyHealthQuestionnary] = useState(true);
   const [clientNames, setClientNames] = useState<{ [key: string]: string }>({});
-  const { setTitle } = useTitle();
+  const { setTitle, setPreviousPath, setPreviousTitle, title } = useTitle();
   const navigate = useNavigate();
 
   const navigateUpdatingHeader = (path: string, title: string) => {
     setTitle(title);
     navigate(path);
   };
+
+  useEffect(() => {
+    setPreviousPath(window.location.pathname)
+    setPreviousTitle(title)
+  },[])
 
   useEffect(() => {
     const fetchHealthQuestionnaries = async () => {
