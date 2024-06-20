@@ -7,12 +7,16 @@ export async function clientRegister(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
+  let userId
+  request.jwtVerify((_, decoded) => {
+    userId = decoded.sub
+  })
 
   const clientInputData = registerBodySchema.parse(request.body)
 
   try {
     const clientRegisterService = makeClientRegisterService()
-    const serviceResponse = await clientRegisterService.execute(clientInputData, '6df311fd-1fd0-4ba6-9249-24b66555243d')
+    const serviceResponse = await clientRegisterService.execute(clientInputData, userId)
 
     return reply.code(201).send(serviceResponse)
   } catch (error) {

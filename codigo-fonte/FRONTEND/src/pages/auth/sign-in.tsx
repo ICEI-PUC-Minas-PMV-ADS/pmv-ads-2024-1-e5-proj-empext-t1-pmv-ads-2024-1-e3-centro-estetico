@@ -6,10 +6,10 @@ import { z } from 'zod'
 import Logo from '../../assets/logo.svg'
 
 import { signIn } from '@/api/sign-in'
-import { ReactSVG } from 'react-svg'
 import { useEmail } from '@/hooks/useEmail'
 import { useTitle } from '@/hooks/useTitle'
 import { TitleOfPages } from '@/utils/titleOfPages'
+import { ReactSVG } from 'react-svg'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -64,7 +64,7 @@ export function SignIn() {
       <input
         id="email"
         type="email"
-        className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none  text-[#00A27B]"
+        className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none  text-[#0063C7]"
         {...register('email')}
         />
     </div>
@@ -76,19 +76,19 @@ export function SignIn() {
       <input
         id="password"
         type="password"
-        className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#00A27B]"
+        className="block w-full px-4 py-2 bg-transparent border-b-2 border-gray-300 outline-none text-[#0063C7]"
         {...register('password')}
         />
     </div>
         <button
           type="submit"
            disabled={isSubmitting}
-          className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#00A27B] rounded-md focus:outline-none focus:ring-1 active:bg-[#00a27cbf]"
+          className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#0063C7] rounded-md focus:outline-none focus:ring-1 active:bg-[#00a27cbf]"
         >
           Entrar
         </button>
         <div className=' mt-3 text-center'>
-          <a href='/sign-up'  className="inline-block align-baseline text-sm text-[#00A27B] hover:[#00a27c66]"
+          <a href='/sign-up'  className="inline-block align-baseline text-sm text-[#0063C7] hover:[#00a27c66]"
   >
             Quero me cadastrar
           </a>
