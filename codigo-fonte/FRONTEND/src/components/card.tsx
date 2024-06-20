@@ -2,12 +2,13 @@
 // @ts-nocheck
 
 import { useNavigate } from 'react-router-dom'
-
+import { Phone } from 'lucide-react';
 import { useTitle } from '@/hooks/useTitle'
 
 type cardProps = {
   name: string
   id: string
+  phone: string
 }
 
 export function Card(props: cardProps) {
@@ -35,7 +36,7 @@ export function Card(props: cardProps) {
         <h2 className="ml-1 pt-4 text-base font-medium text-primary">
           {props.name}
         </h2>
-        <h3 className="ml-1 text-xs font-medium">Última consulta 22/12/2023</h3>
+        <h3 className="ml-1 text-sm font-medium flex text-center items-center"><Phone className='text-primary pr-1 mr-1' />{props.phone}</h3>
       </span>
     </div>
   )
