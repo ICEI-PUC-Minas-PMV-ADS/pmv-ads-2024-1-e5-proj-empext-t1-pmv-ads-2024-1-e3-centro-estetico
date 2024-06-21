@@ -5,14 +5,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { useNavigate } from 'react-router-dom'
 import { createHealthQuestionary } from '@/api/questionary'
 import { Button } from '@/components/ui/button'
 import { questions } from './questions'
-
 
 const healthQuestionnaire = z.object({
   problem_description: z.string().optional(),
@@ -78,7 +76,6 @@ const healthQuestionnaire = z.object({
   }),
 })
 
-
 export type HealthQuestionnaire = z.infer<typeof healthQuestionnaire>
 
 export interface HealthQuestion {
@@ -120,8 +117,8 @@ export function Questionary() {
       await createQuestionary(questionaryData)
       console.log(regData)
       console.log(data)
-      // Navigate('/')
       toast.success('Questionário cadastrado com sucesso!')
+      navigate('/questionnaire-created')
     } catch (error) {
       toast.error('Erro ao cadastrar questionário!')
     }
@@ -146,67 +143,64 @@ export function Questionary() {
           />
         </div>
         {questions.map((question: HealthQuestion, index) => (
-          <>
-            <Controller
-              key={index}
-              control={control}
-              name={question.name}
-              render={({ field }) => (
-                <div className="pl-1.5">
-                  <h2 className="mb-1.5 pt-1.5 text-sm font-bold">
-                    {question.title}
-                  </h2>
-                  <div>
-                    <label className="mr-4 inline-flex items-center text-primary">
-                      <input
-                        type="radio"
-                        value="true"
-                        checked={field.value === true}
-                        onChange={() => field.onChange(true)}
-                      />
-                      <span className="pl-1 text-sm font-semibold text-primary">
-                        Sim
-                      </span>
-                    </label>
-                    <label className="inline-flex items-center text-primary">
-                      <input
-                        type="radio"
-                        value="false"
-                        checked={field.value === false}
-                        onChange={() => field.onChange(false)}
-                      />
-                      <span className=" pl-1 text-sm font-semibold  text-primary">
-                        Não
-                      </span>
-                    </label>
-                  </div>
-                  {field.value === true &&
-                    question.description &&
-                    question.nameDescription && (
-                      <div className="pb-1.5 pt-0.5 text-sm ">
-                        <label className="pl-2 pr-3 font-semibold ">
-                          {question.description}
-                          <input
-                            className="ml-2 rounded-lg px-10 py-0.5 pl-2 font-normal"
-                            type="text"
-                            id={field.name}
-                            key={index}
-                            {...register(question.nameDescription)}
-                            placeholder="Escreva aqui"
-                          />
-                        </label>
-                      </div>
-                    )}
-                  {errors[`${question.name}`] && (
-                    <small className="text-red-500 ">Marque uma opção</small>
-                  )}
-                  <div className="mb-1.5 mr-3 mt-0.5 border-b border-gray-300"></div>
+          <Controller
+            key={index}
+            control={control}
+            name={question.name}
+            render={({ field }) => (
+              <div className="pl-1.5">
+                <h2 className="mb-1.5 pt-1.5 text-sm font-bold">
+                  {question.title}
+                </h2>
+                <div>
+                  <label className="mr-4 inline-flex items-center text-primary">
+                    <input
+                      type="radio"
+                      value="true"
+                      checked={field.value === true}
+                      onChange={() => field.onChange(true)}
+                    />
+                    <span className="pl-1 text-sm font-semibold text-primary">
+                      Sim
+                    </span>
+                  </label>
+                  <label className="inline-flex items-center text-primary">
+                    <input
+                      type="radio"
+                      value="false"
+                      checked={field.value === false}
+                      onChange={() => field.onChange(false)}
+                    />
+                    <span className=" pl-1 text-sm font-semibold  text-primary">
+                      Não
+                    </span>
+                  </label>
                 </div>
-              )}
-            />
-          </>
+                {field.value === true &&
+                  question.description &&
+                  question.nameDescription && (
+                    <div className="pb-1.5 pt-0.5 text-sm ">
+                      <label className="pl-2 pr-3 font-semibold ">
+                        {question.description}
+                        <input
+                          className="ml-2 rounded-lg px-10 py-0.5 pl-2 font-normal"
+                          type="text"
+                          id={field.name}
+                          key={index}
+                          {...register(question.nameDescription)}
+                          placeholder="Escreva aqui"
+                        />
+                      </label>
+                    </div>
+                  )}
+                {errors[`${question.name}`] && (
+                  <small className="text-red-500 ">Marque uma opção</small>
+                )}
+                <div className="mb-1.5 mr-3 mt-0.5 border-b border-gray-300"></div>
+              </div>
+            )}
+          />
         ))}
-
         <div className="mb-2.5 mr-2 flex flex-col pl-1.5 pt-1.5">
           <label className="mb-1 block text-sm font-semibold">
             Quantos Litros de água você bebe por dia?
@@ -222,7 +216,6 @@ export function Questionary() {
             <small className="text-red-500">{errors.drink_water.message}</small>
           )}
         </div>
-
         <div className="flex items-center pl-2 pt-3">
           <input
             className="mr-2"
@@ -241,7 +234,6 @@ export function Questionary() {
             id="authorize_data"
             type="checkbox"
             {...register('authorize_data')}
-            onChange={(e) => e.target.value}
           />
           <label className="pl-1.5 text-sm font-bold">
             Autorizo o uso das informações preenchidas acima, unicamente para a
@@ -254,10 +246,9 @@ export function Questionary() {
           </small>
         )}
         <Button 
-        type="submit" 
-        className="mt-4 w-full" 
-        disabled={isSubmitting}
-        onClick={() => navigate('/questionnaire-created')}
+          type="submit" 
+          className="mt-4 w-full" 
+          disabled={isSubmitting}
         >
           Enviar
         </Button>

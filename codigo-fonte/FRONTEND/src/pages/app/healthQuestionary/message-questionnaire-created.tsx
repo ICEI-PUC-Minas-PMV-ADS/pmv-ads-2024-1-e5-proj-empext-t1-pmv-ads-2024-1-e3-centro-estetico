@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from "../../../components/ui/button";
 
 export function MessageQuestionnaireCreated() {
+  const navigate = useNavigate();
+
   const handleCloseTab = () => {
-    window.close();
+    navigate('/');
   };
 
   return (
@@ -23,7 +26,7 @@ export function MessageQuestionnaireCreated() {
           </Button>
         </div>
         <div>
-          {/* Aqui você pode adicionar mais conteúdo ou componentes */}
+
         </div>
       </div>
     </div>
