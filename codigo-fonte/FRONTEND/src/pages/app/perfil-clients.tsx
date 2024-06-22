@@ -32,6 +32,7 @@ export function PerfilClients() {
   const [loading, setLoading] = useState(true)
   const [showPopup, setShowPopup] = useState(false)
   const [questionnaireLink, setQuestionnaireLink] = useState('*')
+  const hasHealthConditions = healthQuestionnaire?.oncological_history || healthQuestionnaire?.diabetes || healthQuestionnaire?.cardiac_issues
 
   const navigateUpdatingHeader = (path: string, title: string) => {
     setTitle(title)
@@ -60,7 +61,7 @@ export function PerfilClients() {
     async function fetchHealthQuestionnaire() {
       try {
         const response = await axios.get(
-          `${env.VITE_API_URL}/healthQuestionnaireByClientId?client_id=${id}`,
+          `${env.VITE_API_URL}/health-questionnaire-by-client-id?client_id=${id}`,
         )
         const data = await response.data
         setHealthQuestionnaire(data)
@@ -114,7 +115,7 @@ export function PerfilClients() {
           <Info />
         </Button>
       </div>
-      <div className="align-space-around flex justify-around">
+      <div className="align-space-around flex justify-around pb-2">
         <div>
           <ReactSVG src={imgPerson} />
         </div>
@@ -132,24 +133,29 @@ export function PerfilClients() {
           </div>
         </div>
       </div>
-      <h1 className="pl-3 pt-6 text-lg font-semibold">Condições de Saúde</h1>
-      <div className="flex justify-evenly pt-4">
-        {healthQuestionnaire?.oncological_history && (
-          <Badge variant="alertred">
-            <p>É oncológico</p>
-          </Badge>
-        )}
-        {healthQuestionnaire?.diabetes && (
-          <Badge variant="alertred">
-            <p>É diabético</p>
-          </Badge>
-        )}
-        {healthQuestionnaire?.cardiac_issues && (
-          <Badge variant="alertred">
-            <p>É cardíaco</p>
-          </Badge>
-        )}
-      </div>
+      
+      {hasHealthConditions && (
+        <>
+          <h1 className="pl-3 pt-6 text-lg font-semibold">Condições de Saúde</h1>
+          <div className="flex justify-evenly pt-4">
+            {healthQuestionnaire?.oncological_history && (
+              <Badge variant="alertred">
+                <p>Histórico Oncológico</p>
+              </Badge>
+            )}
+            {healthQuestionnaire?.diabetes && (
+              <Badge variant="alertred">
+                <p>Diabético</p>
+              </Badge>
+            )}
+            {healthQuestionnaire?.cardiac_issues && (
+              <Badge variant="alertred">
+                <p>Cardíaco</p>
+              </Badge>
+            )}
+          </div>
+        </>
+      )}
 
       <h1 className="pb-4 pl-3 pt-6 text-lg font-semibold">
         Fichas de Anamnese

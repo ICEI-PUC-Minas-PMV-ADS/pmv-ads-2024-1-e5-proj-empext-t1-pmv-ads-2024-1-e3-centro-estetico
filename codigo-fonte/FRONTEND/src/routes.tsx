@@ -18,6 +18,7 @@ import { RegisterClients } from './pages/app/register/RegisterClients'
 import { SignIn } from './pages/auth/sign-in'
 import { SignUp } from './pages/auth/sign-up'
 import { BodyMeasuresView } from './pages/app/appointment/bodyMeasuresView'
+import { MessageQuestionnaireCreated } from './pages/app/healthQuestionary/message-questionnaire-created'
 
 
 export const router = createBrowserRouter([
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: '/perfil-users/:id/view-questionnaire',
         element: <ViewQuestionnaire />,
+      },
+      {
+        path: '/questionnaire-created',
+        element: <MessageQuestionnaireCreated />,
       },
       {
         path: '/appointments-list/:clientId',
