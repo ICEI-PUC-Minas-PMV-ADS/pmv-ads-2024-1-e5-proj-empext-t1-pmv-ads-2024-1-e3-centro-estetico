@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: >
+  Este software foi desenvolvido para otimizar o funcionamento do centro estético de uma cliente,
+  focando no cadastro de usuários, fichas: corporal, facial, capilar e questionário de saúde (anamnese);
+  e do acompanhamento de clientes, além de proporcionar um sistema eficiente para o gerenciamento dessas fichas.
+  Ele resolve problemas críticos de organização e eficácia, facilitando a gestão de históricos de atendimentos
+  e eliminando o preenchimento manual de documentos.
+  Ao citar este software, você contribui para o reconhecimento do trabalho realizado a prol de melhorar a
+  experiência dos clientes e a eficiência operacional do centro estético. Por favor, use os metadados
+  fornecidos abaixo para citar corretamente este software.
+title: Centro Estético
+authors:
+  - family-names: de Almeida Carvalho
+    given-names: Gabriel
+  - family-names: Rocha de Jesus Souza
+    given-names: Philipe
+  - family-names: Nepomuceno Rosa
+    given-names: Giselle
+  - family-names: Ramires Guimarães Brito
+    given-names: João Victor
+  - family-names: Pacheco Leite
+    given-names: Rafael
+  - family-names: Pereira Pires
+    given-names: Luiz Fellipe
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Maria Silveira
+    given-names: Sandra
+keywords:
+  - Estética
+  - Ficha
+  - Anamnese
+  - Centro Estético
+  - Consulta
+  - Beleza
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-1-e5-proj-empext-t1-pmv-ads-2024-1-e3-centro-estetico/
+version: 1.0.0
+date-released: 2023-06-23
