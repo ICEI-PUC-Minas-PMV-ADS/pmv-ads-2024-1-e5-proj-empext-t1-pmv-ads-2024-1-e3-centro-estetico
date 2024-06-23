@@ -2,7 +2,6 @@ import { FastifyInstance } from "fastify";
 import { authenticate } from "./controllers/authenticate";
 import { clientById } from "./controllers/client-by-id";
 import { clientRegister } from "./controllers/client-register";
-import { clients } from "./controllers/clients";
 import { createAppointment } from "./controllers/create-appointment";
 import { createAppointmentSkinData } from "./controllers/create-appointment-skin-data";
 import { getAppointmentSkinData } from "./controllers/get-appointment-skin-data";
@@ -29,29 +28,23 @@ import { getHealthQuestionnaireLink } from "./controllers/get-health-questionnai
 import { deleteHealthQuestionnaire } from "./controllers/delete-health-questionnaire";
 
 export async function appRoutes(app: FastifyInstance) {
-  // Clients Routes
-  app.get("/clients", clients);
-  app.post("/users", userRegister);
+  // Users Routes
   app.post("/sessions", authenticate);
+  app.post("/users", userRegister);
+  app.get("/user", userProfile);
+  app.get("/get-users", getUsers);
+  app.get("/get-estheticians", getEstheticians);
+  // Authenticated Routes
+  app.get("/me", { onRequest: [verifyJWT] }, userProfile);
 
+  // Clients Routes
   app.post("/clients", clientRegister);
   app.get("/clientById", clientById);
-
 
   // SkinForm Routes
   app.get("/get-skin-form", getSkinForm );
   app.post("/skin-form", skinForm);
   app.put("/update-skin-form", updateSkinForm);
-
-  // Users Routes
-  app.get("/user", userProfile);
-  app.get("/get-users", getUsers);
-  app.get("/get-estheticians", getEstheticians);
-
-  // Authenticated Routes
-  app.get("/me", { onRequest: [verifyJWT] }, userProfile);
-
-  // app.get('/users', { onRequest: [verifyJWT] }, users)
 
   // Appointment Routes
   app.get("/appointment", getAppointment);
@@ -74,6 +67,4 @@ export async function appRoutes(app: FastifyInstance) {
   app.get("/health-questionnaire-by-client-id", healthQuestionnaireByClientId);
   app.get("/recent-health-questionnaries", recentHealthQuestionnairies);
   app.delete("/health-questionnaire", deleteHealthQuestionnaire);
-
-
 }

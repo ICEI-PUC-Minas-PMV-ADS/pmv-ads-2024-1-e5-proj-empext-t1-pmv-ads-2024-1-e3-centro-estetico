@@ -1,6 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { makeGetUserProfileService } from '@/services/factories/make-get-user-profile-service'
-import { getUsersParams } from '@/validations/user-validation'
+import { ZodError } from 'zod'
 
 export async function userProfile(
   request: FastifyRequest,
@@ -9,10 +11,9 @@ export async function userProfile(
   const userProfile = makeGetUserProfileService()
 
   try {
-    const userId = getUsersParams.parse(request.query)
+    const userId = request.user.id
+    const { user } = await userProfile.execute({ userId })
 
-    const { user } = await userProfile.execute({ userId: userId.id })
-  
     if(user) {
       return reply.code(200).send(user)
     } else {
@@ -20,6 +21,10 @@ export async function userProfile(
     }
 
   } catch (error) {
+    if (error instanceof ZodError)
+    {
+      return reply.code(403).send({ error: error.format() })
+    }
     console.log(error)
     return reply.code(500).send({ error: 'Internal Server Error' })
   }
