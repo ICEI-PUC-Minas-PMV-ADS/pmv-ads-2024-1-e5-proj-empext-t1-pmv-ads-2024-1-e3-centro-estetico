@@ -23,7 +23,8 @@ Um projeto desensolvido exclusivamente para um centro estético com o intuito de
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+Estamos utilizando a plataforma OnRender para o deploy da aplicação, que pode ser acessada em: 
+https://fatima-styles-frontend.onrender.com/sign-in
 
 # Documentação
 
