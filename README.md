@@ -6,7 +6,7 @@
 
 `5º semestre`
 
-Um projeto desensolvido exclusivamente para um centro estético com o intuito de ajudar no relacionamento e desenvolvimento do cliente e um pouco da administração do negócio.
+Um projeto desenvolvido exclusivamente para um centro estético com o intuito de ajudar no relacionamento e desenvolvimento do cliente e um pouco da administração do negócio.
 
 ## Integrantes
 
