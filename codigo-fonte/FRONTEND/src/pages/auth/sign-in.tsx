@@ -6,10 +6,12 @@ import { z } from 'zod'
 import Logo from '../../assets/logo.svg'
 
 import { signIn } from '@/api/sign-in'
-import { useEmail } from '@/hooks/useEmail'
+import { useUserLoggedData } from '@/hooks/useUserLogged'
 import { useTitle } from '@/hooks/useTitle'
 import { TitleOfPages } from '@/utils/titleOfPages'
 import { ReactSVG } from 'react-svg'
+import { api } from '@/lib/axios'
+import { env } from '@/env'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -32,7 +34,7 @@ export function SignIn() {
   })
 
   const { setTitle } = useTitle();
-  const { setEmail } = useEmail();
+  const { setUserLoggedData } = useUserLoggedData();
 
   const navigateUpdatingHeader = (path: string, title: string) => {
     setTitle(title)
@@ -42,7 +44,8 @@ export function SignIn() {
   async function handleSignIn({ email, password }: SignInForm) {
     try {
       await authenticate({ email, password })
-      setEmail(email)
+      const response = await api.get(`${env.VITE_API_URL}/me`);
+      setUserLoggedData(response.data)
       navigateUpdatingHeader('/', TitleOfPages.home)
       toast.success('Bem vindo(a)!')
     } catch (error) {
@@ -83,13 +86,13 @@ export function SignIn() {
         <button
           type="submit"
            disabled={isSubmitting}
-          className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#0063C7] rounded-md focus:outline-none focus:ring-1 active:bg-[#00a27cbf]"
+          className="w-full mt-2 px-4 py-2 text-sm font-medium text-white bg-[#0063C7] rounded-md focus:outline-none focus:ring-1 active:bg-[#4d8ecf]"
         >
           Entrar
         </button>
         <div className=' mt-3 text-center'>
-          <a href='/sign-up'  className="inline-block align-baseline text-sm text-[#0063C7] hover:[#00a27c66]"
-  >
+          <a href='/sign-up'  className="inline-block align-baseline text-sm text-[#0063C7] hover:[#004992]"
+>
             Quero me cadastrar
           </a>
         </div>

@@ -3,8 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import { HeaderMenu } from './menu';
 import { useTitle } from '@/hooks/useTitle';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useEmail } from '@/hooks/useEmail';
+import { useEffect, useMemo, useState } from 'react';
+import { useUserLoggedData } from '@/hooks/useUserLogged';
 import axios from 'axios';
 import { env } from '@/env';
 
@@ -20,7 +20,7 @@ type HeaderProps = {
 export function Header(props: HeaderProps) {
   const [userData, setUserData] = useState<User | null>(null);
   const [nonLoggedSession, setNonLoggedSession] = useState(false)
-  const { email } = useEmail();
+  const { userLoggedData } = useUserLoggedData();
 
   let isHomepage = false
   if (props.page === "Home") {
@@ -30,27 +30,24 @@ export function Header(props: HeaderProps) {
   const { setTitle, previousPath, previousTitle } = useTitle();
   const navigate = useNavigate()
 
-  useEffect(() => {
+  useMemo(() => {
     if (isHomepage === true && userData === null && (window.location.pathname.includes('/perfil-users/'))) {
       setNonLoggedSession(true)
     }
 
-    if (email === '') {
-      if (!window.location.pathname.includes('/perfil-users')) {
-        navigate('/sign-in')
+    async function cookieValidation() {
+      if ((await userLoggedData).id === '') {
+        if (!window.location.pathname.includes('/perfil-users')) {
+          navigate('/sign-in')
+        }
+      } else {
+        console.log(await userLoggedData)
+        setUserData(await userLoggedData)
       }
     }
 
-    async function fetchEstheticianUser() {
-      try {
-        const response = await axios.get(`${env.VITE_API_URL}/get-estheticians?user_email=${email}`);
-        const data = response.data;
-        setUserData(data);
-      } catch (error) {
-        console.error('Failed to fetch esthetician data:', error);
-      }
-    }
-    fetchEstheticianUser();
+    cookieValidation()
+    
   }, []);
 
   function navigatePreviousPage() {

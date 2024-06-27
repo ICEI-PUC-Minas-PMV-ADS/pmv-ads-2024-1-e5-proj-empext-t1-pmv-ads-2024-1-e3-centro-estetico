@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { authenticate } from "./controllers/authenticate";
 import { clientById } from "./controllers/client-by-id";
+import { clients } from "./controllers/clients";
 import { clientRegister } from "./controllers/client-register";
 import { createAppointment } from "./controllers/create-appointment";
 import { createAppointmentSkinData } from "./controllers/create-appointment-skin-data";
@@ -38,6 +39,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.get("/me", { onRequest: [verifyJWT] }, userProfile);
 
   // Clients Routes
+  app.get("/clients", clients);
   app.post("/clients", clientRegister);
   app.get("/clientById", clientById);
 

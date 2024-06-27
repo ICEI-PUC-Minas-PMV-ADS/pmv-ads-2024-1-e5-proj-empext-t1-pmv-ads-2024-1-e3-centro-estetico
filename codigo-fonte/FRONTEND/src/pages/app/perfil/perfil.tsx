@@ -3,9 +3,7 @@ import telephone from "../../../assets/telephone.svg";
 import emailIcon from "../../../assets/email.svg";
 import address from "../../../assets/address.svg";
 import { ChangeEvent, useState, useEffect } from 'react';
-import axios from "axios";
-import { env } from '../../../env';
-import { useEmail } from "@/hooks/useEmail";
+import { useUserLoggedData } from "@/hooks/useUserLogged";
 import { useTitle } from "@/hooks/useTitle";
 
 type User = {
@@ -20,7 +18,7 @@ export function Perfil() {
     const [userData, setUserData] = useState<User | null>(null);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const { email } = useEmail();
+    const { userLoggedData } = useUserLoggedData();
     const { setPreviousPath, setPreviousTitle, title } = useTitle();
 
     useEffect(() => {
@@ -31,9 +29,7 @@ export function Perfil() {
     useEffect(() => {
         async function fetchEstheticianUser() {
             try {
-                const response = await axios.get(`${env.VITE_API_URL}/get-estheticians?user_email=${email}`);
-                const data = response.data;
-                setUserData(data);
+                setUserData(await userLoggedData);
             } catch (error) {
                 console.error('Failed to fetch esthetician data:', error);
             } finally {
