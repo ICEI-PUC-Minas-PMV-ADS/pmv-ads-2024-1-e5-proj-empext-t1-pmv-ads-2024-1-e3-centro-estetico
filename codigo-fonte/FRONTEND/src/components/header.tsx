@@ -3,10 +3,9 @@ import { ArrowLeft } from 'lucide-react';
 import { HeaderMenu } from './menu';
 import { useTitle } from '@/hooks/useTitle';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useUserLoggedData } from '@/hooks/useUserLogged';
-import axios from 'axios';
-import { env } from '@/env';
+
 
 type User = {
   name: string;
@@ -41,7 +40,6 @@ export function Header(props: HeaderProps) {
           navigate('/sign-in')
         }
       } else {
-        console.log(await userLoggedData)
         setUserData(await userLoggedData)
       }
     }

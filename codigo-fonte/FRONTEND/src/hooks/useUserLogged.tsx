@@ -27,7 +27,6 @@ export const UserLoggedDataProvider: React.FC<UserLoggedDataProviderProps> = ({ 
       const data: User = response.data;
       return data
     } catch(e) {
-      console.log('sim!!')
       return {
         id: '',
         name: '',
