@@ -10,24 +10,24 @@ import { queryClient } from './lib/react-query'
 import { router } from './routes'
 import { TitleProvider } from './hooks/useTitle'
 import { UserProvider } from './context/UserContext'
-import { EmailProvider } from './hooks/useEmail'
+import { UserLoggedDataProvider } from './hooks/useUserLogged'
 
 export function App() {
   return (
     <TitleProvider>
-      <EmailProvider>
+      <UserLoggedDataProvider>
         <HelmetProvider>
           <ThemeProvider storageKey="fatimastyles-theme" defaultTheme="system">
             <Helmet titleTemplate="%s | Fatima Styles" />
             <Toaster richColors />
             <QueryClientProvider client={queryClient}>
               <UserProvider>
-              <RouterProvider router={router} />
+                <RouterProvider router={router} />
               </UserProvider>
             </QueryClientProvider>
           </ThemeProvider>
         </HelmetProvider>
-      </EmailProvider>
+      </UserLoggedDataProvider>
     </TitleProvider>
 
   )
