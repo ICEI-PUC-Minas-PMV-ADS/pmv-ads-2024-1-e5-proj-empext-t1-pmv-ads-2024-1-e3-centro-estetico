@@ -44,7 +44,9 @@ export function SignIn() {
   async function handleSignIn({ email, password }: SignInForm) {
     try {
       await authenticate({ email, password })
-      const response = await api.get(`${env.VITE_API_URL}/me`);
+      //voltar essa depois
+      //const response = await api.get(`${env.VITE_API_URL}/me`);
+      const response = await api.get(`${env.VITE_API_URL}/get-estheticians?user_email=${email}`);
       setUserLoggedData(response.data)
       navigateUpdatingHeader('/', TitleOfPages.home)
       toast.success('Bem vindo(a)!')
